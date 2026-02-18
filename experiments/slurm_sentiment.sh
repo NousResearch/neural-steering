@@ -17,7 +17,7 @@ echo "Date: $(date)"
 echo "Node: $(hostname)"
 echo "GPU: $(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null || echo N/A)"
 
-python experiments/v2/sentiment_steering.py \
+python experiments/sentiment_steering.py \
     --model "${1:-meta-llama/Llama-3.1-8B-Instruct}" \
     --top-k "${2:-200}" \
     --output-dir results/sentiment_steering
