@@ -51,8 +51,8 @@ Arora et al.\ (2026) demonstrated that language model circuits are remarkably sp
 We build on this foundation with several original contributions.
 First, we introduce \textbf{contrastive neuron discovery}, which applies contrastive activation analysis at the MLP neuron level, enabling circuit discovery and targeted behavioral steering for behaviors (refusal, belief, and sentiment) where single-token attribution targets are unavailable.
 This bridges two previously separate paradigms: residual-stream steering and neuron-level circuit analysis.
-Second, we conduct a \textbf{cross-scale circuit analysis} comparing circuit structure between 1B and 8B parameter models, finding that circuit sizes and relative layer positions are preserved across a 6.5$\times$ scale difference (Jensen--Shannon divergence 0.13--0.28 between layer distributions).
-Third, we perform \textbf{layer localization and circuit overlap studies} across five tasks, revealing a dichotomy: behavioral circuits (refusal, sycophancy, sentiment) concentrate 78--90\% of their neurons in the final three layers, while factual circuits distribute broadly across all 32 layers (30\% in top 3).
+Second, we conduct a \textbf{cross-scale circuit analysis} comparing circuit structure between 1B and 8B parameter models, finding that circuit sizes and relative layer positions are preserved across a 6.5$\times$ scale difference.
+Third, we perform \textbf{layer localization and circuit overlap studies} across five tasks, revealing a dichotomy: behavioral circuits (refusal, sycophancy, sentiment) concentrate 78--90\% of their neurons in the final three layers, while factual circuits distribute broadly across all 32 layers.
 Circuit overlap is near-zero between factual and behavioral tasks, but moderate within behavioral circuits, with 23 shared infrastructure neurons appearing in 3+ circuits, 20 of which reside in a single layer (L31).
 We also contribute an automated universal neuron detection procedure that replaces hand-curated blacklists, enabling zero-code-change portability across four gated-MLP models.
 Ablation of contrastive circuits produces targeted behavioral shifts, reducing the probability of refusal on susceptible prompts while leaving strongly encoded refusals intact, and modulating belief expression and sentiment, all while modifying only 0.04\% of MLP neurons (specificity tested on a limited set of benign prompts; see Section~\ref{sec:limitations}).
@@ -1335,10 +1335,12 @@ L1/N2427  & 0   & 38 & Source hub (super weight candidate, 4013$\times$) \\
 
 \subsection{Cross-Model Super Weight Candidates}
 
-\begin{table}[h]
+\clearpage
+\noindent
 \centering
-\caption{Super weight candidates detected across models via edge attribution dominance ratio.}
+\captionof{table}{Super weight candidates detected across models via edge attribution dominance ratio.}
 \label{tab:superweights}
+
 \small
 \begin{tabular}{llr}
 \toprule
@@ -1349,7 +1351,6 @@ Qwen2.5-7B   & L2/N10406 & 4807$\times$ \\
 Qwen2.5-7B   & L26/N5891 & 5702$\times$ \\
 \bottomrule
 \end{tabular}
-\end{table}
 
 
 \end{document}
