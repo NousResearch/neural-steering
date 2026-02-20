@@ -179,12 +179,13 @@ def visualize_network(
                     "is_circuit": is_circuit_edge,
                 })
 
-    # Mark top circuit edges for animated pulses
+    # Mark top circuit edges for animated pulses (more when showing all layers)
     circuit_edges = sorted(
         [e for e in edges_out if e["is_circuit"]],
         key=lambda e: abs(e["weight"]), reverse=True,
     )
-    pulse_ids = {id(e) for e in circuit_edges[:25]}
+    n_pulses = min(60, len(circuit_edges))
+    pulse_ids = {id(e) for e in circuit_edges[:n_pulses]}
     for e in edges_out:
         e["pulse"] = id(e) in pulse_ids
 
@@ -296,7 +297,13 @@ svg{width:100%;height:100%;display:block}
           <feMerge><feMergeNode in="b2"/><feMergeNode in="b2"/>
           <feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
+        <!-- Edge glow: soft halo around circuit connections -->
+        <filter id="fe" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="3" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
       </defs>
+      <g id="g-edge-glow"></g>
       <g id="g-edges"></g>
       <g id="g-pulses"></g>
       <g id="g-neurons"></g>
@@ -369,6 +376,7 @@ D.neurons.forEach(n => { pos[n.id] = { x: cx(n.col), y: cy(n.y_frac) }; });
 const maxA = D.max_abs_attr;
 
 /* ── edges ──────────────────────────────────────────────────────── */
+const gEg = document.getElementById('g-edge-glow');
 const gEd = document.getElementById('g-edges');
 const gPu = document.getElementById('g-pulses');
 const maxCW = Math.max(...D.edges.filter(e=>e.is_circuit).map(e=>Math.abs(e.weight)), 1);
@@ -380,7 +388,7 @@ D.edges.forEach((edge, i) => {
   if (!edge.is_circuit) {
     mk('line', {
       x1:s.x, y1:s.y, x2:t.x, y2:t.y,
-      stroke:'#1a2840', 'stroke-width':.5, opacity:.3,
+      stroke:'#1a2840', 'stroke-width':.5, opacity:.25,
       class:'bg-edge',
     }, gEd);
     return;
@@ -388,14 +396,21 @@ D.edges.forEach((edge, i) => {
 
   const aw  = Math.abs(edge.weight) / maxCW;
   const col = ec(edge.weight);
-  const sw  = 0.6 + 2.2 * aw;
-  const op  = 0.22 + 0.68 * aw;
+  const sw  = 0.7 + 2.4 * aw;
+  const op  = 0.35 + 0.60 * aw;
 
   const pid = `ep${i}`;
-  /* S-curve bezier — control points at column midpoint keep it smooth */
+  /* S-curve bezier — control points at column midpoint */
   const mx = s.x + (t.x - s.x) / 2;
   const d  = `M${s.x} ${s.y} C${mx} ${s.y} ${mx} ${t.y} ${t.x} ${t.y}`;
 
+  /* Glow layer — wider, blurry, drawn first (behind) */
+  mk('path', {
+    d, fill:'none', stroke:col, filter:'url(#fe)',
+    'stroke-width': sw + 5, opacity: op * 0.35, 'stroke-linecap':'round',
+  }, gEg);
+
+  /* Sharp layer — crisp line on top */
   mk('path', {
     id:pid, d, fill:'none', stroke:col,
     'stroke-width':sw, opacity:op, 'stroke-linecap':'round',
@@ -403,10 +418,10 @@ D.edges.forEach((edge, i) => {
   }, gEd);
 
   if (edge.pulse) {
-    const dot = mk('circle', {r:2.2, fill:col, opacity:.95}, gPu);
+    const dot = mk('circle', {r:2.5, fill:col, opacity:.98}, gPu);
     const am  = mk('animateMotion', {
-      dur:`${.9+(1-aw)*1.8}s`, repeatCount:'indefinite',
-      begin:`${((i*.23)%3).toFixed(2)}s`,
+      dur:`${.8+(1-aw)*1.6}s`, repeatCount:'indefinite',
+      begin:`${((i*.19)%3).toFixed(2)}s`,
       calcMode:'spline', keySplines:'0.42 0 0.58 1', keyTimes:'0;1',
     }, dot);
     mk('mpath', {xl:'#'+pid}, am);
