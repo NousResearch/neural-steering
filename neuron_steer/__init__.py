@@ -8,7 +8,7 @@ from neuron_steer.core import (
     CircuitEdge,
     steer_neurons,
 )
-from neuron_steer.visualizer import visualize, visualize_circuit, visualize_graph
+from neuron_steer.visualizer import visualize_network
 
 __all__ = [
     "NeuronSteerer",
@@ -17,7 +17,5 @@ __all__ = [
     "NeuronIdx",
     "CircuitEdge",
     "steer_neurons",
-    "visualize",
-    "visualize_circuit",
-    "visualize_graph",
+    "visualize_network",
 ]

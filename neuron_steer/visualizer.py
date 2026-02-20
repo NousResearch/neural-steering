@@ -1,426 +1,439 @@
-"""neuron_steer.visualizer — Interactive HTML dashboards for circuit analysis.
+"""neuron_steer.visualizer — 3Blue1Brown-style neural circuit visualizer.
 
-Generates self-contained Plotly HTML files (no server needed, just open in
-a browser). Requires plotly: pip install plotly
+Generates a fully self-contained HTML file. No server, no pip installs beyond
+the base package. Just open the file in a browser.
+
+Visual design
+-------------
+  - Every model layer is a column; neurons are circles
+  - Circuit neurons glow and are colored by attribution value
+      blue = suppressing the target token
+      red/orange = promoting the target token
+  - Bottleneck neurons pulse with an outer ring
+  - Super-weight neurons are rendered in gold
+  - When a CircuitGraph is provided, bezier edges connect neurons with
+    animated dot pulses traveling along them (faster = stronger edge)
+  - Hover a neuron to inspect it; click to lock its connections in view
 
 Usage
 -----
-    from neuron_steer.visualizer import visualize
+    from neuron_steer.visualizer import visualize_network
 
-    # Works on Circuit or CircuitGraph — auto-dispatches
-    path = visualize(circuit)
-    path = visualize(graph, title="Capitals hourglass")
+    circuit = steerer.discover_circuit("What is the capital of France?", " Paris")
+    visualize_network(circuit)                        # neurons only
 
-    # Or explicitly
-    from neuron_steer.visualizer import visualize_circuit, visualize_graph
-    path = visualize_circuit(circuit, output="my_circuit.html")
-    path = visualize_graph(graph, output="my_graph.html")
+    graph = steerer.discover_edges("...", circuit)
+    visualize_network(graph, title="capitals hourglass")  # + animated edges
+
+    # save without opening
+    path = visualize_network(circuit, output="out.html", open_browser=False)
 """
 
+import json
 import os
-import webbrowser
 import tempfile
+import webbrowser
 from typing import Optional, Union
 
 from neuron_steer.core import Circuit, CircuitGraph
 
 
-# ============================================================
+# ─────────────────────────────────────────────────────────────────────────────
 # Public API
-# ============================================================
+# ─────────────────────────────────────────────────────────────────────────────
 
-def visualize(
+def visualize_network(
     obj: Union[Circuit, CircuitGraph],
     output: Optional[str] = None,
     open_browser: bool = True,
     title: Optional[str] = None,
+    max_edges: int = 60,
+    n_rows: int = 18,
 ) -> str:
-    """Visualize a Circuit or CircuitGraph as an interactive HTML dashboard.
+    """Generate a 3B1B-style neural network circuit visualization.
 
-    Auto-dispatches to visualize_circuit or visualize_graph based on type.
+    Accepts either a Circuit (neurons only) or CircuitGraph (neurons + edges).
     Returns the path to the generated HTML file.
     """
     if isinstance(obj, CircuitGraph):
-        return visualize_graph(obj, output=output, open_browser=open_browser, title=title)
-    elif isinstance(obj, Circuit):
-        return visualize_circuit(obj, output=output, open_browser=open_browser, title=title)
+        circuit   = obj.circuit
+        bn_set    = {(l, n) for (l, n), _, _ in obj.bottleneck()}
+        sw_list   = obj.detect_super_weights()
+        sw_set    = {(l, n) for (l, n), _, _, _ in sw_list}
+        raw_edges = obj.top_edges(max_edges)
+        max_ew    = max((abs(e.weight) for e in raw_edges), default=1.0)
     else:
-        raise TypeError(f"Expected Circuit or CircuitGraph, got {type(obj)}")
+        circuit   = obj
+        bn_set    = set()
+        sw_set    = set()
+        raw_edges = []
+        max_ew    = 1.0
 
-
-def visualize_circuit(
-    circuit: Circuit,
-    output: Optional[str] = None,
-    open_browser: bool = True,
-    title: Optional[str] = None,
-) -> str:
-    """Three-panel interactive dashboard for a Circuit.
-
-    Panels:
-      1. Layer distribution — neuron count + attribution mass per layer
-      2. Neuron scatter    — every neuron plotted at (layer, attribution),
-                             size ∝ |attribution|, color = layer
-      3. Attribution waterfall — top 25 neurons ranked by |attribution|
-
-    Returns the path to the generated HTML file.
-    """
-    _require_plotly()
-    import plotly.graph_objects as go
-    from plotly.subplots import make_subplots
-
-    if not circuit.neurons:
-        raise ValueError("Circuit is empty — nothing to visualize.")
-
-    # ── data extraction ───────────────────────────────────────────
     n_layers = max(n.layer for n in circuit.neurons) + 1
-    by_layer = circuit.by_layer()
-    layers = list(range(n_layers))
+    max_abs  = max(abs(a) for a in circuit.neurons.values()) or 1.0
 
-    layer_counts  = [len(by_layer.get(l, [])) for l in layers]
-    layer_attr_mass = [sum(abs(a) for _, a in by_layer.get(l, [])) for l in layers]
-    total_attr = sum(layer_attr_mass) or 1.0
-    layer_attr_frac = [m / total_attr for m in layer_attr_mass]
-
-    sc_layers, sc_attrs, sc_hover, sc_sizes = [], [], [], []
-    max_abs = max(abs(a) for a in circuit.neurons.values()) or 1.0
+    # Group + sort circuit neurons per layer
+    by_layer: dict = {}
     for nidx, attr in circuit.neurons.items():
-        sc_layers.append(nidx.layer)
-        sc_attrs.append(attr)
-        sc_hover.append(
-            f"<b>L{nidx.layer} / N{nidx.neuron}</b><br>"
-            f"position: {nidx.position}<br>"
-            f"attribution: {attr:+.5f}"
-        )
-        sc_sizes.append(4 + 18 * abs(attr) / max_abs)
+        by_layer.setdefault(nidx.layer, []).append((nidx, attr))
+    for layer in by_layer:
+        by_layer[layer].sort(key=lambda x: abs(x[1]), reverse=True)
 
-    top25 = circuit.top(25)
-    wf_labels = [f"L{n.layer}/N{n.neuron}" for n, _ in top25]
-    wf_vals   = [a for _, a in top25]
-    wf_colors = ["#e74c3c" if v > 0 else "#3b82f6" for v in wf_vals]
+    # Assign rows and build neuron list + id map
+    neurons_out: list = []
+    id_map: dict = {}   # (layer, position, neuron) -> id
 
-    # ── build figure ─────────────────────────────────────────────
-    fig = make_subplots(
-        rows=1, cols=3,
-        subplot_titles=(
-            "Layer distribution",
-            "All neurons  (size = |attr|, color = layer)",
-            "Top 25 by |attribution|",
-        ),
-        column_widths=[0.25, 0.42, 0.33],
-        horizontal_spacing=0.07,
+    for layer_idx in range(n_layers):
+        cn   = by_layer.get(layer_idx, [])
+        n_cn = min(len(cn), n_rows)
+        start     = max(0, (n_rows - n_cn) // 2)
+        occupied  = set()
+
+        for i, (nidx, attr) in enumerate(cn[:n_cn]):
+            row = start + i
+            nid = f"c_{nidx.layer}_{nidx.position}_{nidx.neuron}"
+            occupied.add(row)
+            id_map[(nidx.layer, nidx.position, nidx.neuron)] = nid
+            neurons_out.append({
+                "id":          nid,
+                "layer":       nidx.layer,
+                "neuron":      nidx.neuron,
+                "attribution": round(attr, 6),
+                "is_circuit":  True,
+                "is_bn":       (nidx.layer, nidx.neuron) in bn_set,
+                "is_sw":       (nidx.layer, nidx.neuron) in sw_set,
+                "label":       f"L{nidx.layer} / N{nidx.neuron}",
+                "row":         row,
+            })
+
+        # Background neurons fill remaining rows
+        bg_rows  = [r for r in range(n_rows) if r not in occupied]
+        step     = max(1, len(bg_rows) // 8)
+        for row in bg_rows[::step][:8]:
+            neurons_out.append({
+                "id":          f"bg_{layer_idx}_{row}",
+                "layer":       layer_idx,
+                "neuron":      -1,
+                "attribution": 0.0,
+                "is_circuit":  False,
+                "is_bn":       False,
+                "is_sw":       False,
+                "label":       f"L{layer_idx} background",
+                "row":         row,
+            })
+
+    # Build edge list
+    edges_out: list = []
+    for e in raw_edges:
+        src_id = id_map.get((e.source.layer, e.source.position, e.source.neuron))
+        tgt_id = id_map.get((e.target.layer, e.target.position, e.target.neuron))
+        if src_id and tgt_id:
+            edges_out.append({
+                "src":    src_id,
+                "tgt":    tgt_id,
+                "weight": round(e.weight, 6),
+            })
+
+    payload = {
+        "n_layers":        n_layers,
+        "n_rows":          n_rows,
+        "max_abs_attr":    round(max_abs, 6),
+        "max_edge_weight": round(max_ew, 6),
+        "neurons":         neurons_out,
+        "edges":           edges_out,
+        "prompt":          circuit.prompt,
+        "target_token":    circuit.target_token,
+        "logit_diff":      round(circuit.total_logit_diff, 4),
+        "n_circuit":       len(circuit.neurons),
+        "n_edges":         len(edges_out),
+    }
+
+    _title = title or f"Circuit \u2014 {circuit.target_token.strip()!r}"
+    _sub   = (
+        f"{payload['n_circuit']} circuit neurons"
+        + (f" \u00b7 {payload['n_edges']} edges" if edges_out else "")
+        + f" \u00b7 logit_diff {circuit.total_logit_diff:+.3f}"
+        + f" \u00b7 \u201c{circuit.prompt[:90]}\u201d"
     )
 
-    # Panel 1a: neuron count bars
-    fig.add_trace(go.Bar(
-        x=layers, y=layer_counts,
-        name="Neurons",
-        marker_color="#4ecdc4", opacity=0.85,
-        hovertemplate="Layer %{x}<br>%{y} neurons<extra></extra>",
-    ), row=1, col=1)
-
-    # Panel 1b: attribution mass line (normalised to same scale)
-    max_count = max(layer_counts) or 1
-    scaled_attr = [f * max_count for f in layer_attr_frac]
-    fig.add_trace(go.Scatter(
-        x=layers, y=scaled_attr,
-        name="Attribution mass",
-        mode="lines+markers",
-        marker=dict(size=4, color="#f97316"),
-        line=dict(color="#f97316", width=2),
-        hovertemplate="Layer %{x}<br>attr fraction: %{customdata:.3f}<extra></extra>",
-        customdata=layer_attr_frac,
-    ), row=1, col=1)
-
-    # Panel 2: scatter
-    fig.add_trace(go.Scatter(
-        x=sc_layers, y=sc_attrs,
-        mode="markers",
-        text=sc_hover, hoverinfo="text",
-        marker=dict(
-            size=sc_sizes,
-            color=sc_layers,
-            colorscale="Plasma",
-            showscale=True,
-            colorbar=dict(title="Layer", thickness=12, x=0.69, len=0.75),
-            line=dict(width=0.4, color="#1a1a1a"),
-            opacity=0.8,
-        ),
-        name="Neurons",
-    ), row=1, col=2)
-    fig.add_hline(y=0, line_dash="dot", line_color="#555566", row=1, col=2)
-
-    # Panel 3: waterfall (flipped so top neuron is first)
-    fig.add_trace(go.Bar(
-        y=wf_labels[::-1], x=wf_vals[::-1],
-        orientation="h",
-        marker_color=wf_colors[::-1],
-        text=[f"{v:+.4f}" for v in wf_vals[::-1]],
-        textposition="outside",
-        hovertemplate="%{y}<br>%{x:+.4f}<extra></extra>",
-        name="Attribution",
-    ), row=1, col=3)
-
-    # ── layout ───────────────────────────────────────────────────
-    _title = title or f"Circuit — target: {circuit.target_token.strip()!r}"
-    subtitle = (
-        f"{len(circuit.neurons)} neurons | "
-        f"logit_diff = {circuit.total_logit_diff:+.3f} | "
-        f"\"{circuit.prompt[:70]}\""
-    )
-
-    fig.update_layout(
-        title=dict(text=f"<b>{_title}</b><br><sup>{subtitle}</sup>", x=0.5),
-        template="plotly_dark",
-        paper_bgcolor="#0d1117",
-        plot_bgcolor="#161b22",
-        font=dict(family="'JetBrains Mono', 'Fira Code', monospace", size=11, color="#c9d1d9"),
-        height=540,
-        showlegend=False,
-        margin=dict(t=90, b=50, l=50, r=60),
-    )
-    fig.update_xaxes(title_text="Layer", gridcolor="#21262d", row=1, col=1)
-    fig.update_yaxes(title_text="Count", gridcolor="#21262d", row=1, col=1)
-    fig.update_xaxes(title_text="Layer", gridcolor="#21262d", row=1, col=2)
-    fig.update_yaxes(title_text="Attribution", gridcolor="#21262d", row=1, col=2)
-    fig.update_xaxes(title_text="Attribution", gridcolor="#21262d", row=1, col=3)
-    fig.update_yaxes(tickfont=dict(size=9), row=1, col=3)
-
-    return _save_and_open(fig, output, open_browser, prefix="circuit")
-
-
-def visualize_graph(
-    graph: CircuitGraph,
-    output: Optional[str] = None,
-    open_browser: bool = True,
-    title: Optional[str] = None,
-) -> str:
-    """Four-panel interactive dashboard for a CircuitGraph.
-
-    Panels:
-      1. Sankey diagram   — layer-to-layer attribution flow (reveals hourglass)
-      2. Neuron scatter   — same as visualize_circuit but with bottlenecks/
-                            super-weights highlighted in a different color
-      3. Hub analysis     — top source hubs (fan-out) vs target hubs (fan-in)
-      4. Top edges        — highest-weight individual neuron→neuron connections
-
-    Returns the path to the generated HTML file.
-    """
-    _require_plotly()
-    import plotly.graph_objects as go
-    from plotly.subplots import make_subplots
-
-    circuit = graph.circuit
-    if not graph.edges:
-        raise ValueError("CircuitGraph has no edges — run discover_edges() first.")
-
-    # ── shared circuit data (same as visualize_circuit panel 2) ──
-    n_layers = max(n.layer for n in circuit.neurons) + 1
-    max_abs = max(abs(a) for a in circuit.neurons.values()) or 1.0
-
-    bn_set = {(l, n) for (l, n), _, _ in graph.bottleneck()}
-    sw_list = graph.detect_super_weights()
-    sw_set  = {(l, n) for (l, n), _, _, _ in sw_list}
-
-    sc_layers, sc_attrs, sc_hover, sc_sizes, sc_colors = [], [], [], [], []
-    for nidx, attr in circuit.neurons.items():
-        key = (nidx.layer, nidx.neuron)
-        sc_layers.append(nidx.layer)
-        sc_attrs.append(attr)
-        sc_sizes.append(4 + 18 * abs(attr) / max_abs)
-
-        if key in sw_set:
-            color = "#fbbf24"   # gold — super weight
-            role = "SUPER WEIGHT"
-        elif key in bn_set:
-            color = "#f97316"   # orange — bottleneck
-            role = "BOTTLENECK"
-        else:
-            color = "#4ecdc4"
-            role = ""
-
-        sc_colors.append(color)
-        sc_hover.append(
-            f"<b>L{nidx.layer} / N{nidx.neuron}</b><br>"
-            f"attribution: {attr:+.5f}<br>"
-            + (f"<b>{role}</b>" if role else "")
-        )
-
-    # ── Sankey data ───────────────────────────────────────────────
-    flow = graph.layer_flow()
-    unique_layers = sorted({l for pair in flow for l in pair})
-    layer_to_idx  = {l: i for i, l in enumerate(unique_layers)}
-
-    sankey_src, sankey_tgt, sankey_val, sankey_color = [], [], [], []
-    for (src, tgt), w in flow.items():
-        if w > 0:
-            sankey_src.append(layer_to_idx[src])
-            sankey_tgt.append(layer_to_idx[tgt])
-            sankey_val.append(w)
-            # Edges crossing more layers get a warmer color
-            gap = tgt - src
-            sankey_color.append(f"rgba(231,76,60,{min(0.85, 0.2 + gap * 0.15):.2f})")
-
-    sankey_labels = [f"L{l}" for l in unique_layers]
-
-    # ── Hub analysis ─────────────────────────────────────────────
-    hubs = graph.hub_analysis()
-    src_hubs = hubs["source_hubs"][:12]
-    tgt_hubs = hubs["target_hubs"][:12]
-
-    sh_labels = [f"L{l}/N{n}" for (l, n), _, _ in src_hubs]
-    sh_vals   = [deg for _, deg, _ in src_hubs]
-    sh_colors = ["#fbbf24" if (l, n) in sw_set else "#e74c3c" for (l, n), _, _ in src_hubs]
-
-    th_labels = [f"L{l}/N{n}" for (l, n), _, _ in tgt_hubs]
-    th_vals   = [deg for _, deg, _ in tgt_hubs]
-    th_colors = ["#f97316" if (l, n) in bn_set else "#3b82f6" for (l, n), _, _ in tgt_hubs]
-
-    # ── Top edges ────────────────────────────────────────────────
-    top_edges = graph.top_edges(20)
-    te_labels = [f"L{e.source.layer}/N{e.source.neuron} → L{e.target.layer}/N{e.target.neuron}"
-                 for e in top_edges]
-    te_vals   = [e.weight for e in top_edges]
-    te_colors = ["#e74c3c" if w > 0 else "#3b82f6" for w in te_vals]
-
-    # ── Build figure ──────────────────────────────────────────────
-    fig = make_subplots(
-        rows=2, cols=2,
-        subplot_titles=(
-            "Layer-to-layer attribution flow  (Sankey)",
-            "Circuit neurons  (orange=bottleneck  gold=super-weight)",
-            "Hub analysis  (fan-out vs fan-in)",
-            "Top 20 edges  by |weight|",
-        ),
-        specs=[
-            [{"type": "sankey"}, {"type": "scatter"}],
-            [{"type": "bar"},    {"type": "bar"}],
-        ],
-        vertical_spacing=0.14,
-        horizontal_spacing=0.08,
-    )
-
-    # Panel 1: Sankey
-    fig.add_trace(go.Sankey(
-        arrangement="snap",
-        node=dict(
-            label=sankey_labels,
-            color="#4ecdc4",
-            pad=12, thickness=18,
-            line=dict(color="#0d1117", width=0.5),
-        ),
-        link=dict(
-            source=sankey_src,
-            target=sankey_tgt,
-            value=sankey_val,
-            color=sankey_color,
-            hovertemplate="%{source.label} → %{target.label}<br>flow: %{value:.2f}<extra></extra>",
-        ),
-    ), row=1, col=1)
-
-    # Panel 2: Scatter with role-colored neurons
-    fig.add_trace(go.Scatter(
-        x=sc_layers, y=sc_attrs,
-        mode="markers",
-        text=sc_hover, hoverinfo="text",
-        marker=dict(
-            size=sc_sizes, color=sc_colors,
-            line=dict(width=0.4, color="#1a1a1a"),
-            opacity=0.85,
-        ),
-        name="Neurons",
-    ), row=1, col=2)
-    fig.add_hline(y=0, line_dash="dot", line_color="#555566", row=1, col=2)
-
-    # Panel 3a: source hubs
-    fig.add_trace(go.Bar(
-        y=sh_labels[::-1], x=sh_vals[::-1],
-        orientation="h",
-        marker_color=sh_colors[::-1],
-        name="Out-degree",
-        hovertemplate="%{y}<br>out-degree: %{x}<extra></extra>",
-    ), row=2, col=1)
-
-    # Panel 3b: target hubs (superimposed as a second color)
-    fig.add_trace(go.Bar(
-        y=th_labels[::-1], x=th_vals[::-1],
-        orientation="h",
-        marker_color=th_colors[::-1],
-        name="In-degree",
-        hovertemplate="%{y}<br>in-degree: %{x}<extra></extra>",
-        visible=True,
-    ), row=2, col=1)
-
-    # Panel 4: top edges
-    fig.add_trace(go.Bar(
-        y=te_labels[::-1], x=te_vals[::-1],
-        orientation="h",
-        marker_color=te_colors[::-1],
-        text=[f"{v:+.3f}" for v in te_vals[::-1]],
-        textposition="outside",
-        name="Edge weight",
-        hovertemplate="%{y}<br>weight: %{x:+.4f}<extra></extra>",
-    ), row=2, col=2)
-
-    # ── layout ────────────────────────────────────────────────────
-    _title = title or f"Circuit graph — target: {circuit.target_token.strip()!r}"
-    subtitle = (
-        f"{len(circuit.neurons)} neurons | "
-        f"{len(graph.edges)} edges | "
-        f"{len(bn_set)} bottleneck | "
-        f"{len(sw_set)} super-weight"
-    )
-
-    fig.update_layout(
-        title=dict(text=f"<b>{_title}</b><br><sup>{subtitle}</sup>", x=0.5),
-        template="plotly_dark",
-        paper_bgcolor="#0d1117",
-        plot_bgcolor="#161b22",
-        font=dict(family="'JetBrains Mono', 'Fira Code', monospace", size=11, color="#c9d1d9"),
-        height=900,
-        showlegend=False,
-        margin=dict(t=90, b=50, l=50, r=60),
-        barmode="overlay",
-    )
-    fig.update_xaxes(title_text="Layer", gridcolor="#21262d", row=1, col=2)
-    fig.update_yaxes(title_text="Attribution", gridcolor="#21262d", row=1, col=2)
-    fig.update_xaxes(title_text="Degree", gridcolor="#21262d", row=2, col=1)
-    fig.update_yaxes(tickfont=dict(size=9), row=2, col=1)
-    fig.update_xaxes(title_text="Edge weight", gridcolor="#21262d", row=2, col=2)
-    fig.update_yaxes(tickfont=dict(size=8), row=2, col=2)
-
-    return _save_and_open(fig, output, open_browser, prefix="circuit_graph")
-
-
-# ============================================================
-# Helpers
-# ============================================================
-
-def _require_plotly():
-    try:
-        import plotly  # noqa: F401
-    except ImportError:
-        raise ImportError(
-            "plotly is required for visualization.\n"
-            "Install with: pip install plotly"
-        )
-
-
-def _save_and_open(fig, output: Optional[str], open_browser: bool, prefix: str) -> str:
-    import plotly.io as pio
+    html = _TEMPLATE.replace("%%TITLE%%", _title)
+    html = html.replace("%%SUBTITLE%%", _sub)
+    html = html.replace("%%DATA%%", json.dumps(payload))
 
     if output is None:
-        fd, output = tempfile.mkstemp(prefix=f"neuron_{prefix}_", suffix=".html")
+        fd, output = tempfile.mkstemp(prefix="neuron_network_", suffix=".html")
         os.close(fd)
 
-    pio.write_html(
-        fig, file=output,
-        include_plotlyjs="cdn",   # ~1KB stub, fetches plotly from CDN
-        full_html=True,
-        config={"displayModeBar": True, "scrollZoom": True},
-    )
+    with open(output, "w", encoding="utf-8") as fh:
+        fh.write(html)
 
-    print(f"Saved to: {output}")
+    print(f"Saved \u2192 {output}")
     if open_browser:
         webbrowser.open(f"file://{os.path.abspath(output)}")
 
     return output
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# HTML / JS template
+# ─────────────────────────────────────────────────────────────────────────────
+
+_TEMPLATE = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>%%TITLE%%</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:#060710;color:#c9d1d9;
+  font-family:'JetBrains Mono','Fira Code','Courier New',monospace;
+  overflow:hidden;user-select:none;
+}
+#shell{display:flex;flex-direction:column;width:100vw;height:100vh}
+#hdr{padding:13px 20px 9px;border-bottom:1px solid #111d2e;flex-shrink:0}
+#hdr-t{font-size:16px;font-weight:700;color:#f0f6fc;letter-spacing:.04em}
+#hdr-s{font-size:10px;color:#3d5166;margin-top:3px;line-height:1.5}
+#wrap{flex:1;position:relative;overflow:hidden}
+svg{width:100%;height:100%;display:block}
+#tip{
+  position:absolute;background:#0b1726;border:1px solid #1e3a5f;
+  border-radius:7px;padding:9px 13px;font-size:11px;color:#e2e8f0;
+  pointer-events:none;opacity:0;transition:opacity .1s;
+  max-width:260px;line-height:1.75;z-index:99;
+}
+#tip.on{opacity:1}
+#footer{
+  display:flex;align-items:center;gap:18px;
+  padding:7px 20px;border-top:1px solid #111d2e;
+  font-size:10px;color:#2d4155;flex-shrink:0;
+}
+.leg{display:flex;align-items:center;gap:5px}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+#fhint{margin-left:auto;color:#243344}
+@keyframes pulse{0%,100%{opacity:.88}50%{opacity:.4}}
+.cn{animation:pulse 2.4s ease-in-out infinite}
+</style>
+</head>
+<body>
+<div id="shell">
+  <div id="hdr">
+    <div id="hdr-t">%%TITLE%%</div>
+    <div id="hdr-s">%%SUBTITLE%%</div>
+  </div>
+  <div id="wrap">
+    <svg id="viz" xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <filter id="fd" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur stdDeviation="2.5" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="fm" x="-130%" y="-130%" width="360%" height="360%">
+          <feGaussianBlur stdDeviation="5"  result="b1"/>
+          <feGaussianBlur stdDeviation="11" result="b2"/>
+          <feMerge><feMergeNode in="b2"/><feMergeNode in="b1"/>
+          <feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="fs" x="-200%" y="-200%" width="500%" height="500%">
+          <feGaussianBlur stdDeviation="7"  result="b1"/>
+          <feGaussianBlur stdDeviation="18" result="b2"/>
+          <feMerge><feMergeNode in="b2"/><feMergeNode in="b2"/>
+          <feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="fe" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="1.6" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <g id="g-spines"></g>
+      <g id="g-bg"></g>
+      <g id="g-edges"></g>
+      <g id="g-pulses"></g>
+      <g id="g-neurons"></g>
+      <g id="g-labels"></g>
+    </svg>
+    <div id="tip"></div>
+  </div>
+  <div id="footer">
+    <div class="leg"><div class="dot" style="background:#ef4444"></div>Positive attr</div>
+    <div class="leg"><div class="dot" style="background:#3b82f6"></div>Negative attr</div>
+    <div class="leg"><div class="dot" style="background:#f97316"></div>Bottleneck</div>
+    <div class="leg"><div class="dot" style="background:#fbbf24"></div>Super-weight</div>
+    <div class="leg"><div class="dot" style="background:#111d2e"></div>Background</div>
+    <div id="fhint">Hover to inspect &nbsp;&middot;&nbsp; Click to lock connections &nbsp;&middot;&nbsp; Click canvas to unlock</div>
+  </div>
+</div>
+<script>
+const D  = %%DATA%%;
+const NS = 'http://www.w3.org/2000/svg';
+const XL = 'http://www.w3.org/1999/xlink';
+const SVG = document.getElementById('viz');
+
+function mk(tag, a, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k,v] of Object.entries(a||{})) {
+    if (k==='xl') e.setAttributeNS(XL,'href',v); else e.setAttribute(k,v);
+  }
+  parent && parent.appendChild(e);
+  return e;
+}
+
+/* attribution → color: blue (neg) → dark → red (pos) */
+function ac(a, mx) {
+  const t = Math.max(-1, Math.min(1, a/(mx||1)));
+  if (t>=0) {
+    return `rgb(${Math.round(20+219*t)},${Math.round(8+60*t)},${Math.round(12*( 1-t))})`;
+  }
+  const s=-t;
+  return `rgb(${Math.round(20+39*s)},${Math.round(8+122*s)},${Math.round(12+234*s)})`;
+}
+function ec(w){ return w>0?'#ef4444':'#3b82f6'; }
+
+/* layout */
+const wr = document.getElementById('wrap');
+let W = wr.clientWidth||window.innerWidth;
+let H = wr.clientHeight||(window.innerHeight-90);
+const PX=55, PY=38, NL=D.n_layers, NR=D.n_rows;
+const lx = l => PX + (l/(NL-1))*(W-2*PX);
+const ry = r => PY + (r/(NR-1))*(H-2*PY);
+
+const pos={};
+D.neurons.forEach(n=>{ pos[n.id]={x:lx(n.layer),y:ry(n.row)}; });
+
+const maxA=D.max_abs_attr;
+
+/* spines */
+const gSp=document.getElementById('g-spines');
+for(let l=0;l<NL;l++){
+  mk('line',{x1:lx(l),y1:PY,x2:lx(l),y2:H-PY,
+    stroke:'#0c1520','stroke-width':1,opacity:.6},gSp);
+}
+
+/* labels */
+const gLb=document.getElementById('g-labels');
+const cLayers=new Set(D.neurons.filter(n=>n.is_circuit).map(n=>n.layer));
+for(let l=0;l<NL;l++){
+  const hot=cLayers.has(l);
+  if(!hot && l%4!==0 && l!==NL-1) continue;
+  const t=mk('text',{x:lx(l),y:13,'text-anchor':'middle',
+    fill:hot?'#4d7fc4':'#1b2a38',
+    'font-size':hot?9.5:7.5,'font-family':'monospace',
+    'font-weight':hot?'bold':'normal'},gLb);
+  t.textContent='L'+l;
+}
+
+/* background neurons */
+const gBg=document.getElementById('g-bg');
+D.neurons.filter(n=>!n.is_circuit).forEach(n=>{
+  const {x,y}=pos[n.id];
+  mk('circle',{cx:x,cy:y,r:2.2,fill:'#101c2c',stroke:'#1a2a3a',
+    'stroke-width':.5,opacity:.5},gBg);
+});
+
+/* edges */
+const gEd=document.getElementById('g-edges');
+const gPu=document.getElementById('g-pulses');
+D.edges.forEach((edge,i)=>{
+  const s=pos[edge.src], t=pos[edge.tgt];
+  if(!s||!t) return;
+  const aw=Math.abs(edge.weight)/D.max_edge_weight;
+  const col=ec(edge.weight);
+  const dx=t.x-s.x;
+  const d=`M${s.x} ${s.y} C${s.x+dx*.42} ${s.y} ${s.x+dx*.58} ${t.y} ${t.x} ${t.y}`;
+  const pid=`ep${i}`;
+  mk('path',{id:pid,d,fill:'none',stroke:col,
+    'stroke-width':.4+2.2*aw, opacity:.07+.55*aw,
+    'stroke-linecap':'round',
+    filter:aw>.4?'url(#fe)':'',
+    class:'ced','data-src':edge.src,'data-tgt':edge.tgt},gEd);
+  if(aw>0.18){
+    const dot=mk('circle',{r:2,fill:col,opacity:.9},gPu);
+    const am=mk('animateMotion',{
+      dur:`${1.1+(1-aw)*2.2}s`,repeatCount:'indefinite',
+      begin:`${((i*.29)%3.2).toFixed(2)}s`,
+      calcMode:'spline',keySplines:'0.42 0 0.58 1',keyTimes:'0;1'},dot);
+    mk('mpath',{xl:'#'+pid},am);
+  }
+});
+
+/* circuit neurons */
+const gN=document.getElementById('g-neurons');
+const nEls={};
+D.neurons.filter(n=>n.is_circuit).forEach(n=>{
+  const {x,y}=pos[n.id];
+  const aa=Math.abs(n.attribution)/maxA;
+  let fill,filt,r;
+  if(n.is_sw){    fill='#fbbf24'; filt='url(#fs)'; r=9; }
+  else if(n.is_bn){fill='#f97316'; filt='url(#fs)'; r=6+4*aa; }
+  else{           fill=ac(n.attribution,maxA); filt=aa>.5?'url(#fm)':'url(#fd)'; r=3+7*aa; }
+  const delay=`${(Math.random()*2.4).toFixed(2)}s`;
+  const dur=`${(1.5+Math.random()*1.3).toFixed(2)}s`;
+  /* halo */
+  mk('circle',{cx:x,cy:y,r:r+5,fill,
+    opacity:.1+.2*aa, filter:filt,
+    class:'cn',style:`animation-delay:${delay};animation-duration:${dur}`},gN);
+  /* ring for bottleneck/sw */
+  if(n.is_bn||n.is_sw)
+    mk('circle',{cx:x,cy:y,r:r+2,fill:'none',stroke:fill,
+      'stroke-width':1.1,opacity:.4},gN);
+  /* body */
+  const c=mk('circle',{cx:x,cy:y,r,fill,
+    stroke:'rgba(255,255,255,0.22)','stroke-width':.6,filter:filt,
+    class:'cn cn-body',style:`cursor:pointer;animation-delay:${delay};animation-duration:${dur}`,
+    'data-id':n.id},gN);
+  nEls[n.id]=c;
+});
+
+/* tooltip + interaction */
+const tip=document.getElementById('tip');
+let locked=null;
+function showTip(evt,n){
+  const col=n.is_sw?'#fbbf24':n.is_bn?'#f97316':ac(n.attribution,maxA);
+  const sgn=n.attribution>=0?'+':'';
+  tip.innerHTML=`<b style="color:#f0f6fc">${n.label}</b><br>`
+    +`attr: <span style="color:${col}">${sgn}${n.attribution.toFixed(5)}</span>`
+    +(n.is_bn?`<br><span style="color:#f97316">&#9679; BOTTLENECK</span>`:'')
+    +(n.is_sw?`<br><span style="color:#fbbf24">&#9733; SUPER-WEIGHT</span>`:'');
+  tip.classList.add('on');
+  moveTip(evt);
+}
+function moveTip(evt){
+  const r=document.getElementById('wrap').getBoundingClientRect();
+  let tx=evt.clientX-r.left+14, ty=evt.clientY-r.top-12;
+  if(tx+270>W) tx-=284;
+  if(ty<0) ty=4;
+  tip.style.left=tx+'px'; tip.style.top=ty+'px';
+}
+function hideTip(){ if(!locked) tip.classList.remove('on'); }
+function dimEdges(id){
+  document.querySelectorAll('.ced').forEach(p=>{
+    p.style.opacity = id ? (p.dataset.src===id||p.dataset.tgt===id?'0.88':'0.02') : '';
+  });
+}
+document.querySelectorAll('.cn-body').forEach(c=>{
+  c.addEventListener('mouseenter',evt=>{
+    if(locked) return;
+    const n=D.neurons.find(n=>n.id===c.dataset.id);
+    if(n){showTip(evt,n);dimEdges(n.id);}
+  });
+  c.addEventListener('mousemove', evt=>{ if(!locked) moveTip(evt); });
+  c.addEventListener('mouseleave',()=>{ if(!locked){hideTip();dimEdges(null);} });
+  c.addEventListener('click',evt=>{
+    evt.stopPropagation();
+    const id=c.dataset.id;
+    if(locked===id){ locked=null; tip.classList.remove('on'); dimEdges(null); }
+    else {
+      locked=id;
+      const n=D.neurons.find(n=>n.id===id);
+      if(n){showTip(evt,n);dimEdges(id);}
+    }
+  });
+});
+SVG.addEventListener('click',()=>{
+  if(locked){ locked=null; tip.classList.remove('on'); dimEdges(null); }
+});
+</script>
+</body>
+</html>"""
