@@ -14,10 +14,10 @@ Usage
 
 Parameters
 ----------
-    max_layers       : how many layers to show (picks highest-attribution ones)
-    n_background     : background dots per column (random scatter)
-    intermediate_size: MLP intermediate dimension (e.g. 14336 for Llama-3.1-8B).
-                       If None, inferred from max neuron index in the circuit.
+    max_layers       : layers to show (None = all layers 0..max)
+    n_per_col        : total neurons per column; circuit neurons snap to their
+                       proportional slot, background fills the rest
+    intermediate_size: MLP intermediate dimension (inferred if None)
 """
 
 import json
@@ -40,26 +40,22 @@ def visualize_network(
     open_browser: bool = True,
     title: Optional[str] = None,
     max_layers: Optional[int] = None,
-    n_background: int = 22,
+    n_per_col: int = 50,
     intermediate_size: Optional[int] = None,
 ) -> str:
     """3B1B-style neural network visualization.
 
-    Each column is a transformer layer. Circuit neurons are placed at their
-    actual y-position within the MLP (neuron_idx / intermediate_size), so
-    neurons near index 0 float near the top and high-index neurons sink toward
-    the bottom. Background neurons are scattered randomly. Dense edges connect
-    adjacent columns; circuit edges glow orange/blue by attribution sign.
-
-    max_layers : number of layers to show (default None = all layers 0..max).
-                 When None, every layer from 0 to the deepest circuit layer is
-                 shown, making it easy to see which layers are "dark" vs active.
+    Each column is a transformer layer with exactly n_per_col neuron slots.
+    Circuit neurons snap to the slot matching their index position within the
+    MLP (neuron 8079 / 14336 → slot 57 of 100, etc.). Background neurons fill
+    remaining slots. Circuit edges span directly to the *next circuit layer*,
+    threading visually through any empty intermediate layers.
     """
     if isinstance(obj, CircuitGraph):
-        circuit   = obj.circuit
-        bn_set    = {(l, n) for (l, n), _, _ in obj.bottleneck()}
-        sw_list   = obj.detect_super_weights()
-        sw_set    = {(l, n) for (l, n), _, _, _ in sw_list}
+        circuit  = obj.circuit
+        bn_set   = {(l, n) for (l, n), _, _ in obj.bottleneck()}
+        sw_list  = obj.detect_super_weights()
+        sw_set   = {(l, n) for (l, n), _, _, _ in sw_list}
         ew: dict = {}
         for e in obj.edges:
             ew[(e.source.layer, e.source.neuron,
@@ -72,22 +68,20 @@ def visualize_network(
 
     max_abs = max(abs(a) for a in circuit.neurons.values()) or 1.0
 
-    # ── collapse by (layer, neuron) — same neuron at different token positions ──
-    # Keep the maximum-attribution instance per (layer, neuron_idx)
+    # ── collapse by (layer, neuron) — same neuron at different token positions
     layer_attr: dict = {}
-    collapsed:  dict = {}  # (layer, neuron_idx) -> (attr, representative_nidx)
+    collapsed:  dict = {}   # (layer, neuron_idx) -> (attr, representative_nidx)
     for nidx, attr in circuit.neurons.items():
         key = (nidx.layer, nidx.neuron)
         layer_attr[nidx.layer] = layer_attr.get(nidx.layer, 0) + abs(attr)
         if key not in collapsed or abs(attr) > abs(collapsed[key][0]):
             collapsed[key] = (attr, nidx)
 
-    # ── pick which layers to show ──────────────────────────────────────────
+    # ── which layers to show ─────────────────────────────────────────────────
     all_circuit_layers = sorted(layer_attr)
-    n_layers = max(all_circuit_layers) + 1  # deepest layer index + 1
+    n_layers = max(all_circuit_layers) + 1
 
     if max_layers is None:
-        # Show every layer from 0 to the deepest one that has circuit neurons
         shown = list(range(n_layers))
     elif len(all_circuit_layers) <= max_layers:
         shown = all_circuit_layers
@@ -99,35 +93,55 @@ def visualize_network(
     col_idx = {l: i for i, l in enumerate(shown)}
     n_cols  = len(shown)
 
-    # ── infer intermediate_size ────────────────────────────────────────────
+    # ── infer intermediate_size ──────────────────────────────────────────────
     if intermediate_size is None:
         max_neuron = max(nidx.neuron for nidx in circuit.neurons)
-        # Round up to nearest power-of-2-ish value so highest neuron isn't
-        # pinned to the very bottom of the column
-        intermediate_size = max(max_neuron + 1,
-                                int(max_neuron * 1.08) + 64)
+        intermediate_size = max(max_neuron + 1, int(max_neuron * 1.08) + 64)
 
-    # ── build neuron list ──────────────────────────────────────────────────
-    # Reduce background dots when many columns to keep DOM manageable
-    bg_per_col = max(6, n_background - max(0, n_cols - 12))
+    # ── build per-column slot grids ──────────────────────────────────────────
+    # Each column has exactly n_per_col evenly-spaced slots (0..n_per_col-1).
+    # Circuit neurons snap to round(y_frac * (n_per_col-1)); background fills rest.
+    rng = random.Random(42)
     neurons_out: list = []
-    rng = random.Random(42)  # deterministic background scatter
+
+    def _find_free_slot(occupied: set, ideal: int) -> int:
+        if ideal not in occupied:
+            return ideal
+        for delta in range(1, n_per_col):
+            for candidate in (ideal - delta, ideal + delta):
+                if 0 <= candidate < n_per_col and candidate not in occupied:
+                    return candidate
+        return -1  # column full (shouldn't happen with reasonable n_per_col)
+
+    # Group circuit neurons by layer
+    by_circuit_layer: dict = {}   # layer -> [(neuron_idx, attr, nidx)]
+    for (layer, neuron_idx), (attr, nidx) in collapsed.items():
+        by_circuit_layer.setdefault(layer, []).append((neuron_idx, attr, nidx))
 
     for layer in shown:
-        col = col_idx[layer]
+        col      = col_idx[layer]
+        occupied: set = set()
+        cn_list  = sorted(by_circuit_layer.get(layer, []),
+                          key=lambda x: abs(x[1]), reverse=True)
 
-        # Circuit neurons — y from actual index position
-        for (l, neuron_idx), (attr, nidx) in collapsed.items():
-            if l != layer:
+        # Place circuit neurons
+        circuit_slots: dict = {}   # neuron_idx -> slot
+        for neuron_idx, attr, nidx in cn_list:
+            y_frac   = min(neuron_idx / intermediate_size, 0.999)
+            ideal    = round(y_frac * (n_per_col - 1))
+            slot     = _find_free_slot(occupied, ideal)
+            if slot < 0:
                 continue
-            y_frac = min(neuron_idx / intermediate_size, 0.99)
-            nid    = f"c_{layer}_{neuron_idx}"
+            occupied.add(slot)
+            circuit_slots[neuron_idx] = slot
+            y_snapped = slot / (n_per_col - 1)
             neurons_out.append({
-                "id":          nid,
+                "id":          f"c_{layer}_{neuron_idx}",
                 "col":         col,
                 "layer":       layer,
                 "neuron":      neuron_idx,
-                "y_frac":      round(y_frac, 6),
+                "slot":        slot,
+                "y_frac":      round(y_snapped, 6),
                 "attribution": round(attr, 6),
                 "is_circuit":  True,
                 "is_bn":       (layer, neuron_idx) in bn_set,
@@ -135,14 +149,17 @@ def visualize_network(
                 "label":       f"L{layer} / N{neuron_idx}",
             })
 
-        # Background neurons — random scatter
-        for _ in range(bg_per_col):
-            y_frac = rng.random()
+        # Fill remaining slots with background neurons
+        for slot in range(n_per_col):
+            if slot in occupied:
+                continue
+            y_frac = slot / (n_per_col - 1)
             neurons_out.append({
-                "id":          f"bg_{layer}_{rng.randint(0, 99999)}",
+                "id":          f"bg_{layer}_{slot}",
                 "col":         col,
                 "layer":       layer,
                 "neuron":      -1,
+                "slot":        slot,
                 "y_frac":      round(y_frac, 6),
                 "attribution": 0.0,
                 "is_circuit":  False,
@@ -151,56 +168,83 @@ def visualize_network(
                 "label":       f"L{layer} background",
             })
 
-    # ── build dense edges between adjacent shown layers ────────────────────
+    # ── build edges ──────────────────────────────────────────────────────────
+    # Background: all-to-all between adjacent columns (dense gray web).
+    # Circuit:    each circuit neuron → every neuron in the NEXT circuit layer,
+    #             threading visually through any empty intermediate columns.
+
     col_neurons: dict = {}
     for n in neurons_out:
         col_neurons.setdefault(n["col"], []).append(n)
 
     edges_out: list = []
-    for ci in range(n_cols - 1):
-        src_col = col_neurons.get(ci, [])
-        tgt_col = col_neurons.get(ci + 1, [])
 
-        for s in src_col:
-            for t in tgt_col:
-                is_circuit_edge = s["is_circuit"] and t["is_circuit"]
-                if is_circuit_edge:
-                    w = ew.get(
-                        (s["layer"], s["neuron"], t["layer"], t["neuron"]),
-                        ew.get((t["layer"], t["neuron"], s["layer"], s["neuron"]),
-                               s["attribution"] * t["attribution"] * 0.1),
-                    )
-                else:
-                    w = 0.0
+    # Background edges (adjacent columns only)
+    for ci in range(n_cols - 1):
+        for s in col_neurons.get(ci, []):
+            for t in col_neurons.get(ci + 1, []):
+                if s["is_circuit"] and t["is_circuit"]:
+                    continue   # circuit-circuit pairs handled below
                 edges_out.append({
-                    "src":        s["id"],
-                    "tgt":        t["id"],
-                    "weight":     round(w, 6),
-                    "is_circuit": is_circuit_edge,
+                    "src":         s["id"],
+                    "tgt":         t["id"],
+                    "weight":      0.0,
+                    "is_circuit":  False,
+                    "spans_cols":  1,
+                    "pulse":       False,
                 })
 
-    # Mark top circuit edges for animated pulses (more when showing all layers)
+    # Circuit edges: src → next circuit layer (may skip empty columns)
+    circuit_layers_sorted = sorted(by_circuit_layer.keys())
+    next_ckt = {circuit_layers_sorted[i]: circuit_layers_sorted[i + 1]
+                for i in range(len(circuit_layers_sorted) - 1)}
+
+    for src_layer in circuit_layers_sorted:
+        if src_layer not in next_ckt or src_layer not in col_idx:
+            continue
+        tgt_layer = next_ckt[src_layer]
+        if tgt_layer not in col_idx:
+            continue
+        spans = col_idx[tgt_layer] - col_idx[src_layer]
+        for src_n, src_attr, _ in by_circuit_layer[src_layer]:
+            for tgt_n, tgt_attr, _ in by_circuit_layer[tgt_layer]:
+                w = ew.get(
+                    (src_layer, src_n, tgt_layer, tgt_n),
+                    ew.get((tgt_layer, tgt_n, src_layer, src_n),
+                           src_attr * tgt_attr * 0.1),
+                )
+                edges_out.append({
+                    "src":        f"c_{src_layer}_{src_n}",
+                    "tgt":        f"c_{tgt_layer}_{tgt_n}",
+                    "weight":     round(w, 6),
+                    "is_circuit": True,
+                    "spans_cols": spans,
+                    "pulse":      False,
+                })
+
+    # Mark top circuit edges for animated pulses
     circuit_edges = sorted(
         [e for e in edges_out if e["is_circuit"]],
         key=lambda e: abs(e["weight"]), reverse=True,
     )
-    n_pulses = min(60, len(circuit_edges))
-    pulse_ids = {id(e) for e in circuit_edges[:n_pulses]}
+    n_pulses  = min(80, max(20, len(circuit_edges)))
+    pulse_set = {id(e) for e in circuit_edges[:n_pulses]}
     for e in edges_out:
-        e["pulse"] = id(e) in pulse_ids
+        e["pulse"] = id(e) in pulse_set
 
     payload = {
-        "n_cols":           n_cols,
-        "shown_layers":     shown,
-        "max_abs_attr":     round(max_abs, 6),
+        "n_cols":            n_cols,
+        "n_per_col":         n_per_col,
+        "shown_layers":      shown,
+        "max_abs_attr":      round(max_abs, 6),
         "intermediate_size": intermediate_size,
-        "neurons":          neurons_out,
-        "edges":            edges_out,
-        "prompt":           circuit.prompt,
-        "target_token":     circuit.target_token,
-        "logit_diff":       round(circuit.total_logit_diff, 4),
-        "n_circuit":        len(collapsed),
-        "n_edges":          len([e for e in edges_out if e["is_circuit"]]),
+        "neurons":           neurons_out,
+        "edges":             edges_out,
+        "prompt":            circuit.prompt,
+        "target_token":      circuit.target_token,
+        "logit_diff":        round(circuit.total_logit_diff, 4),
+        "n_circuit":         len(collapsed),
+        "n_edges":           len([e for e in edges_out if e["is_circuit"]]),
     }
 
     _title = title or f"Circuit \u2014 {circuit.target_token.strip()!r}"
@@ -208,6 +252,7 @@ def visualize_network(
         f"{payload['n_circuit']} circuit neurons"
         + f" \u00b7 {payload['n_edges']} circuit edges"
         + f" \u00b7 logit_diff {circuit.total_logit_diff:+.3f}"
+        + f" \u00b7 {n_per_col} slots/col"
         + f" \u00b7 intermediate_size {intermediate_size}"
         + (f" \u00b7 all {n_cols} layers" if max_layers is None
            else f" \u00b7 layers: {shown}")
@@ -256,8 +301,8 @@ svg{width:100%;height:100%;display:block}
 #tip{
   position:absolute;background:#0a1524;border:1px solid #1e3a5f;
   border-radius:7px;padding:9px 13px;font-size:11px;color:#e2e8f0;
-  pointer-events:none;opacity:0;transition:opacity .1s;
-  max-width:260px;line-height:1.75;z-index:99;white-space:nowrap;
+  pointer-events:none;opacity:0;transition:opacity .12s;
+  max-width:270px;line-height:1.8;z-index:99;white-space:nowrap;
 }
 #tip.on{opacity:1}
 #footer{
@@ -267,7 +312,7 @@ svg{width:100%;height:100%;display:block}
 .leg{display:flex;align-items:center;gap:5px}
 .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 #fhint{margin-left:auto;color:#1c2c3c}
-@keyframes pulse{0%,100%{opacity:.92}50%{opacity:.45}}
+@keyframes pulse{0%,100%{opacity:.92}50%{opacity:.38}}
 .cn{animation:pulse 2.2s ease-in-out infinite}
 </style>
 </head>
@@ -281,6 +326,7 @@ svg{width:100%;height:100%;display:block}
     <svg id="viz" xmlns="http://www.w3.org/2000/svg"
          xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs>
+        <!-- neuron filters -->
         <filter id="fd" x="-80%" y="-80%" width="260%" height="260%">
           <feGaussianBlur stdDeviation="2.5" result="b"/>
           <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -297,12 +343,20 @@ svg{width:100%;height:100%;display:block}
           <feMerge><feMergeNode in="b2"/><feMergeNode in="b2"/>
           <feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
-        <!-- Edge glow: soft halo around circuit connections -->
+        <!-- edge glow: narrow halo for normal circuit edges -->
         <filter id="fe" x="-60%" y="-60%" width="220%" height="220%">
-          <feGaussianBlur stdDeviation="3" result="b"/>
+          <feGaussianBlur stdDeviation="2.5" result="b"/>
           <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
+        <!-- edge glow: wide halo for long-range spanning connections -->
+        <filter id="fes" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur stdDeviation="5" result="b1"/>
+          <feGaussianBlur stdDeviation="12" result="b2"/>
+          <feMerge><feMergeNode in="b2"/><feMergeNode in="b1"/>
+          <feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
       </defs>
+      <g id="g-bg-edges"></g>
       <g id="g-edge-glow"></g>
       <g id="g-edges"></g>
       <g id="g-pulses"></g>
@@ -319,9 +373,9 @@ svg{width:100%;height:100%;display:block}
     <div class="leg">
       <svg width="14" height="14" style="flex-shrink:0">
         <circle cx="7" cy="7" r="5" fill="none" stroke="#334155" stroke-width="1.2"/>
-      </svg>Background neuron
+      </svg>Background
     </div>
-    <div id="fhint">Y-axis = neuron index within MLP &nbsp;&middot;&nbsp; Hover to inspect &nbsp;&middot;&nbsp; Click to lock</div>
+    <div id="fhint">Y-slot = neuron index in MLP &nbsp;&middot;&nbsp; Hover to inspect &nbsp;&middot;&nbsp; Click to lock</div>
   </div>
 </div>
 <script>
@@ -343,88 +397,95 @@ function mk(tag, a, p) {
 function ac(a, mx) {
   const t = Math.max(-1, Math.min(1, a/(mx||1)));
   if (t>=0) {
-    const r = Math.round(60  + 179*t);
-    const g = Math.round(20  + 103*Math.pow(t,.7));
-    const b = Math.round(5   +  17*(1-t));
-    return `rgb(${r},${g},${b})`;
+    return `rgb(${Math.round(60+179*t)},${Math.round(20+103*Math.pow(t,.7))},${Math.round(5+17*(1-t))})`;
   }
   const s=-t;
   return `rgb(${Math.round(20+39*s)},${Math.round(20+110*s)},${Math.round(30+215*s)})`;
 }
-function ec(w){ return w>0 ? '#f97316' : '#3b82f6'; }
+function ec(w){ return w>=0 ? '#f97316' : '#3b82f6'; }
 
-/* layout — y is derived from y_frac (neuron_idx / intermediate_size) */
+/* layout */
 const wr = document.getElementById('wrap');
 const W  = wr.clientWidth  || window.innerWidth;
 const H  = wr.clientHeight || (window.innerHeight - 80);
 
-const NC    = D.n_cols;
-const PAD_X = 70, PAD_Y = 48;
-const COL_W = (W - 2*PAD_X) / (NC - 1 || 1);
+const NC      = D.n_cols;
+const NR      = D.n_per_col;
+const PAD_X   = 70, PAD_Y = 48;
+const COL_W   = (W - 2*PAD_X) / (NC - 1 || 1);
+const ROW_H   = (H - 2*PAD_Y) / (NR - 1 || 1);
+const R_BG    = Math.max(2.5, Math.min(5, ROW_H * 0.28));
+const R_MAX   = Math.max(5,   Math.min(11, ROW_H * 0.52));
+const R_MIN   = Math.max(3,   Math.min(7,  ROW_H * 0.34));
 
-/* Neuron radius — fixed since we no longer have a row grid */
-const R_BG  = 4;
-const R_MAX = 11;
-const R_MIN = 5;
+function cx(col)  { return PAD_X + col * COL_W; }
+function cy(frac) { return PAD_Y + frac * (H - 2*PAD_Y); }
 
-function cx(col)   { return PAD_X + col * COL_W; }
-function cy(frac)  { return PAD_Y + frac * (H - 2*PAD_Y); }
-
-/* build pos map from y_frac */
 const pos = {};
 D.neurons.forEach(n => { pos[n.id] = { x: cx(n.col), y: cy(n.y_frac) }; });
-const maxA = D.max_abs_attr;
+const maxA  = D.max_abs_attr;
+const maxCW = Math.max(...D.edges.filter(e=>e.is_circuit).map(e=>Math.abs(e.weight)), 1e-9);
 
-/* ── edges ──────────────────────────────────────────────────────── */
+/* ── background edges (dim, adjacent columns only) ─────────────── */
+const gBg = document.getElementById('g-bg-edges');
+D.edges.forEach(edge => {
+  if (edge.is_circuit) return;
+  const s = pos[edge.src], t = pos[edge.tgt];
+  if (!s || !t) return;
+  mk('line',{x1:s.x,y1:s.y,x2:t.x,y2:t.y,
+    stroke:'#18304a','stroke-width':.45,opacity:.22,class:'bg-edge'},gBg);
+});
+
+/* ── circuit edges (glow + sharp layers, spanning any distance) ─── */
 const gEg = document.getElementById('g-edge-glow');
 const gEd = document.getElementById('g-edges');
 const gPu = document.getElementById('g-pulses');
-const maxCW = Math.max(...D.edges.filter(e=>e.is_circuit).map(e=>Math.abs(e.weight)), 1);
 
 D.edges.forEach((edge, i) => {
+  if (!edge.is_circuit) return;
   const s = pos[edge.src], t = pos[edge.tgt];
   if (!s || !t) return;
 
-  if (!edge.is_circuit) {
-    mk('line', {
-      x1:s.x, y1:s.y, x2:t.x, y2:t.y,
-      stroke:'#1a2840', 'stroke-width':.5, opacity:.25,
-      class:'bg-edge',
-    }, gEd);
-    return;
-  }
+  const aw      = Math.abs(edge.weight) / maxCW;
+  const col     = ec(edge.weight);
+  const spanning = edge.spans_cols > 1;
 
-  const aw  = Math.abs(edge.weight) / maxCW;
-  const col = ec(edge.weight);
-  const sw  = 0.7 + 2.4 * aw;
-  const op  = 0.35 + 0.60 * aw;
+  /* Stroke weight & opacity — spanning edges slightly bolder */
+  const sw  = (spanning ? 1.0 : 0.7) + 2.6 * aw;
+  const op  = (spanning ? 0.55 : 0.42) + 0.45 * aw;
 
-  const pid = `ep${i}`;
-  /* S-curve bezier — control points at column midpoint */
-  const mx = s.x + (t.x - s.x) / 2;
-  const d  = `M${s.x} ${s.y} C${mx} ${s.y} ${mx} ${t.y} ${t.x} ${t.y}`;
+  /* Bezier path — S-curve using horizontal midpoint as pivot.
+     For spanning edges, add a slight vertical bow so they arc visually
+     over the intermediate layers rather than cutting straight through. */
+  const mx  = (s.x + t.x) / 2;
+  const bow = spanning ? (t.y - s.y) * 0.08 : 0;   // gentle arc on long jumps
+  const d   = `M${s.x} ${s.y} C${mx} ${s.y+bow} ${mx} ${t.y-bow} ${t.x} ${t.y}`;
 
-  /* Glow layer — wider, blurry, drawn first (behind) */
-  mk('path', {
-    d, fill:'none', stroke:col, filter:'url(#fe)',
-    'stroke-width': sw + 5, opacity: op * 0.35, 'stroke-linecap':'round',
-  }, gEg);
+  const pid     = `ep${i}`;
+  const glowFlt = spanning ? 'url(#fes)' : 'url(#fe)';
+  const glowSw  = sw + (spanning ? 9 : 5);
+  const glowOp  = op * (spanning ? 0.45 : 0.32);
 
-  /* Sharp layer — crisp line on top */
-  mk('path', {
-    id:pid, d, fill:'none', stroke:col,
-    'stroke-width':sw, opacity:op, 'stroke-linecap':'round',
-    class:'ced', 'data-src':edge.src, 'data-tgt':edge.tgt,
-  }, gEd);
+  /* Glow layer */
+  mk('path',{d,fill:'none',stroke:col,filter:glowFlt,
+    'stroke-width':glowSw,opacity:glowOp,'stroke-linecap':'round'},gEg);
 
+  /* Sharp layer */
+  mk('path',{id:pid,d,fill:'none',stroke:col,
+    'stroke-width':sw,opacity:op,'stroke-linecap':'round',
+    class:'ced','data-src':edge.src,'data-tgt':edge.tgt},gEd);
+
+  /* Animated pulse dot */
   if (edge.pulse) {
-    const dot = mk('circle', {r:2.5, fill:col, opacity:.98}, gPu);
-    const am  = mk('animateMotion', {
-      dur:`${.8+(1-aw)*1.6}s`, repeatCount:'indefinite',
-      begin:`${((i*.19)%3).toFixed(2)}s`,
-      calcMode:'spline', keySplines:'0.42 0 0.58 1', keyTimes:'0;1',
-    }, dot);
-    mk('mpath', {xl:'#'+pid}, am);
+    const pr  = spanning ? 3.0 : 2.2;
+    const dur = `${(0.7 + (1-aw) * 1.5 + (spanning ? 0.4 : 0)).toFixed(2)}s`;
+    const dot = mk('circle',{r:pr,fill:col,opacity:.98},gPu);
+    const am  = mk('animateMotion',{
+      dur, repeatCount:'indefinite',
+      begin:`${((i*.17)%3).toFixed(2)}s`,
+      calcMode:'spline',keySplines:'0.42 0 0.58 1',keyTimes:'0;1',
+    },dot);
+    mk('mpath',{xl:'#'+pid},am);
   }
 });
 
@@ -433,82 +494,70 @@ const gN  = document.getElementById('g-neurons');
 const nEl = {};
 
 D.neurons.forEach(n => {
-  const {x, y} = pos[n.id];
+  const {x,y} = pos[n.id];
 
   if (!n.is_circuit) {
-    mk('circle', {
-      cx:x, cy:y, r:R_BG,
-      fill:'#0a1220', stroke:'#253548', 'stroke-width':1.0, opacity:.6,
-    }, gN);
+    mk('circle',{cx:x,cy:y,r:R_BG,
+      fill:'#0a1220',stroke:'#1e3352','stroke-width':.9,opacity:.55},gN);
     return;
   }
 
-  const aa = Math.abs(n.attribution) / maxA;
-  let fill, filt, r;
-
-  if (n.is_sw) {
-    fill='#fbbf24'; filt='url(#fs)'; r=R_MAX;
-  } else if (n.is_bn) {
-    fill=ac(n.attribution,maxA); filt='url(#fm)'; r=R_MIN+5*aa;
-  } else {
+  const aa = Math.abs(n.attribution)/maxA;
+  let fill,filt,r;
+  if      (n.is_sw) { fill='#fbbf24';           filt='url(#fs)'; r=R_MAX; }
+  else if (n.is_bn) { fill=ac(n.attribution,maxA); filt='url(#fm)'; r=R_MIN+5*aa; }
+  else {
     fill=ac(n.attribution,maxA);
     filt = aa>.55 ? 'url(#fm)' : 'url(#fd)';
     r    = R_MIN + (R_MAX-R_MIN)*aa;
   }
 
-  const delay = `${(Math.random()*2.2).toFixed(2)}s`;
-  const dur   = `${(1.5+Math.random()*1.2).toFixed(2)}s`;
+  const delay=`${(Math.random()*2.2).toFixed(2)}s`;
+  const dur  =`${(1.5+Math.random()*1.2).toFixed(2)}s`;
 
-  /* Outer halo */
-  mk('circle',{cx:x,cy:y,r:r+5,fill,
-    opacity:.11+.18*aa,filter:filt,class:'cn',
+  mk('circle',{cx:x,cy:y,r:r+5,fill,opacity:.10+.17*aa,
+    filter:filt,class:'cn',
     style:`animation-delay:${delay};animation-duration:${dur}`},gN);
 
   if(n.is_bn||n.is_sw)
     mk('circle',{cx:x,cy:y,r:r+2.5,fill:'none',stroke:fill,
       'stroke-width':1.2,opacity:.5},gN);
 
-  /* Body */
-  const c = mk('circle',{cx:x,cy:y,r,fill,
-    stroke:'rgba(255,255,255,0.28)','stroke-width':.8,filter:filt,
+  const c=mk('circle',{cx:x,cy:y,r,fill,
+    stroke:'rgba(255,255,255,0.25)','stroke-width':.8,filter:filt,
     class:'cn cn-body',
     style:`cursor:pointer;animation-delay:${delay};animation-duration:${dur}`,
     'data-id':n.id},gN);
   nEl[n.id]=c;
 });
 
-/* ── axis ruler (neuron index ticks on first column) ─────────────── */
+/* ── axis ruler (neuron index ticks) ─────────────────────────────── */
 const gLb = document.getElementById('g-labels');
 const IS  = D.intermediate_size;
-const tickCount = 5;
-for(let i=0; i<=tickCount; i++){
-  const frac = i/tickCount;
-  const idx  = Math.round(frac * IS);
-  const yy   = cy(frac);
-  /* tick mark on left margin */
+for(let i=0;i<=5;i++){
+  const frac=i/5, idx=Math.round(frac*IS), yy=cy(frac);
   mk('line',{x1:PAD_X-18,y1:yy,x2:PAD_X-8,y2:yy,
     stroke:'#1c3050','stroke-width':.8},gLb);
   const tl=mk('text',{x:PAD_X-22,y:yy+3.5,'text-anchor':'end',
     fill:'#1c3050','font-size':8,'font-family':'monospace'},gLb);
   tl.textContent=idx.toLocaleString();
 }
-/* "neuron idx" vertical label */
 const vtx=mk('text',{x:PAD_X-42,y:H/2,'text-anchor':'middle',
   fill:'#1c3050','font-size':9,'font-family':'monospace',
   transform:`rotate(-90,${PAD_X-42},${H/2})`},gLb);
 vtx.textContent='neuron idx';
 
 /* ── layer labels ────────────────────────────────────────────────── */
-D.shown_layers.forEach((layer, ci) => {
-  const x = cx(ci);
-  const t = mk('text',{x, y:PAD_Y-18,'text-anchor':'middle',
+D.shown_layers.forEach((layer,ci) => {
+  const x=cx(ci);
+  const t=mk('text',{x,y:PAD_Y-18,'text-anchor':'middle',
     fill:'#4d7fc4','font-size':11,'font-family':'monospace','font-weight':'bold'},gLb);
-  t.textContent = `L${layer}`;
-  const cnt = D.neurons.filter(n=>n.is_circuit && n.layer===layer).length;
+  t.textContent=`L${layer}`;
+  const cnt=D.neurons.filter(n=>n.is_circuit&&n.layer===layer).length;
   if(cnt>0){
     const s=mk('text',{x,y:PAD_Y-7,'text-anchor':'middle',
       fill:'#2d4a6b','font-size':8,'font-family':'monospace'},gLb);
-    s.textContent=`${cnt} active`;
+    s.textContent=`${cnt}\u00d7`;
   }
 });
 
@@ -522,29 +571,30 @@ function showTip(evt,n){
   const pct=(n.y_frac*100).toFixed(1);
   tip.innerHTML=`<b style="color:#f0f6fc">${n.label}</b><br>`
     +`attr:&nbsp;<span style="color:${col}">${sgn}${n.attribution.toFixed(5)}</span><br>`
-    +`pos:&nbsp;<span style="color:#7aa2c8">${pct}% of MLP (N=${n.neuron.toLocaleString()})</span>`
+    +`slot&nbsp;${n.slot}&nbsp;/&nbsp;${D.n_per_col-1}&nbsp;`
+    +`<span style="color:#7aa2c8">(${pct}% · N=${n.neuron.toLocaleString()})</span>`
     +(n.is_bn?`<br><span style="color:#f97316">&#9679; BOTTLENECK</span>`:'')
     +(n.is_sw?`<br><span style="color:#fbbf24">&#9733; SUPER-WEIGHT</span>`:'');
   tip.classList.add('on'); moveTip(evt);
 }
 function moveTip(evt){
   const r=wr.getBoundingClientRect();
-  let tx=evt.clientX-r.left+14, ty=evt.clientY-r.top-12;
-  if(tx+270>W)tx-=284; if(ty<0)ty=4;
+  let tx=evt.clientX-r.left+14,ty=evt.clientY-r.top-12;
+  if(tx+280>W)tx-=294; if(ty<0)ty=4;
   tip.style.left=tx+'px'; tip.style.top=ty+'px';
 }
 function dimEdges(id){
   document.querySelectorAll('.ced').forEach(p=>{
-    p.style.opacity=id?(p.dataset.src===id||p.dataset.tgt===id?'0.92':'0.02'):'';
+    p.style.opacity=id?(p.dataset.src===id||p.dataset.tgt===id?'1':'0.02'):'';
   });
   document.querySelectorAll('.bg-edge').forEach(p=>{
-    p.style.opacity=id?'0.04':'';
+    p.style.opacity=id?'0.03':'';
   });
 }
 document.querySelectorAll('.cn-body').forEach(c=>{
   c.addEventListener('mouseenter',evt=>{
     if(locked)return;
-    const n=D.neurons.find(n=>n.id===c.dataset.id);
+    const n=D.neurons.find(x=>x.id===c.dataset.id);
     if(n){showTip(evt,n);dimEdges(n.id);}
   });
   c.addEventListener('mousemove',evt=>{if(!locked)moveTip(evt);});
@@ -553,7 +603,7 @@ document.querySelectorAll('.cn-body').forEach(c=>{
     evt.stopPropagation();
     const id=c.dataset.id;
     if(locked===id){locked=null;tip.classList.remove('on');dimEdges(null);}
-    else{locked=id;const n=D.neurons.find(n=>n.id===id);if(n){showTip(evt,n);dimEdges(id);}}
+    else{locked=id;const n=D.neurons.find(x=>x.id===id);if(n){showTip(evt,n);dimEdges(id);}}
   });
 });
 SVG.addEventListener('click',()=>{
