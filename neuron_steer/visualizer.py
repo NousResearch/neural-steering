@@ -39,7 +39,7 @@ def visualize_network(
     output: Optional[str] = None,
     open_browser: bool = True,
     title: Optional[str] = None,
-    max_layers: int = 7,
+    max_layers: Optional[int] = None,
     n_background: int = 22,
     intermediate_size: Optional[int] = None,
 ) -> str:
@@ -50,6 +50,10 @@ def visualize_network(
     neurons near index 0 float near the top and high-index neurons sink toward
     the bottom. Background neurons are scattered randomly. Dense edges connect
     adjacent columns; circuit edges glow orange/blue by attribution sign.
+
+    max_layers : number of layers to show (default None = all layers 0..max).
+                 When None, every layer from 0 to the deepest circuit layer is
+                 shown, making it easy to see which layers are "dark" vs active.
     """
     if isinstance(obj, CircuitGraph):
         circuit   = obj.circuit
@@ -80,7 +84,12 @@ def visualize_network(
 
     # ── pick which layers to show ──────────────────────────────────────────
     all_circuit_layers = sorted(layer_attr)
-    if len(all_circuit_layers) <= max_layers:
+    n_layers = max(all_circuit_layers) + 1  # deepest layer index + 1
+
+    if max_layers is None:
+        # Show every layer from 0 to the deepest one that has circuit neurons
+        shown = list(range(n_layers))
+    elif len(all_circuit_layers) <= max_layers:
         shown = all_circuit_layers
     else:
         shown = sorted(
@@ -99,6 +108,8 @@ def visualize_network(
                                 int(max_neuron * 1.08) + 64)
 
     # ── build neuron list ──────────────────────────────────────────────────
+    # Reduce background dots when many columns to keep DOM manageable
+    bg_per_col = max(6, n_background - max(0, n_cols - 12))
     neurons_out: list = []
     rng = random.Random(42)  # deterministic background scatter
 
@@ -125,7 +136,7 @@ def visualize_network(
             })
 
         # Background neurons — random scatter
-        for _ in range(n_background):
+        for _ in range(bg_per_col):
             y_frac = rng.random()
             neurons_out.append({
                 "id":          f"bg_{layer}_{rng.randint(0, 99999)}",
@@ -197,7 +208,8 @@ def visualize_network(
         + f" \u00b7 {payload['n_edges']} circuit edges"
         + f" \u00b7 logit_diff {circuit.total_logit_diff:+.3f}"
         + f" \u00b7 intermediate_size {intermediate_size}"
-        + f" \u00b7 layers: {shown}"
+        + (f" \u00b7 all {n_cols} layers" if max_layers is None
+           else f" \u00b7 layers: {shown}")
         + f" \u00b7 \u201c{circuit.prompt[:80]}\u201d"
     )
 
