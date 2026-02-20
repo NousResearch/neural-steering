@@ -10,13 +10,19 @@ Usage
     visualize_network(circuit)
 
     graph = steerer.discover_edges("...", circuit)
-    visualize_network(graph, title="capitals hourglass")
+    visualize_network(graph, output="out.html", open_browser=False)
 
-    path = visualize_network(circuit, output="out.html", open_browser=False)
+Parameters
+----------
+    max_layers       : how many layers to show (picks highest-attribution ones)
+    n_background     : background dots per column (random scatter)
+    intermediate_size: MLP intermediate dimension (e.g. 14336 for Llama-3.1-8B).
+                       If None, inferred from max neuron index in the circuit.
 """
 
 import json
 import os
+import random
 import tempfile
 import webbrowser
 from typing import Optional, Union
@@ -34,23 +40,22 @@ def visualize_network(
     open_browser: bool = True,
     title: Optional[str] = None,
     max_layers: int = 7,
-    n_per_col: int = 14,
+    n_background: int = 22,
+    intermediate_size: Optional[int] = None,
 ) -> str:
     """3B1B-style neural network visualization.
 
-    Shows selected layers as full columns of circles (hollow = background,
-    bright filled = circuit neuron), with dense edges between adjacent
-    columns — circuit edges colored orange/blue, background edges dim gray.
-
-    max_layers : how many layers to show (picks highest-attribution ones)
-    n_per_col  : circles per column (circuit neurons + background filler)
+    Each column is a transformer layer. Circuit neurons are placed at their
+    actual y-position within the MLP (neuron_idx / intermediate_size), so
+    neurons near index 0 float near the top and high-index neurons sink toward
+    the bottom. Background neurons are scattered randomly. Dense edges connect
+    adjacent columns; circuit edges glow orange/blue by attribution sign.
     """
     if isinstance(obj, CircuitGraph):
         circuit   = obj.circuit
         bn_set    = {(l, n) for (l, n), _, _ in obj.bottleneck()}
         sw_list   = obj.detect_super_weights()
         sw_set    = {(l, n) for (l, n), _, _, _ in sw_list}
-        # Build edge-weight lookup: (src_layer, src_neuron, tgt_layer, tgt_neuron) -> weight
         ew: dict = {}
         for e in obj.edges:
             ew[(e.source.layer, e.source.neuron,
@@ -61,19 +66,19 @@ def visualize_network(
         sw_set  = set()
         ew      = {}
 
-    n_layers = max(n.layer for n in circuit.neurons) + 1
-    max_abs  = max(abs(a) for a in circuit.neurons.values()) or 1.0
+    max_abs = max(abs(a) for a in circuit.neurons.values()) or 1.0
 
-    # ── pick which layers to show ──────────────────────────────────────
+    # ── collapse by (layer, neuron) — same neuron at different token positions ──
+    # Keep the maximum-attribution instance per (layer, neuron_idx)
     layer_attr: dict = {}
-    by_layer:   dict = {}
+    collapsed:  dict = {}  # (layer, neuron_idx) -> (attr, representative_nidx)
     for nidx, attr in circuit.neurons.items():
-        by_layer.setdefault(nidx.layer, []).append((nidx, attr))
+        key = (nidx.layer, nidx.neuron)
         layer_attr[nidx.layer] = layer_attr.get(nidx.layer, 0) + abs(attr)
+        if key not in collapsed or abs(attr) > abs(collapsed[key][0]):
+            collapsed[key] = (attr, nidx)
 
-    for l in by_layer:
-        by_layer[l].sort(key=lambda x: abs(x[1]), reverse=True)
-
+    # ── pick which layers to show ──────────────────────────────────────────
     all_circuit_layers = sorted(layer_attr)
     if len(all_circuit_layers) <= max_layers:
         shown = all_circuit_layers
@@ -82,47 +87,52 @@ def visualize_network(
             sorted(all_circuit_layers,
                    key=lambda l: layer_attr[l], reverse=True)[:max_layers]
         )
-
-    col_idx = {l: i for i, l in enumerate(shown)}  # layer -> column index
+    col_idx = {l: i for i, l in enumerate(shown)}
     n_cols  = len(shown)
 
-    # ── build neuron list ──────────────────────────────────────────────
+    # ── infer intermediate_size ────────────────────────────────────────────
+    if intermediate_size is None:
+        max_neuron = max(nidx.neuron for nidx in circuit.neurons)
+        # Round up to nearest power-of-2-ish value so highest neuron isn't
+        # pinned to the very bottom of the column
+        intermediate_size = max(max_neuron + 1,
+                                int(max_neuron * 1.08) + 64)
+
+    # ── build neuron list ──────────────────────────────────────────────────
     neurons_out: list = []
-    id_map: dict = {}  # (layer, position, neuron) -> id
+    rng = random.Random(42)  # deterministic background scatter
 
     for layer in shown:
-        cn   = by_layer.get(layer, [])
-        n_cn = min(len(cn), n_per_col)
-        start     = max(0, (n_per_col - n_cn) // 2)
-        occupied  = set()
+        col = col_idx[layer]
 
-        for i, (nidx, attr) in enumerate(cn[:n_cn]):
-            row = start + i
-            occupied.add(row)
-            nid = f"c_{nidx.layer}_{nidx.position}_{nidx.neuron}"
-            id_map[(nidx.layer, nidx.position, nidx.neuron)] = nid
+        # Circuit neurons — y from actual index position
+        for (l, neuron_idx), (attr, nidx) in collapsed.items():
+            if l != layer:
+                continue
+            y_frac = min(neuron_idx / intermediate_size, 0.99)
+            nid    = f"c_{layer}_{neuron_idx}"
             neurons_out.append({
                 "id":          nid,
-                "col":         col_idx[layer],
+                "col":         col,
                 "layer":       layer,
-                "neuron":      nidx.neuron,
-                "row":         row,
+                "neuron":      neuron_idx,
+                "y_frac":      round(y_frac, 6),
                 "attribution": round(attr, 6),
                 "is_circuit":  True,
-                "is_bn":       (nidx.layer, nidx.neuron) in bn_set,
-                "is_sw":       (nidx.layer, nidx.neuron) in sw_set,
-                "label":       f"L{layer} / N{nidx.neuron}",
+                "is_bn":       (layer, neuron_idx) in bn_set,
+                "is_sw":       (layer, neuron_idx) in sw_set,
+                "label":       f"L{layer} / N{neuron_idx}",
             })
 
-        # Background neurons fill remaining rows
-        bg_rows = [r for r in range(n_per_col) if r not in occupied]
-        for row in bg_rows:
+        # Background neurons — random scatter
+        for _ in range(n_background):
+            y_frac = rng.random()
             neurons_out.append({
-                "id":          f"bg_{layer}_{row}",
-                "col":         col_idx[layer],
+                "id":          f"bg_{layer}_{rng.randint(0, 99999)}",
+                "col":         col,
                 "layer":       layer,
                 "neuron":      -1,
-                "row":         row,
+                "y_frac":      round(y_frac, 6),
                 "attribution": 0.0,
                 "is_circuit":  False,
                 "is_bn":       False,
@@ -130,8 +140,7 @@ def visualize_network(
                 "label":       f"L{layer} background",
             })
 
-    # ── build dense edges between adjacent shown layers ────────────────
-    # Build per-col neuron lookup
+    # ── build dense edges between adjacent shown layers ────────────────────
     col_neurons: dict = {}
     for n in neurons_out:
         col_neurons.setdefault(n["col"], []).append(n)
@@ -140,14 +149,11 @@ def visualize_network(
     for ci in range(n_cols - 1):
         src_col = col_neurons.get(ci, [])
         tgt_col = col_neurons.get(ci + 1, [])
-        src_layer = shown[ci]
-        tgt_layer = shown[ci + 1]
 
         for s in src_col:
             for t in tgt_col:
                 is_circuit_edge = s["is_circuit"] and t["is_circuit"]
                 if is_circuit_edge:
-                    # Look up edge weight; fall back to attribution product
                     w = ew.get(
                         (s["layer"], s["neuron"], t["layer"], t["neuron"]),
                         ew.get((t["layer"], t["neuron"], s["layer"], s["neuron"]),
@@ -162,27 +168,27 @@ def visualize_network(
                     "is_circuit": is_circuit_edge,
                 })
 
-    # Top circuit edges for animated pulses
+    # Mark top circuit edges for animated pulses
     circuit_edges = sorted(
         [e for e in edges_out if e["is_circuit"]],
-        key=lambda e: abs(e["weight"]), reverse=True
+        key=lambda e: abs(e["weight"]), reverse=True,
     )
     pulse_ids = {id(e) for e in circuit_edges[:25]}
     for e in edges_out:
         e["pulse"] = id(e) in pulse_ids
 
     payload = {
-        "n_cols":        n_cols,
-        "n_per_col":     n_per_col,
-        "shown_layers":  shown,
-        "max_abs_attr":  round(max_abs, 6),
-        "neurons":       neurons_out,
-        "edges":         edges_out,
-        "prompt":        circuit.prompt,
-        "target_token":  circuit.target_token,
-        "logit_diff":    round(circuit.total_logit_diff, 4),
-        "n_circuit":     len(circuit.neurons),
-        "n_edges":       len([e for e in edges_out if e["is_circuit"]]),
+        "n_cols":           n_cols,
+        "shown_layers":     shown,
+        "max_abs_attr":     round(max_abs, 6),
+        "intermediate_size": intermediate_size,
+        "neurons":          neurons_out,
+        "edges":            edges_out,
+        "prompt":           circuit.prompt,
+        "target_token":     circuit.target_token,
+        "logit_diff":       round(circuit.total_logit_diff, 4),
+        "n_circuit":        len(collapsed),
+        "n_edges":          len([e for e in edges_out if e["is_circuit"]]),
     }
 
     _title = title or f"Circuit \u2014 {circuit.target_token.strip()!r}"
@@ -190,7 +196,8 @@ def visualize_network(
         f"{payload['n_circuit']} circuit neurons"
         + f" \u00b7 {payload['n_edges']} circuit edges"
         + f" \u00b7 logit_diff {circuit.total_logit_diff:+.3f}"
-        + f" \u00b7 layers shown: {shown}"
+        + f" \u00b7 intermediate_size {intermediate_size}"
+        + f" \u00b7 layers: {shown}"
         + f" \u00b7 \u201c{circuit.prompt[:80]}\u201d"
     )
 
@@ -289,13 +296,13 @@ svg{width:100%;height:100%;display:block}
     <div class="leg"><div class="dot" style="background:#f97316;opacity:.9"></div>Positive attribution</div>
     <div class="leg"><div class="dot" style="background:#3b82f6;opacity:.9"></div>Negative attribution</div>
     <div class="leg"><div class="dot" style="background:#fbbf24"></div>Super-weight</div>
-    <div class="leg"><div class="dot" style="background:#f97316;border:1px solid #f97316;background:none"></div>Bottleneck</div>
+    <div class="leg"><div class="dot" style="background:none;border:1px solid #f97316"></div>Bottleneck</div>
     <div class="leg">
       <svg width="14" height="14" style="flex-shrink:0">
         <circle cx="7" cy="7" r="5" fill="none" stroke="#334155" stroke-width="1.2"/>
       </svg>Background neuron
     </div>
-    <div id="fhint">Hover to inspect &nbsp;&middot;&nbsp; Click to lock &nbsp;&middot;&nbsp; Click canvas to unlock</div>
+    <div id="fhint">Y-axis = neuron index within MLP &nbsp;&middot;&nbsp; Hover to inspect &nbsp;&middot;&nbsp; Click to lock</div>
   </div>
 </div>
 <script>
@@ -317,7 +324,6 @@ function mk(tag, a, p) {
 function ac(a, mx) {
   const t = Math.max(-1, Math.min(1, a/(mx||1)));
   if (t>=0) {
-    // dark → orange → bright orange-red
     const r = Math.round(60  + 179*t);
     const g = Math.round(20  + 103*Math.pow(t,.7));
     const b = Math.round(5   +  17*(1-t));
@@ -328,28 +334,29 @@ function ac(a, mx) {
 }
 function ec(w){ return w>0 ? '#f97316' : '#3b82f6'; }
 
-/* layout */
+/* layout — y is derived from y_frac (neuron_idx / intermediate_size) */
 const wr = document.getElementById('wrap');
-let W = wr.clientWidth  || window.innerWidth;
-let H = wr.clientHeight || (window.innerHeight - 80);
+const W  = wr.clientWidth  || window.innerWidth;
+const H  = wr.clientHeight || (window.innerHeight - 80);
 
-const NC = D.n_cols, NR = D.n_per_col;
-const PAD_X = 70, PAD_Y = 50;
+const NC    = D.n_cols;
+const PAD_X = 70, PAD_Y = 48;
 const COL_W = (W - 2*PAD_X) / (NC - 1 || 1);
-const ROW_H = (H - 2*PAD_Y) / (NR - 1 || 1);
-const R_BG  = Math.max(4, Math.min(9,  ROW_H * 0.32));   // background neuron radius
-const R_MAX = Math.max(6, Math.min(14, ROW_H * 0.48));   // max circuit neuron radius
-const R_MIN = Math.max(4, Math.min(9,  ROW_H * 0.28));
 
-function cx(col) { return PAD_X + col * COL_W; }
-function cy(row) { return PAD_Y + row * ROW_H; }
+/* Neuron radius — fixed since we no longer have a row grid */
+const R_BG  = 4;
+const R_MAX = 11;
+const R_MIN = 5;
 
-/* build pos map */
+function cx(col)   { return PAD_X + col * COL_W; }
+function cy(frac)  { return PAD_Y + frac * (H - 2*PAD_Y); }
+
+/* build pos map from y_frac */
 const pos = {};
-D.neurons.forEach(n => { pos[n.id] = { x: cx(n.col), y: cy(n.row) }; });
+D.neurons.forEach(n => { pos[n.id] = { x: cx(n.col), y: cy(n.y_frac) }; });
 const maxA = D.max_abs_attr;
 
-/* ── edges ─────────────────────────────────────────────────── */
+/* ── edges ──────────────────────────────────────────────────────── */
 const gEd = document.getElementById('g-edges');
 const gPu = document.getElementById('g-pulses');
 const maxCW = Math.max(...D.edges.filter(e=>e.is_circuit).map(e=>Math.abs(e.weight)), 1);
@@ -359,24 +366,22 @@ D.edges.forEach((edge, i) => {
   if (!s || !t) return;
 
   if (!edge.is_circuit) {
-    // background edges: very dim straight lines
     mk('line', {
       x1:s.x, y1:s.y, x2:t.x, y2:t.y,
-      stroke:'#1a2840', 'stroke-width':.55, opacity:.35,
+      stroke:'#1a2840', 'stroke-width':.5, opacity:.3,
       class:'bg-edge',
     }, gEd);
     return;
   }
 
-  // circuit edge
   const aw  = Math.abs(edge.weight) / maxCW;
   const col = ec(edge.weight);
-  const sw  = 0.6 + 2.0 * aw;
-  const op  = 0.25 + 0.65 * aw;
+  const sw  = 0.6 + 2.2 * aw;
+  const op  = 0.22 + 0.68 * aw;
 
   const pid = `ep${i}`;
-  // Slight S-curve so edges don't all overlap exactly
-  const dx = t.x - s.x, mx = s.x + dx/2;
+  /* S-curve bezier — control points at column midpoint keep it smooth */
+  const mx = s.x + (t.x - s.x) / 2;
   const d  = `M${s.x} ${s.y} C${mx} ${s.y} ${mx} ${t.y} ${t.x} ${t.y}`;
 
   mk('path', {
@@ -385,7 +390,6 @@ D.edges.forEach((edge, i) => {
     class:'ced', 'data-src':edge.src, 'data-tgt':edge.tgt,
   }, gEd);
 
-  // Animated pulse on top circuit edges
   if (edge.pulse) {
     const dot = mk('circle', {r:2.2, fill:col, opacity:.95}, gPu);
     const am  = mk('animateMotion', {
@@ -397,7 +401,7 @@ D.edges.forEach((edge, i) => {
   }
 });
 
-/* ── neurons ───────────────────────────────────────────────── */
+/* ── neurons ─────────────────────────────────────────────────────── */
 const gN  = document.getElementById('g-neurons');
 const nEl = {};
 
@@ -405,21 +409,20 @@ D.neurons.forEach(n => {
   const {x, y} = pos[n.id];
 
   if (!n.is_circuit) {
-    // Hollow background circle — like the 3B1B style
     mk('circle', {
       cx:x, cy:y, r:R_BG,
-      fill:'#0a1220', stroke:'#253548', 'stroke-width':1.1, opacity:.7,
+      fill:'#0a1220', stroke:'#253548', 'stroke-width':1.0, opacity:.6,
     }, gN);
     return;
   }
 
-  const aa   = Math.abs(n.attribution) / maxA;
+  const aa = Math.abs(n.attribution) / maxA;
   let fill, filt, r;
 
   if (n.is_sw) {
     fill='#fbbf24'; filt='url(#fs)'; r=R_MAX;
   } else if (n.is_bn) {
-    fill=ac(n.attribution,maxA); filt='url(#fm)'; r=R_MIN+4*aa;
+    fill=ac(n.attribution,maxA); filt='url(#fm)'; r=R_MIN+5*aa;
   } else {
     fill=ac(n.attribution,maxA);
     filt = aa>.55 ? 'url(#fm)' : 'url(#fd)';
@@ -429,17 +432,16 @@ D.neurons.forEach(n => {
   const delay = `${(Math.random()*2.2).toFixed(2)}s`;
   const dur   = `${(1.5+Math.random()*1.2).toFixed(2)}s`;
 
-  // Outer halo
+  /* Outer halo */
   mk('circle',{cx:x,cy:y,r:r+5,fill,
-    opacity:.12+.18*aa,filter:filt,class:'cn',
+    opacity:.11+.18*aa,filter:filt,class:'cn',
     style:`animation-delay:${delay};animation-duration:${dur}`},gN);
 
-  // Bottleneck ring
   if(n.is_bn||n.is_sw)
     mk('circle',{cx:x,cy:y,r:r+2.5,fill:'none',stroke:fill,
       'stroke-width':1.2,opacity:.5},gN);
 
-  // Body
+  /* Body */
   const c = mk('circle',{cx:x,cy:y,r,fill,
     stroke:'rgba(255,255,255,0.28)','stroke-width':.8,filter:filt,
     class:'cn cn-body',
@@ -448,32 +450,52 @@ D.neurons.forEach(n => {
   nEl[n.id]=c;
 });
 
-/* ── layer labels ──────────────────────────────────────────── */
+/* ── axis ruler (neuron index ticks on first column) ─────────────── */
 const gLb = document.getElementById('g-labels');
+const IS  = D.intermediate_size;
+const tickCount = 5;
+for(let i=0; i<=tickCount; i++){
+  const frac = i/tickCount;
+  const idx  = Math.round(frac * IS);
+  const yy   = cy(frac);
+  /* tick mark on left margin */
+  mk('line',{x1:PAD_X-18,y1:yy,x2:PAD_X-8,y2:yy,
+    stroke:'#1c3050','stroke-width':.8},gLb);
+  const tl=mk('text',{x:PAD_X-22,y:yy+3.5,'text-anchor':'end',
+    fill:'#1c3050','font-size':8,'font-family':'monospace'},gLb);
+  tl.textContent=idx.toLocaleString();
+}
+/* "neuron idx" vertical label */
+const vtx=mk('text',{x:PAD_X-42,y:H/2,'text-anchor':'middle',
+  fill:'#1c3050','font-size':9,'font-family':'monospace',
+  transform:`rotate(-90,${PAD_X-42},${H/2})`},gLb);
+vtx.textContent='neuron idx';
+
+/* ── layer labels ────────────────────────────────────────────────── */
 D.shown_layers.forEach((layer, ci) => {
   const x = cx(ci);
-  // Top label
-  const t = mk('text',{x, y:PAD_Y-16,'text-anchor':'middle',
-    fill:'#4d7fc4','font-size':10,'font-family':'monospace','font-weight':'bold'},gLb);
+  const t = mk('text',{x, y:PAD_Y-18,'text-anchor':'middle',
+    fill:'#4d7fc4','font-size':11,'font-family':'monospace','font-weight':'bold'},gLb);
   t.textContent = `L${layer}`;
-  // Neuron count below label
-  const cn_count = D.neurons.filter(n=>n.is_circuit && n.layer===layer).length;
-  if(cn_count>0){
-    const s=mk('text',{x,y:PAD_Y-5,'text-anchor':'middle',
+  const cnt = D.neurons.filter(n=>n.is_circuit && n.layer===layer).length;
+  if(cnt>0){
+    const s=mk('text',{x,y:PAD_Y-7,'text-anchor':'middle',
       fill:'#2d4a6b','font-size':8,'font-family':'monospace'},gLb);
-    s.textContent=`${cn_count} active`;
+    s.textContent=`${cnt} active`;
   }
 });
 
-/* ── tooltip + interaction ─────────────────────────────────── */
+/* ── tooltip + interaction ───────────────────────────────────────── */
 const tip=document.getElementById('tip');
 let locked=null;
 
 function showTip(evt,n){
   const col=n.is_sw?'#fbbf24':n.is_bn?'#f97316':ac(n.attribution,maxA);
   const sgn=n.attribution>=0?'+':'';
+  const pct=(n.y_frac*100).toFixed(1);
   tip.innerHTML=`<b style="color:#f0f6fc">${n.label}</b><br>`
-    +`attr:&nbsp;<span style="color:${col}">${sgn}${n.attribution.toFixed(5)}</span>`
+    +`attr:&nbsp;<span style="color:${col}">${sgn}${n.attribution.toFixed(5)}</span><br>`
+    +`pos:&nbsp;<span style="color:#7aa2c8">${pct}% of MLP (N=${n.neuron.toLocaleString()})</span>`
     +(n.is_bn?`<br><span style="color:#f97316">&#9679; BOTTLENECK</span>`:'')
     +(n.is_sw?`<br><span style="color:#fbbf24">&#9733; SUPER-WEIGHT</span>`:'');
   tip.classList.add('on'); moveTip(evt);
