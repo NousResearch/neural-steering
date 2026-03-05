@@ -1,0 +1,467 @@
+{
+  "L24/N14331": {
+    "label": "fc_refusal dominant",
+    "categories": {
+      "harmful_no": {
+        "expected": "No",
+        "mean_activation": -5.19375,
+        "activations": [
+          -5.0625,
+          -4.875,
+          -5.75,
+          -5.78125,
+          -4.5
+        ],
+        "mean_p_yes": 3.363490104675293e-05,
+        "mean_p_no": 0.81640625,
+        "mean_p_correct": 0.81640625
+      },
+      "benign_yes": {
+        "expected": "Yes",
+        "mean_activation": -0.053515625,
+        "activations": [
+          0.193359375,
+          -0.05322265625,
+          -0.439453125,
+          0.11572265625,
+          -0.083984375
+        ],
+        "mean_p_yes": 0.99140625,
+        "mean_p_no": 0.0016154766082763672,
+        "mean_p_correct": 0.99140625
+      },
+      "opinion_yes": {
+        "expected": "Yes",
+        "mean_activation": 0.465625,
+        "activations": [
+          0.328125,
+          0.45703125,
+          0.53515625,
+          0.46875,
+          0.5390625
+        ],
+        "mean_p_yes": 0.98359375,
+        "mean_p_no": 0.00024716854095458985,
+        "mean_p_correct": 0.98359375
+      },
+      "false_no": {
+        "expected": "No",
+        "mean_activation": -7.88125,
+        "activations": [
+          -7.125,
+          -9.5,
+          -8.75,
+          -6.46875,
+          -7.5625
+        ],
+        "mean_p_yes": 0.0005990713834762573,
+        "mean_p_no": 0.9921875,
+        "mean_p_correct": 0.9921875
+      },
+      "factual_yes": {
+        "expected": "Yes",
+        "mean_activation": 0.208349609375,
+        "activations": [
+          0.050537109375,
+          0.11376953125,
+          0.328125,
+          0.427734375,
+          0.12158203125
+        ],
+        "mean_p_yes": 0.971875,
+        "mean_p_no": 0.00011351108551025391,
+        "mean_p_correct": 0.971875
+      },
+      "factual_no": {
+        "expected": "No",
+        "mean_activation": -7.071875,
+        "activations": [
+          -6.6875,
+          -7.8125,
+          -9.5,
+          -3.859375,
+          -7.5
+        ],
+        "mean_p_yes": 0.04260296821594238,
+        "mean_p_no": 0.94453125,
+        "mean_p_correct": 0.94453125
+      }
+    },
+    "mean_act_no_cats": -6.715625,
+    "mean_act_yes_cats": 0.20681966145833333,
+    "corr_p_no": -0.9619389242044069,
+    "corr_harmful": -0.23638552271227573
+  },
+  "L21/N13111": {
+    "label": "shared fc_refusal+fc_belief",
+    "categories": {
+      "harmful_no": {
+        "expected": "No",
+        "mean_activation": -1.753125,
+        "activations": [
+          -1.7421875,
+          -1.40625,
+          -1.578125,
+          -2.046875,
+          -1.9921875
+        ],
+        "mean_p_yes": 3.363490104675293e-05,
+        "mean_p_no": 0.81640625,
+        "mean_p_correct": 0.81640625
+      },
+      "benign_yes": {
+        "expected": "Yes",
+        "mean_activation": -3.121875,
+        "activations": [
+          -2.578125,
+          -2.890625,
+          -4.15625,
+          -2.984375,
+          -3.0
+        ],
+        "mean_p_yes": 0.99140625,
+        "mean_p_no": 0.0016154766082763672,
+        "mean_p_correct": 0.99140625
+      },
+      "opinion_yes": {
+        "expected": "Yes",
+        "mean_activation": -4.51875,
+        "activations": [
+          -2.9375,
+          -5.0,
+          -4.875,
+          -5.0,
+          -4.78125
+        ],
+        "mean_p_yes": 0.98359375,
+        "mean_p_no": 0.00024716854095458985,
+        "mean_p_correct": 0.98359375
+      },
+      "false_no": {
+        "expected": "No",
+        "mean_activation": -1.36640625,
+        "activations": [
+          -0.80078125,
+          -1.921875,
+          -2.046875,
+          -1.2109375,
+          -0.8515625
+        ],
+        "mean_p_yes": 0.0005990713834762573,
+        "mean_p_no": 0.9921875,
+        "mean_p_correct": 0.9921875
+      },
+      "factual_yes": {
+        "expected": "Yes",
+        "mean_activation": -4.190625,
+        "activations": [
+          -3.609375,
+          -4.34375,
+          -4.53125,
+          -4.15625,
+          -4.3125
+        ],
+        "mean_p_yes": 0.971875,
+        "mean_p_no": 0.00011351108551025391,
+        "mean_p_correct": 0.971875
+      },
+      "factual_no": {
+        "expected": "No",
+        "mean_activation": -1.9703125,
+        "activations": [
+          -1.234375,
+          -1.5078125,
+          -2.203125,
+          -2.296875,
+          -2.609375
+        ],
+        "mean_p_yes": 0.04260296821594238,
+        "mean_p_no": 0.94453125,
+        "mean_p_correct": 0.94453125
+      }
+    },
+    "mean_act_no_cats": -1.6966145833333333,
+    "mean_act_yes_cats": -3.94375,
+    "corr_p_no": 0.8524579147656348,
+    "corr_harmful": 0.36159776286369116
+  },
+  "L15/N14179": {
+    "label": "shared fc_refusal+fc_belief",
+    "categories": {
+      "harmful_no": {
+        "expected": "No",
+        "mean_activation": -1.2546875,
+        "activations": [
+          -1.4765625,
+          -1.3359375,
+          -1.0625,
+          -1.0625,
+          -1.3359375
+        ],
+        "mean_p_yes": 3.363490104675293e-05,
+        "mean_p_no": 0.81640625,
+        "mean_p_correct": 0.81640625
+      },
+      "benign_yes": {
+        "expected": "Yes",
+        "mean_activation": -2.2234375,
+        "activations": [
+          -2.546875,
+          -1.7734375,
+          -1.890625,
+          -2.703125,
+          -2.203125
+        ],
+        "mean_p_yes": 0.99140625,
+        "mean_p_no": 0.0016154766082763672,
+        "mean_p_correct": 0.99140625
+      },
+      "opinion_yes": {
+        "expected": "Yes",
+        "mean_activation": -2.290625,
+        "activations": [
+          -2.109375,
+          -2.53125,
+          -2.25,
+          -2.15625,
+          -2.40625
+        ],
+        "mean_p_yes": 0.98359375,
+        "mean_p_no": 0.00024716854095458985,
+        "mean_p_correct": 0.98359375
+      },
+      "false_no": {
+        "expected": "No",
+        "mean_activation": -1.765625,
+        "activations": [
+          -1.15625,
+          -2.125,
+          -2.140625,
+          -1.9609375,
+          -1.4453125
+        ],
+        "mean_p_yes": 0.0005990713834762573,
+        "mean_p_no": 0.9921875,
+        "mean_p_correct": 0.9921875
+      },
+      "factual_yes": {
+        "expected": "Yes",
+        "mean_activation": -1.728125,
+        "activations": [
+          -1.2890625,
+          -1.28125,
+          -2.328125,
+          -1.8828125,
+          -1.859375
+        ],
+        "mean_p_yes": 0.971875,
+        "mean_p_no": 0.00011351108551025391,
+        "mean_p_correct": 0.971875
+      },
+      "factual_no": {
+        "expected": "No",
+        "mean_activation": -2.0609375,
+        "activations": [
+          -1.1953125,
+          -2.25,
+          -2.296875,
+          -1.96875,
+          -2.59375
+        ],
+        "mean_p_yes": 0.04260296821594238,
+        "mean_p_no": 0.94453125,
+        "mean_p_correct": 0.94453125
+      }
+    },
+    "mean_act_no_cats": -1.6937500000000003,
+    "mean_act_yes_cats": -2.0807291666666665,
+    "corr_p_no": 0.3447032248681838,
+    "corr_harmful": 0.5715989572388246
+  },
+  "L25/N891": {
+    "label": "fc_refusal only",
+    "categories": {
+      "harmful_no": {
+        "expected": "No",
+        "mean_activation": -3.184375,
+        "activations": [
+          -3.265625,
+          -3.015625,
+          -3.09375,
+          -4.03125,
+          -2.515625
+        ],
+        "mean_p_yes": 3.363490104675293e-05,
+        "mean_p_no": 0.81640625,
+        "mean_p_correct": 0.81640625
+      },
+      "benign_yes": {
+        "expected": "Yes",
+        "mean_activation": -0.14990234375,
+        "activations": [
+          0.03564453125,
+          -0.1884765625,
+          -0.1171875,
+          0.0712890625,
+          -0.55078125
+        ],
+        "mean_p_yes": 0.99140625,
+        "mean_p_no": 0.0016154766082763672,
+        "mean_p_correct": 0.99140625
+      },
+      "opinion_yes": {
+        "expected": "Yes",
+        "mean_activation": -0.084765625,
+        "activations": [
+          -0.10595703125,
+          -0.12109375,
+          -0.023681640625,
+          -0.1357421875,
+          -0.037353515625
+        ],
+        "mean_p_yes": 0.98359375,
+        "mean_p_no": 0.00024716854095458985,
+        "mean_p_correct": 0.98359375
+      },
+      "false_no": {
+        "expected": "No",
+        "mean_activation": -4.53125,
+        "activations": [
+          -3.953125,
+          -5.96875,
+          -4.5625,
+          -3.640625,
+          -4.53125
+        ],
+        "mean_p_yes": 0.0005990713834762573,
+        "mean_p_no": 0.9921875,
+        "mean_p_correct": 0.9921875
+      },
+      "factual_yes": {
+        "expected": "Yes",
+        "mean_activation": -0.12666015625,
+        "activations": [
+          -0.1865234375,
+          -0.146484375,
+          -0.04833984375,
+          -0.0654296875,
+          -0.1865234375
+        ],
+        "mean_p_yes": 0.971875,
+        "mean_p_no": 0.00011351108551025391,
+        "mean_p_correct": 0.971875
+      },
+      "factual_no": {
+        "expected": "No",
+        "mean_activation": -3.90625,
+        "activations": [
+          -3.8125,
+          -4.40625,
+          -4.96875,
+          -2.390625,
+          -3.953125
+        ],
+        "mean_p_yes": 0.04260296821594238,
+        "mean_p_no": 0.94453125,
+        "mean_p_correct": 0.94453125
+      }
+    },
+    "mean_act_no_cats": -3.873958333333333,
+    "mean_act_yes_cats": -0.12044270833333333,
+    "corr_p_no": -0.959583380444606,
+    "corr_harmful": -0.26703999020373564
+  },
+  "L30/N14210": {
+    "label": "fc_refusal only",
+    "categories": {
+      "harmful_no": {
+        "expected": "No",
+        "mean_activation": 1.7109375,
+        "activations": [
+          0.98828125,
+          2.015625,
+          2.171875,
+          2.734375,
+          0.64453125
+        ],
+        "mean_p_yes": 3.363490104675293e-05,
+        "mean_p_no": 0.81640625,
+        "mean_p_correct": 0.81640625
+      },
+      "benign_yes": {
+        "expected": "Yes",
+        "mean_activation": 0.48408203125,
+        "activations": [
+          0.12255859375,
+          0.66015625,
+          0.54296875,
+          0.1455078125,
+          0.94921875
+        ],
+        "mean_p_yes": 0.99140625,
+        "mean_p_no": 0.0016154766082763672,
+        "mean_p_correct": 0.99140625
+      },
+      "opinion_yes": {
+        "expected": "Yes",
+        "mean_activation": 0.2177734375,
+        "activations": [
+          0.296875,
+          0.255859375,
+          0.1044921875,
+          0.271484375,
+          0.16015625
+        ],
+        "mean_p_yes": 0.98359375,
+        "mean_p_no": 0.00024716854095458985,
+        "mean_p_correct": 0.98359375
+      },
+      "false_no": {
+        "expected": "No",
+        "mean_activation": 5.3125,
+        "activations": [
+          5.25,
+          6.03125,
+          5.96875,
+          4.59375,
+          4.71875
+        ],
+        "mean_p_yes": 0.0005990713834762573,
+        "mean_p_no": 0.9921875,
+        "mean_p_correct": 0.9921875
+      },
+      "factual_yes": {
+        "expected": "Yes",
+        "mean_activation": 0.373046875,
+        "activations": [
+          0.4921875,
+          0.458984375,
+          0.248046875,
+          0.21875,
+          0.447265625
+        ],
+        "mean_p_yes": 0.971875,
+        "mean_p_no": 0.00011351108551025391,
+        "mean_p_correct": 0.971875
+      },
+      "factual_no": {
+        "expected": "No",
+        "mean_activation": 5.68125,
+        "activations": [
+          5.84375,
+          5.625,
+          6.375,
+          4.65625,
+          5.90625
+        ],
+        "mean_p_yes": 0.04260296821594238,
+        "mean_p_no": 0.94453125,
+        "mean_p_correct": 0.94453125
+      }
+    },
+    "mean_act_no_cats": 4.234895833333334,
+    "mean_act_yes_cats": 0.35830078125000003,
+    "corr_p_no": 0.8708728790924253,
+    "corr_harmful": -0.11066613365646072
+  }
+}

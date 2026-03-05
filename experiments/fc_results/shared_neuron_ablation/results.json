@@ -1,0 +1,258 @@
+{
+  "baselines": {
+    "fc_refusal": 0.828125,
+    "fc_belief": 0.9765625,
+    "fc_benign": 0.99140625,
+    "fc_belief_no": 0.9890625,
+    "open_refusal": 1.0
+  },
+  "neurons": {
+    "L21/N13111": {
+      "label": "shared: fc_refusal+fc_belief",
+      "results": {
+        "fc_refusal": {
+          "ablated": 0.7029296875,
+          "delta": -0.12519531250000004
+        },
+        "fc_belief": {
+          "ablated": 0.95859375,
+          "delta": -0.017968749999999978
+        },
+        "fc_benign": {
+          "ablated": 0.9890625,
+          "delta": -0.002343750000000089
+        },
+        "fc_belief_no": {
+          "ablated": 0.9875,
+          "delta": -0.0015624999999999112
+        },
+        "open_refusal": {
+          "ablated": 1.0,
+          "delta": 0.0
+        }
+      }
+    },
+    "L15/N14179": {
+      "label": "shared: fc_refusal+fc_belief",
+      "results": {
+        "fc_refusal": {
+          "ablated": 0.587890625,
+          "delta": -0.240234375
+        },
+        "fc_belief": {
+          "ablated": 0.98125,
+          "delta": 0.004687499999999956
+        },
+        "fc_benign": {
+          "ablated": 0.99609375,
+          "delta": 0.004687499999999956
+        },
+        "fc_belief_no": {
+          "ablated": 0.98984375,
+          "delta": 0.0007812500000000666
+        },
+        "open_refusal": {
+          "ablated": 1.0,
+          "delta": 0.0
+        }
+      }
+    },
+    "L24/N14331": {
+      "label": "fc_refusal only (dominant)",
+      "results": {
+        "fc_refusal": {
+          "ablated": 0.2480224609375,
+          "delta": -0.5801025390625
+        },
+        "fc_belief": {
+          "ablated": 0.97421875,
+          "delta": -0.002343749999999978
+        },
+        "fc_benign": {
+          "ablated": 0.99296875,
+          "delta": 0.0015624999999999112
+        },
+        "fc_belief_no": {
+          "ablated": 0.971875,
+          "delta": -0.01718749999999991
+        },
+        "open_refusal": {
+          "ablated": 1.0,
+          "delta": 0.0
+        }
+      }
+    },
+    "L25/N891": {
+      "label": "fc_refusal only",
+      "results": {
+        "fc_refusal": {
+          "ablated": 0.9234375,
+          "delta": 0.09531250000000002
+        },
+        "fc_belief": {
+          "ablated": 0.9734375,
+          "delta": -0.0031250000000000444
+        },
+        "fc_benign": {
+          "ablated": 0.990625,
+          "delta": -0.0007812500000000666
+        },
+        "fc_belief_no": {
+          "ablated": 0.9921875,
+          "delta": 0.0031250000000000444
+        },
+        "open_refusal": {
+          "ablated": 1.0,
+          "delta": 0.0
+        }
+      }
+    },
+    "L30/N14210": {
+      "label": "fc_refusal only",
+      "results": {
+        "fc_refusal": {
+          "ablated": 0.89453125,
+          "delta": 0.06640625
+        },
+        "fc_belief": {
+          "ablated": 0.9734375,
+          "delta": -0.0031250000000000444
+        },
+        "fc_benign": {
+          "ablated": 0.98984375,
+          "delta": -0.0015625000000000222
+        },
+        "fc_belief_no": {
+          "ablated": 0.99296875,
+          "delta": 0.00390625
+        },
+        "open_refusal": {
+          "ablated": 1.0,
+          "delta": 0.0
+        }
+      }
+    },
+    "L21/N2382": {
+      "label": "fc_belief (high necessity)",
+      "results": {
+        "fc_refusal": {
+          "ablated": 0.83125,
+          "delta": 0.0031250000000000444
+        },
+        "fc_belief": {
+          "ablated": 0.95859375,
+          "delta": -0.017968749999999978
+        },
+        "fc_benign": {
+          "ablated": 0.98984375,
+          "delta": -0.0015625000000000222
+        },
+        "fc_belief_no": {
+          "ablated": 0.98359375,
+          "delta": -0.005468749999999911
+        },
+        "open_refusal": {
+          "ablated": 1.0,
+          "delta": 0.0
+        }
+      }
+    },
+    "L19/N9196": {
+      "label": "fc_belief (high necessity)",
+      "results": {
+        "fc_refusal": {
+          "ablated": 0.80703125,
+          "delta": -0.021093750000000022
+        },
+        "fc_belief": {
+          "ablated": 0.9328125,
+          "delta": -0.043749999999999956
+        },
+        "fc_benign": {
+          "ablated": 0.97578125,
+          "delta": -0.015625
+        },
+        "fc_belief_no": {
+          "ablated": 0.95625,
+          "delta": -0.03281249999999991
+        },
+        "open_refusal": {
+          "ablated": 1.0,
+          "delta": 0.0
+        }
+      }
+    },
+    "L26/N11419": {
+      "label": "fc_belief (high necessity)",
+      "results": {
+        "fc_refusal": {
+          "ablated": 0.8109375,
+          "delta": -0.017187500000000022
+        },
+        "fc_belief": {
+          "ablated": 0.96640625,
+          "delta": -0.010156249999999978
+        },
+        "fc_benign": {
+          "ablated": 0.98671875,
+          "delta": -0.004687500000000067
+        },
+        "fc_belief_no": {
+          "ablated": 0.984375,
+          "delta": -0.004687499999999956
+        },
+        "open_refusal": {
+          "ablated": 1.0,
+          "delta": 0.0
+        }
+      }
+    },
+    "BOTH_SHARED": {
+      "label": "L21/N13111 + L15/N14179",
+      "results": {
+        "fc_refusal": {
+          "ablated": 0.46806640625,
+          "delta": -0.36005859375
+        },
+        "fc_belief": {
+          "ablated": 0.96953125,
+          "delta": -0.007031250000000044
+        },
+        "fc_benign": {
+          "ablated": 0.99296875,
+          "delta": 0.0015624999999999112
+        },
+        "fc_belief_no": {
+          "ablated": 0.9890625,
+          "delta": 0.0
+        },
+        "open_refusal": {
+          "ablated": 1.0,
+          "delta": 0.0
+        }
+      }
+    }
+  },
+  "random_stats": {
+    "fc_refusal": {
+      "mean": -0.0065234375000000015,
+      "std": 0.00611811535108802
+    },
+    "fc_belief": {
+      "mean": -0.0015624999999999944,
+      "std": 0.000956831930774688
+    },
+    "fc_benign": {
+      "mean": 0.0007812499999999501,
+      "std": 0.0008193819126329161
+    },
+    "fc_belief_no": {
+      "mean": 0.0006250000000000477,
+      "std": 0.0008769509500251569
+    },
+    "open_refusal": {
+      "mean": 0.0,
+      "std": 0.0
+    }
+  }
+}

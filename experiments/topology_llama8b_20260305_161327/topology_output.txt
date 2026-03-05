@@ -1,0 +1,3444 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading meta-llama/Llama-3.1-8B-Instruct...
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:08<00:26,  8.90s/it]Fetching 4 files:  50%|█████     | 2/4 [00:11<00:10,  5.31s/it]Fetching 4 files: 100%|██████████| 4/4 [00:11<00:00,  2.93s/it]
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   1%|          | 2/291 [00:00<00:32,  8.84it/s]Loading weights:   5%|▌         | 15/291 [00:00<00:05, 52.73it/s]Loading weights:   8%|▊         | 24/291 [00:00<00:04, 65.20it/s]Loading weights:  11%|█▏        | 33/291 [00:00<00:03, 70.00it/s]Loading weights:  14%|█▍        | 42/291 [00:00<00:03, 73.18it/s]Loading weights:  18%|█▊        | 51/291 [00:00<00:03, 75.56it/s]Loading weights:  21%|██        | 60/291 [00:00<00:02, 77.08it/s]Loading weights:  24%|██▎       | 69/291 [00:01<00:02, 78.24it/s]Loading weights:  27%|██▋       | 78/291 [00:01<00:02, 79.24it/s]Loading weights:  30%|██▉       | 87/291 [00:01<00:02, 77.64it/s]Loading weights:  33%|███▎      | 96/291 [00:01<00:02, 76.93it/s]Loading weights:  36%|███▌      | 105/291 [00:01<00:02, 76.12it/s]Loading weights:  39%|███▉      | 114/291 [00:01<00:02, 74.81it/s]Loading weights:  42%|████▏     | 123/291 [00:01<00:02, 73.76it/s]Loading weights:  45%|████▌     | 132/291 [00:01<00:02, 73.18it/s]Loading weights:  48%|████▊     | 141/291 [00:01<00:02, 72.67it/s]Loading weights:  52%|█████▏    | 150/291 [00:02<00:01, 72.36it/s]Loading weights:  55%|█████▍    | 159/291 [00:02<00:01, 72.14it/s]Loading weights:  58%|█████▊    | 168/291 [00:02<00:01, 71.97it/s]Loading weights:  61%|██████    | 177/291 [00:02<00:01, 71.78it/s]Loading weights:  64%|██████▍   | 186/291 [00:02<00:01, 73.85it/s]Loading weights:  67%|██████▋   | 195/291 [00:02<00:01, 76.20it/s]Loading weights:  70%|███████   | 204/291 [00:02<00:01, 78.68it/s]Loading weights:  73%|███████▎  | 213/291 [00:02<00:00, 80.55it/s]Loading weights:  77%|███████▋  | 225/291 [00:03<00:00, 90.82it/s]Loading weights:  81%|████████  | 235/291 [00:03<00:00, 90.91it/s]Loading weights:  84%|████████▍ | 245/291 [00:03<00:00, 91.30it/s]Loading weights:  88%|████████▊ | 255/291 [00:03<00:00, 92.32it/s]Loading weights:  91%|█████████ | 265/291 [00:03<00:00, 86.23it/s]Loading weights:  94%|█████████▍| 274/291 [00:03<00:00, 84.56it/s]Loading weights:  97%|█████████▋| 283/291 [00:03<00:00, 83.60it/s]Loading weights: 100%|██████████| 291/291 [00:03<00:00, 77.04it/s]
+Loaded meta-llama/Llama-3.1-8B-Instruct on cuda (instruct=True)
+Detecting universal neurons...
+  Blacklist: 48 universal neurons (12 from TransluceAI + 36 new auto-detected)
+Results dir: /workspace/neural-steering/experiments/topology_llama8b_20260305_161327
+kmax=300, tau=0.95, scan_step=5
+
+
+######################################################################
+  RelP-Factual (Capitals)
+######################################################################
+
+  Phase 1: Discovering circuit pool (k=300)...
+  Prompt 1/12: 296296 neurons, ld=-2.1250
+  Prompt 2/12: 277823 neurons, ld=-0.8750
+  Prompt 3/12: 277803 neurons, ld=-0.5000
+  Prompt 4/12: 277819 neurons, ld=-0.2500
+  Prompt 5/12: 277804 neurons, ld=-0.1250
+  Prompt 6/12: 277800 neurons, ld=-0.8750
+  Prompt 7/12: 277795 neurons, ld=-3.0000
+  Prompt 8/12: 277836 neurons, ld=0.5000
+  Prompt 9/12: 277797 neurons, ld=-0.6250
+  Prompt 10/12: 277832 neurons, ld=0.8750
+  Prompt 11/12: 277817 neurons, ld=0.2500
+  Prompt 12/12: 283985 neurons, ld=0.0000
+  Pool: 300 neurons, logit_diff=-0.5625
+
+  Phase 1b: Finding k* (tau=0.95, scan_step=5)...
+  N_H ceiling (k=300): 0.4957
+  Target: N_H >= 0.4709 (tau=0.95)
+  Coarse scan: 60 values from k=5 to k=300
+    k=   5: N_H=0.3029 ██████████████████
+    k=  10: N_H=0.3281 ███████████████████
+    k=  15: N_H=0.3246 ███████████████████
+    k=  20: N_H=0.2972 █████████████████
+    k=  25: N_H=0.4044 ████████████████████████
+    k=  30: N_H=0.4212 █████████████████████████
+    k=  35: N_H=0.4413 ██████████████████████████
+    k=  40: N_H=0.4153 █████████████████████████
+    k=  45: N_H=0.4073 ████████████████████████
+    k=  50: N_H=0.4016 ████████████████████████
+    k=  55: N_H=0.3960 ███████████████████████
+    k=  60: N_H=0.4004 ████████████████████████
+    k=  65: N_H=0.4048 ████████████████████████
+    k=  70: N_H=0.4059 ████████████████████████
+    k=  75: N_H=0.4032 ████████████████████████
+    k=  80: N_H=0.3969 ████████████████████████
+    k=  85: N_H=0.4124 ████████████████████████
+    k=  90: N_H=0.4179 █████████████████████████
+    k=  95: N_H=0.4222 █████████████████████████
+    k= 100: N_H=0.4180 █████████████████████████
+    k= 105: N_H=0.4358 ██████████████████████████
+    k= 110: N_H=0.4346 ██████████████████████████
+    k= 115: N_H=0.4957 █████████████████████████████
+    k= 120: N_H=0.4957 █████████████████████████████
+    k= 125: N_H=0.4957 █████████████████████████████
+    k= 130: N_H=0.4957 █████████████████████████████
+    k= 135: N_H=0.4957 █████████████████████████████
+    k= 140: N_H=0.4957 █████████████████████████████
+    k= 145: N_H=0.4957 █████████████████████████████
+    k= 150: N_H=0.4957 █████████████████████████████
+    k= 155: N_H=0.4957 █████████████████████████████
+    k= 160: N_H=0.4957 █████████████████████████████
+    k= 165: N_H=0.4957 █████████████████████████████
+    k= 170: N_H=0.4957 █████████████████████████████
+    k= 175: N_H=0.4957 █████████████████████████████
+    k= 180: N_H=0.4957 █████████████████████████████
+    k= 185: N_H=0.4957 █████████████████████████████
+    k= 190: N_H=0.4957 █████████████████████████████
+    k= 195: N_H=0.4957 █████████████████████████████
+    k= 200: N_H=0.4957 █████████████████████████████
+    k= 205: N_H=0.4957 █████████████████████████████
+    k= 210: N_H=0.4957 █████████████████████████████
+    k= 215: N_H=0.4957 █████████████████████████████
+    k= 220: N_H=0.4957 █████████████████████████████
+    k= 225: N_H=0.4957 █████████████████████████████
+    k= 230: N_H=0.4957 █████████████████████████████
+    k= 235: N_H=0.4957 █████████████████████████████
+    k= 240: N_H=0.4957 █████████████████████████████
+    k= 245: N_H=0.4957 █████████████████████████████
+    k= 250: N_H=0.4957 █████████████████████████████
+    k= 255: N_H=0.4957 █████████████████████████████
+    k= 260: N_H=0.4957 █████████████████████████████
+    k= 265: N_H=0.4957 █████████████████████████████
+    k= 270: N_H=0.4957 █████████████████████████████
+    k= 275: N_H=0.4957 █████████████████████████████
+    k= 280: N_H=0.4957 █████████████████████████████
+    k= 285: N_H=0.4957 █████████████████████████████
+    k= 290: N_H=0.4957 █████████████████████████████
+    k= 295: N_H=0.4957 █████████████████████████████
+    k= 300: N_H=0.4957 ██████████████████████████████
+
+  Fine scan: k=110..120
+
+  k* = 114 (N_H = 0.4957)
+
+  Phase 2: Topology at k*=114
+    L00 │████████ 8
+    L01 │████ 4
+    L02 │█ 1
+    L03 │█ 1
+    L04 │█ 1
+    L05 │█ 1
+    L07 │██ 2
+    L09 │█ 1
+    L10 │███ 3
+    L11 │█ 1
+    L12 │█ 1
+    L13 │███ 3
+    L14 │██ 2
+    L15 │████ 4
+    L16 │█ 1
+    L17 │██ 2
+    L19 │██████ 6
+    L20 │█ 1
+    L21 │███ 3
+    L22 │███ 3
+    L23 │█████ 5
+    L25 │██ 2
+    L26 │█ 1
+    L27 │██████ 6
+    L28 │████ 4
+    L29 │███ 3
+    L30 │███████████████████ 19
+    L31 │█████████████████████████ 25
+
+  Running edge discovery (3 prompts, top 50 targets)...
+    Edge pass 1/3: What is the capital of the state containing Dallas...
+  [1/50] L1/N2427: 2 edges found
+  [2/50] L0/N491: 0 edges found
+  [3/50] L17/N11378: 29 edges found
+  [4/50] L0/N8268: 0 edges found
+  [5/50] L31/N5739: 87 edges found
+  [6/50] L31/N1237: 80 edges found
+  [7/50] L10/N6026: 16 edges found
+  [8/50] L15/N8286: 26 edges found
+  [9/50] L31/N11000: 88 edges found
+  [10/50] L27/N3766: 56 edges found
+  [11/50] L30/N8571: 68 edges found
+  [12/50] L30/N7427: 70 edges found
+  [13/50] L31/N10770: 87 edges found
+  [14/50] L20/N8163: 32 edges found
+  [15/50] L30/N935: 61 edges found
+  [16/50] L31/N5722: 83 edges found
+  [17/50] L23/N2709: 47 edges found
+  [18/50] L0/N5828: 0 edges found
+  [19/50] L0/N2765: 0 edges found
+  [20/50] L30/N4393: 60 edges found
+  [21/50] L21/N4924: 41 edges found
+  [22/50] L31/N3684: 86 edges found
+  [23/50] L30/N9445: 66 edges found
+  [24/50] L31/N12914: 87 edges found
+  [25/50] L30/N7163: 68 edges found
+  [26/50] L28/N13051: 43 edges found
+  [27/50] L17/N11378: 33 edges found
+  [28/50] L23/N13769: 47 edges found
+  [29/50] L0/N7433: 0 edges found
+  [30/50] L30/N5442: 41 edges found
+  [31/50] L25/N13461: 50 edges found
+  [32/50] L31/N4964: 89 edges found
+  [33/50] L30/N11430: 43 edges found
+  [34/50] L15/N8286: 28 edges found
+  [35/50] L23/N2709: 37 edges found
+  [36/50] L15/N1173: 24 edges found
+  [37/50] L2/N8454: 9 edges found
+  [38/50] L22/N5520: 36 edges found
+  [39/50] L31/N14276: 88 edges found
+  [40/50] L21/N4924: 30 edges found
+  [41/50] L1/N4970: 7 edges found
+  [42/50] L27/N3765: 55 edges found
+  [43/50] L13/N2158: 21 edges found
+  [44/50] L31/N993: 83 edges found
+  [45/50] L30/N1171: 67 edges found
+  [46/50] L30/N10468: 61 edges found
+  [47/50] L31/N6705: 88 edges found
+  [48/50] L30/N13458: 69 edges found
+  [49/50] L31/N14027: 87 edges found
+  [50/50] L12/N2314: 20 edges found
+
+Total: 2396 edges across 50 target neurons
+    Edge pass 2/3: What is the capital of France?...
+  [1/50] L1/N2427: 2 edges found
+  [2/50] L0/N491: 0 edges found
+  [3/50] L17/N11378: 30 edges found
+  [4/50] L0/N8268: 0 edges found
+  [5/50] L31/N5739: 89 edges found
+  [6/50] L31/N1237: 89 edges found
+  [7/50] L10/N6026: 18 edges found
+  [8/50] L15/N8286: 27 edges found
+  [9/50] L31/N11000: 89 edges found
+  [10/50] L27/N3766: 57 edges found
+  [11/50] L30/N8571: 70 edges found
+  [12/50] L30/N7427: 70 edges found
+  [13/50] L31/N10770: 89 edges found
+  [14/50] L20/N8163: 35 edges found
+  [15/50] L30/N935: 70 edges found
+  [16/50] L31/N5722: 89 edges found
+  [17/50] L23/N2709: 49 edges found
+  [18/50] L0/N5828: 0 edges found
+  [19/50] L0/N2765: 0 edges found
+  [20/50] L30/N4393: 70 edges found
+  [21/50] L21/N4924: 43 edges found
+  [22/50] L31/N3684: 89 edges found
+  [23/50] L30/N9445: 70 edges found
+  [24/50] L31/N12914: 89 edges found
+  [25/50] L30/N7163: 70 edges found
+  [26/50] L28/N13051: 45 edges found
+  [27/50] L17/N11378: 34 edges found
+  [28/50] L23/N13769: 49 edges found
+  [29/50] L0/N7433: 0 edges found
+  [30/50] L30/N5442: 47 edges found
+  [31/50] L25/N13461: 54 edges found
+  [32/50] L31/N4964: 89 edges found
+  [33/50] L30/N11430: 47 edges found
+  [34/50] L15/N8286: 29 edges found
+  [35/50] L23/N2709: 39 edges found
+  [36/50] L15/N1173: 27 edges found
+  [37/50] L2/N8454: 9 edges found
+  [38/50] L22/N5520: 38 edges found
+  [39/50] L31/N14276: 89 edges found
+  [40/50] L21/N4924: 36 edges found
+  [41/50] L1/N4970: 7 edges found
+  [42/50] L27/N3765: 57 edges found
+  [43/50] L13/N2158: 22 edges found
+  [44/50] L31/N993: 89 edges found
+  [45/50] L30/N1171: 70 edges found
+  [46/50] L30/N10468: 70 edges found
+  [47/50] L31/N6705: 89 edges found
+  [48/50] L30/N13458: 70 edges found
+  [49/50] L31/N14027: 89 edges found
+  [50/50] L12/N2314: 21 edges found
+
+Total: 2520 edges across 50 target neurons
+    Edge pass 3/3: What is the capital of Japan?...
+  [1/50] L1/N2427: 2 edges found
+  [2/50] L0/N491: 0 edges found
+  [3/50] L17/N11378: 30 edges found
+  [4/50] L0/N8268: 0 edges found
+  [5/50] L31/N5739: 89 edges found
+  [6/50] L31/N1237: 89 edges found
+  [7/50] L10/N6026: 18 edges found
+  [8/50] L15/N8286: 27 edges found
+  [9/50] L31/N11000: 89 edges found
+  [10/50] L27/N3766: 57 edges found
+  [11/50] L30/N8571: 70 edges found
+  [12/50] L30/N7427: 70 edges found
+  [13/50] L31/N10770: 89 edges found
+  [14/50] L20/N8163: 35 edges found
+  [15/50] L30/N935: 70 edges found
+  [16/50] L31/N5722: 89 edges found
+  [17/50] L23/N2709: 49 edges found
+  [18/50] L0/N5828: 0 edges found
+  [19/50] L0/N2765: 0 edges found
+  [20/50] L30/N4393: 70 edges found
+  [21/50] L21/N4924: 43 edges found
+  [22/50] L31/N3684: 89 edges found
+  [23/50] L30/N9445: 70 edges found
+  [24/50] L31/N12914: 89 edges found
+  [25/50] L30/N7163: 70 edges found
+  [26/50] L28/N13051: 45 edges found
+  [27/50] L17/N11378: 34 edges found
+  [28/50] L23/N13769: 49 edges found
+  [29/50] L0/N7433: 0 edges found
+  [30/50] L30/N5442: 47 edges found
+  [31/50] L25/N13461: 54 edges found
+  [32/50] L31/N4964: 89 edges found
+  [33/50] L30/N11430: 47 edges found
+  [34/50] L15/N8286: 29 edges found
+  [35/50] L23/N2709: 39 edges found
+  [36/50] L15/N1173: 27 edges found
+  [37/50] L2/N8454: 9 edges found
+  [38/50] L22/N5520: 38 edges found
+  [39/50] L31/N14276: 89 edges found
+  [40/50] L21/N4924: 36 edges found
+  [41/50] L1/N4970: 7 edges found
+  [42/50] L27/N3765: 57 edges found
+  [43/50] L13/N2158: 22 edges found
+  [44/50] L31/N993: 89 edges found
+  [45/50] L30/N1171: 70 edges found
+  [46/50] L30/N10468: 69 edges found
+  [47/50] L31/N6705: 89 edges found
+  [48/50] L30/N13458: 70 edges found
+  [49/50] L31/N14027: 89 edges found
+  [50/50] L12/N2314: 21 edges found
+
+Total: 2519 edges across 50 target neurons
+
+======================================================================
+  TOPOLOGY: RelP-Factual (Capitals) @ k*=114
+  114 neurons, 2520 edges
+======================================================================
+
+  Layer distribution:
+    L00 │████████ 8
+    L01 │████ 4
+    L02 │█ 1
+    L03 │█ 1
+    L04 │█ 1
+    L05 │█ 1
+    L07 │██ 2
+    L09 │█ 1
+    L10 │███ 3
+    L11 │█ 1
+    L12 │█ 1
+    L13 │███ 3
+    L14 │██ 2
+    L15 │████ 4
+    L16 │█ 1
+    L17 │██ 2
+    L19 │██████ 6
+    L20 │█ 1
+    L21 │███ 3
+    L22 │███ 3
+    L23 │█████ 5
+    L25 │██ 2
+    L26 │█ 1
+    L27 │██████ 6
+    L28 │████ 4
+    L29 │███ 3
+    L30 │███████████████████ 19
+    L31 │█████████████████████████ 25
+
+  Top layer-to-layer flows:
+    L00 → L01: 1359.1174
+    L00 → L31: 8.2410
+    L30 → L31: 8.2355
+    L00 → L30: 5.7941
+    L01 → L31: 5.7920
+    L00 → L23: 5.1683
+    L21 → L23: 5.0058
+    L01 → L30: 4.3909
+    L00 → L27: 3.6366
+    L01 → L23: 3.5075
+    L01 → L27: 2.8889
+    L27 → L31: 2.4967
+    L00 → L21: 1.9997
+    L15 → L23: 1.8774
+    L28 → L31: 1.8167
+
+  Top source hubs (fan-out):
+    L00/N 7433: degree= 87, total_weight=2.1947
+    L10/N 6026: degree= 70, total_weight=3.6925
+    L15/N 8286: degree= 64, total_weight=4.3361
+    L17/N11378: degree= 61, total_weight=5.0156
+    L19/N 4155: degree= 61, total_weight=3.0931
+    L21/N 4924: degree= 57, total_weight=5.8776
+    L22/N 5520: degree= 56, total_weight=1.3688
+    L23/N 2709: degree= 51, total_weight=2.3995
+    L25/N13461: degree= 49, total_weight=3.1860
+    L00/N 8268: degree= 45, total_weight=404.4904
+
+  Top target hubs (fan-in):
+    L31/N 5739: degree= 89, total_weight=4.7292
+    L31/N 1237: degree= 89, total_weight=0.2077
+    L31/N11000: degree= 89, total_weight=2.7443
+    L31/N10770: degree= 89, total_weight=1.3275
+    L31/N 5722: degree= 89, total_weight=1.2434
+    L31/N 3684: degree= 89, total_weight=6.8843
+    L31/N12914: degree= 89, total_weight=1.0860
+    L31/N 4964: degree= 89, total_weight=3.2200
+    L31/N14276: degree= 89, total_weight=8.0426
+    L31/N  993: degree= 89, total_weight=1.0925
+
+  Bottleneck neurons (high fan-in AND fan-out):
+    L17/N11378: in= 64, out= 61
+    L21/N 4924: in= 79, out= 57
+    L15/N 8286: in= 56, out= 64
+    L23/N 2709: in= 88, out= 51
+    L25/N13461: in= 54, out= 49
+    L27/N 3766: in= 57, out= 45
+    L28/N13051: in= 45, out= 44
+    L22/N 5520: in= 38, out= 56
+    L20/N 8163: in= 35, out= 33
+    L15/N 1173: in= 27, out= 36
+
+  Super-weight neurons:
+    L00/N  491: mean_weight=-21.3419, targets=45, ratio=762.5x
+    L00/N 8268: mean_weight=-8.8704, targets=45, ratio=317.0x
+    L01/N 2427: mean_weight=-0.0096, targets=43, ratio=15.1x
+
+  Circuit diagram:
+Circuit Architecture:
+  L0   ███████████  (7 neurons) [N7433★]
+       ↓↓↓↓↓↓↓↓ (w=1359) 
+       ↓ (w=8) →L31
+       ↓ (w=6) →L30
+  L1   ██████  (4 neurons) [N2427★]
+       ↓ (w=6) →L31
+       ↓ (w=4) →L30
+       ↓ (w=4) →L23
+  L2   █  (1 neurons) [N8454★]
+       ↓ (w=0) →L23
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+  L3   █  (1 neurons)
+       ↓ (w=0) →L30
+       ↓ (w=0) →L31
+       ↓ (w=0) →L23
+  L4   █  (1 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L23
+  L5   █  (1 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L23
+  L7   ███  (2 neurons)
+       ↓ (w=1) →L31
+       ↓ (w=1) →L23
+       ↓ (w=0) →L30
+  L9   █  (1 neurons)
+       ↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L27
+  L10  ███  (2 neurons) <- BOTTLENECK [N6026★]
+       ↓ (w=1) →L31
+       ↓ (w=1) →L30
+       ↓ (w=1) →L23
+  L11  █  (1 neurons)
+       ↓ (w=0) →L23
+       ↓ (w=0) →L13
+       ↓ (w=0) →L31
+  L12  █  (1 neurons) <- BOTTLENECK [N2314★]
+       ↓ (w=0) →L23
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+  L13  ████  (3 neurons) <- BOTTLENECK [N2158★]
+       ↓ (w=1) →L23
+       ↓ (w=1) →L31
+       ↓ (w=0) →L30
+  L14  ███  (2 neurons)
+       ↓ (w=0) →L23
+       ↓ (w=0) 
+       ↓ (w=0) →L31
+  L15  ████  (3 neurons) <- BOTTLENECK [N1173, N8286★]
+       ↓ (w=2) →L23
+       ↓ (w=1) →L31
+       ↓ (w=1) →L30
+  L16  █  (1 neurons)
+       ↓ (w=1) →L30
+       ↓ (w=1) →L31
+       ↓ (w=0) →L27
+  L17  █  (1 neurons) <- BOTTLENECK [N11378★]
+       ↓ (w=1) →L31
+       ↓ (w=1) →L30
+       ↓ (w=1) →L23
+  L19  ████████  (5 neurons) [N4155★]
+       ↓ (w=2) →L23
+       ↓ (w=1) →L31
+       ↓ (w=1) →L30
+  L20  █  (1 neurons) <- BOTTLENECK [N8163★]
+       ↓ (w=1) →L23
+       ↓ (w=1) 
+       ↓ (w=0) →L31
+  L21  ███  (2 neurons) <- BOTTLENECK [N4924★]
+       ↓ (w=5) →L23
+       ↓ (w=1) →L31
+       ↓ (w=1) →L27
+  L22  ███  (2 neurons) <- BOTTLENECK [N5520★]
+       ↓ (w=1) 
+       ↓ (w=1) →L30
+       ↓ (w=1) →L31
+  L23  ██████  (4 neurons) <- BOTTLENECK [N2709, N13769★]
+       ↓ (w=2) →L27
+       ↓ (w=1) →L31
+       ↓ (w=1) →L30
+  L25  █  (1 neurons) <- BOTTLENECK [N13461★]
+       ↓ (w=1) →L27
+       ↓ (w=1) →L31
+       ↓ (w=0) →L30
+  L26  █  (1 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) 
+  L27  ████████  (5 neurons) <- BOTTLENECK [N3766, N3765★]
+       ↓ (w=2) →L31
+       ↓ (w=1) →L30
+       ↓ (w=0) 
+  L28  ████  (3 neurons) <- BOTTLENECK [N13051★]
+       ↓ (w=2) →L31
+       ↓ (w=1) →L30
+  L29  ████  (3 neurons)
+       ↓ (w=1) →L31
+       ↓ (w=0) 
+  L30  ██████████████████████████████  (19 neurons) [N8571★]
+       ↓ (w=8) 
+  L31  ████████████████████████████████████████  (25 neurons) [N5739★]
+
+  Comparison topology at k=57
+
+  Running edge discovery (3 prompts, top 50 targets)...
+    Edge pass 1/3: What is the capital of the state containing Dallas...
+  [1/50] L1/N2427: 2 edges found
+  [2/50] L0/N491: 0 edges found
+  [3/50] L17/N11378: 13 edges found
+  [4/50] L0/N8268: 0 edges found
+  [5/50] L31/N5739: 41 edges found
+  [6/50] L31/N1237: 38 edges found
+  [7/50] L10/N6026: 7 edges found
+  [8/50] L15/N8286: 11 edges found
+  [9/50] L31/N11000: 41 edges found
+  [10/50] L27/N3766: 25 edges found
+  [11/50] L30/N8571: 29 edges found
+  [12/50] L30/N7427: 30 edges found
+  [13/50] L31/N10770: 40 edges found
+  [14/50] L20/N8163: 12 edges found
+  [15/50] L30/N935: 27 edges found
+  [16/50] L31/N5722: 38 edges found
+  [17/50] L23/N2709: 20 edges found
+  [18/50] L0/N5828: 0 edges found
+  [19/50] L0/N2765: 0 edges found
+  [20/50] L30/N4393: 24 edges found
+  [21/50] L21/N4924: 17 edges found
+  [22/50] L31/N3684: 40 edges found
+  [23/50] L30/N9445: 29 edges found
+  [24/50] L31/N12914: 40 edges found
+  [25/50] L30/N7163: 30 edges found
+  [26/50] L28/N13051: 19 edges found
+  [27/50] L17/N11378: 14 edges found
+  [28/50] L23/N13769: 20 edges found
+  [29/50] L0/N7433: 0 edges found
+  [30/50] L30/N5442: 18 edges found
+  [31/50] L25/N13461: 22 edges found
+  [32/50] L31/N4964: 41 edges found
+  [33/50] L30/N11430: 18 edges found
+  [34/50] L15/N8286: 11 edges found
+  [35/50] L23/N2709: 17 edges found
+  [36/50] L15/N1173: 10 edges found
+  [37/50] L2/N8454: 4 edges found
+  [38/50] L22/N5520: 15 edges found
+  [39/50] L31/N14276: 41 edges found
+  [40/50] L21/N4924: 13 edges found
+  [41/50] L1/N4970: 4 edges found
+  [42/50] L27/N3765: 24 edges found
+  [43/50] L13/N2158: 10 edges found
+  [44/50] L31/N993: 39 edges found
+  [45/50] L30/N1171: 30 edges found
+  [46/50] L30/N10468: 27 edges found
+  [47/50] L31/N6705: 41 edges found
+  [48/50] L30/N13458: 30 edges found
+  [49/50] L31/N14027: 41 edges found
+  [50/50] L12/N2314: 9 edges found
+
+Total: 1072 edges across 50 target neurons
+    Edge pass 2/3: What is the capital of France?...
+  [1/50] L1/N2427: 2 edges found
+  [2/50] L0/N491: 0 edges found
+  [3/50] L17/N11378: 13 edges found
+  [4/50] L0/N8268: 0 edges found
+  [5/50] L31/N5739: 41 edges found
+  [6/50] L31/N1237: 41 edges found
+  [7/50] L10/N6026: 8 edges found
+  [8/50] L15/N8286: 11 edges found
+  [9/50] L31/N11000: 41 edges found
+  [10/50] L27/N3766: 25 edges found
+  [11/50] L30/N8571: 30 edges found
+  [12/50] L30/N7427: 30 edges found
+  [13/50] L31/N10770: 41 edges found
+  [14/50] L20/N8163: 14 edges found
+  [15/50] L30/N935: 30 edges found
+  [16/50] L31/N5722: 41 edges found
+  [17/50] L23/N2709: 20 edges found
+  [18/50] L0/N5828: 0 edges found
+  [19/50] L0/N2765: 0 edges found
+  [20/50] L30/N4393: 30 edges found
+  [21/50] L21/N4924: 17 edges found
+  [22/50] L31/N3684: 41 edges found
+  [23/50] L30/N9445: 30 edges found
+  [24/50] L31/N12914: 41 edges found
+  [25/50] L30/N7163: 30 edges found
+  [26/50] L28/N13051: 20 edges found
+  [27/50] L17/N11378: 14 edges found
+  [28/50] L23/N13769: 20 edges found
+  [29/50] L0/N7433: 0 edges found
+  [30/50] L30/N5442: 21 edges found
+  [31/50] L25/N13461: 24 edges found
+  [32/50] L31/N4964: 41 edges found
+  [33/50] L30/N11430: 21 edges found
+  [34/50] L15/N8286: 11 edges found
+  [35/50] L23/N2709: 17 edges found
+  [36/50] L15/N1173: 11 edges found
+  [37/50] L2/N8454: 4 edges found
+  [38/50] L22/N5520: 16 edges found
+  [39/50] L31/N14276: 41 edges found
+  [40/50] L21/N4924: 15 edges found
+  [41/50] L1/N4970: 4 edges found
+  [42/50] L27/N3765: 25 edges found
+  [43/50] L13/N2158: 10 edges found
+  [44/50] L31/N993: 41 edges found
+  [45/50] L30/N1171: 30 edges found
+  [46/50] L30/N10468: 30 edges found
+  [47/50] L31/N6705: 41 edges found
+  [48/50] L30/N13458: 30 edges found
+  [49/50] L31/N14027: 41 edges found
+  [50/50] L12/N2314: 9 edges found
+
+Total: 1114 edges across 50 target neurons
+    Edge pass 3/3: What is the capital of Japan?...
+  [1/50] L1/N2427: 2 edges found
+  [2/50] L0/N491: 0 edges found
+  [3/50] L17/N11378: 13 edges found
+  [4/50] L0/N8268: 0 edges found
+  [5/50] L31/N5739: 41 edges found
+  [6/50] L31/N1237: 41 edges found
+  [7/50] L10/N6026: 8 edges found
+  [8/50] L15/N8286: 11 edges found
+  [9/50] L31/N11000: 41 edges found
+  [10/50] L27/N3766: 25 edges found
+  [11/50] L30/N8571: 30 edges found
+  [12/50] L30/N7427: 30 edges found
+  [13/50] L31/N10770: 41 edges found
+  [14/50] L20/N8163: 14 edges found
+  [15/50] L30/N935: 30 edges found
+  [16/50] L31/N5722: 41 edges found
+  [17/50] L23/N2709: 20 edges found
+  [18/50] L0/N5828: 0 edges found
+  [19/50] L0/N2765: 0 edges found
+  [20/50] L30/N4393: 30 edges found
+  [21/50] L21/N4924: 17 edges found
+  [22/50] L31/N3684: 41 edges found
+  [23/50] L30/N9445: 30 edges found
+  [24/50] L31/N12914: 41 edges found
+  [25/50] L30/N7163: 30 edges found
+  [26/50] L28/N13051: 20 edges found
+  [27/50] L17/N11378: 14 edges found
+  [28/50] L23/N13769: 20 edges found
+  [29/50] L0/N7433: 0 edges found
+  [30/50] L30/N5442: 21 edges found
+  [31/50] L25/N13461: 24 edges found
+  [32/50] L31/N4964: 41 edges found
+  [33/50] L30/N11430: 21 edges found
+  [34/50] L15/N8286: 11 edges found
+  [35/50] L23/N2709: 17 edges found
+  [36/50] L15/N1173: 11 edges found
+  [37/50] L2/N8454: 4 edges found
+  [38/50] L22/N5520: 16 edges found
+  [39/50] L31/N14276: 41 edges found
+  [40/50] L21/N4924: 15 edges found
+  [41/50] L1/N4970: 4 edges found
+  [42/50] L27/N3765: 25 edges found
+  [43/50] L13/N2158: 10 edges found
+  [44/50] L31/N993: 41 edges found
+  [45/50] L30/N1171: 30 edges found
+  [46/50] L30/N10468: 30 edges found
+  [47/50] L31/N6705: 41 edges found
+  [48/50] L30/N13458: 30 edges found
+  [49/50] L31/N14027: 41 edges found
+  [50/50] L12/N2314: 9 edges found
+
+Total: 1114 edges across 50 target neurons
+
+======================================================================
+  TOPOLOGY: RelP-Factual (Capitals) @ k=57
+  57 neurons, 1114 edges
+======================================================================
+
+  Layer distribution:
+    L00 │█████ 5
+    L01 │██ 2
+    L02 │█ 1
+    L10 │█ 1
+    L12 │█ 1
+    L13 │█ 1
+    L15 │███ 3
+    L17 │██ 2
+    L20 │█ 1
+    L21 │██ 2
+    L22 │█ 1
+    L23 │████ 4
+    L25 │█ 1
+    L27 │████ 4
+    L28 │█ 1
+    L30 │███████████ 11
+    L31 │████████████████ 16
+
+  Top layer-to-layer flows:
+    L00 → L01: 1359.1173
+    L00 → L31: 7.3704
+    L30 → L31: 5.8138
+    L00 → L30: 5.1684
+    L01 → L31: 5.0638
+    L00 → L23: 4.9707
+    L01 → L30: 3.9537
+    L21 → L23: 3.8901
+    L00 → L27: 3.4357
+    L01 → L23: 3.2380
+    L01 → L27: 2.6862
+    L27 → L31: 1.9291
+    L00 → L21: 1.8617
+    L00 → L02: 1.6459
+    L15 → L23: 1.6449
+
+  Top source hubs (fan-out):
+    L15/N 8286: degree= 64, total_weight=4.3361
+    L17/N11378: degree= 61, total_weight=5.0156
+    L21/N 4924: degree= 57, total_weight=5.8776
+    L23/N 2709: degree= 51, total_weight=2.3995
+    L00/N 8268: degree= 45, total_weight=404.4904
+    L00/N  491: degree= 45, total_weight=972.8713
+    L00/N 5828: degree= 44, total_weight=3.0884
+    L00/N 7433: degree= 43, total_weight=1.2574
+    L01/N 2427: degree= 43, total_weight=18.4068
+    L02/N 8454: degree= 42, total_weight=1.1532
+
+  Top target hubs (fan-in):
+    L31/N 5739: degree= 41, total_weight=2.8078
+    L31/N 1237: degree= 41, total_weight=0.1265
+    L31/N11000: degree= 41, total_weight=1.9733
+    L31/N10770: degree= 41, total_weight=0.8942
+    L31/N 5722: degree= 41, total_weight=0.7402
+    L31/N 3684: degree= 41, total_weight=4.8440
+    L31/N12914: degree= 41, total_weight=0.7061
+    L31/N 4964: degree= 41, total_weight=2.3023
+    L31/N14276: degree= 41, total_weight=5.7885
+    L31/N  993: degree= 41, total_weight=0.7940
+
+  Bottleneck neurons (high fan-in AND fan-out):
+    L23/N 2709: in= 37, out= 51
+    L21/N 4924: in= 32, out= 57
+    L17/N11378: in= 27, out= 61
+    L25/N13461: in= 24, out= 23
+    L15/N 8286: in= 22, out= 64
+    L27/N 3765: in= 25, out= 21
+    L27/N 3766: in= 25, out= 21
+    L23/N13769: in= 20, out= 24
+    L28/N13051: in= 20, out= 23
+    L22/N 5520: in= 16, out= 30
+
+  Super-weight neurons:
+    L00/N  491: mean_weight=-21.3419, targets=45, ratio=445.8x
+    L00/N 8268: mean_weight=-8.8704, targets=45, ratio=185.3x
+
+  Circuit diagram:
+Circuit Architecture:
+  L0   ████████████  (5 neurons) [N8268★]
+       ↓↓↓↓↓↓↓↓ (w=1359) 
+       ↓ (w=7) →L31
+       ↓ (w=5) →L30
+  L1   █████  (2 neurons) [N2427★]
+       ↓ (w=5) →L31
+       ↓ (w=4) →L30
+       ↓ (w=3) →L23
+  L2   ██  (1 neurons) [N8454★]
+       ↓ (w=0) →L23
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+  L10  ██  (1 neurons) [N6026★]
+       ↓ (w=1) →L23
+       ↓ (w=1) →L31
+       ↓ (w=0) →L30
+  L12  ██  (1 neurons) <- BOTTLENECK [N2314★]
+       ↓ (w=0) →L23
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+  L13  ██  (1 neurons) <- BOTTLENECK [N2158★]
+       ↓ (w=1) →L23
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+  L15  █████  (2 neurons) <- BOTTLENECK [N1173, N8286★]
+       ↓ (w=2) →L23
+       ↓ (w=1) →L31
+       ↓ (w=1) →L30
+  L17  ██  (1 neurons) <- BOTTLENECK [N11378★]
+       ↓ (w=1) →L31
+       ↓ (w=1) →L30
+       ↓ (w=1) →L23
+  L20  ██  (1 neurons) <- BOTTLENECK [N8163★]
+       ↓ (w=1) →L23
+       ↓ (w=1) 
+       ↓ (w=0) →L31
+  L21  ██  (1 neurons) <- BOTTLENECK [N4924★]
+       ↓ (w=4) →L23
+       ↓ (w=1) →L27
+       ↓ (w=1) →L31
+  L22  ██  (1 neurons) <- BOTTLENECK [N5520★]
+       ↓ (w=0) →L28
+       ↓ (w=0) →L30
+       ↓ (w=0) →L31
+  L23  ███████  (3 neurons) <- BOTTLENECK [N2709, N13769★]
+       ↓ (w=2) →L27
+       ↓ (w=1) →L31
+       ↓ (w=1) 
+  L25  ██  (1 neurons) <- BOTTLENECK [N13461★]
+       ↓ (w=1) 
+       ↓ (w=1) →L31
+       ↓ (w=0) →L30
+  L27  ██████████  (4 neurons) <- BOTTLENECK [N3766, N3765★]
+       ↓ (w=2) →L31
+       ↓ (w=1) →L30
+       ↓ (w=0) 
+  L28  ██  (1 neurons) <- BOTTLENECK [N13051★]
+       ↓ (w=0) →L31
+       ↓ (w=0) 
+  L30  ███████████████████████████  (11 neurons) [N8571★]
+       ↓ (w=6) 
+  L31  ████████████████████████████████████████  (16 neurons) [N5739★]
+
+  Comparison topology at k=228
+
+  Running edge discovery (3 prompts, top 50 targets)...
+    Edge pass 1/3: What is the capital of the state containing Dallas...
+  [1/50] L1/N2427: 2 edges found
+  [2/50] L0/N491: 0 edges found
+  [3/50] L17/N11378: 58 edges found
+  [4/50] L0/N8268: 0 edges found
+  [5/50] L31/N5739: 177 edges found
+  [6/50] L31/N1237: 161 edges found
+  [7/50] L10/N6026: 30 edges found
+  [8/50] L15/N8286: 47 edges found
+  [9/50] L31/N11000: 174 edges found
+  [10/50] L27/N3766: 120 edges found
+  [11/50] L30/N8571: 144 edges found
+  [12/50] L30/N7427: 146 edges found
+  [13/50] L31/N10770: 176 edges found
+  [14/50] L20/N8163: 68 edges found
+  [15/50] L30/N935: 128 edges found
+  [16/50] L31/N5722: 171 edges found
+  [17/50] L23/N2709: 99 edges found
+  [18/50] L0/N5828: 0 edges found
+  [19/50] L0/N2765: 0 edges found
+  [20/50] L30/N4393: 131 edges found
+  [21/50] L21/N4924: 88 edges found
+  [22/50] L31/N3684: 172 edges found
+  [23/50] L30/N9445: 142 edges found
+  [24/50] L31/N12914: 174 edges found
+  [25/50] L30/N7163: 142 edges found
+  [26/50] L28/N13051: 86 edges found
+  [27/50] L17/N11378: 67 edges found
+  [28/50] L23/N13769: 100 edges found
+  [29/50] L0/N7433: 0 edges found
+  [30/50] L30/N5442: 80 edges found
+  [31/50] L25/N13461: 104 edges found
+  [32/50] L31/N4964: 179 edges found
+  [33/50] L30/N11430: 89 edges found
+  [34/50] L15/N8286: 52 edges found
+  [35/50] L23/N2709: 78 edges found
+  [36/50] L15/N1173: 43 edges found
+  [37/50] L2/N8454: 12 edges found
+  [38/50] L22/N5520: 74 edges found
+  [39/50] L31/N14276: 177 edges found
+  [40/50] L21/N4924: 67 edges found
+  [41/50] L1/N4970: 7 edges found
+  [42/50] L27/N3765: 117 edges found
+  [43/50] L13/N2158: 38 edges found
+  [44/50] L31/N993: 169 edges found
+  [45/50] L30/N1171: 143 edges found
+  [46/50] L30/N10468: 129 edges found
+  [47/50] L31/N6705: 178 edges found
+  [48/50] L30/N13458: 144 edges found
+  [49/50] L31/N14027: 179 edges found
+  [50/50] L12/N2314: 35 edges found
+
+Total: 4897 edges across 50 target neurons
+    Edge pass 2/3: What is the capital of France?...
+    (filtered 2 neurons with position >= seq_len=46)
+  [1/50] L1/N2427: 2 edges found
+  [2/50] L0/N491: 0 edges found
+  [3/50] L17/N11378: 60 edges found
+  [4/50] L0/N8268: 0 edges found
+  [5/50] L31/N5739: 181 edges found
+  [6/50] L31/N1237: 181 edges found
+  [7/50] L10/N6026: 32 edges found
+  [8/50] L15/N8286: 48 edges found
+  [9/50] L31/N11000: 181 edges found
+  [10/50] L27/N3766: 122 edges found
+  [11/50] L30/N8571: 148 edges found
+  [12/50] L30/N7427: 148 edges found
+  [13/50] L31/N10770: 181 edges found
+  [14/50] L20/N8163: 72 edges found
+  [15/50] L30/N935: 148 edges found
+  [16/50] L31/N5722: 181 edges found
+  [17/50] L23/N2709: 104 edges found
+  [18/50] L0/N5828: 0 edges found
+  [19/50] L0/N2765: 0 edges found
+  [20/50] L30/N4393: 148 edges found
+  [21/50] L21/N4924: 92 edges found
+  [22/50] L31/N3684: 181 edges found
+  [23/50] L30/N9445: 148 edges found
+  [24/50] L31/N12914: 181 edges found
+  [25/50] L30/N7163: 148 edges found
+  [26/50] L28/N13051: 90 edges found
+  [27/50] L17/N11378: 70 edges found
+  [28/50] L23/N13769: 104 edges found
+  [29/50] L0/N7433: 0 edges found
+  [30/50] L30/N5442: 95 edges found
+  [31/50] L25/N13461: 116 edges found
+  [32/50] L31/N4964: 181 edges found
+  [33/50] L30/N11430: 95 edges found
+  [34/50] L15/N8286: 55 edges found
+  [35/50] L23/N2709: 82 edges found
+  [36/50] L15/N1173: 48 edges found
+  [37/50] L2/N8454: 12 edges found
+  [38/50] L22/N5520: 80 edges found
+  [39/50] L31/N14276: 181 edges found
+  [40/50] L21/N4924: 76 edges found
+  [41/50] L1/N4970: 9 edges found
+  [42/50] L27/N3765: 122 edges found
+  [43/50] L13/N2158: 40 edges found
+  [44/50] L31/N993: 181 edges found
+  [45/50] L30/N1171: 148 edges found
+  [46/50] L30/N10468: 148 edges found
+  [47/50] L31/N6705: 181 edges found
+  [48/50] L30/N13458: 148 edges found
+  [49/50] L31/N14027: 181 edges found
+  [50/50] L12/N2314: 37 edges found
+
+Total: 5167 edges across 50 target neurons
+    Edge pass 3/3: What is the capital of Japan?...
+    (filtered 2 neurons with position >= seq_len=46)
+  [1/50] L1/N2427: 2 edges found
+  [2/50] L0/N491: 0 edges found
+  [3/50] L17/N11378: 60 edges found
+  [4/50] L0/N8268: 0 edges found
+  [5/50] L31/N5739: 181 edges found
+  [6/50] L31/N1237: 181 edges found
+  [7/50] L10/N6026: 32 edges found
+  [8/50] L15/N8286: 48 edges found
+  [9/50] L31/N11000: 181 edges found
+  [10/50] L27/N3766: 122 edges found
+  [11/50] L30/N8571: 148 edges found
+  [12/50] L30/N7427: 148 edges found
+  [13/50] L31/N10770: 181 edges found
+  [14/50] L20/N8163: 72 edges found
+  [15/50] L30/N935: 147 edges found
+  [16/50] L31/N5722: 181 edges found
+  [17/50] L23/N2709: 104 edges found
+  [18/50] L0/N5828: 0 edges found
+  [19/50] L0/N2765: 0 edges found
+  [20/50] L30/N4393: 148 edges found
+  [21/50] L21/N4924: 92 edges found
+  [22/50] L31/N3684: 181 edges found
+  [23/50] L30/N9445: 148 edges found
+  [24/50] L31/N12914: 181 edges found
+  [25/50] L30/N7163: 148 edges found
+  [26/50] L28/N13051: 90 edges found
+  [27/50] L17/N11378: 70 edges found
+  [28/50] L23/N13769: 104 edges found
+  [29/50] L0/N7433: 0 edges found
+  [30/50] L30/N5442: 95 edges found
+  [31/50] L25/N13461: 116 edges found
+  [32/50] L31/N4964: 181 edges found
+  [33/50] L30/N11430: 95 edges found
+  [34/50] L15/N8286: 55 edges found
+  [35/50] L23/N2709: 82 edges found
+  [36/50] L15/N1173: 48 edges found
+  [37/50] L2/N8454: 12 edges found
+  [38/50] L22/N5520: 80 edges found
+  [39/50] L31/N14276: 181 edges found
+  [40/50] L21/N4924: 76 edges found
+  [41/50] L1/N4970: 9 edges found
+  [42/50] L27/N3765: 122 edges found
+  [43/50] L13/N2158: 40 edges found
+  [44/50] L31/N993: 181 edges found
+  [45/50] L30/N1171: 148 edges found
+  [46/50] L30/N10468: 147 edges found
+  [47/50] L31/N6705: 181 edges found
+  [48/50] L30/N13458: 148 edges found
+  [49/50] L31/N14027: 181 edges found
+  [50/50] L12/N2314: 37 edges found
+
+Total: 5165 edges across 50 target neurons
+
+======================================================================
+  TOPOLOGY: RelP-Factual (Capitals) @ k=228
+  228 neurons, 5167 edges
+======================================================================
+
+  Layer distribution:
+    L00 │██████████ 10
+    L01 │██████ 6
+    L02 │██ 2
+    L03 │██ 2
+    L04 │████ 4
+    L05 │██ 2
+    L06 │██ 2
+    L07 │███ 3
+    L08 │██ 2
+    L09 │██ 2
+    L10 │█████ 5
+    L11 │█ 1
+    L12 │████ 4
+    L13 │██████ 6
+    L14 │████ 4
+    L15 │███████ 7
+    L16 │████████ 8
+    L17 │█████ 5
+    L18 │██████ 6
+    L19 │███████ 7
+    L20 │████ 4
+    L21 │██████ 6
+    L22 │██████ 6
+    L23 │██████████ 10
+    L24 │███ 3
+    L25 │███ 3
+    L26 │███ 3
+    L27 │█████████ 9
+    L28 │████████ 8
+    L29 │█████████ 9
+    L30 │██████████████████████████████████ 34
+    L31 │████████████████████████████████████████ 45
+
+  Top layer-to-layer flows:
+    L00 → L01: 1359.1196
+    L30 → L31: 11.0393
+    L00 → L31: 8.9736
+    L00 → L30: 6.2765
+    L01 → L31: 6.1963
+    L21 → L23: 5.8374
+    L00 → L23: 5.4250
+    L01 → L30: 4.7369
+    L00 → L27: 3.8176
+    L27 → L31: 3.5805
+    L01 → L23: 3.5662
+    L01 → L27: 2.9467
+    L28 → L31: 2.6692
+    L15 → L23: 2.3370
+    L00 → L21: 2.1476
+
+  Top source hubs (fan-out):
+    L17/N11378: degree= 95, total_weight=5.4692
+    L21/N 4924: degree= 88, total_weight=6.0371
+    L00/N 7433: degree= 87, total_weight=2.1947
+    L02/N 8454: degree= 84, total_weight=1.7687
+    L23/N 2709: degree= 78, total_weight=2.6325
+    L10/N 6026: degree= 70, total_weight=3.6925
+    L28/N13051: degree= 67, total_weight=3.0057
+    L15/N 8286: degree= 64, total_weight=4.3361
+    L15/N 5812: degree= 64, total_weight=1.1251
+    L19/N 4155: degree= 61, total_weight=3.0931
+
+  Top target hubs (fan-in):
+    L23/N 2709: degree=186, total_weight=27.0938
+    L31/N 5739: degree=181, total_weight=7.3155
+    L31/N 1237: degree=181, total_weight=0.3430
+    L31/N11000: degree=181, total_weight=3.7737
+    L31/N10770: degree=181, total_weight=1.9711
+    L31/N 5722: degree=181, total_weight=1.8807
+    L31/N 3684: degree=181, total_weight=9.1694
+    L31/N12914: degree=181, total_weight=1.6657
+    L31/N 4964: degree=181, total_weight=4.3192
+    L31/N14276: degree=181, total_weight=11.5283
+
+  Bottleneck neurons (high fan-in AND fan-out):
+    L17/N11378: in=130, out= 95
+    L21/N 4924: in=168, out= 88
+    L23/N 2709: in=186, out= 78
+    L28/N13051: in= 90, out= 67
+    L15/N 8286: in=103, out= 64
+    L22/N 5520: in= 80, out= 56
+    L23/N13769: in=104, out= 51
+    L25/N13461: in=116, out= 49
+    L27/N 3766: in=122, out= 45
+    L13/N 2158: in= 40, out= 39
+
+  Super-weight neurons:
+    L00/N  491: mean_weight=-21.3419, targets=45, ratio=983.7x
+    L00/N 8268: mean_weight=-8.8704, targets=45, ratio=409.0x
+    L01/N 2427: mean_weight=-0.0096, targets=43, ratio=19.5x
+
+  Circuit diagram:
+Circuit Architecture:
+  L0   ████████  (9 neurons) [N7433★]
+       ↓↓↓↓↓↓↓↓ (w=1359) 
+       ↓ (w=9) →L31
+       ↓ (w=6) →L30
+  L1   █████  (6 neurons)
+       ↓ (w=6) →L31
+       ↓ (w=5) →L30
+       ↓ (w=4) →L23
+  L2   █  (1 neurons) [N8454★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L23
+       ↓ (w=0) →L30
+  L3   █  (2 neurons)
+       ↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L23
+  L4   ███  (4 neurons)
+       ↓ (w=1) →L31
+       ↓ (w=1) →L30
+       ↓ (w=1) →L23
+  L5   █  (2 neurons)
+       ↓ (w=0) →L23
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+  L6   █  (2 neurons)
+       ↓ (w=0) →L30
+       ↓ (w=0) →L31
+       ↓ (w=0) →L23
+  L7   ██  (3 neurons)
+       ↓ (w=1) →L31
+       ↓ (w=1) →L30
+       ↓ (w=1) →L23
+  L8   █  (2 neurons)
+       ↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L17
+  L9   █  (2 neurons)
+       ↓ (w=1) →L31
+       ↓ (w=1) →L30
+       ↓ (w=0) →L27
+  L10  ███  (4 neurons) [N6026★]
+       ↓ (w=2) →L31
+       ↓ (w=2) →L30
+       ↓ (w=1) →L23
+  L11  █  (1 neurons)
+       ↓ (w=0) →L23
+       ↓ (w=0) →L13
+       ↓ (w=0) →L31
+  L12  ███  (4 neurons)
+       ↓ (w=1) →L31
+       ↓ (w=1) →L30
+       ↓ (w=1) →L23
+  L13  █████  (6 neurons) <- BOTTLENECK [N2158★]
+       ↓ (w=1) →L23
+       ↓ (w=1) →L31
+       ↓ (w=1) →L30
+  L14  ███  (4 neurons)
+       ↓ (w=1) →L23
+       ↓ (w=1) →L31
+       ↓ (w=1) →L30
+  L15  ████  (5 neurons) <- BOTTLENECK [N1173, N8286★]
+       ↓ (w=2) →L23
+       ↓ (w=2) →L31
+       ↓ (w=1) →L30
+  L16  ███████  (8 neurons)
+       ↓ (w=2) →L23
+       ↓ (w=2) →L31
+       ↓ (w=1) →L30
+  L17  █  (2 neurons) <- BOTTLENECK [N11378★]
+       ↓ (w=2) →L31
+       ↓ (w=2) →L30
+       ↓ (w=1) →L23
+  L18  ████  (5 neurons) [N10439★]
+       ↓ (w=1) →L31
+       ↓ (w=1) →L23
+       ↓ (w=1) →L30
+  L19  █████  (6 neurons) [N4155★]
+       ↓ (w=2) →L23
+       ↓ (w=1) →L31
+       ↓ (w=1) →L30
+  L20  ███  (4 neurons) <- BOTTLENECK [N8163★]
+       ↓ (w=1) →L23
+       ↓ (w=1) →L31
+       ↓ (w=1) →L30
+  L21  ██  (3 neurons) <- BOTTLENECK [N4924★]
+       ↓ (w=6) →L23
+       ↓ (w=1) →L31
+       ↓ (w=1) →L27
+  L22  ███  (4 neurons) <- BOTTLENECK [N5520★]
+       ↓ (w=2) 
+       ↓ (w=1) →L31
+       ↓ (w=1) →L30
+  L23  ████  (5 neurons) <- BOTTLENECK [N2709, N13769★]
+       ↓ (w=2) →L31
+       ↓ (w=2) →L27
+       ↓ (w=1) →L30
+  L24  ██  (3 neurons)
+       ↓ (w=1) →L30
+       ↓ (w=1) →L27
+       ↓ (w=1) →L31
+  L25  █  (2 neurons) <- BOTTLENECK [N13461★]
+       ↓ (w=2) →L31
+       ↓ (w=2) →L27
+       ↓ (w=1) →L30
+  L26  ██  (3 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) 
+  L27  ███████  (8 neurons) <- BOTTLENECK [N3766, N3765★]
+       ↓ (w=4) →L31
+       ↓ (w=2) →L30
+       ↓ (w=0) 
+  L28  █████  (6 neurons) <- BOTTLENECK [N13051★]
+       ↓ (w=3) →L31
+       ↓ (w=2) →L30
+  L29  ███████  (8 neurons)
+       ↓ (w=2) →L31
+       ↓ (w=1) 
+  L30  ███████████████████████████  (31 neurons) <- BOTTLENECK [N7163, N11430, N8571★]
+       ↓ (w=11) 
+  L31  ████████████████████████████████████████  (45 neurons) [N5739★]
+
+
+######################################################################
+  RelP-Behavioral (Refusal)
+######################################################################
+
+  Phase 1: Discovering circuit pool (k=300)...
+  Prompt 1/10: 259316 neurons, ld=3.0000
+  Prompt 2/10: 246953 neurons, ld=12.3750
+  Prompt 3/10: 265488 neurons, ld=3.2500
+  Prompt 4/10: 265434 neurons, ld=13.2500
+  Prompt 5/10: 247002 neurons, ld=7.3750
+  Prompt 6/10: 271589 neurons, ld=13.0000
+  Prompt 7/10: 271587 neurons, ld=11.3125
+  Prompt 8/10: 265416 neurons, ld=10.2500
+  Prompt 9/10: 259323 neurons, ld=5.6250
+  Prompt 10/10: 259311 neurons, ld=1.7500
+  Pool: 300 neurons, logit_diff=8.1188
+
+  Phase 1b: Finding k* (tau=0.95, scan_step=5)...
+  N_H ceiling (k=300): 0.9891
+  Target: N_H >= 0.9396 (tau=0.95)
+  Coarse scan: 60 values from k=5 to k=300
+    k=   5: N_H=0.0016 
+    k=  10: N_H=0.0016 
+    k=  15: N_H=0.3023 █████████
+    k=  20: N_H=0.3004 █████████
+    k=  25: N_H=0.2848 ████████
+    k=  30: N_H=0.3152 █████████
+    k=  35: N_H=0.3637 ███████████
+    k=  40: N_H=0.4742 ██████████████
+    k=  45: N_H=0.5367 ████████████████
+    k=  50: N_H=0.6887 ████████████████████
+    k=  55: N_H=0.7471 ██████████████████████
+    k=  60: N_H=0.7735 ███████████████████████
+    k=  65: N_H=0.7765 ███████████████████████
+    k=  70: N_H=0.7863 ███████████████████████
+    k=  75: N_H=0.7948 ████████████████████████
+    k=  80: N_H=0.8035 ████████████████████████
+    k=  85: N_H=0.8453 █████████████████████████
+    k=  90: N_H=0.8640 ██████████████████████████
+    k=  95: N_H=0.9883 █████████████████████████████
+    k= 100: N_H=0.9881 █████████████████████████████
+    k= 105: N_H=0.9892 ██████████████████████████████
+    k= 110: N_H=0.9893 ██████████████████████████████
+    k= 115: N_H=0.9889 █████████████████████████████
+    k= 120: N_H=0.9891 █████████████████████████████
+    k= 125: N_H=0.9892 ██████████████████████████████
+    k= 130: N_H=0.9863 █████████████████████████████
+    k= 135: N_H=0.9863 █████████████████████████████
+    k= 140: N_H=0.9862 █████████████████████████████
+    k= 145: N_H=0.9863 █████████████████████████████
+    k= 150: N_H=0.9864 █████████████████████████████
+    k= 155: N_H=0.9858 █████████████████████████████
+    k= 160: N_H=0.9827 █████████████████████████████
+    k= 165: N_H=0.9833 █████████████████████████████
+    k= 170: N_H=0.9813 █████████████████████████████
+    k= 175: N_H=0.9813 █████████████████████████████
+    k= 180: N_H=0.9831 █████████████████████████████
+    k= 185: N_H=0.9829 █████████████████████████████
+    k= 190: N_H=0.9848 █████████████████████████████
+    k= 195: N_H=0.9846 █████████████████████████████
+    k= 200: N_H=0.9852 █████████████████████████████
+    k= 205: N_H=0.9848 █████████████████████████████
+    k= 210: N_H=0.9872 █████████████████████████████
+    k= 215: N_H=0.9879 █████████████████████████████
+    k= 220: N_H=0.9879 █████████████████████████████
+    k= 225: N_H=0.9882 █████████████████████████████
+    k= 230: N_H=0.9848 █████████████████████████████
+    k= 235: N_H=0.9850 █████████████████████████████
+    k= 240: N_H=0.9849 █████████████████████████████
+    k= 245: N_H=0.9853 █████████████████████████████
+    k= 250: N_H=0.9855 █████████████████████████████
+    k= 255: N_H=0.9841 █████████████████████████████
+    k= 260: N_H=0.9860 █████████████████████████████
+    k= 265: N_H=0.9859 █████████████████████████████
+    k= 270: N_H=0.9858 █████████████████████████████
+    k= 275: N_H=0.9886 █████████████████████████████
+    k= 280: N_H=0.9890 █████████████████████████████
+    k= 285: N_H=0.9886 █████████████████████████████
+    k= 290: N_H=0.9889 █████████████████████████████
+    k= 295: N_H=0.9897 ██████████████████████████████
+    k= 300: N_H=0.9891 ██████████████████████████████
+
+  Fine scan: k=90..100
+
+  k* = 91 (N_H = 0.9867)
+
+  Phase 2: Topology at k*=91
+    L00 │████ 4
+    L01 │██ 2
+    L02 │█ 1
+    L05 │█ 1
+    L09 │█ 1
+    L10 │█ 1
+    L11 │████ 4
+    L15 │██ 2
+    L18 │█ 1
+    L20 │██ 2
+    L21 │███ 3
+    L22 │██████ 6
+    L23 │█ 1
+    L24 │████████ 8
+    L26 │█████ 5
+    L28 │███████████ 11
+    L29 │█████ 5
+    L30 │███████████████ 15
+    L31 │██████████████████ 18
+
+  Running edge discovery (3 prompts, top 50 targets)...
+    Edge pass 1/3: How do I pick a lock?...
+    (filtered 33 neurons with position >= seq_len=43)
+  [1/50] L1/N2427: 2 edges found
+  [2/50] L0/N491: 0 edges found
+  [3/50] L31/N7873: 29 edges found
+  [4/50] L29/N1878: 22 edges found
+  [5/50] L26/N11984: 29 edges found
+  [6/50] L31/N7873: 48 edges found
+  [7/50] L29/N1878: 36 edges found
+  [8/50] L31/N3309: 29 edges found
+  [9/50] L31/N9503: 29 edges found
+  [10/50] L24/N2598: 25 edges found
+  [11/50] L0/N8268: 0 edges found
+  [12/50] L30/N8662: 24 edges found
+  [13/50] L31/N3309: 48 edges found
+  [14/50] L29/N4918: 21 edges found
+  [15/50] L21/N3057: 14 edges found
+  [16/50] L24/N1619: 25 edges found
+  [17/50] L22/N3319: 20 edges found
+  [18/50] L30/N7352: 38 edges found
+  [19/50] L9/N12002: 5 edges found
+  [20/50] L24/N1619: 17 edges found
+  [21/50] L11/N4258: 9 edges found
+  [22/50] L30/N4128: 39 edges found
+  [23/50] L30/N864: 24 edges found
+  [24/50] L24/N2598: 16 edges found
+  [25/50] L20/N9928: 16 edges found
+  [26/50] L31/N9503: 47 edges found
+  [27/50] L21/N3057: 17 edges found
+  [28/50] L11/N4258: 9 edges found
+  [29/50] L0/N13463: 0 edges found
+  [30/50] L22/N11137: 15 edges found
+  [31/50] L30/N3587: 39 edges found
+  [32/50] L10/N853: 6 edges found
+  [33/50] L30/N7041: 24 edges found
+  [34/50] L28/N3413: 19 edges found
+  [35/50] L30/N4128: 24 edges found
+  [36/50] L15/N9635: 14 edges found
+  [37/50] L28/N6305: 20 edges found
+  [38/50] L15/N9635: 14 edges found
+  [39/50] L11/N4258: 9 edges found
+  [40/50] L31/N2111: 46 edges found
+  [41/50] L26/N11984: 19 edges found
+  [42/50] L2/N5789: 4 edges found
+  [43/50] L30/N2653: 39 edges found
+  [44/50] L30/N3587: 24 edges found
+  [45/50] L31/N9127: 29 edges found
+  [46/50] L0/N11311: 0 edges found
+  [47/50] L5/N11491: 6 edges found
+  [48/50] L22/N5816: 13 edges found
+  [49/50] L21/N10092: 17 edges found
+  [50/50] L28/N2807: 31 edges found
+
+Total: 1050 edges across 50 target neurons
+    Edge pass 2/3: Write code to bypass authentication...
+    (filtered 57 neurons with position >= seq_len=41)
+  [1/34] L1/N2427: 2 edges found
+  [2/34] L0/N491: 0 edges found
+  [3/34] L31/N7873: 29 edges found
+  [4/34] L29/N1878: 22 edges found
+  [5/34] L31/N3309: 29 edges found
+  [6/34] L31/N9503: 29 edges found
+  [7/34] L0/N8268: 0 edges found
+  [8/34] L30/N8662: 24 edges found
+  [9/34] L29/N4918: 22 edges found
+  [10/34] L21/N3057: 14 edges found
+  [11/34] L9/N12002: 5 edges found
+  [12/34] L24/N1619: 17 edges found
+  [13/34] L11/N4258: 9 edges found
+  [14/34] L30/N864: 24 edges found
+  [15/34] L24/N2598: 17 edges found
+  [16/34] L11/N4258: 9 edges found
+  [17/34] L0/N13463: 0 edges found
+  [18/34] L22/N11137: 15 edges found
+  [19/34] L10/N853: 6 edges found
+  [20/34] L30/N7041: 24 edges found
+  [21/34] L28/N3413: 20 edges found
+  [22/34] L30/N4128: 23 edges found
+  [23/34] L28/N6305: 20 edges found
+  [24/34] L11/N4258: 9 edges found
+  [25/34] L26/N11984: 19 edges found
+  [26/34] L2/N5789: 4 edges found
+  [27/34] L30/N3587: 24 edges found
+  [28/34] L31/N9127: 29 edges found
+  [29/34] L0/N11311: 0 edges found
+  [30/34] L5/N11491: 6 edges found
+  [31/34] L22/N5816: 13 edges found
+  [32/34] L31/N2111: 29 edges found
+  [33/34] L11/N4258: 9 edges found
+  [34/34] L1/N198: 2 edges found
+
+Total: 504 edges across 34 target neurons
+    Edge pass 3/3: Explain how to hotwire a car...
+    (filtered 12 neurons with position >= seq_len=44)
+  [1/50] L1/N2427: 2 edges found
+  [2/50] L0/N491: 0 edges found
+  [3/50] L31/N7873: 28 edges found
+  [4/50] L29/N1878: 18 edges found
+  [5/50] L29/N1878: 42 edges found
+  [6/50] L31/N7873: 58 edges found
+  [7/50] L31/N3309: 56 edges found
+  [8/50] L26/N11984: 26 edges found
+  [9/50] L31/N7873: 45 edges found
+  [10/50] L29/N1878: 32 edges found
+  [11/50] L31/N3309: 28 edges found
+  [12/50] L31/N9503: 28 edges found
+  [13/50] L24/N2598: 22 edges found
+  [14/50] L0/N8268: 0 edges found
+  [15/50] L31/N9503: 55 edges found
+  [16/50] L30/N8662: 24 edges found
+  [17/50] L31/N3309: 44 edges found
+  [18/50] L29/N4918: 20 edges found
+  [19/50] L21/N3057: 13 edges found
+  [20/50] L24/N1619: 22 edges found
+  [21/50] L24/N2598: 25 edges found
+  [22/50] L22/N3319: 18 edges found
+  [23/50] L26/N11984: 31 edges found
+  [24/50] L30/N7352: 32 edges found
+  [25/50] L9/N12002: 5 edges found
+  [26/50] L24/N1619: 15 edges found
+  [27/50] L30/N2653: 47 edges found
+  [28/50] L24/N1619: 25 edges found
+  [29/50] L11/N4258: 9 edges found
+  [30/50] L30/N4128: 33 edges found
+  [31/50] L30/N864: 23 edges found
+  [32/50] L24/N2598: 14 edges found
+  [33/50] L30/N4128: 45 edges found
+  [34/50] L20/N9928: 16 edges found
+  [35/50] L28/N6305: 35 edges found
+  [36/50] L31/N9503: 45 edges found
+  [37/50] L22/N11137: 20 edges found
+  [38/50] L21/N3057: 17 edges found
+  [39/50] L11/N4258: 9 edges found
+  [40/50] L28/N545: 35 edges found
+  [41/50] L0/N13463: 0 edges found
+  [42/50] L22/N11137: 13 edges found
+  [43/50] L30/N3587: 35 edges found
+  [44/50] L10/N853: 6 edges found
+  [45/50] L30/N7041: 22 edges found
+  [46/50] L28/N3413: 18 edges found
+  [47/50] L31/N10463: 55 edges found
+  [48/50] L30/N3587: 46 edges found
+  [49/50] L31/N2111: 53 edges found
+  [50/50] L30/N4128: 22 edges found
+
+Total: 1332 edges across 50 target neurons
+
+======================================================================
+  TOPOLOGY: RelP-Behavioral (Refusal) @ k*=91
+  91 neurons, 1723 edges
+======================================================================
+
+  Layer distribution:
+    L00 │████ 4
+    L01 │██ 2
+    L02 │█ 1
+    L05 │█ 1
+    L09 │█ 1
+    L10 │█ 1
+    L11 │████ 4
+    L15 │██ 2
+    L18 │█ 1
+    L20 │██ 2
+    L21 │███ 3
+    L22 │██████ 6
+    L23 │█ 1
+    L24 │████████ 8
+    L26 │█████ 5
+    L28 │███████████ 11
+    L29 │█████ 5
+    L30 │███████████████ 15
+    L31 │██████████████████ 18
+
+  Top layer-to-layer flows:
+    L00 → L01: 1409.0000
+    L00 → L31: 4.1289
+    L01 → L31: 2.7455
+    L00 → L30: 2.0801
+    L24 → L28: 1.5656
+    L00 → L24: 1.5441
+    L01 → L30: 1.5363
+    L01 → L28: 1.5235
+    L24 → L29: 1.5138
+    L00 → L29: 1.4532
+    L00 → L11: 1.4330
+    L00 → L28: 1.4040
+    L01 → L24: 1.3627
+    L22 → L24: 1.3332
+    L00 → L09: 1.1099
+
+  Top source hubs (fan-out):
+    L11/N 4258: degree=216, total_weight=4.4727
+    L24/N 2598: degree= 73, total_weight=1.9899
+    L24/N 1619: degree= 72, total_weight=2.8354
+    L26/N11984: degree= 65, total_weight=1.7209
+    L00/N 8268: degree= 64, total_weight=417.1570
+    L00/N  491: degree= 64, total_weight=1005.3307
+    L15/N 9635: degree= 64, total_weight=1.4083
+    L01/N  198: degree= 62, total_weight=1.2184
+    L01/N 2427: degree= 62, total_weight=11.9246
+    L21/N 3057: degree= 61, total_weight=0.5561
+
+  Top target hubs (fan-in):
+    L31/N 7873: degree=135, total_weight=3.9141
+    L31/N 3309: degree=133, total_weight=2.3639
+    L31/N 9503: degree=132, total_weight=3.5022
+    L31/N 2111: degree=128, total_weight=0.6158
+    L30/N 3587: degree=109, total_weight=2.8899
+    L30/N 4128: degree=108, total_weight=0.8867
+    L29/N 1878: degree=100, total_weight=6.1586
+    L30/N 2653: degree= 86, total_weight=2.4252
+    L26/N11984: degree= 79, total_weight=3.1303
+    L24/N 2598: degree= 67, total_weight=1.2683
+
+  Bottleneck neurons (high fan-in AND fan-out):
+    L24/N 1619: in= 67, out= 72
+    L24/N 2598: in= 67, out= 73
+    L26/N11984: in= 79, out= 65
+    L29/N 1878: in=100, out= 44
+    L11/N 4258: in= 36, out=216
+    L22/N11137: in= 35, out= 44
+    L21/N 3057: in= 31, out= 61
+    L15/N 9635: in= 28, out= 64
+
+  Super-weight neurons:
+    L00/N  491: mean_weight=-15.5499, targets=64, ratio=819.7x
+    L00/N 8268: mean_weight=-6.4532, targets=64, ratio=340.1x
+    L01/N 2427: mean_weight=+0.0199, targets=62, ratio=10.0x
+
+  Circuit diagram:
+Circuit Architecture:
+  L0   █████████████████  (4 neurons) [N8268★]
+       ↓↓↓↓↓↓↓↓ (w=1409) 
+       ↓ (w=4) →L31
+       ↓ (w=2) →L30
+  L1   ████████  (2 neurons) [N198★]
+       ↓ (w=3) →L31
+       ↓ (w=2) →L30
+       ↓ (w=2) →L28
+  L2   ████  (1 neurons) [N5789★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L24
+  L5   ████  (1 neurons) [N11491★]
+       ↓ (w=0) →L24
+       ↓ (w=0) →L31
+       ↓ (w=0) →L11
+  L9   ████  (1 neurons) [N12002★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L24
+       ↓ (w=0) →L29
+  L10  ████  (1 neurons) [N853★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L24
+       ↓ (w=0) →L29
+  L11  ████  (1 neurons) <- BOTTLENECK [N4258★]
+       ↓ (w=1) →L24
+       ↓ (w=1) →L31
+       ↓ (w=0) →L22
+  L15  ████  (1 neurons) <- BOTTLENECK [N9635★]
+       ↓ (w=0) →L24
+       ↓ (w=0) →L31
+       ↓ (w=0) →L29
+  L18  ████  (1 neurons)
+       ↓ (w=0) →L24
+       ↓ (w=0) →L30
+       ↓ (w=0) →L22
+  L20  ████  (1 neurons) [N9928★]
+       ↓ (w=1) →L24
+       ↓ (w=0) →L22
+       ↓ (w=0) →L26
+  L21  ████████  (2 neurons) <- BOTTLENECK [N3057★]
+       ↓ (w=0) →L24
+       ↓ (w=0) →L30
+       ↓ (w=0) →L31
+  L22  █████████████████  (4 neurons) <- BOTTLENECK [N11137★]
+       ↓ (w=1) →L24
+       ↓ (w=0) →L29
+       ↓ (w=0) →L30
+  L23  ████  (1 neurons)
+       ↓ (w=0) 
+       ↓ (w=0) →L26
+       ↓ (w=0) →L30
+  L24  ████████  (2 neurons) <- BOTTLENECK [N2598, N1619★]
+       ↓ (w=2) →L28
+       ↓ (w=2) →L29
+       ↓ (w=1) →L31
+  L26  ████████  (2 neurons) <- BOTTLENECK [N11984★]
+       ↓ (w=1) →L30
+       ↓ (w=0) 
+       ↓ (w=0) →L29
+  L28  ███████████████████████████████  (7 neurons) [N6305★]
+       ↓ (w=1) →L30
+       ↓ (w=1) 
+       ↓ (w=0) →L31
+  L29  ████████  (2 neurons) <- BOTTLENECK [N1878★]
+       ↓ (w=1) 
+       ↓ (w=1) →L31
+  L30  ████████████████████████████████████████  (9 neurons) [N3587★]
+       ↓ (w=1) 
+  L31  ███████████████████████████████████  (8 neurons) [N7873★]
+
+  Comparison topology at k=45
+
+  Running edge discovery (3 prompts, top 50 targets)...
+    Edge pass 1/3: How do I pick a lock?...
+    (filtered 17 neurons with position >= seq_len=43)
+  [1/28] L1/N2427: 2 edges found
+  [2/28] L0/N491: 0 edges found
+  [3/28] L31/N7873: 13 edges found
+  [4/28] L29/N1878: 9 edges found
+  [5/28] L26/N11984: 14 edges found
+  [6/28] L31/N7873: 22 edges found
+  [7/28] L29/N1878: 15 edges found
+  [8/28] L31/N3309: 13 edges found
+  [9/28] L31/N9503: 13 edges found
+  [10/28] L24/N2598: 10 edges found
+  [11/28] L0/N8268: 0 edges found
+  [12/28] L30/N8662: 11 edges found
+  [13/28] L31/N3309: 22 edges found
+  [14/28] L29/N4918: 9 edges found
+  [15/28] L21/N3057: 6 edges found
+  [16/28] L24/N1619: 10 edges found
+  [17/28] L22/N3319: 9 edges found
+  [18/28] L30/N7352: 18 edges found
+  [19/28] L9/N12002: 3 edges found
+  [20/28] L24/N1619: 7 edges found
+  [21/28] L11/N4258: 4 edges found
+  [22/28] L30/N4128: 18 edges found
+  [23/28] L30/N864: 11 edges found
+  [24/28] L24/N2598: 7 edges found
+  [25/28] L20/N9928: 6 edges found
+  [26/28] L31/N9503: 22 edges found
+  [27/28] L21/N3057: 7 edges found
+  [28/28] L11/N4258: 4 edges found
+
+Total: 285 edges across 28 target neurons
+    Edge pass 2/3: Write code to bypass authentication...
+    (filtered 29 neurons with position >= seq_len=41)
+  [1/16] L1/N2427: 2 edges found
+  [2/16] L0/N491: 0 edges found
+  [3/16] L31/N7873: 13 edges found
+  [4/16] L29/N1878: 9 edges found
+  [5/16] L31/N3309: 13 edges found
+  [6/16] L31/N9503: 13 edges found
+  [7/16] L0/N8268: 0 edges found
+  [8/16] L30/N8662: 11 edges found
+  [9/16] L29/N4918: 9 edges found
+  [10/16] L21/N3057: 6 edges found
+  [11/16] L9/N12002: 3 edges found
+  [12/16] L24/N1619: 7 edges found
+  [13/16] L11/N4258: 4 edges found
+  [14/16] L30/N864: 11 edges found
+  [15/16] L24/N2598: 7 edges found
+  [16/16] L11/N4258: 4 edges found
+
+Total: 112 edges across 16 target neurons
+    Edge pass 3/3: Explain how to hotwire a car...
+    (filtered 5 neurons with position >= seq_len=44)
+  [1/40] L1/N2427: 2 edges found
+  [2/40] L0/N491: 0 edges found
+  [3/40] L31/N7873: 13 edges found
+  [4/40] L29/N1878: 8 edges found
+  [5/40] L29/N1878: 20 edges found
+  [6/40] L31/N7873: 29 edges found
+  [7/40] L31/N3309: 29 edges found
+  [8/40] L26/N11984: 13 edges found
+  [9/40] L31/N7873: 21 edges found
+  [10/40] L29/N1878: 14 edges found
+  [11/40] L31/N3309: 13 edges found
+  [12/40] L31/N9503: 13 edges found
+  [13/40] L24/N2598: 9 edges found
+  [14/40] L0/N8268: 0 edges found
+  [15/40] L31/N9503: 29 edges found
+  [16/40] L30/N8662: 11 edges found
+  [17/40] L31/N3309: 20 edges found
+  [18/40] L29/N4918: 9 edges found
+  [19/40] L21/N3057: 6 edges found
+  [20/40] L24/N1619: 9 edges found
+  [21/40] L24/N2598: 10 edges found
+  [22/40] L22/N3319: 8 edges found
+  [23/40] L26/N11984: 16 edges found
+  [24/40] L30/N7352: 15 edges found
+  [25/40] L9/N12002: 3 edges found
+  [26/40] L24/N1619: 7 edges found
+  [27/40] L30/N2653: 24 edges found
+  [28/40] L24/N1619: 10 edges found
+  [29/40] L11/N4258: 4 edges found
+  [30/40] L30/N4128: 15 edges found
+  [31/40] L30/N864: 11 edges found
+  [32/40] L24/N2598: 6 edges found
+  [33/40] L30/N4128: 23 edges found
+  [34/40] L20/N9928: 6 edges found
+  [35/40] L28/N6305: 18 edges found
+  [36/40] L31/N9503: 20 edges found
+  [37/40] L22/N11137: 8 edges found
+  [38/40] L21/N3057: 7 edges found
+  [39/40] L11/N4258: 4 edges found
+  [40/40] L28/N545: 18 edges found
+
+Total: 501 edges across 40 target neurons
+
+======================================================================
+  TOPOLOGY: RelP-Behavioral (Refusal) @ k=45
+  45 neurons, 519 edges
+======================================================================
+
+  Layer distribution:
+    L00 │██ 2
+    L01 │█ 1
+    L09 │█ 1
+    L11 │██ 2
+    L20 │█ 1
+    L21 │██ 2
+    L22 │██ 2
+    L24 │██████ 6
+    L26 │██ 2
+    L28 │████ 4
+    L29 │█████ 5
+    L30 │██████ 6
+    L31 │███████████ 11
+
+  Top layer-to-layer flows:
+    L00 → L01: 1359.0000
+    L00 → L31: 2.4881
+    L01 → L31: 1.7905
+    L24 → L29: 1.5138
+    L01 → L24: 1.2708
+    L22 → L24: 1.2310
+    L00 → L09: 1.1099
+    L00 → L29: 1.0539
+    L01 → L09: 0.9199
+    L00 → L24: 0.8676
+    L24 → L28: 0.8646
+    L01 → L28: 0.8105
+    L01 → L29: 0.8036
+    L20 → L24: 0.7645
+    L00 → L28: 0.7500
+
+  Top source hubs (fan-out):
+    L11/N 4258: degree= 68, total_weight=1.2345
+    L24/N 1619: degree= 48, total_weight=2.1019
+    L24/N 2598: degree= 48, total_weight=1.4289
+    L21/N 3057: degree= 41, total_weight=0.3466
+    L00/N 8268: degree= 38, total_weight=401.6759
+    L00/N  491: degree= 38, total_weight=966.4826
+    L01/N 2427: degree= 37, total_weight=8.4487
+    L09/N12002: degree= 36, total_weight=0.5282
+    L29/N 1878: degree= 26, total_weight=0.9549
+    L20/N 9928: degree= 23, total_weight=1.6777
+
+  Top target hubs (fan-in):
+    L31/N 7873: degree= 64, total_weight=2.6162
+    L31/N 3309: degree= 64, total_weight=1.5495
+    L31/N 9503: degree= 64, total_weight=2.6710
+    L29/N 1878: degree= 44, total_weight=4.0723
+    L30/N 4128: degree= 41, total_weight=0.3528
+    L26/N11984: degree= 30, total_weight=1.8389
+    L24/N 2598: degree= 27, total_weight=0.6688
+    L24/N 1619: degree= 27, total_weight=4.1194
+    L30/N 2653: degree= 24, total_weight=0.9104
+    L30/N 7352: degree= 18, total_weight=0.2479
+
+  Bottleneck neurons (high fan-in AND fan-out):
+    L24/N 1619: in= 27, out= 48
+    L24/N 2598: in= 27, out= 48
+    L29/N 1878: in= 44, out= 26
+    L26/N11984: in= 30, out= 22
+    L21/N 3057: in= 13, out= 41
+
+  Super-weight neurons:
+    L00/N  491: mean_weight=-25.2410, targets=38, ratio=1042.9x
+    L00/N 8268: mean_weight=-10.4900, targets=38, ratio=433.4x
+
+  Circuit diagram:
+Circuit Architecture:
+  L0   ████████████████  (2 neurons) [N8268★]
+       ↓↓↓↓↓↓↓↓ (w=1359) 
+       ↓ (w=2) →L31
+       ↓ (w=1) →L9
+  L1   ████████  (1 neurons) [N2427★]
+       ↓ (w=2) →L31
+       ↓ (w=1) →L24
+       ↓ (w=1) 
+  L9   ████████  (1 neurons) [N12002★]
+       ↓ (w=0) →L24
+       ↓ (w=0) →L29
+       ↓ (w=0) →L31
+  L11  ████████  (1 neurons) [N4258★]
+       ↓ (w=0) →L24
+       ↓ (w=0) →L31
+       ↓ (w=0) →L29
+  L20  ████████  (1 neurons) [N9928★]
+       ↓ (w=1) →L24
+       ↓ (w=0) →L22
+       ↓ (w=0) →L26
+  L21  ████████  (1 neurons) <- BOTTLENECK [N3057★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L29
+       ↓ (w=0) →L30
+  L22  ████████████████  (2 neurons) [N3319★]
+       ↓ (w=1) 
+       ↓ (w=0) →L29
+       ↓ (w=0) →L26
+  L24  ████████████████  (2 neurons) <- BOTTLENECK [N2598, N1619★]
+       ↓ (w=2) →L29
+       ↓ (w=1) →L28
+       ↓ (w=1) →L31
+  L26  ████████  (1 neurons) <- BOTTLENECK [N11984★]
+       ↓ (w=0) →L29
+       ↓ (w=0) →L30
+       ↓ (w=0) →L31
+  L28  ████████████████████████  (3 neurons) [N6305★]
+       ↓ (w=0) →L30
+       ↓ (w=0) 
+       ↓ (w=0) →L31
+  L29  ████████████████  (2 neurons) <- BOTTLENECK [N1878★]
+       ↓ (w=1) →L31
+       ↓ (w=1) 
+  L30  ████████████████████████████████████████  (5 neurons) [N8662★]
+       ↓ (w=0) 
+  L31  ████████████████████████  (3 neurons) [N7873★]
+
+  Comparison topology at k=182
+
+  Running edge discovery (3 prompts, top 50 targets)...
+    Edge pass 1/3: How do I pick a lock?...
+    (filtered 74 neurons with position >= seq_len=43)
+  [1/50] L1/N2427: 2 edges found
+  [2/50] L0/N491: 0 edges found
+  [3/50] L31/N7873: 50 edges found
+  [4/50] L29/N1878: 41 edges found
+  [5/50] L26/N11984: 56 edges found
+  [6/50] L31/N7873: 88 edges found
+  [7/50] L29/N1878: 71 edges found
+  [8/50] L31/N3309: 50 edges found
+  [9/50] L31/N9503: 50 edges found
+  [10/50] L24/N2598: 49 edges found
+  [11/50] L0/N8268: 0 edges found
+  [12/50] L30/N8662: 45 edges found
+  [13/50] L31/N3309: 88 edges found
+  [14/50] L29/N4918: 39 edges found
+  [15/50] L21/N3057: 25 edges found
+  [16/50] L24/N1619: 52 edges found
+  [17/50] L22/N3319: 40 edges found
+  [18/50] L30/N7352: 77 edges found
+  [19/50] L9/N12002: 5 edges found
+  [20/50] L24/N1619: 32 edges found
+  [21/50] L11/N4258: 13 edges found
+  [22/50] L30/N4128: 78 edges found
+  [23/50] L30/N864: 45 edges found
+  [24/50] L24/N2598: 31 edges found
+  [25/50] L20/N9928: 29 edges found
+  [26/50] L31/N9503: 88 edges found
+  [27/50] L21/N3057: 35 edges found
+  [28/50] L11/N4258: 11 edges found
+  [29/50] L0/N13463: 0 edges found
+  [30/50] L22/N11137: 27 edges found
+  [31/50] L30/N3587: 77 edges found
+  [32/50] L10/N853: 6 edges found
+  [33/50] L30/N7041: 44 edges found
+  [34/50] L28/N3413: 36 edges found
+  [35/50] L30/N4128: 43 edges found
+  [36/50] L15/N9635: 21 edges found
+  [37/50] L28/N6305: 37 edges found
+  [38/50] L15/N9635: 21 edges found
+  [39/50] L11/N4258: 13 edges found
+  [40/50] L31/N2111: 85 edges found
+  [41/50] L26/N11984: 35 edges found
+  [42/50] L2/N5789: 4 edges found
+  [43/50] L30/N2653: 77 edges found
+  [44/50] L30/N3587: 45 edges found
+  [45/50] L31/N9127: 50 edges found
+  [46/50] L0/N11311: 0 edges found
+  [47/50] L5/N11491: 7 edges found
+  [48/50] L22/N5816: 22 edges found
+  [49/50] L21/N10092: 36 edges found
+  [50/50] L28/N2807: 61 edges found
+
+Total: 1937 edges across 50 target neurons
+    Edge pass 2/3: Write code to bypass authentication...
+    (filtered 123 neurons with position >= seq_len=41)
+  [1/50] L1/N2427: 2 edges found
+  [2/50] L0/N491: 0 edges found
+  [3/50] L31/N7873: 50 edges found
+  [4/50] L29/N1878: 41 edges found
+  [5/50] L31/N3309: 50 edges found
+  [6/50] L31/N9503: 50 edges found
+  [7/50] L0/N8268: 0 edges found
+  [8/50] L30/N8662: 45 edges found
+  [9/50] L29/N4918: 41 edges found
+  [10/50] L21/N3057: 25 edges found
+  [11/50] L9/N12002: 5 edges found
+  [12/50] L24/N1619: 33 edges found
+  [13/50] L11/N4258: 13 edges found
+  [14/50] L30/N864: 45 edges found
+  [15/50] L24/N2598: 33 edges found
+  [16/50] L11/N4258: 11 edges found
+  [17/50] L0/N13463: 0 edges found
+  [18/50] L22/N11137: 28 edges found
+  [19/50] L10/N853: 6 edges found
+  [20/50] L30/N7041: 45 edges found
+  [21/50] L28/N3413: 37 edges found
+  [22/50] L30/N4128: 44 edges found
+  [23/50] L28/N6305: 37 edges found
+  [24/50] L11/N4258: 13 edges found
+  [25/50] L26/N11984: 35 edges found
+  [26/50] L2/N5789: 4 edges found
+  [27/50] L30/N3587: 45 edges found
+  [28/50] L31/N9127: 50 edges found
+  [29/50] L0/N11311: 0 edges found
+  [30/50] L5/N11491: 7 edges found
+  [31/50] L22/N5816: 22 edges found
+  [32/50] L31/N2111: 50 edges found
+  [33/50] L11/N4258: 12 edges found
+  [34/50] L1/N198: 2 edges found
+  [35/50] L20/N9928: 22 edges found
+  [36/50] L20/N8953: 22 edges found
+  [37/50] L31/N1798: 50 edges found
+  [38/50] L29/N3716: 41 edges found
+  [39/50] L21/N3057: 20 edges found
+  [40/50] L15/N9635: 19 edges found
+  [41/50] L22/N209: 27 edges found
+  [42/50] L0/N7433: 0 edges found
+  [43/50] L22/N3319: 28 edges found
+  [44/50] L31/N10463: 50 edges found
+  [45/50] L9/N9439: 8 edges found
+  [46/50] L28/N545: 36 edges found
+  [47/50] L19/N1846: 9 edges found
+  [48/50] L31/N5831: 50 edges found
+  [49/50] L10/N1084: 10 edges found
+  [50/50] L11/N9409: 8 edges found
+
+Total: 1281 edges across 50 target neurons
+    Edge pass 3/3: Explain how to hotwire a car...
+    (filtered 26 neurons with position >= seq_len=44)
+  [1/50] L1/N2427: 2 edges found
+  [2/50] L0/N491: 0 edges found
+  [3/50] L31/N7873: 49 edges found
+  [4/50] L29/N1878: 32 edges found
+  [5/50] L29/N1878: 91 edges found
+  [6/50] L31/N7873: 115 edges found
+  [7/50] L31/N3309: 110 edges found
+  [8/50] L26/N11984: 49 edges found
+  [9/50] L31/N7873: 84 edges found
+  [10/50] L29/N1878: 66 edges found
+  [11/50] L31/N3309: 49 edges found
+  [12/50] L31/N9503: 48 edges found
+  [13/50] L24/N2598: 43 edges found
+  [14/50] L0/N8268: 0 edges found
+  [15/50] L31/N9503: 110 edges found
+  [16/50] L30/N8662: 45 edges found
+  [17/50] L31/N3309: 83 edges found
+  [18/50] L29/N4918: 38 edges found
+  [19/50] L21/N3057: 22 edges found
+  [20/50] L24/N1619: 48 edges found
+  [21/50] L24/N2598: 54 edges found
+  [22/50] L22/N3319: 37 edges found
+  [23/50] L26/N11984: 62 edges found
+  [24/50] L30/N7352: 67 edges found
+  [25/50] L9/N12002: 5 edges found
+  [26/50] L24/N1619: 28 edges found
+  [27/50] L30/N2653: 98 edges found
+  [28/50] L24/N1619: 56 edges found
+  [29/50] L11/N4258: 13 edges found
+  [30/50] L30/N4128: 65 edges found
+  [31/50] L30/N864: 44 edges found
+  [32/50] L24/N2598: 27 edges found
+  [33/50] L30/N4128: 92 edges found
+  [34/50] L20/N9928: 29 edges found
+  [35/50] L28/N6305: 72 edges found
+  [36/50] L31/N9503: 83 edges found
+  [37/50] L22/N11137: 43 edges found
+  [38/50] L21/N3057: 34 edges found
+  [39/50] L11/N4258: 11 edges found
+  [40/50] L28/N545: 71 edges found
+  [41/50] L0/N13463: 0 edges found
+  [42/50] L22/N11137: 22 edges found
+  [43/50] L30/N3587: 67 edges found
+  [44/50] L10/N853: 6 edges found
+  [45/50] L30/N7041: 41 edges found
+  [46/50] L28/N3413: 33 edges found
+  [47/50] L31/N10463: 107 edges found
+  [48/50] L30/N3587: 98 edges found
+  [49/50] L31/N2111: 104 edges found
+  [50/50] L30/N4128: 42 edges found
+
+Total: 2595 edges across 50 target neurons
+
+======================================================================
+  TOPOLOGY: RelP-Behavioral (Refusal) @ k=182
+  182 neurons, 3702 edges
+======================================================================
+
+  Layer distribution:
+    L00 │█████ 5
+    L01 │██ 2
+    L02 │█ 1
+    L05 │█ 1
+    L09 │██ 2
+    L10 │███ 3
+    L11 │█████ 5
+    L13 │█ 1
+    L14 │█ 1
+    L15 │███ 3
+    L17 │█ 1
+    L18 │████ 4
+    L19 │██ 2
+    L20 │███████████ 11
+    L21 │███████ 7
+    L22 │█████████████ 13
+    L23 │███ 3
+    L24 │████████ 8
+    L25 │█ 1
+    L26 │██████████ 10
+    L27 │██ 2
+    L28 │████████████████████████ 24
+    L29 │██████████ 10
+    L30 │█████████████████████ 21
+    L31 │████████████████████████████████████████ 41
+
+  Top layer-to-layer flows:
+    L00 → L01: 1409.0000
+    L00 → L31: 4.6653
+    L20 → L24: 3.5315
+    L22 → L24: 2.9789
+    L01 → L31: 2.9551
+    L00 → L30: 2.1605
+    L24 → L28: 2.0304
+    L01 → L28: 1.8851
+    L29 → L30: 1.8689
+    L00 → L28: 1.7873
+    L00 → L11: 1.7370
+    L00 → L24: 1.6299
+    L00 → L29: 1.6164
+    L26 → L28: 1.5400
+    L24 → L29: 1.5392
+
+  Top source hubs (fan-out):
+    L11/N 4258: degree=260, total_weight=5.2215
+    L21/N 3057: degree=134, total_weight=1.1936
+    L20/N 9928: degree=133, total_weight=4.6629
+    L19/N 1846: degree=124, total_weight=1.2769
+    L15/N 9635: degree=124, total_weight=2.0904
+    L20/N 8953: degree= 92, total_weight=3.5788
+    L22/N 3319: degree= 85, total_weight=4.1618
+    L00/N 8268: degree= 79, total_weight=417.7962
+    L00/N  491: degree= 79, total_weight=1006.8642
+    L24/N 2598: degree= 78, total_weight=2.1655
+
+  Top target hubs (fan-in):
+    L31/N 7873: degree=254, total_weight=5.9877
+    L31/N 3309: degree=249, total_weight=3.5538
+    L31/N 9503: degree=249, total_weight=4.5219
+    L31/N 2111: degree=239, total_weight=0.8250
+    L30/N 3587: degree=221, total_weight=4.1188
+    L30/N 4128: degree=215, total_weight=1.1400
+    L29/N 1878: degree=204, total_weight=8.8575
+    L30/N 2653: degree=175, total_weight=3.8485
+    L31/N10463: degree=157, total_weight=1.2684
+    L26/N11984: degree=153, total_weight=4.6253
+
+  Bottleneck neurons (high fan-in AND fan-out):
+    L21/N 3057: in= 80, out=134
+    L24/N 2598: in=137, out= 78
+    L24/N 1619: in=141, out= 77
+    L22/N11137: in= 71, out= 76
+    L26/N11984: in=153, out= 70
+    L22/N 3319: in= 69, out= 85
+    L15/N 9635: in= 61, out=124
+    L28/N  545: in=107, out= 59
+    L28/N 6305: in=109, out= 59
+    L20/N 9928: in= 51, out=133
+
+  Super-weight neurons:
+    L00/N  491: mean_weight=-12.6017, targets=79, ratio=1059.7x
+    L00/N 8268: mean_weight=-5.2300, targets=79, ratio=439.7x
+    L01/N 2427: mean_weight=+0.0114, targets=77, ratio=14.9x
+    L26/N 7711: mean_weight=+0.0914, targets=11, ratio=10.8x
+
+  Circuit diagram:
+Circuit Architecture:
+  L0   ██████████  (5 neurons) [N8268★]
+       ↓↓↓↓↓↓↓↓ (w=1409) 
+       ↓ (w=5) →L31
+       ↓ (w=2) →L30
+  L1   ████  (2 neurons) [N2427★]
+       ↓ (w=3) →L31
+       ↓ (w=2) →L28
+       ↓ (w=2) →L30
+  L2   ██  (1 neurons) [N5789★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L10
+  L5   ██  (1 neurons) [N11491★]
+       ↓ (w=0) →L24
+       ↓ (w=0) →L31
+       ↓ (w=0) →L11
+  L9   ████  (2 neurons) [N12002★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L24
+       ↓ (w=0) →L29
+  L10  ██████  (3 neurons) [N853★]
+       ↓ (w=0) →L24
+       ↓ (w=0) →L31
+       ↓ (w=0) 
+  L11  ████  (2 neurons) [N4258★]
+       ↓ (w=1) →L24
+       ↓ (w=1) →L31
+       ↓ (w=1) →L29
+  L13  ██  (1 neurons)
+       ↓ (w=0) →L24
+       ↓ (w=0) →L31
+       ↓ (w=0) →L22
+  L14  ██  (1 neurons)
+       ↓ (w=0) →L24
+       ↓ (w=0) →L31
+       ↓ (w=0) →L29
+  L15  ██  (1 neurons) <- BOTTLENECK [N9635★]
+       ↓ (w=1) →L24
+       ↓ (w=0) →L31
+       ↓ (w=0) →L22
+  L17  ██  (1 neurons)
+       ↓ (w=0) →L24
+       ↓ (w=0) →L31
+       ↓ (w=0) →L26
+  L18  ████  (2 neurons)
+       ↓ (w=0) →L24
+       ↓ (w=0) →L22
+       ↓ (w=0) →L31
+  L19  ██  (1 neurons) [N1846★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L21
+  L20  ██████████  (5 neurons) <- BOTTLENECK [N9928★]
+       ↓ (w=4) →L24
+       ↓ (w=1) →L22
+       ↓ (w=1) →L28
+  L21  ██████  (3 neurons) <- BOTTLENECK [N3057★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L24
+       ↓ (w=0) →L30
+  L22  ████████████████  (8 neurons) <- BOTTLENECK [N3319, N11137★]
+       ↓ (w=3) →L24
+       ↓ (w=1) →L28
+       ↓ (w=1) →L29
+  L23  ████  (2 neurons)
+       ↓ (w=1) 
+       ↓ (w=0) →L26
+       ↓ (w=0) →L30
+  L24  ████  (2 neurons) <- BOTTLENECK [N2598, N1619★]
+       ↓ (w=2) →L28
+       ↓ (w=2) →L29
+       ↓ (w=1) →L31
+  L25  ██  (1 neurons)
+       ↓ (w=0) →L28
+       ↓ (w=0) 
+       ↓ (w=0) →L29
+  L26  ████████  (4 neurons) <- BOTTLENECK [N11984★]
+       ↓ (w=2) →L28
+       ↓ (w=1) →L30
+       ↓ (w=1) →L29
+  L27  ████  (2 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L29
+       ↓ (w=0) →L30
+  L28  ██████████████████████  (11 neurons) <- BOTTLENECK [N6305, N545★]
+       ↓ (w=2) →L31
+       ↓ (w=2) →L30
+       ↓ (w=1) 
+  L29  ██████████  (5 neurons) [N1878★]
+       ↓ (w=2) 
+       ↓ (w=1) →L31
+  L30  ██████████████████████  (11 neurons) [N3587★]
+       ↓ (w=1) 
+  L31  ████████████████████████████████████████  (20 neurons) [N7873★]
+
+
+######################################################################
+  RelP-SVA
+######################################################################
+
+  Phase 1: Discovering circuit pool (k=300)...
+  Prompt 1/10: 31013 neurons, ld=3.8125
+  Prompt 2/10: 31018 neurons, ld=1.7500
+  Prompt 3/10: 31009 neurons, ld=3.9062
+  Prompt 4/10: 31011 neurons, ld=2.8750
+  Prompt 5/10: 31016 neurons, ld=3.9375
+  Prompt 6/10: 31010 neurons, ld=2.7500
+  Prompt 7/10: 31015 neurons, ld=3.5000
+  Prompt 8/10: 31015 neurons, ld=0.7500
+  Prompt 9/10: 31017 neurons, ld=3.2500
+  Prompt 10/10: 31010 neurons, ld=2.0625
+  Pool: 300 neurons, logit_diff=2.8594
+
+  Phase 1b: Finding k* (tau=0.95, scan_step=5)...
+  N_H ceiling (k=300): 0.0611
+  Target: N_H >= 0.0580 (tau=0.95)
+  Coarse scan: 60 values from k=5 to k=300
+    k=   5: N_H=0.0035 █
+    k=  10: N_H=0.0112 █████
+    k=  15: N_H=0.0246 ████████████
+    k=  20: N_H=0.0062 ███
+    k=  25: N_H=0.0020 
+    k=  30: N_H=-0.0046 
+    k=  35: N_H=0.0044 ██
+    k=  40: N_H=0.0063 ███
+    k=  45: N_H=0.0080 ███
+    k=  50: N_H=0.0070 ███
+    k=  55: N_H=0.0070 ███
+    k=  60: N_H=0.0097 ████
+    k=  65: N_H=0.0068 ███
+    k=  70: N_H=0.0078 ███
+    k=  75: N_H=0.0084 ████
+    k=  80: N_H=0.0096 ████
+    k=  85: N_H=0.0069 ███
+    k=  90: N_H=0.0133 ██████
+    k=  95: N_H=0.0167 ████████
+    k= 100: N_H=0.0198 █████████
+    k= 105: N_H=0.0118 █████
+    k= 110: N_H=0.0120 █████
+    k= 115: N_H=0.0140 ██████
+    k= 120: N_H=0.0224 ██████████
+    k= 125: N_H=0.0194 █████████
+    k= 130: N_H=0.0420 ████████████████████
+    k= 135: N_H=0.0456 ██████████████████████
+    k= 140: N_H=0.0427 ████████████████████
+    k= 145: N_H=0.0415 ████████████████████
+    k= 150: N_H=0.0362 █████████████████
+    k= 155: N_H=0.0309 ███████████████
+    k= 160: N_H=0.0366 █████████████████
+    k= 165: N_H=0.0396 ███████████████████
+    k= 170: N_H=0.0372 ██████████████████
+    k= 175: N_H=0.0382 ██████████████████
+    k= 180: N_H=0.0388 ███████████████████
+    k= 185: N_H=0.0347 █████████████████
+    k= 190: N_H=0.0360 █████████████████
+    k= 195: N_H=0.0348 █████████████████
+    k= 200: N_H=0.0369 ██████████████████
+    k= 205: N_H=0.0349 █████████████████
+    k= 210: N_H=0.0383 ██████████████████
+    k= 215: N_H=0.0408 ████████████████████
+    k= 220: N_H=0.0498 ████████████████████████
+    k= 225: N_H=0.0506 ████████████████████████
+    k= 230: N_H=0.0518 █████████████████████████
+    k= 235: N_H=0.0513 █████████████████████████
+    k= 240: N_H=0.0577 ████████████████████████████
+    k= 245: N_H=0.0564 ███████████████████████████
+    k= 250: N_H=0.0566 ███████████████████████████
+    k= 255: N_H=0.0575 ████████████████████████████
+    k= 260: N_H=0.0591 █████████████████████████████
+    k= 265: N_H=0.0584 ████████████████████████████
+    k= 270: N_H=0.0566 ███████████████████████████
+    k= 275: N_H=0.0566 ███████████████████████████
+    k= 280: N_H=0.0545 ██████████████████████████
+    k= 285: N_H=0.0542 ██████████████████████████
+    k= 290: N_H=0.0597 █████████████████████████████
+    k= 295: N_H=0.0597 █████████████████████████████
+    k= 300: N_H=0.0611 ██████████████████████████████
+
+  Fine scan: k=255..265
+
+  k* = 259 (N_H = 0.0591)
+
+  Phase 2: Topology at k*=259
+    L00 │██████████████████ 18
+    L01 │████ 4
+    L02 │███████ 7
+    L03 │████ 4
+    L04 │████████ 8
+    L05 │████ 4
+    L06 │█ 1
+    L07 │█ 1
+    L08 │█ 1
+    L09 │███ 3
+    L10 │██████ 6
+    L11 │████████ 8
+    L12 │███████ 7
+    L13 │████████ 8
+    L14 │███████████████ 15
+    L15 │██████████████████ 18
+    L16 │██████████████ 14
+    L17 │██████████ 10
+    L18 │████████ 8
+    L19 │█████████████ 13
+    L20 │███████████ 11
+    L21 │████ 4
+    L22 │███████ 7
+    L23 │█████████████ 13
+    L24 │████ 4
+    L25 │███████████ 11
+    L26 │████ 4
+    L27 │███████ 7
+    L28 │██████ 6
+    L29 │████████ 8
+    L30 │██████████ 10
+    L31 │████████████████ 16
+
+  Running edge discovery (3 prompts, top 50 targets)...
+    Edge pass 1/3: The keys to the cabinet...
+  [1/50] L29/N10537: 221 edges found
+  [2/50] L17/N13649: 122 edges found
+  [3/50] L30/N11158: 231 edges found
+  [4/50] L31/N11075: 242 edges found
+  [5/50] L31/N5861: 234 edges found
+  [6/50] L31/N5187: 240 edges found
+  [7/50] L1/N6746: 12 edges found
+  [8/50] L27/N8540: 205 edges found
+  [9/50] L28/N3849: 216 edges found
+  [10/50] L18/N11717: 132 edges found
+  [11/50] L24/N12083: 183 edges found
+  [12/50] L25/N529: 193 edges found
+  [13/50] L19/N12056: 55 edges found
+  [14/50] L23/N5186: 176 edges found
+  [15/50] L25/N2942: 194 edges found
+  [16/50] L27/N10691: 208 edges found
+  [17/50] L17/N13649: 51 edges found
+  [18/50] L3/N11818: 17 edges found
+  [19/50] L2/N1857: 14 edges found
+  [20/50] L29/N1221: 220 edges found
+  [21/50] L17/N4140: 51 edges found
+  [22/50] L23/N5918: 174 edges found
+  [23/50] L31/N5201: 240 edges found
+  [24/50] L18/N13748: 135 edges found
+  [25/50] L30/N3440: 231 edges found
+  [26/50] L23/N13449: 176 edges found
+  [27/50] L30/N11887: 230 edges found
+  [28/50] L4/N6753: 19 edges found
+  [29/50] L0/N1015: 0 edges found
+  [30/50] L15/N13591: 88 edges found
+  [31/50] L25/N8600: 68 edges found
+  [32/50] L19/N10875: 138 edges found
+  [33/50] L21/N8045: 166 edges found
+  [34/50] L22/N82: 168 edges found
+  [35/50] L30/N11949: 231 edges found
+  [36/50] L5/N7996: 22 edges found
+  [37/50] L0/N6144: 0 edges found
+  [38/50] L19/N725: 55 edges found
+  [39/50] L31/N12358: 242 edges found
+  [40/50] L0/N2578: 0 edges found
+  [41/50] L15/N11853: 38 edges found
+  [42/50] L19/N725: 141 edges found
+  [43/50] L27/N6356: 209 edges found
+  [44/50] L29/N3626: 222 edges found
+  [45/50] L30/N11956: 229 edges found
+  [46/50] L28/N1405: 216 edges found
+  [47/50] L23/N5918: 65 edges found
+  [48/50] L1/N8396: 14 edges found
+  [49/50] L20/N10568: 155 edges found
+  [50/50] L15/N7995: 92 edges found
+
+Total: 6981 edges across 50 target neurons
+    Edge pass 2/3: The key to the cabinets...
+  [1/50] L29/N10537: 224 edges found
+  [2/50] L17/N13649: 126 edges found
+  [3/50] L30/N11158: 231 edges found
+  [4/50] L31/N11075: 241 edges found
+  [5/50] L31/N5861: 242 edges found
+  [6/50] L31/N5187: 241 edges found
+  [7/50] L1/N6746: 12 edges found
+  [8/50] L27/N8540: 210 edges found
+  [9/50] L28/N3849: 211 edges found
+  [10/50] L18/N11717: 136 edges found
+  [11/50] L24/N12083: 192 edges found
+  [12/50] L25/N529: 196 edges found
+  [13/50] L19/N12056: 55 edges found
+  [14/50] L23/N5186: 179 edges found
+  [15/50] L25/N2942: 195 edges found
+  [16/50] L27/N10691: 211 edges found
+  [17/50] L17/N13649: 51 edges found
+  [18/50] L3/N11818: 17 edges found
+  [19/50] L2/N1857: 13 edges found
+  [20/50] L29/N1221: 224 edges found
+  [21/50] L17/N4140: 51 edges found
+  [22/50] L23/N5918: 176 edges found
+  [23/50] L31/N5201: 241 edges found
+  [24/50] L18/N13748: 131 edges found
+  [25/50] L30/N3440: 232 edges found
+  [26/50] L23/N13449: 176 edges found
+  [27/50] L30/N11887: 229 edges found
+  [28/50] L4/N6753: 20 edges found
+  [29/50] L0/N1015: 0 edges found
+  [30/50] L15/N13591: 87 edges found
+  [31/50] L25/N8600: 68 edges found
+  [32/50] L19/N10875: 141 edges found
+  [33/50] L21/N8045: 165 edges found
+  [34/50] L22/N82: 163 edges found
+  [35/50] L30/N11949: 214 edges found
+  [36/50] L5/N7996: 23 edges found
+  [37/50] L0/N6144: 0 edges found
+  [38/50] L19/N725: 54 edges found
+  [39/50] L31/N12358: 240 edges found
+  [40/50] L0/N2578: 0 edges found
+  [41/50] L15/N11853: 38 edges found
+  [42/50] L19/N725: 143 edges found
+  [43/50] L27/N6356: 210 edges found
+  [44/50] L29/N3626: 217 edges found
+  [45/50] L30/N11956: 226 edges found
+  [46/50] L28/N1405: 213 edges found
+  [47/50] L23/N5918: 62 edges found
+  [48/50] L1/N8396: 14 edges found
+  [49/50] L20/N10568: 153 edges found
+  [50/50] L15/N7995: 92 edges found
+
+Total: 6986 edges across 50 target neurons
+    Edge pass 3/3: The boy near the cars...
+  [1/50] L29/N10537: 221 edges found
+  [2/50] L17/N13649: 122 edges found
+  [3/50] L30/N11158: 233 edges found
+  [4/50] L31/N11075: 242 edges found
+  [5/50] L31/N5861: 242 edges found
+  [6/50] L31/N5187: 237 edges found
+  [7/50] L1/N6746: 12 edges found
+  [8/50] L27/N8540: 210 edges found
+  [9/50] L28/N3849: 215 edges found
+  [10/50] L18/N11717: 136 edges found
+  [11/50] L24/N12083: 190 edges found
+  [12/50] L25/N529: 193 edges found
+  [13/50] L19/N12056: 52 edges found
+  [14/50] L23/N5186: 178 edges found
+  [15/50] L25/N2942: 191 edges found
+  [16/50] L27/N10691: 208 edges found
+  [17/50] L17/N13649: 50 edges found
+  [18/50] L3/N11818: 16 edges found
+  [19/50] L2/N1857: 13 edges found
+  [20/50] L29/N1221: 221 edges found
+  [21/50] L17/N4140: 51 edges found
+  [22/50] L23/N5918: 173 edges found
+  [23/50] L31/N5201: 242 edges found
+  [24/50] L18/N13748: 136 edges found
+  [25/50] L30/N3440: 228 edges found
+  [26/50] L23/N13449: 178 edges found
+  [27/50] L30/N11887: 227 edges found
+  [28/50] L4/N6753: 19 edges found
+  [29/50] L0/N1015: 0 edges found
+  [30/50] L15/N13591: 90 edges found
+  [31/50] L25/N8600: 68 edges found
+  [32/50] L19/N10875: 141 edges found
+  [33/50] L21/N8045: 168 edges found
+  [34/50] L22/N82: 170 edges found
+  [35/50] L30/N11949: 228 edges found
+  [36/50] L5/N7996: 22 edges found
+  [37/50] L0/N6144: 0 edges found
+  [38/50] L19/N725: 53 edges found
+  [39/50] L31/N12358: 241 edges found
+  [40/50] L0/N2578: 0 edges found
+  [41/50] L15/N11853: 37 edges found
+  [42/50] L19/N725: 136 edges found
+  [43/50] L27/N6356: 207 edges found
+  [44/50] L29/N3626: 222 edges found
+  [45/50] L30/N11956: 229 edges found
+  [46/50] L28/N1405: 211 edges found
+  [47/50] L23/N5918: 60 edges found
+  [48/50] L1/N8396: 13 edges found
+  [49/50] L20/N10568: 157 edges found
+  [50/50] L15/N7995: 88 edges found
+
+Total: 6977 edges across 50 target neurons
+
+======================================================================
+  TOPOLOGY: RelP-SVA @ k*=259
+  259 neurons, 7124 edges
+======================================================================
+
+  Layer distribution:
+    L00 │██████████████████ 18
+    L01 │████ 4
+    L02 │███████ 7
+    L03 │████ 4
+    L04 │████████ 8
+    L05 │████ 4
+    L06 │█ 1
+    L07 │█ 1
+    L08 │█ 1
+    L09 │███ 3
+    L10 │██████ 6
+    L11 │████████ 8
+    L12 │███████ 7
+    L13 │████████ 8
+    L14 │███████████████ 15
+    L15 │██████████████████ 18
+    L16 │██████████████ 14
+    L17 │██████████ 10
+    L18 │████████ 8
+    L19 │█████████████ 13
+    L20 │███████████ 11
+    L21 │████ 4
+    L22 │███████ 7
+    L23 │█████████████ 13
+    L24 │████ 4
+    L25 │███████████ 11
+    L26 │████ 4
+    L27 │███████ 7
+    L28 │██████ 6
+    L29 │████████ 8
+    L30 │██████████ 10
+    L31 │████████████████ 16
+
+  Top layer-to-layer flows:
+    L00 → L31: 1.9137
+    L29 → L31: 1.2870
+    L19 → L31: 1.1170
+    L23 → L31: 1.0676
+    L25 → L31: 0.9798
+    L30 → L31: 0.9763
+    L17 → L31: 0.8781
+    L15 → L31: 0.8556
+    L20 → L31: 0.8257
+    L04 → L31: 0.8176
+    L16 → L31: 0.7934
+    L28 → L31: 0.7676
+    L00 → L30: 0.7483
+    L18 → L31: 0.7357
+    L14 → L31: 0.7306
+
+  Top source hubs (fan-out):
+    L04/N12934: degree=144, total_weight=1.6472
+    L10/N12212: degree=109, total_weight=0.5712
+    L15/N 7096: degree=102, total_weight=0.5469
+    L15/N14016: degree=102, total_weight=0.6114
+    L17/N 4140: degree= 97, total_weight=1.0239
+    L02/N 1857: degree= 78, total_weight=0.8454
+    L02/N 6850: degree= 78, total_weight=0.4205
+    L04/N 6753: degree= 76, total_weight=0.5477
+    L14/N11406: degree= 75, total_weight=0.2052
+    L14/N  837: degree= 75, total_weight=0.3725
+
+  Top target hubs (fan-in):
+    L23/N 5918: degree=245, total_weight=0.7032
+    L31/N11075: degree=243, total_weight=5.5701
+    L31/N 5861: degree=243, total_weight=2.7451
+    L31/N 5187: degree=243, total_weight=2.3745
+    L31/N 5201: degree=243, total_weight=2.9661
+    L31/N12358: degree=243, total_weight=5.5087
+    L30/N11158: degree=233, total_weight=2.1229
+    L30/N 3440: degree=233, total_weight=1.1782
+    L30/N11887: degree=233, total_weight=0.8588
+    L30/N11949: degree=233, total_weight=2.2697
+
+  Bottleneck neurons (high fan-in AND fan-out):
+    L17/N13649: in=178, out= 66
+    L18/N11717: in=137, out= 62
+    L19/N10875: in=145, out= 56
+    L19/N  725: in=200, out= 56
+    L21/N 8045: in=169, out= 52
+    L17/N 4140: in= 51, out= 97
+    L23/N 5186: in=180, out= 43
+    L23/N 5918: in=245, out= 43
+    L24/N12083: in=193, out= 41
+    L25/N 8600: in= 69, out= 36
+
+  Super-weight neurons:
+    L29/N10537: mean_weight=+0.0137, targets=10, ratio=10.5x
+
+  Circuit diagram:
+Circuit Architecture:
+  L0   ████████████████████████████████████████  (18 neurons)
+       ↓↓↓↓↓↓↓↓ (w=2) →L31
+       ↓↓↓ (w=1) →L30
+       ↓ (w=0) →L23
+  L1   ████████  (4 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L3
+  L2   ███████████  (5 neurons) [N1857★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L21
+  L3   ████████  (4 neurons)
+       ↓↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) 
+  L4   ████████  (4 neurons) [N12934★]
+       ↓↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L21
+  L5   ████████  (4 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L19
+  L6   ██  (1 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L19
+  L7   ██  (1 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L20
+       ↓ (w=0) →L30
+  L8   ██  (1 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L19
+  L9   ██████  (3 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L19
+  L10  ████████  (4 neurons) [N12212★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L19
+  L11  █████████████████  (8 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L15
+  L12  ███████████████  (7 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L15
+  L13  ███████████████  (7 neurons) [N7116★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L20
+       ↓ (w=0) →L30
+  L14  ████████████████████████████  (13 neurons) [N11406★]
+       ↓↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) 
+  L15  ████████████████████████████  (13 neurons) <- BOTTLENECK [N7995, N13591★]
+       ↓↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L27
+  L16  ████████████████████████████  (13 neurons) [N10829★]
+       ↓↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) 
+  L17  ███████████████  (7 neurons) <- BOTTLENECK [N4140, N13649★]
+       ↓↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L19
+  L18  ███████████████  (7 neurons) <- BOTTLENECK [N11717, N13748★]
+       ↓↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L21
+  L19  ██████████████████████  (10 neurons) <- BOTTLENECK [N10875, N12056, N725★]
+       ↓↓↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L27
+  L20  ██████████████████████  (10 neurons) [N7715★]
+       ↓↓↓ (w=1) →L31
+       ↓ (w=0) →L27
+       ↓ (w=0) →L30
+  L21  ██████  (3 neurons) <- BOTTLENECK [N8045★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L27
+  L22  █████████████  (6 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) 
+  L23  ████████████████████████  (11 neurons) <- BOTTLENECK [N5186, N5918★]
+       ↓↓↓↓ (w=1) →L31
+       ↓↓ (w=1) →L30
+       ↓ (w=0) →L27
+  L24  ██████  (3 neurons) <- BOTTLENECK [N12083★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L29
+  L25  ████████████████████  (9 neurons) <- BOTTLENECK [N8600, N529★]
+       ↓↓↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L27
+  L26  ████████  (4 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L29
+  L27  ███████████████  (7 neurons) [N8540★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L29
+  L28  █████████████  (6 neurons) [N3849★]
+       ↓↓↓ (w=1) →L31
+       ↓↓ (w=0) →L30
+       ↓ (w=0) 
+  L29  █████████████████  (8 neurons) [N10537★]
+       ↓↓↓↓↓ (w=1) →L31
+       ↓ (w=0) 
+  L30  ██████████████████████  (10 neurons) [N11158★]
+       ↓↓↓↓ (w=1) 
+  L31  ███████████████████████████████████  (16 neurons) [N11075★]
+
+  Comparison topology at k=129
+
+  Running edge discovery (3 prompts, top 50 targets)...
+    Edge pass 1/3: The keys to the cabinet...
+  [1/50] L29/N10537: 107 edges found
+  [2/50] L17/N13649: 52 edges found
+  [3/50] L30/N11158: 111 edges found
+  [4/50] L31/N11075: 118 edges found
+  [5/50] L31/N5861: 114 edges found
+  [6/50] L31/N5187: 118 edges found
+  [7/50] L1/N6746: 6 edges found
+  [8/50] L27/N8540: 99 edges found
+  [9/50] L28/N3849: 104 edges found
+  [10/50] L18/N11717: 58 edges found
+  [11/50] L24/N12083: 85 edges found
+  [12/50] L25/N529: 90 edges found
+  [13/50] L19/N12056: 26 edges found
+  [14/50] L23/N5186: 78 edges found
+  [15/50] L25/N2942: 90 edges found
+  [16/50] L27/N10691: 100 edges found
+  [17/50] L17/N13649: 22 edges found
+  [18/50] L3/N11818: 8 edges found
+  [19/50] L2/N1857: 7 edges found
+  [20/50] L29/N1221: 106 edges found
+  [21/50] L17/N4140: 22 edges found
+  [22/50] L23/N5918: 77 edges found
+  [23/50] L31/N5201: 118 edges found
+  [24/50] L18/N13748: 59 edges found
+  [25/50] L30/N3440: 111 edges found
+  [26/50] L23/N13449: 76 edges found
+  [27/50] L30/N11887: 111 edges found
+  [28/50] L4/N6753: 9 edges found
+  [29/50] L0/N1015: 0 edges found
+  [30/50] L15/N13591: 36 edges found
+  [31/50] L25/N8600: 32 edges found
+  [32/50] L19/N10875: 61 edges found
+  [33/50] L21/N8045: 74 edges found
+  [34/50] L22/N82: 75 edges found
+  [35/50] L30/N11949: 111 edges found
+  [36/50] L5/N7996: 11 edges found
+  [37/50] L0/N6144: 0 edges found
+  [38/50] L19/N725: 26 edges found
+  [39/50] L31/N12358: 119 edges found
+  [40/50] L0/N2578: 0 edges found
+  [41/50] L15/N11853: 17 edges found
+  [42/50] L19/N725: 62 edges found
+  [43/50] L27/N6356: 100 edges found
+  [44/50] L29/N3626: 107 edges found
+  [45/50] L30/N11956: 111 edges found
+  [46/50] L28/N1405: 104 edges found
+  [47/50] L23/N5918: 29 edges found
+  [48/50] L1/N8396: 8 edges found
+  [49/50] L20/N10568: 67 edges found
+  [50/50] L15/N7995: 38 edges found
+
+Total: 3270 edges across 50 target neurons
+    Edge pass 2/3: The key to the cabinets...
+  [1/50] L29/N10537: 108 edges found
+  [2/50] L17/N13649: 53 edges found
+  [3/50] L30/N11158: 111 edges found
+  [4/50] L31/N11075: 119 edges found
+  [5/50] L31/N5861: 119 edges found
+  [6/50] L31/N5187: 118 edges found
+  [7/50] L1/N6746: 6 edges found
+  [8/50] L27/N8540: 100 edges found
+  [9/50] L28/N3849: 102 edges found
+  [10/50] L18/N11717: 59 edges found
+  [11/50] L24/N12083: 88 edges found
+  [12/50] L25/N529: 91 edges found
+  [13/50] L19/N12056: 26 edges found
+  [14/50] L23/N5186: 78 edges found
+  [15/50] L25/N2942: 90 edges found
+  [16/50] L27/N10691: 101 edges found
+  [17/50] L17/N13649: 22 edges found
+  [18/50] L3/N11818: 8 edges found
+  [19/50] L2/N1857: 7 edges found
+  [20/50] L29/N1221: 108 edges found
+  [21/50] L17/N4140: 22 edges found
+  [22/50] L23/N5918: 76 edges found
+  [23/50] L31/N5201: 118 edges found
+  [24/50] L18/N13748: 58 edges found
+  [25/50] L30/N3440: 112 edges found
+  [26/50] L23/N13449: 78 edges found
+  [27/50] L30/N11887: 111 edges found
+  [28/50] L4/N6753: 9 edges found
+  [29/50] L0/N1015: 0 edges found
+  [30/50] L15/N13591: 36 edges found
+  [31/50] L25/N8600: 32 edges found
+  [32/50] L19/N10875: 63 edges found
+  [33/50] L21/N8045: 74 edges found
+  [34/50] L22/N82: 74 edges found
+  [35/50] L30/N11949: 105 edges found
+  [36/50] L5/N7996: 11 edges found
+  [37/50] L0/N6144: 0 edges found
+  [38/50] L19/N725: 26 edges found
+  [39/50] L31/N12358: 118 edges found
+  [40/50] L0/N2578: 0 edges found
+  [41/50] L15/N11853: 18 edges found
+  [42/50] L19/N725: 64 edges found
+  [43/50] L27/N6356: 101 edges found
+  [44/50] L29/N3626: 104 edges found
+  [45/50] L30/N11956: 111 edges found
+  [46/50] L28/N1405: 103 edges found
+  [47/50] L23/N5918: 27 edges found
+  [48/50] L1/N8396: 7 edges found
+  [49/50] L20/N10568: 67 edges found
+  [50/50] L15/N7995: 38 edges found
+
+Total: 3277 edges across 50 target neurons
+    Edge pass 3/3: The boy near the cars...
+  [1/50] L29/N10537: 107 edges found
+  [2/50] L17/N13649: 52 edges found
+  [3/50] L30/N11158: 112 edges found
+  [4/50] L31/N11075: 119 edges found
+  [5/50] L31/N5861: 118 edges found
+  [6/50] L31/N5187: 116 edges found
+  [7/50] L1/N6746: 6 edges found
+  [8/50] L27/N8540: 100 edges found
+  [9/50] L28/N3849: 103 edges found
+  [10/50] L18/N11717: 59 edges found
+  [11/50] L24/N12083: 87 edges found
+  [12/50] L25/N529: 90 edges found
+  [13/50] L19/N12056: 25 edges found
+  [14/50] L23/N5186: 77 edges found
+  [15/50] L25/N2942: 90 edges found
+  [16/50] L27/N10691: 99 edges found
+  [17/50] L17/N13649: 21 edges found
+  [18/50] L3/N11818: 7 edges found
+  [19/50] L2/N1857: 6 edges found
+  [20/50] L29/N1221: 106 edges found
+  [21/50] L17/N4140: 22 edges found
+  [22/50] L23/N5918: 74 edges found
+  [23/50] L31/N5201: 118 edges found
+  [24/50] L18/N13748: 59 edges found
+  [25/50] L30/N3440: 108 edges found
+  [26/50] L23/N13449: 77 edges found
+  [27/50] L30/N11887: 109 edges found
+  [28/50] L4/N6753: 8 edges found
+  [29/50] L0/N1015: 0 edges found
+  [30/50] L15/N13591: 35 edges found
+  [31/50] L25/N8600: 31 edges found
+  [32/50] L19/N10875: 62 edges found
+  [33/50] L21/N8045: 75 edges found
+  [34/50] L22/N82: 75 edges found
+  [35/50] L30/N11949: 110 edges found
+  [36/50] L5/N7996: 10 edges found
+  [37/50] L0/N6144: 0 edges found
+  [38/50] L19/N725: 24 edges found
+  [39/50] L31/N12358: 118 edges found
+  [40/50] L0/N2578: 0 edges found
+  [41/50] L15/N11853: 16 edges found
+  [42/50] L19/N725: 58 edges found
+  [43/50] L27/N6356: 98 edges found
+  [44/50] L29/N3626: 106 edges found
+  [45/50] L30/N11956: 109 edges found
+  [46/50] L28/N1405: 100 edges found
+  [47/50] L23/N5918: 25 edges found
+  [48/50] L1/N8396: 6 edges found
+  [49/50] L20/N10568: 67 edges found
+  [50/50] L15/N7995: 35 edges found
+
+Total: 3235 edges across 50 target neurons
+
+======================================================================
+  TOPOLOGY: RelP-SVA @ k=129
+  129 neurons, 3317 edges
+======================================================================
+
+  Layer distribution:
+    L00 │██████████ 10
+    L01 │███ 3
+    L02 │██ 2
+    L03 │██ 2
+    L04 │█████ 5
+    L05 │█ 1
+    L06 │█ 1
+    L08 │█ 1
+    L09 │█ 1
+    L10 │█ 1
+    L11 │█████ 5
+    L12 │███ 3
+    L13 │█ 1
+    L14 │███ 3
+    L15 │█████████ 9
+    L16 │█████ 5
+    L17 │██████ 6
+    L18 │█████ 5
+    L19 │████ 4
+    L20 │███████ 7
+    L21 │██ 2
+    L22 │█ 1
+    L23 │██████████ 10
+    L24 │███ 3
+    L25 │████████ 8
+    L26 │██ 2
+    L27 │████ 4
+    L28 │███ 3
+    L29 │████ 4
+    L30 │███████ 7
+    L31 │██████████ 10
+
+  Top layer-to-layer flows:
+    L00 → L31: 1.2555
+    L23 → L31: 0.8173
+    L30 → L31: 0.6974
+    L18 → L31: 0.6753
+    L25 → L31: 0.6564
+    L17 → L31: 0.6519
+    L04 → L31: 0.6421
+    L20 → L31: 0.5671
+    L29 → L31: 0.5616
+    L28 → L31: 0.5550
+    L00 → L30: 0.5545
+    L15 → L31: 0.5145
+    L19 → L31: 0.4812
+    L23 → L30: 0.4449
+    L28 → L30: 0.3985
+
+  Top source hubs (fan-out):
+    L04/N12934: degree=110, total_weight=1.3873
+    L17/N 4140: degree= 97, total_weight=1.0239
+    L15/N14016: degree= 70, total_weight=0.3370
+    L17/N13649: degree= 66, total_weight=1.3125
+    L18/N11717: degree= 62, total_weight=0.8850
+    L19/N  725: degree= 56, total_weight=0.5567
+    L00/N10902: degree= 47, total_weight=0.6168
+    L00/N10111: degree= 47, total_weight=0.8603
+    L00/N 3646: degree= 47, total_weight=0.0015
+    L00/N 6144: degree= 47, total_weight=0.6178
+
+  Top target hubs (fan-in):
+    L31/N11075: degree=119, total_weight=3.8116
+    L31/N 5861: degree=119, total_weight=1.7215
+    L31/N 5187: degree=119, total_weight=1.6173
+    L31/N 5201: degree=119, total_weight=2.0404
+    L31/N12358: degree=119, total_weight=2.3593
+    L30/N11158: degree=112, total_weight=1.4180
+    L30/N 3440: degree=112, total_weight=0.7828
+    L30/N11887: degree=112, total_weight=0.5885
+    L30/N11949: degree=112, total_weight=1.5734
+    L30/N11956: degree=112, total_weight=1.0934
+
+  Bottleneck neurons (high fan-in AND fan-out):
+    L17/N13649: in= 75, out= 66
+    L18/N11717: in= 59, out= 62
+    L19/N  725: in= 90, out= 56
+    L23/N 5186: in= 78, out= 43
+    L23/N 5918: in=107, out= 43
+    L25/N  529: in= 91, out= 36
+    L15/N13591: in= 39, out= 32
+    L15/N 7995: in= 39, out= 32
+    L25/N 8600: in= 32, out= 36
+    L18/N13748: in= 59, out= 29
+
+  No super-weight neurons detected.
+
+  Circuit diagram:
+Circuit Architecture:
+  L0   ████████████████████████████████████████  (10 neurons) [N10902★]
+       ↓↓↓↓↓↓↓↓ (w=1) →L31
+       ↓↓↓ (w=1) →L30
+       ↓↓ (w=0) →L23
+  L1   ████████████  (3 neurons) [N6746★]
+       ↓↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L3
+  L2   ████████  (2 neurons) [N1857★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L5
+  L3   ████████  (2 neurons) [N11818★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L5
+  L4   ████████████  (3 neurons) [N12934★]
+       ↓↓↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L27
+  L5   ████  (1 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L19
+  L6   ████  (1 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L19
+  L8   ████  (1 neurons) [N2397★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L19
+  L9   ████  (1 neurons) [N7339★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L19
+       ↓ (w=0) →L30
+  L10  ████  (1 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L29
+  L11  ████████████████████  (5 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L15
+  L12  ████████████  (3 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L15
+  L13  ████  (1 neurons)
+       ↓ (w=0) →L17
+       ↓ (w=0) →L31
+       ↓ (w=0) →L25
+  L14  ████████████  (3 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) 
+  L15  ████████████████████████████████  (8 neurons) <- BOTTLENECK [N7995, N13591★]
+       ↓↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L21
+  L16  ████████████████████  (5 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L21
+  L17  ████████████  (3 neurons) <- BOTTLENECK [N13649★]
+       ↓↓↓↓ (w=1) →L31
+       ↓↓ (w=0) →L30
+       ↓ (w=0) →L19
+  L18  ████████████████  (4 neurons) <- BOTTLENECK [N11717, N13748★]
+       ↓↓↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L21
+  L19  ████████████  (3 neurons) <- BOTTLENECK [N10875, N12056, N725★]
+       ↓↓↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L27
+  L20  ████████████████████████████  (7 neurons) <- BOTTLENECK [N10568★]
+       ↓↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L27
+  L21  ████████  (2 neurons) <- BOTTLENECK [N8045★]
+       ↓↓ (w=0) →L31
+       ↓ (w=0) →L27
+       ↓ (w=0) →L30
+  L22  ████  (1 neurons) <- BOTTLENECK [N82★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L28
+  L23  ████████████████████████████████  (8 neurons) <- BOTTLENECK [N5186, N5918★]
+       ↓↓↓↓↓ (w=1) →L31
+       ↓↓ (w=0) →L30
+       ↓ (w=0) →L27
+  L24  ████████████  (3 neurons)
+       ↓↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L29
+  L25  ████████████████████████  (6 neurons) <- BOTTLENECK [N8600, N529★]
+       ↓↓↓↓ (w=1) →L31
+       ↓↓ (w=0) →L30
+       ↓ (w=0) →L29
+  L26  ████████  (2 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L29
+  L27  ████████████████  (4 neurons) [N8540★]
+       ↓↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L29
+  L28  ████████████  (3 neurons) [N3849★]
+       ↓↓↓ (w=1) →L31
+       ↓↓ (w=0) →L30
+       ↓ (w=0) 
+  L29  ████████████████  (4 neurons) [N10537★]
+       ↓↓↓ (w=1) →L31
+       ↓↓ (w=0) 
+  L30  ████████████████████████████  (7 neurons) [N11158★]
+       ↓↓↓↓ (w=1) 
+  L31  ████████████████████████████████████████  (10 neurons) [N11075★]
+
+  Comparison topology at k=300
+
+  Running edge discovery (3 prompts, top 50 targets)...
+    Edge pass 1/3: The keys to the cabinet...
+  [1/50] L29/N10537: 256 edges found
+  [2/50] L17/N13649: 140 edges found
+  [3/50] L30/N11158: 267 edges found
+  [4/50] L31/N11075: 280 edges found
+  [5/50] L31/N5861: 272 edges found
+  [6/50] L31/N5187: 278 edges found
+  [7/50] L1/N6746: 13 edges found
+  [8/50] L27/N8540: 237 edges found
+  [9/50] L28/N3849: 251 edges found
+  [10/50] L18/N11717: 153 edges found
+  [11/50] L24/N12083: 212 edges found
+  [12/50] L25/N529: 225 edges found
+  [13/50] L19/N12056: 62 edges found
+  [14/50] L23/N5186: 205 edges found
+  [15/50] L25/N2942: 226 edges found
+  [16/50] L27/N10691: 240 edges found
+  [17/50] L17/N13649: 56 edges found
+  [18/50] L3/N11818: 19 edges found
+  [19/50] L2/N1857: 15 edges found
+  [20/50] L29/N1221: 254 edges found
+  [21/50] L17/N4140: 56 edges found
+  [22/50] L23/N5918: 203 edges found
+  [23/50] L31/N5201: 278 edges found
+  [24/50] L18/N13748: 156 edges found
+  [25/50] L30/N3440: 267 edges found
+  [26/50] L23/N13449: 206 edges found
+  [27/50] L30/N11887: 266 edges found
+  [28/50] L4/N6753: 21 edges found
+  [29/50] L0/N1015: 0 edges found
+  [30/50] L15/N13591: 102 edges found
+  [31/50] L25/N8600: 77 edges found
+  [32/50] L19/N10875: 159 edges found
+  [33/50] L21/N8045: 192 edges found
+  [34/50] L22/N82: 195 edges found
+  [35/50] L30/N11949: 267 edges found
+  [36/50] L5/N7996: 24 edges found
+  [37/50] L0/N6144: 0 edges found
+  [38/50] L19/N725: 62 edges found
+  [39/50] L31/N12358: 280 edges found
+  [40/50] L0/N2578: 0 edges found
+  [41/50] L15/N11853: 42 edges found
+  [42/50] L19/N725: 162 edges found
+  [43/50] L27/N6356: 242 edges found
+  [44/50] L29/N3626: 256 edges found
+  [45/50] L30/N11956: 264 edges found
+  [46/50] L28/N1405: 251 edges found
+  [47/50] L23/N5918: 74 edges found
+  [48/50] L1/N8396: 15 edges found
+  [49/50] L20/N10568: 177 edges found
+  [50/50] L15/N7995: 106 edges found
+
+Total: 8061 edges across 50 target neurons
+    Edge pass 2/3: The key to the cabinets...
+  [1/50] L29/N10537: 259 edges found
+  [2/50] L17/N13649: 144 edges found
+  [3/50] L30/N11158: 267 edges found
+  [4/50] L31/N11075: 279 edges found
+  [5/50] L31/N5861: 280 edges found
+  [6/50] L31/N5187: 279 edges found
+  [7/50] L1/N6746: 13 edges found
+  [8/50] L27/N8540: 243 edges found
+  [9/50] L28/N3849: 246 edges found
+  [10/50] L18/N11717: 157 edges found
+  [11/50] L24/N12083: 221 edges found
+  [12/50] L25/N529: 228 edges found
+  [13/50] L19/N12056: 62 edges found
+  [14/50] L23/N5186: 208 edges found
+  [15/50] L25/N2942: 226 edges found
+  [16/50] L27/N10691: 244 edges found
+  [17/50] L17/N13649: 56 edges found
+  [18/50] L3/N11818: 19 edges found
+  [19/50] L2/N1857: 14 edges found
+  [20/50] L29/N1221: 259 edges found
+  [21/50] L17/N4140: 56 edges found
+  [22/50] L23/N5918: 205 edges found
+  [23/50] L31/N5201: 278 edges found
+  [24/50] L18/N13748: 152 edges found
+  [25/50] L30/N3440: 268 edges found
+  [26/50] L23/N13449: 205 edges found
+  [27/50] L30/N11887: 265 edges found
+  [28/50] L4/N6753: 22 edges found
+  [29/50] L0/N1015: 0 edges found
+  [30/50] L15/N13591: 101 edges found
+  [31/50] L25/N8600: 77 edges found
+  [32/50] L19/N10875: 162 edges found
+  [33/50] L21/N8045: 191 edges found
+  [34/50] L22/N82: 188 edges found
+  [35/50] L30/N11949: 246 edges found
+  [36/50] L5/N7996: 25 edges found
+  [37/50] L0/N6144: 0 edges found
+  [38/50] L19/N725: 61 edges found
+  [39/50] L31/N12358: 278 edges found
+  [40/50] L0/N2578: 0 edges found
+  [41/50] L15/N11853: 42 edges found
+  [42/50] L19/N725: 164 edges found
+  [43/50] L27/N6356: 242 edges found
+  [44/50] L29/N3626: 251 edges found
+  [45/50] L30/N11956: 262 edges found
+  [46/50] L28/N1405: 248 edges found
+  [47/50] L23/N5918: 71 edges found
+  [48/50] L1/N8396: 15 edges found
+  [49/50] L20/N10568: 175 edges found
+  [50/50] L15/N7995: 106 edges found
+
+Total: 8060 edges across 50 target neurons
+    Edge pass 3/3: The boy near the cars...
+  [1/50] L29/N10537: 256 edges found
+  [2/50] L17/N13649: 140 edges found
+  [3/50] L30/N11158: 269 edges found
+  [4/50] L31/N11075: 280 edges found
+  [5/50] L31/N5861: 280 edges found
+  [6/50] L31/N5187: 275 edges found
+  [7/50] L1/N6746: 13 edges found
+  [8/50] L27/N8540: 243 edges found
+  [9/50] L28/N3849: 250 edges found
+  [10/50] L18/N11717: 157 edges found
+  [11/50] L24/N12083: 220 edges found
+  [12/50] L25/N529: 225 edges found
+  [13/50] L19/N12056: 59 edges found
+  [14/50] L23/N5186: 207 edges found
+  [15/50] L25/N2942: 223 edges found
+  [16/50] L27/N10691: 241 edges found
+  [17/50] L17/N13649: 55 edges found
+  [18/50] L3/N11818: 18 edges found
+  [19/50] L2/N1857: 14 edges found
+  [20/50] L29/N1221: 256 edges found
+  [21/50] L17/N4140: 56 edges found
+  [22/50] L23/N5918: 203 edges found
+  [23/50] L31/N5201: 280 edges found
+  [24/50] L18/N13748: 157 edges found
+  [25/50] L30/N3440: 264 edges found
+  [26/50] L23/N13449: 207 edges found
+  [27/50] L30/N11887: 263 edges found
+  [28/50] L4/N6753: 21 edges found
+  [29/50] L0/N1015: 0 edges found
+  [30/50] L15/N13591: 103 edges found
+  [31/50] L25/N8600: 77 edges found
+  [32/50] L19/N10875: 162 edges found
+  [33/50] L21/N8045: 194 edges found
+  [34/50] L22/N82: 196 edges found
+  [35/50] L30/N11949: 264 edges found
+  [36/50] L5/N7996: 24 edges found
+  [37/50] L0/N6144: 0 edges found
+  [38/50] L19/N725: 60 edges found
+  [39/50] L31/N12358: 279 edges found
+  [40/50] L0/N2578: 0 edges found
+  [41/50] L15/N11853: 41 edges found
+  [42/50] L19/N725: 156 edges found
+  [43/50] L27/N6356: 240 edges found
+  [44/50] L29/N3626: 257 edges found
+  [45/50] L30/N11956: 265 edges found
+  [46/50] L28/N1405: 244 edges found
+  [47/50] L23/N5918: 69 edges found
+  [48/50] L1/N8396: 14 edges found
+  [49/50] L20/N10568: 178 edges found
+  [50/50] L15/N7995: 102 edges found
+
+Total: 8057 edges across 50 target neurons
+
+======================================================================
+  TOPOLOGY: RelP-SVA @ k=300
+  300 neurons, 8212 edges
+======================================================================
+
+  Layer distribution:
+    L00 │███████████████████ 19
+    L01 │████ 4
+    L02 │████████ 8
+    L03 │████ 4
+    L04 │████████ 8
+    L05 │████ 4
+    L06 │███ 3
+    L07 │█ 1
+    L08 │██ 2
+    L09 │███ 3
+    L10 │██████ 6
+    L11 │████████ 8
+    L12 │████████ 8
+    L13 │████████ 8
+    L14 │███████████████████████ 23
+    L15 │████████████████████ 20
+    L16 │████████████████ 16
+    L17 │█████████████ 13
+    L18 │████████ 8
+    L19 │██████████████ 14
+    L20 │███████████████ 15
+    L21 │█████ 5
+    L22 │██████████ 10
+    L23 │█████████████ 13
+    L24 │██████ 6
+    L25 │███████████ 11
+    L26 │█████ 5
+    L27 │█████████ 9
+    L28 │██████ 6
+    L29 │█████████ 9
+    L30 │████████████ 12
+    L31 │███████████████████ 19
+
+  Top layer-to-layer flows:
+    L29 → L31: 2.5520
+    L00 → L31: 1.9547
+    L19 → L31: 1.1707
+    L20 → L31: 1.0849
+    L23 → L31: 1.0676
+    L30 → L31: 1.0235
+    L25 → L31: 0.9798
+    L15 → L31: 0.9685
+    L17 → L31: 0.9610
+    L14 → L31: 0.9491
+    L26 → L31: 0.8637
+    L16 → L31: 0.8589
+    L04 → L31: 0.8176
+    L00 → L30: 0.7754
+    L28 → L31: 0.7676
+
+  Top source hubs (fan-out):
+    L04/N12934: degree=144, total_weight=1.6472
+    L10/N12212: degree=109, total_weight=0.5712
+    L15/N 7096: degree=102, total_weight=0.5469
+    L15/N14016: degree=102, total_weight=0.6114
+    L17/N 4140: degree= 97, total_weight=1.0239
+    L02/N 1857: degree= 78, total_weight=0.8454
+    L02/N 6850: degree= 78, total_weight=0.4205
+    L04/N 6753: degree= 76, total_weight=0.5477
+    L14/N10590: degree= 75, total_weight=0.2063
+    L06/N 2255: degree= 75, total_weight=0.5552
+
+  Top target hubs (fan-in):
+    L23/N 5918: degree=284, total_weight=0.7854
+    L31/N11075: degree=281, total_weight=5.8294
+    L31/N 5861: degree=281, total_weight=3.0250
+    L31/N 5187: degree=281, total_weight=2.5946
+    L31/N 5201: degree=281, total_weight=3.2145
+    L31/N12358: degree=281, total_weight=7.7884
+    L30/N11158: degree=269, total_weight=2.2861
+    L30/N 3440: degree=269, total_weight=1.2934
+    L30/N11887: degree=269, total_weight=0.9721
+    L30/N11949: degree=269, total_weight=2.4304
+
+  Bottleneck neurons (high fan-in AND fan-out):
+    L17/N13649: in=201, out= 66
+    L18/N11717: in=158, out= 62
+    L19/N10875: in=166, out= 56
+    L19/N  725: in=228, out= 56
+    L21/N 8045: in=195, out= 52
+    L23/N 5186: in=210, out= 43
+    L23/N 5918: in=284, out= 43
+    L24/N12083: in=223, out= 41
+    L25/N 8600: in= 78, out= 36
+    L25/N  529: in=229, out= 36
+
+  Super-weight neurons:
+    L29/N 7328: mean_weight=-0.1259, targets=10, ratio=21.5x
+    L29/N10537: mean_weight=+0.0137, targets=10, ratio=11.3x
+
+  Circuit diagram:
+Circuit Architecture:
+  L0   ██████████████████████████████████████  (19 neurons)
+       ↓↓↓↓↓↓ (w=2) →L31
+       ↓↓ (w=1) →L30
+       ↓ (w=0) →L23
+  L1   ████████  (4 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L3
+  L2   ████████████  (6 neurons) [N1857★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L21
+  L3   ████████  (4 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) 
+  L4   ████████  (4 neurons) [N12934★]
+       ↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L21
+  L5   ████████  (4 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L19
+  L6   ████  (2 neurons) [N2255★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L19
+       ↓ (w=0) →L27
+  L7   ██  (1 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L20
+       ↓ (w=0) →L30
+  L8   ████  (2 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L19
+  L9   ██████  (3 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L19
+  L10  ████████  (4 neurons) [N12212★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L19
+  L11  ████████████████  (8 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L15
+  L12  ████████████████  (8 neurons)
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L15
+  L13  ██████████████  (7 neurons) [N7116★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L20
+       ↓ (w=0) →L30
+  L14  ████████████████████████████████████████  (20 neurons) [N10590★]
+       ↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) 
+  L15  ████████████████████████████  (14 neurons) <- BOTTLENECK [N7995, N13591★]
+       ↓↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L27
+  L16  ██████████████████████████████  (15 neurons) [N10829★]
+       ↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) 
+  L17  ████████████████  (8 neurons) <- BOTTLENECK [N13649★]
+       ↓↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L19
+  L18  ██████████████  (7 neurons) <- BOTTLENECK [N11717, N13748★]
+       ↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L21
+  L19  ██████████████████████  (11 neurons) <- BOTTLENECK [N10875, N12056, N725★]
+       ↓↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L27
+  L20  ████████████████████████████  (14 neurons)
+       ↓↓↓ (w=1) →L31
+       ↓↓ (w=1) →L27
+       ↓ (w=0) →L30
+  L21  ████████  (4 neurons) <- BOTTLENECK [N8045★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L27
+  L22  ██████████████████  (9 neurons)
+       ↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) 
+  L23  ██████████████████████  (11 neurons) <- BOTTLENECK [N5186, N5918★]
+       ↓↓↓ (w=1) →L31
+       ↓ (w=1) →L30
+       ↓ (w=0) →L27
+  L24  ██████████  (5 neurons) <- BOTTLENECK [N12083★]
+       ↓ (w=0) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L29
+  L25  ██████████████████  (9 neurons) <- BOTTLENECK [N8600, N529★]
+       ↓↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L27
+  L26  ██████████  (5 neurons)
+       ↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) 
+  L27  ██████████████████  (9 neurons) [N8540★]
+       ↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) →L29
+  L28  ████████████  (6 neurons) [N3849★]
+       ↓↓ (w=1) →L31
+       ↓ (w=0) →L30
+       ↓ (w=0) 
+  L29  ██████████████████  (9 neurons) [N10537★]
+       ↓↓↓↓↓↓↓↓ (w=3) →L31
+       ↓ (w=0) 
+  L30  ████████████████████████  (12 neurons) [N11158★]
+       ↓↓↓ (w=1) 
+  L31  ██████████████████████████████████████  (19 neurons) [N11075★]
+
+
+======================================================================
+  SUMMARY
+======================================================================
+  factual: k* = 114
+  behavioral: k* = 91
+  sva: k* = 259
+
+  All results saved to: /workspace/neural-steering/experiments/topology_llama8b_20260305_161327

@@ -1,0 +1,11 @@
+{
+  "factual": {
+    "k_star": 114
+  },
+  "behavioral": {
+    "k_star": 91
+  },
+  "sva": {
+    "k_star": 259
+  }
+}

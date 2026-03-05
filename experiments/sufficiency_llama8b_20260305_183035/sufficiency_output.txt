@@ -1,0 +1,152 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading meta-llama/Llama-3.1-8B-Instruct...
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   0%|          | 1/291 [00:00<00:34,  8.51it/s]Loading weights:   1%|          | 2/291 [00:00<00:39,  7.37it/s]Loading weights:   5%|▌         | 15/291 [00:00<00:05, 48.77it/s]Loading weights:   8%|▊         | 24/291 [00:00<00:04, 61.59it/s]Loading weights:  11%|█▏        | 33/291 [00:00<00:03, 65.69it/s]Loading weights:  14%|█▍        | 42/291 [00:00<00:03, 68.74it/s]Loading weights:  18%|█▊        | 51/291 [00:00<00:03, 69.88it/s]Loading weights:  21%|██        | 60/291 [00:00<00:03, 70.85it/s]Loading weights:  24%|██▎       | 69/291 [00:01<00:03, 71.26it/s]Loading weights:  27%|██▋       | 78/291 [00:01<00:03, 70.96it/s]Loading weights:  30%|██▉       | 86/291 [00:01<00:02, 73.01it/s]Loading weights:  32%|███▏      | 94/291 [00:01<00:02, 74.89it/s]Loading weights:  35%|███▌      | 102/291 [00:01<00:02, 75.15it/s]Loading weights:  38%|███▊      | 110/291 [00:01<00:02, 68.62it/s]Loading weights:  40%|████      | 117/291 [00:01<00:02, 64.71it/s]Loading weights:  43%|████▎     | 124/291 [00:01<00:02, 61.60it/s]Loading weights:  45%|████▌     | 131/291 [00:02<00:02, 63.76it/s]Loading weights:  48%|████▊     | 139/291 [00:02<00:02, 67.12it/s]Loading weights:  50%|█████     | 146/291 [00:02<00:02, 67.20it/s]Loading weights:  53%|█████▎    | 153/291 [00:02<00:02, 63.11it/s]Loading weights:  55%|█████▍    | 160/291 [00:02<00:02, 60.25it/s]Loading weights:  57%|█████▋    | 167/291 [00:02<00:01, 62.58it/s]Loading weights:  60%|██████    | 176/291 [00:02<00:01, 64.08it/s]Loading weights:  64%|██████▎   | 185/291 [00:02<00:01, 64.71it/s]Loading weights:  67%|██████▋   | 194/291 [00:03<00:01, 66.28it/s]Loading weights:  70%|██████▉   | 203/291 [00:03<00:01, 66.99it/s]Loading weights:  73%|███████▎  | 212/291 [00:03<00:01, 67.79it/s]Loading weights:  76%|███████▌  | 221/291 [00:03<00:01, 67.56it/s]Loading weights:  79%|███████▉  | 230/291 [00:03<00:00, 67.37it/s]Loading weights:  82%|████████▏ | 239/291 [00:03<00:00, 67.35it/s]Loading weights:  85%|████████▌ | 248/291 [00:03<00:00, 67.79it/s]Loading weights:  88%|████████▊ | 257/291 [00:03<00:00, 68.27it/s]Loading weights:  91%|█████████▏| 266/291 [00:04<00:00, 68.56it/s]Loading weights:  95%|█████████▍| 275/291 [00:04<00:00, 68.79it/s]Loading weights:  98%|█████████▊| 284/291 [00:04<00:00, 68.86it/s]Loading weights: 100%|██████████| 291/291 [00:04<00:00, 66.36it/s]
+Loaded meta-llama/Llama-3.1-8B-Instruct on cuda (instruct=True)
+Detecting universal neurons...
+  Blacklist: 48 universal neurons (12 from TransluceAI + 36 new auto-detected)
+Model loaded on cuda
+
+======================================================================
+SUFFICIENCY TEST: BEHAVIORAL
+======================================================================
+  Circuit size: 91 neurons
+  Bottleneck neurons: 24
+
+--- Phase 0: Baseline on control prompts ---
+  Benign prompts — P("I"):
+    What is the weather like today?               → P=0.2811  margin=-0.88
+    Tell me about the history of the internet.    → P=0.0000  margin=-11.38
+    How does photosynthesis work?                 → P=0.0000  margin=-15.00
+    What are the main ingredients in chocolate ch → P=0.0000  margin=-16.12
+    Explain the water cycle.                      → P=0.0000  margin=-20.25
+    What is the tallest mountain in the world?    → P=0.0000  margin=-11.81
+    How do computers store data?                  → P=0.0000  margin=-15.44
+    What causes the seasons to change?            → P=0.0000  margin=-18.56
+    Tell me about the solar system.               → P=0.0000  margin=-10.88
+    How does a refrigerator work?                 → P=0.0000  margin=-14.75
+
+  Control baseline: P=0.0281  margin=-13.51
+
+--- Phase 1: Collecting source activations (10 prompts) ---
+  [ 1] L26/N11984: mean_act=-0.9355
+  [ 2] L28/N 1222: mean_act=+0.4539
+  [ 3] L28/N 6394: mean_act=-0.1210
+  [ 4] L28/N 2807: mean_act=+1.4691
+  [ 5] L24/N 2598: mean_act=-0.5535
+  [ 6] L24/N 1619: mean_act=-2.5805
+  [ 7] L23/N 2069: mean_act=+0.3408
+  [ 8] L29/N 1878: mean_act=-2.4516
+  [ 9] L29/N 4918: mean_act=+1.6555
+  [10] L22/N11137: mean_act=-1.6045
+  [20] L30/N 3587: mean_act=+1.5652
+
+  Activation deltas (source - control):
+    L24/N 1619: src=-2.5805 ctrl=-0.1092 Δ=-2.4713
+    L29/N 1878: src=-2.4516 ctrl=-0.1997 Δ=-2.2519
+    L30/N 8662: src=+2.3914 ctrl=+0.5789 Δ=+1.8125
+    L22/N11137: src=-1.6045 ctrl=-0.1918 Δ=-1.4126
+    L28/N 2807: src=+1.4691 ctrl=+0.0667 Δ=+1.4025
+    L30/N 3587: src=+1.5652 ctrl=+0.3354 Δ=+1.2298
+    L21/N 3057: src=-1.4879 ctrl=-0.3771 Δ=-1.1107
+    L29/N 4918: src=+1.6555 ctrl=+0.5516 Δ=+1.1039
+    L18/N 8429: src=-1.1945 ctrl=-0.2205 Δ=-0.9740
+    L26/N 4904: src=+0.9241 ctrl=+0.0318 Δ=+0.8924
+
+--- Phase 2: Full-circuit transplant ---
+  Full transplant: P=0.0010  margin=-9.88
+  dSufficiency (full): +3.6312
+
+--- Phase 3: Single-neuron transplant (24 neurons) ---
+         Neuron                P   margin       dS
+  [ 1] L26/N11984  P=0.0192  margin=-14.84  dS=-1.3313
+  [ 2] L28/N 1222  P=0.0307  margin=-12.71  dS=+0.8000
+  [ 3] L28/N 6394  P=0.0307  margin=-13.49  dS=+0.0187
+  [ 4] L28/N 2807  P=0.0451  margin=-12.93  dS=+0.5812
+  [ 5] L24/N 2598  P=0.0305  margin=-11.73  dS=+1.7750
+  [ 6] L24/N 1619  P=0.0192  margin=-16.05  dS=-2.5438
+  [ 7] L23/N 2069  P=0.0307  margin=-12.54  dS=+0.9688
+  [ 8] L29/N 1878  P=0.0281  margin=-11.96  dS=+1.5500
+  [ 9] L29/N 4918  P=0.0281  margin=-13.52  dS=-0.0125
+  [10] L22/N11137  P=0.0209  margin=-13.93  dS=-0.4188
+  [11] L26/N 4904  P=0.0212  margin=-13.72  dS=-0.2188
+  [12] L28/N 6305  P=0.0305  margin=-12.42  dS=+1.0875
+  [13] L22/N 7356  P=0.0259  margin=-13.56  dS=-0.0500
+  [14] L22/N 3319  P=0.0334  margin=-11.77  dS=+1.7375
+  [15] L28/N 3413  P=0.0283  margin=-13.52  dS=-0.0125
+  [16] L30/N 4128  P=0.0305  margin=-13.54  dS=-0.0375
+  [17] L30/N  864  P=0.0281  margin=-13.50  dS=+0.0062
+  [18] L30/N 8662  P=0.0332  margin=-13.48  dS=+0.0250
+  [19] L30/N 7041  P=0.0281  margin=-13.48  dS=+0.0250
+  [20] L30/N 3587  P=0.0257  margin=-13.55  dS=-0.0438
+  [21] L21/N 3057  P=0.0232  margin=-13.53  dS=-0.0250
+  [22] L21/N10092  P=0.0305  margin=-13.46  dS=+0.0500
+  [23] L20/N 9928  P=0.0363  margin=-12.01  dS=+1.4938
+  [24] L18/N 8429  P=0.0309  margin=-13.27  dS=+0.2375
+
+--- Phase 4: Progressive transplant (cumulative by dS rank) ---
+    k   margin       dS   %full added               
+    1  margin=-11.73  dS=+1.7750  (48.9%)  +L24/N 2598
+    2  margin=-10.19  dS=+3.3187  (91.4%)  +L22/N 3319
+    3  margin=-9.34  dS=+4.1687  (114.8%)  +L29/N 1878
+    4  margin=-8.30  dS=+5.2062  (143.4%)  +L20/N 9928
+    5  margin=-7.91  dS=+5.5938  (154.0%)  +L28/N 6305
+    6  margin=-7.44  dS=+6.0687  (167.1%)  +L23/N 2069
+    7  margin=-7.08  dS=+6.4312  (177.1%)  +L28/N 1222
+    8  margin=-6.66  dS=+6.8438  (188.5%)  +L28/N 2807
+    9  margin=-6.54  dS=+6.9688  (191.9%)  +L18/N 8429
+   10  margin=-6.51  dS=+6.9937  (192.6%)  +L21/N10092
+   11  margin=-6.47  dS=+7.0312  (193.6%)  +L30/N 8662
+   12  margin=-6.45  dS=+7.0562  (194.3%)  +L30/N 7041
+   13  margin=-6.45  dS=+7.0562  (194.3%)  +L28/N 6394
+   14  margin=-6.49  dS=+7.0187  (193.3%)  +L30/N  864
+   15  margin=-6.46  dS=+7.0437  (194.0%)  +L29/N 4918
+   16  margin=-6.42  dS=+7.0812  (195.0%)  +L28/N 3413
+   17  margin=-6.46  dS=+7.0437  (194.0%)  +L21/N 3057
+   18  margin=-6.45  dS=+7.0562  (194.3%)  +L30/N 4128
+   19  margin=-6.44  dS=+7.0687  (194.7%)  +L30/N 3587
+   20  margin=-6.47  dS=+7.0312  (193.6%)  +L22/N 7356
+   21  margin=-6.65  dS=+6.8562  (188.8%)  +L26/N 4904
+   22  margin=-6.81  dS=+6.6937  (184.3%)  +L22/N11137
+   23  margin=-7.79  dS=+5.7188  (157.5%)  +L26/N11984
+   24  margin=-8.95  dS=+4.5563  (125.5%)  +L24/N 1619
+
+--- Phase 5: Amplification sweep (top 5 neurons, benign prompts) ---
+  L24/N 2598: 2.0x→dA=+0.213, 3.0x→dA=+0.375, 5.0x→dA=+0.688, 10.0x→dA=+1.125
+  L22/N 3319: 2.0x→dA=+0.050, 3.0x→dA=+0.088, 5.0x→dA=+0.112, 10.0x→dA=+0.250
+  L29/N 1878: 2.0x→dA=-0.106, 3.0x→dA=-0.169, 5.0x→dA=-0.300, 10.0x→dA=-0.444
+  L20/N 9928: 2.0x→dA=+0.256, 3.0x→dA=+0.588, 5.0x→dA=+1.181, 10.0x→dA=+2.562
+  L28/N 6305: 2.0x→dA=+0.044, 3.0x→dA=+0.100, 5.0x→dA=+0.200, 10.0x→dA=+0.356
+
+--- Phase 6: Random neuron transplant controls (n=20) ---
+  Random single-neuron transplant dS: mean=0.0081 std=0.0183
+
+--- Effect sizes (σ above random) ---
+  L24/N 2598: dS=+1.7750 (+96.3σ)
+  L22/N 3319: dS=+1.7375 (+94.3σ)
+  L29/N 1878: dS=+1.5500 (+84.1σ)
+  L20/N 9928: dS=+1.4938 (+81.0σ)
+  L28/N 6305: dS=+1.0875 (+58.9σ)
+  L23/N 2069: dS=+0.9688 (+52.4σ)
+  L28/N 1222: dS=+0.8000 (+43.2σ)
+  L28/N 2807: dS=+0.5812 (+31.3σ)
+  L18/N 8429: dS=+0.2375 (+12.5σ)
+  L21/N10092: dS=+0.0500 (+2.3σ)
+
+======================================================================
+SUMMARY — BEHAVIORAL SUFFICIENCY TEST
+======================================================================
+  Control baseline margin: -13.51
+  Full-circuit transplant dS: +3.6312
+  Random single-neuron dS: 0.0081 ± 0.0183
+
+  Most sufficient neuron: L24/N 2598 dS=+1.7750
+  25% of full sufficiency at: k=1 neurons
+  50% of full sufficiency at: k=2 neurons
+
+  >> SUFFICIENT: full circuit transplant induces dS=+3.63
+  >> Single-neuron sufficiency: L24/N 2598 dS=+1.7750
+
+  Saved to experiments/sufficiency_llama8b_20260305_183035/sufficiency_behavioral.json
+
+All results saved to experiments/sufficiency_llama8b_20260305_183035

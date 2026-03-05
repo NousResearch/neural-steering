@@ -157,6 +157,38 @@ class Circuit:
             result.setdefault(nidx.layer, set()).add(nidx.neuron)
         return result
 
+    def unique_neuron_set(self) -> Set[Tuple[int, int]]:
+        """Get set of (layer, neuron) tuples, collapsing positions."""
+        return {(n.layer, n.neuron) for n in self.neurons}
+
+    def filter_neurons(self, remove: Set[Tuple[int, int]]) -> "Circuit":
+        """Return a new Circuit with specified (layer, neuron) pairs removed."""
+        filtered = {n: v for n, v in self.neurons.items()
+                    if (n.layer, n.neuron) not in remove}
+        return Circuit(neurons=filtered, prompt=self.prompt,
+                       target_token=self.target_token,
+                       total_logit_diff=self.total_logit_diff)
+
+    @staticmethod
+    def find_universal_neurons(*circuits: "Circuit", min_circuits: int = None) -> Set[Tuple[int, int]]:
+        """Find (layer, neuron) pairs present in all (or ≥min_circuits) circuits.
+
+        Args:
+            *circuits: Circuit objects to compare
+            min_circuits: Minimum number of circuits a neuron must appear in.
+                         Defaults to len(circuits) (i.e., must be in ALL).
+
+        Returns:
+            Set of (layer, neuron) tuples found in ≥min_circuits circuits.
+        """
+        if min_circuits is None:
+            min_circuits = len(circuits)
+        from collections import Counter
+        counts: Counter = Counter()
+        for c in circuits:
+            counts.update(c.unique_neuron_set())
+        return {ln for ln, count in counts.items() if count >= min_circuits}
+
     def save(self, path: str):
         """Save circuit to file."""
         import json

@@ -1,0 +1,166 @@
+{
+  "layer_flow": {
+    "0->31": 2.9297943115234375,
+    "20->31": 0.6960133463144302,
+    "0->24": 0.6351089477539062,
+    "0->20": 0.559112548828125,
+    "20->24": 0.380218505859375,
+    "24->31": 0.12326239049434662
+  },
+  "source_hubs_collapsed": [
+    {
+      "layer": 0,
+      "neuron": 491,
+      "degree": 4,
+      "total_weight": 4.124015808105469
+    },
+    {
+      "layer": 20,
+      "neuron": 7083,
+      "degree": 3,
+      "total_weight": 1.0762318521738052
+    },
+    {
+      "layer": 24,
+      "neuron": 6483,
+      "degree": 2,
+      "total_weight": 0.12326239049434662
+    }
+  ],
+  "target_hubs_collapsed": [
+    {
+      "layer": 31,
+      "neuron": 5295,
+      "degree": 3,
+      "total_weight": 2.8032989501953125
+    },
+    {
+      "layer": 31,
+      "neuron": 1041,
+      "degree": 3,
+      "total_weight": 0.9457710981369019
+    },
+    {
+      "layer": 24,
+      "neuron": 6483,
+      "degree": 2,
+      "total_weight": 1.0153274536132812
+    },
+    {
+      "layer": 20,
+      "neuron": 7083,
+      "degree": 1,
+      "total_weight": 0.559112548828125
+    }
+  ],
+  "bottlenecks_collapsed": [
+    {
+      "layer": 24,
+      "neuron": 6483,
+      "in_degree": 2,
+      "out_degree": 2
+    },
+    {
+      "layer": 20,
+      "neuron": 7083,
+      "in_degree": 1,
+      "out_degree": 3
+    }
+  ],
+  "source_hubs_position_aware": [
+    {
+      "layer": 0,
+      "position": 1,
+      "neuron": 491,
+      "degree": 4,
+      "total_weight": 4.124015808105469
+    },
+    {
+      "layer": 20,
+      "position": 48,
+      "neuron": 7083,
+      "degree": 3,
+      "total_weight": 1.0762318521738052
+    },
+    {
+      "layer": 24,
+      "position": 48,
+      "neuron": 6483,
+      "degree": 2,
+      "total_weight": 0.12326239049434662
+    }
+  ],
+  "target_hubs_position_aware": [
+    {
+      "layer": 31,
+      "position": 48,
+      "neuron": 5295,
+      "degree": 3,
+      "total_weight": 2.8032989501953125
+    },
+    {
+      "layer": 31,
+      "position": 52,
+      "neuron": 1041,
+      "degree": 3,
+      "total_weight": 0.9457710981369019
+    },
+    {
+      "layer": 24,
+      "position": 48,
+      "neuron": 6483,
+      "degree": 2,
+      "total_weight": 1.0153274536132812
+    },
+    {
+      "layer": 20,
+      "position": 48,
+      "neuron": 7083,
+      "degree": 1,
+      "total_weight": 0.559112548828125
+    }
+  ],
+  "bottlenecks_position_aware": [
+    {
+      "layer": 24,
+      "position": 48,
+      "neuron": 6483,
+      "in_degree": 2,
+      "out_degree": 2
+    },
+    {
+      "layer": 20,
+      "position": 48,
+      "neuron": 7083,
+      "in_degree": 1,
+      "out_degree": 3
+    }
+  ],
+  "position_inflation": [
+    {
+      "layer": 0,
+      "neuron": 491,
+      "collapsed_degree": 4,
+      "n_positions": 1,
+      "max_single_position_degree": 4,
+      "inflation": 1.0
+    },
+    {
+      "layer": 20,
+      "neuron": 7083,
+      "collapsed_degree": 3,
+      "n_positions": 1,
+      "max_single_position_degree": 3,
+      "inflation": 1.0
+    },
+    {
+      "layer": 24,
+      "neuron": 6483,
+      "collapsed_degree": 2,
+      "n_positions": 1,
+      "max_single_position_degree": 2,
+      "inflation": 1.0
+    }
+  ],
+  "super_weights": []
+}

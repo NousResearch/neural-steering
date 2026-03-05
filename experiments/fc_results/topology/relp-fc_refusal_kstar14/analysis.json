@@ -1,0 +1,410 @@
+{
+  "layer_flow": {
+    "0->1": 5030.0,
+    "24->25": 20.86763494461775,
+    "1->24": 12.744348526000977,
+    "24->30": 8.350532531738281,
+    "0->24": 6.860774517059326,
+    "1->30": 6.663383483886719,
+    "0->30": 5.1384429931640625,
+    "1->25": 4.859222412109375,
+    "25->30": 4.578727722167969,
+    "21->24": 4.34995424747467,
+    "0->25": 2.3530120849609375,
+    "15->24": 2.2003867626190186,
+    "21->25": 2.18451464176178,
+    "15->21": 1.9536247253417969,
+    "1->15": 1.626753807067871,
+    "21->30": 1.5320653915405273,
+    "15->30": 1.2675971984863281,
+    "15->25": 1.1040430665016174,
+    "1->21": 0.8978111743927002,
+    "0->15": 0.771636962890625,
+    "0->21": 0.4101037234067917
+  },
+  "source_hubs_collapsed": [
+    {
+      "layer": 0,
+      "neuron": 8268,
+      "degree": 12,
+      "total_weight": 1476.9311856478453
+    },
+    {
+      "layer": 0,
+      "neuron": 491,
+      "degree": 12,
+      "total_weight": 3568.6027846336365
+    },
+    {
+      "layer": 1,
+      "neuron": 2427,
+      "degree": 10,
+      "total_weight": 24.910900115966797
+    },
+    {
+      "layer": 1,
+      "neuron": 198,
+      "degree": 10,
+      "total_weight": 1.8806192874908447
+    },
+    {
+      "layer": 15,
+      "neuron": 14179,
+      "degree": 9,
+      "total_weight": 6.525651752948761
+    },
+    {
+      "layer": 21,
+      "neuron": 13111,
+      "degree": 8,
+      "total_weight": 8.066534280776978
+    },
+    {
+      "layer": 24,
+      "neuron": 14331,
+      "degree": 7,
+      "total_weight": 29.21816747635603
+    },
+    {
+      "layer": 25,
+      "neuron": 891,
+      "degree": 1,
+      "total_weight": 4.578727722167969
+    }
+  ],
+  "target_hubs_collapsed": [
+    {
+      "layer": 24,
+      "neuron": 14331,
+      "degree": 24,
+      "total_weight": 26.15546405315399
+    },
+    {
+      "layer": 25,
+      "neuron": 891,
+      "degree": 24,
+      "total_weight": 31.368427149951458
+    },
+    {
+      "layer": 30,
+      "neuron": 14210,
+      "degree": 8,
+      "total_weight": 27.530749320983887
+    },
+    {
+      "layer": 21,
+      "neuron": 13111,
+      "degree": 5,
+      "total_weight": 3.2615396231412888
+    },
+    {
+      "layer": 15,
+      "neuron": 14179,
+      "degree": 4,
+      "total_weight": 2.398390769958496
+    },
+    {
+      "layer": 1,
+      "neuron": 2427,
+      "degree": 2,
+      "total_weight": 4530.0
+    },
+    {
+      "layer": 1,
+      "neuron": 198,
+      "degree": 2,
+      "total_weight": 500.0
+    }
+  ],
+  "bottlenecks_collapsed": [
+    {
+      "layer": 24,
+      "neuron": 14331,
+      "in_degree": 24,
+      "out_degree": 7
+    },
+    {
+      "layer": 21,
+      "neuron": 13111,
+      "in_degree": 5,
+      "out_degree": 8
+    }
+  ],
+  "source_hubs_position_aware": [
+    {
+      "layer": 0,
+      "position": 1,
+      "neuron": 8268,
+      "degree": 12,
+      "total_weight": 1476.9311856478453
+    },
+    {
+      "layer": 0,
+      "position": 1,
+      "neuron": 491,
+      "degree": 12,
+      "total_weight": 3568.6027846336365
+    },
+    {
+      "layer": 1,
+      "position": 1,
+      "neuron": 2427,
+      "degree": 10,
+      "total_weight": 24.910900115966797
+    },
+    {
+      "layer": 1,
+      "position": 1,
+      "neuron": 198,
+      "degree": 10,
+      "total_weight": 1.8806192874908447
+    },
+    {
+      "layer": 15,
+      "position": 48,
+      "neuron": 14179,
+      "degree": 9,
+      "total_weight": 6.525651752948761
+    },
+    {
+      "layer": 21,
+      "position": 48,
+      "neuron": 13111,
+      "degree": 8,
+      "total_weight": 8.066534280776978
+    },
+    {
+      "layer": 24,
+      "position": 48,
+      "neuron": 14331,
+      "degree": 4,
+      "total_weight": 15.876321502029896
+    },
+    {
+      "layer": 24,
+      "position": 49,
+      "neuron": 14331,
+      "degree": 2,
+      "total_weight": 6.824267849326134
+    },
+    {
+      "layer": 25,
+      "position": 48,
+      "neuron": 891,
+      "degree": 1,
+      "total_weight": 4.578727722167969
+    },
+    {
+      "layer": 24,
+      "position": 50,
+      "neuron": 14331,
+      "degree": 1,
+      "total_weight": 6.517578125
+    }
+  ],
+  "target_hubs_position_aware": [
+    {
+      "layer": 25,
+      "position": 50,
+      "neuron": 891,
+      "degree": 9,
+      "total_weight": 8.596102848649025
+    },
+    {
+      "layer": 30,
+      "position": 48,
+      "neuron": 14210,
+      "degree": 8,
+      "total_weight": 27.530749320983887
+    },
+    {
+      "layer": 25,
+      "position": 49,
+      "neuron": 891,
+      "degree": 8,
+      "total_weight": 8.5465824380517
+    },
+    {
+      "layer": 25,
+      "position": 48,
+      "neuron": 891,
+      "degree": 7,
+      "total_weight": 14.225741863250732
+    },
+    {
+      "layer": 24,
+      "position": 48,
+      "neuron": 14331,
+      "degree": 6,
+      "total_weight": 14.555266857147217
+    },
+    {
+      "layer": 24,
+      "position": 50,
+      "neuron": 14331,
+      "degree": 6,
+      "total_weight": 4.890869379043579
+    },
+    {
+      "layer": 24,
+      "position": 49,
+      "neuron": 14331,
+      "degree": 6,
+      "total_weight": 6.229512333869934
+    },
+    {
+      "layer": 24,
+      "position": 51,
+      "neuron": 14331,
+      "degree": 6,
+      "total_weight": 0.4798154830932617
+    },
+    {
+      "layer": 21,
+      "position": 48,
+      "neuron": 13111,
+      "degree": 5,
+      "total_weight": 3.2615396231412888
+    },
+    {
+      "layer": 15,
+      "position": 48,
+      "neuron": 14179,
+      "degree": 4,
+      "total_weight": 2.398390769958496
+    },
+    {
+      "layer": 1,
+      "position": 1,
+      "neuron": 2427,
+      "degree": 2,
+      "total_weight": 4530.0
+    },
+    {
+      "layer": 1,
+      "position": 1,
+      "neuron": 198,
+      "degree": 2,
+      "total_weight": 500.0
+    }
+  ],
+  "bottlenecks_position_aware": [
+    {
+      "layer": 21,
+      "position": 48,
+      "neuron": 13111,
+      "in_degree": 5,
+      "out_degree": 8
+    },
+    {
+      "layer": 24,
+      "position": 48,
+      "neuron": 14331,
+      "in_degree": 6,
+      "out_degree": 4
+    },
+    {
+      "layer": 15,
+      "position": 48,
+      "neuron": 14179,
+      "in_degree": 4,
+      "out_degree": 9
+    },
+    {
+      "layer": 1,
+      "position": 1,
+      "neuron": 2427,
+      "in_degree": 2,
+      "out_degree": 10
+    },
+    {
+      "layer": 1,
+      "position": 1,
+      "neuron": 198,
+      "in_degree": 2,
+      "out_degree": 10
+    }
+  ],
+  "position_inflation": [
+    {
+      "layer": 0,
+      "neuron": 8268,
+      "collapsed_degree": 12,
+      "n_positions": 1,
+      "max_single_position_degree": 12,
+      "inflation": 1.0
+    },
+    {
+      "layer": 0,
+      "neuron": 491,
+      "collapsed_degree": 12,
+      "n_positions": 1,
+      "max_single_position_degree": 12,
+      "inflation": 1.0
+    },
+    {
+      "layer": 1,
+      "neuron": 2427,
+      "collapsed_degree": 10,
+      "n_positions": 1,
+      "max_single_position_degree": 10,
+      "inflation": 1.0
+    },
+    {
+      "layer": 1,
+      "neuron": 198,
+      "collapsed_degree": 10,
+      "n_positions": 1,
+      "max_single_position_degree": 10,
+      "inflation": 1.0
+    },
+    {
+      "layer": 15,
+      "neuron": 14179,
+      "collapsed_degree": 9,
+      "n_positions": 1,
+      "max_single_position_degree": 9,
+      "inflation": 1.0
+    },
+    {
+      "layer": 21,
+      "neuron": 13111,
+      "collapsed_degree": 8,
+      "n_positions": 1,
+      "max_single_position_degree": 8,
+      "inflation": 1.0
+    },
+    {
+      "layer": 24,
+      "neuron": 14331,
+      "collapsed_degree": 7,
+      "n_positions": 4,
+      "max_single_position_degree": 4,
+      "inflation": 1.75
+    },
+    {
+      "layer": 25,
+      "neuron": 891,
+      "collapsed_degree": 1,
+      "n_positions": 3,
+      "max_single_position_degree": 1,
+      "inflation": 1.0
+    }
+  ],
+  "super_weights": [
+    {
+      "layer": 0,
+      "neuron": 491,
+      "mean_weight": -296.2130083640416,
+      "n_targets": 12,
+      "ratio": 119.3788919716821
+    },
+    {
+      "layer": 0,
+      "neuron": 8268,
+      "mean_weight": -122.60365326578419,
+      "n_targets": 12,
+      "ratio": 49.40712629051077
+    }
+  ]
+}

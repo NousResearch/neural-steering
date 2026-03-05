@@ -1,0 +1,335 @@
+{
+  "task": "fc_refusal",
+  "n_bottleneck_neurons": 5,
+  "control_baseline": {
+    "prob": 0.005343120312318206,
+    "logit": 21.6,
+    "logit_margin": -6.575
+  },
+  "neuron_activations": [
+    {
+      "layer": 21,
+      "neuron": 13111,
+      "source_mean": -2.6078125,
+      "control_mean": -3.084375,
+      "delta": 0.4765625
+    },
+    {
+      "layer": 24,
+      "neuron": 14331,
+      "source_mean": -5.221875,
+      "control_mean": -0.02548828125,
+      "delta": -5.1963867187499995
+    },
+    {
+      "layer": 15,
+      "neuron": 14179,
+      "source_mean": -1.35546875,
+      "control_mean": -2.2140625,
+      "delta": 0.8585937499999998
+    },
+    {
+      "layer": 1,
+      "neuron": 2427,
+      "source_mean": 0.14501953125,
+      "control_mean": 0.149609375,
+      "delta": -0.004589843749999989
+    },
+    {
+      "layer": 1,
+      "neuron": 198,
+      "source_mean": -0.065185546875,
+      "control_mean": -0.068115234375,
+      "delta": 0.0029296875
+    }
+  ],
+  "full_transplant": {
+    "prob": 0.13144779857248068,
+    "logit": 24.95,
+    "logit_margin": -2.6
+  },
+  "dSufficiency_full": 3.975,
+  "single_neuron_transplant": [
+    {
+      "layer": 21,
+      "neuron": 13111,
+      "source_activation": -2.6078125,
+      "tx_prob": 0.005580426316009834,
+      "tx_logit": 21.6,
+      "tx_logit_margin": -6.475,
+      "dSufficiency": 0.10000000000000053,
+      "sigma_above_random": 3.6874042212737765
+    },
+    {
+      "layer": 24,
+      "neuron": 14331,
+      "source_activation": -5.221875,
+      "tx_prob": 0.10765541940927506,
+      "tx_logit": 24.95,
+      "tx_logit_margin": -2.85,
+      "dSufficiency": 3.725,
+      "sigma_above_random": 139.0478123439816
+    },
+    {
+      "layer": 15,
+      "neuron": 14179,
+      "source_activation": -1.35546875,
+      "tx_prob": 0.005630840777303092,
+      "tx_logit": 21.475,
+      "tx_logit_margin": -6.525,
+      "dSufficiency": 0.04999999999999982,
+      "sigma_above_random": 1.8203641092364002
+    },
+    {
+      "layer": 1,
+      "neuron": 2427,
+      "source_activation": 0.14501953125,
+      "tx_prob": 0.005654931097524241,
+      "tx_logit": 21.625,
+      "tx_logit_margin": -6.55,
+      "dSufficiency": 0.025000000000000355,
+      "sigma_above_random": 0.8868440532177453
+    },
+    {
+      "layer": 1,
+      "neuron": 198,
+      "source_activation": -0.065185546875,
+      "tx_prob": 0.005659845191985369,
+      "tx_logit": 21.55,
+      "tx_logit_margin": -6.65,
+      "dSufficiency": -0.07500000000000018,
+      "sigma_above_random": -2.8472361708569736
+    }
+  ],
+  "progressive_transplant": [
+    {
+      "k": 1,
+      "added_neuron": {
+        "layer": 24,
+        "neuron": 14331
+      },
+      "cumulative_dSufficiency": 3.725,
+      "fraction_of_full": 0.9371069182389937,
+      "margin": -2.85
+    },
+    {
+      "k": 2,
+      "added_neuron": {
+        "layer": 21,
+        "neuron": 13111
+      },
+      "cumulative_dSufficiency": 3.8000000000000003,
+      "fraction_of_full": 0.9559748427672956,
+      "margin": -2.775
+    },
+    {
+      "k": 3,
+      "added_neuron": {
+        "layer": 15,
+        "neuron": 14179
+      },
+      "cumulative_dSufficiency": 3.8000000000000003,
+      "fraction_of_full": 0.9559748427672956,
+      "margin": -2.775
+    },
+    {
+      "k": 4,
+      "added_neuron": {
+        "layer": 1,
+        "neuron": 2427
+      },
+      "cumulative_dSufficiency": 3.7750000000000004,
+      "fraction_of_full": 0.9496855345911951,
+      "margin": -2.8
+    },
+    {
+      "k": 5,
+      "added_neuron": {
+        "layer": 1,
+        "neuron": 198
+      },
+      "cumulative_dSufficiency": 3.825,
+      "fraction_of_full": 0.9622641509433962,
+      "margin": -2.75
+    }
+  ],
+  "amplification": [
+    {
+      "layer": 24,
+      "neuron": 14331,
+      "multipliers": {
+        "2.0": {
+          "prob": 0.008646347862668335,
+          "logit": 21.9,
+          "logit_margin": -6.225,
+          "dAmplify": 0.35000000000000053
+        },
+        "3.0": {
+          "prob": 0.011293078884773423,
+          "logit": 22.025,
+          "logit_margin": -6.075,
+          "dAmplify": 0.5
+        },
+        "5.0": {
+          "prob": 0.01848517773178173,
+          "logit": 22.275,
+          "logit_margin": -5.725,
+          "dAmplify": 0.8500000000000005
+        },
+        "10.0": {
+          "prob": 0.03650782451404666,
+          "logit": 22.075,
+          "logit_margin": -5.725,
+          "dAmplify": 0.8500000000000005
+        }
+      }
+    },
+    {
+      "layer": 21,
+      "neuron": 13111,
+      "multipliers": {
+        "2.0": {
+          "prob": 0.0033398959654732606,
+          "logit": 21.6,
+          "logit_margin": -7.0,
+          "dAmplify": -0.4249999999999998
+        },
+        "3.0": {
+          "prob": 0.002130005805520341,
+          "logit": 21.25,
+          "logit_margin": -7.25,
+          "dAmplify": -0.6749999999999998
+        },
+        "5.0": {
+          "prob": 0.0012595464067999274,
+          "logit": 20.05,
+          "logit_margin": -7.5,
+          "dAmplify": -0.9249999999999998
+        },
+        "10.0": {
+          "prob": 0.0005084484568214975,
+          "logit": 16.225,
+          "logit_margin": -8.15,
+          "dAmplify": -1.5750000000000002
+        }
+      }
+    },
+    {
+      "layer": 15,
+      "neuron": 14179,
+      "multipliers": {
+        "2.0": {
+          "prob": 0.005297405118471943,
+          "logit": 21.525,
+          "logit_margin": -6.475,
+          "dAmplify": 0.10000000000000053
+        },
+        "3.0": {
+          "prob": 0.007527347572613507,
+          "logit": 21.475,
+          "logit_margin": -5.925,
+          "dAmplify": 0.6500000000000004
+        },
+        "5.0": {
+          "prob": 0.01520212171599269,
+          "logit": 20.675,
+          "logit_margin": -4.575,
+          "dAmplify": 2.0
+        },
+        "10.0": {
+          "prob": 0.012734150979667902,
+          "logit": 18.05,
+          "logit_margin": -5.175,
+          "dAmplify": 1.4000000000000004
+        }
+      }
+    },
+    {
+      "layer": 1,
+      "neuron": 2427,
+      "multipliers": {
+        "2.0": {
+          "prob": 0.007150813667976763,
+          "logit": 21.9,
+          "logit_margin": -6.35,
+          "dAmplify": 0.22500000000000053
+        },
+        "3.0": {
+          "prob": 0.008203578490065411,
+          "logit": 22.3,
+          "logit_margin": -6.225,
+          "dAmplify": 0.35000000000000053
+        },
+        "5.0": {
+          "prob": 0.015546966946567408,
+          "logit": 23.325,
+          "logit_margin": -5.55,
+          "dAmplify": 1.0250000000000004
+        },
+        "10.0": {
+          "prob": 0.017364251823164523,
+          "logit": 22.675,
+          "logit_margin": -4.425,
+          "dAmplify": 2.1500000000000004
+        }
+      }
+    },
+    {
+      "layer": 1,
+      "neuron": 198,
+      "multipliers": {
+        "2.0": {
+          "prob": 0.005369313013216015,
+          "logit": 21.475,
+          "logit_margin": -6.6,
+          "dAmplify": -0.024999999999999467
+        },
+        "3.0": {
+          "prob": 0.004805926670087501,
+          "logit": 21.275,
+          "logit_margin": -6.6,
+          "dAmplify": -0.024999999999999467
+        },
+        "5.0": {
+          "prob": 0.004176529895630665,
+          "logit": 21.075,
+          "logit_margin": -6.875,
+          "dAmplify": -0.2999999999999998
+        },
+        "10.0": {
+          "prob": 0.004173511233966564,
+          "logit": 21.025,
+          "logit_margin": -7.275,
+          "dAmplify": -0.7000000000000002
+        }
+      }
+    }
+  ],
+  "random_controls": {
+    "n": 20,
+    "mean": 0.0012500000000002399,
+    "std": 0.026780356607035642,
+    "values": [
+      0.04999999999999982,
+      -0.024999999999999467,
+      0.0,
+      0.025000000000000355,
+      0.025000000000000355,
+      0.0,
+      -0.024999999999999467,
+      0.025000000000000355,
+      0.025000000000000355,
+      0.025000000000000355,
+      0.0,
+      -0.024999999999999467,
+      0.0,
+      -0.04999999999999982,
+      0.0,
+      -0.04999999999999982,
+      0.025000000000000355,
+      0.0,
+      0.025000000000000355,
+      -0.024999999999999467
+    ]
+  }
+}

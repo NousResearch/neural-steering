@@ -1,0 +1,261 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading meta-llama/Llama-3.1-8B-Instruct...
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:07<00:23,  7.92s/it]Fetching 4 files: 100%|██████████| 4/4 [00:07<00:00,  1.98s/it]
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   0%|          | 1/291 [00:00<00:35,  8.08it/s]Loading weights:   1%|          | 2/291 [00:00<00:40,  7.15it/s]Loading weights:   5%|▌         | 15/291 [00:00<00:05, 47.75it/s]Loading weights:   9%|▉         | 27/291 [00:00<00:03, 69.38it/s]Loading weights:  12%|█▏        | 36/291 [00:00<00:03, 74.77it/s]Loading weights:  15%|█▌        | 44/291 [00:00<00:03, 75.69it/s]Loading weights:  18%|█▊        | 52/291 [00:00<00:03, 73.44it/s]Loading weights:  21%|██        | 60/291 [00:00<00:03, 70.46it/s]Loading weights:  24%|██▎       | 69/291 [00:01<00:03, 70.96it/s]Loading weights:  27%|██▋       | 78/291 [00:01<00:02, 71.29it/s]Loading weights:  30%|██▉       | 86/291 [00:01<00:02, 73.28it/s]Loading weights:  32%|███▏      | 94/291 [00:01<00:02, 73.95it/s]Loading weights:  35%|███▌      | 102/291 [00:01<00:02, 74.59it/s]Loading weights:  38%|███▊      | 110/291 [00:01<00:02, 68.62it/s]Loading weights:  40%|████      | 117/291 [00:01<00:02, 64.70it/s]Loading weights:  43%|████▎     | 124/291 [00:01<00:02, 61.63it/s]Loading weights:  45%|████▌     | 131/291 [00:02<00:02, 63.16it/s]Loading weights:  48%|████▊     | 139/291 [00:02<00:02, 66.69it/s]Loading weights:  50%|█████     | 146/291 [00:02<00:02, 66.93it/s]Loading weights:  53%|█████▎    | 153/291 [00:02<00:02, 62.99it/s]Loading weights:  55%|█████▍    | 160/291 [00:02<00:02, 60.25it/s]Loading weights:  57%|█████▋    | 167/291 [00:02<00:01, 62.48it/s]Loading weights:  60%|██████    | 176/291 [00:02<00:01, 63.57it/s]Loading weights:  63%|██████▎   | 184/291 [00:02<00:01, 67.61it/s]Loading weights:  66%|██████▌   | 191/291 [00:02<00:01, 67.81it/s]Loading weights:  68%|██████▊   | 198/291 [00:03<00:01, 64.89it/s]Loading weights:  70%|███████   | 205/291 [00:03<00:01, 62.94it/s]Loading weights:  73%|███████▎  | 213/291 [00:03<00:01, 62.21it/s]Loading weights:  76%|███████▋  | 222/291 [00:03<00:01, 64.48it/s]Loading weights:  79%|███████▉  | 230/291 [00:03<00:00, 67.61it/s]Loading weights:  82%|████████▏ | 239/291 [00:03<00:00, 67.33it/s]Loading weights:  85%|████████▌ | 248/291 [00:03<00:00, 68.01it/s]Loading weights:  88%|████████▊ | 257/291 [00:03<00:00, 68.52it/s]Loading weights:  91%|█████████▏| 266/291 [00:04<00:00, 68.94it/s]Loading weights:  95%|█████████▍| 275/291 [00:04<00:00, 70.01it/s]Loading weights:  98%|█████████▊| 284/291 [00:04<00:00, 69.87it/s]Loading weights: 100%|██████████| 291/291 [00:04<00:00, 66.61it/s]
+Loaded meta-llama/Llama-3.1-8B-Instruct on cuda (instruct=True)
+Detecting universal neurons...
+  Blacklist: 48 universal neurons (12 from TransluceAI + 36 new auto-detected)
+Model loaded on cuda
+
+======================================================================
+SYNERGY SEARCH: BEHAVIORAL
+======================================================================
+  Circuit size: 91 neurons
+  Unique bottleneck neurons: 24 (using top 24)
+
+--- Phase 0: Baseline & full circuit reference ---
+  Baseline margin: 12.06
+  Full circuit dMargin: 14.46
+
+--- Phase 1: Single-neuron effects (24 neurons) ---
+  [ 1] L26/N11984: dM=-0.3000 (-2.1%)
+  [ 2] L28/N 1222: dM=+0.0500 ( 0.3%)
+  [ 3] L28/N 6394: dM=-0.0125 (-0.1%)
+  [ 4] L28/N 2807: dM=+0.1375 ( 1.0%)
+  [ 5] L24/N 2598: dM=+0.4875 ( 3.4%)
+  [ 6] L24/N 1619: dM=-0.0875 (-0.6%)
+  [ 7] L23/N 2069: dM=+0.0375 ( 0.3%)
+  [ 8] L29/N 1878: dM=+0.1875 ( 1.3%)
+  [ 9] L29/N 4918: dM=-0.5250 (-3.6%)
+  [10] L22/N11137: dM=-0.1750 (-1.2%)
+  [11] L26/N 4904: dM=-0.2000 (-1.4%)
+  [12] L28/N 6305: dM=+0.2375 ( 1.6%)
+  [13] L22/N 7356: dM=-0.0125 (-0.1%)
+  [14] L22/N 3319: dM=+0.0000 ( 0.0%)
+  [15] L28/N 3413: dM=-0.1750 (-1.2%)
+  [16] L30/N 4128: dM=+0.1750 ( 1.2%)
+  [17] L30/N  864: dM=-0.3000 (-2.1%)
+  [18] L30/N 8662: dM=+0.9250 ( 6.4%)
+  [19] L30/N 7041: dM=+0.2125 ( 1.5%)
+  [20] L30/N 3587: dM=+0.1750 ( 1.2%)
+  [21] L21/N 3057: dM=-0.4125 (-2.9%)
+  [22] L21/N10092: dM=-0.1000 (-0.7%)
+  [23] L20/N 9928: dM=-0.1125 (-0.8%)
+  [24] L18/N 8429: dM=+0.6000 ( 4.1%)
+
+--- Phase 2: Exhaustive pair search (276 pairs) ---
+  Completed 50/276 pairs...
+  Completed 100/276 pairs...
+  Completed 150/276 pairs...
+  Completed 200/276 pairs...
+  Completed 250/276 pairs...
+  Completed 276/276 pairs...
+
+  Top 10 pairs by dMargin:
+  Pair                                 dM     sum1    syn   %full
+  L24/N 2598 + L30/N 8662  dM=+1.3875  sum=+1.4125   0.98  ( 9.6%)
+  L30/N 8662 + L18/N 8429  dM=+1.2125  sum=+1.5250   0.80  ( 8.4%)
+  L28/N 6305 + L30/N 8662  dM=+1.1875  sum=+1.1625   1.02  ( 8.2%)
+  L29/N 1878 + L30/N 8662  dM=+1.1250  sum=+1.1125   1.01  ( 7.8%)
+  L30/N 8662 + L30/N 7041  dM=+1.1125  sum=+1.1375   0.98  ( 7.7%)
+  L30/N 8662 + L30/N 3587  dM=+1.1000  sum=+1.1000   1.00  ( 7.6%)
+  L30/N 4128 + L30/N 8662  dM=+1.0625  sum=+1.1000   0.97  ( 7.3%)
+  L24/N 2598 + L18/N 8429  dM=+1.0375  sum=+1.0875   0.95  ( 7.2%)
+  L28/N 1222 + L30/N 8662  dM=+0.9750  sum=+0.9750   1.00  ( 6.7%)
+  L24/N 1619 + L30/N 8662  dM=+0.9750  sum=+0.8375   1.16  ( 6.7%)
+
+  Top 5 most synergistic (ratio > 1):
+  L22/N11137 + L30/N 4128  dM=+0.0500  syn=inf
+  L22/N11137 + L30/N 3587  dM=+0.0375  syn=inf
+  L26/N 4904 + L30/N 7041  dM=+0.1000  syn=8.00
+  L23/N 2069 + L22/N 3319  dM=+0.1500  syn=4.00
+  L28/N 1222 + L22/N 3319  dM=+0.1500  syn=3.00
+
+--- Phase 3: Greedy triple search (from top-5 pairs) ---
+  Pair #1: L24/N 2598+L30/N 8662 (dM=+1.3875) + best L18/N 8429 → triple dM=+1.6375 (syn=0.81, 11.3%)
+  Pair #2: L30/N 8662+L18/N 8429 (dM=+1.2125) + best L24/N 2598 → triple dM=+1.6375 (syn=0.81, 11.3%)
+  Pair #3: L28/N 6305+L30/N 8662 (dM=+1.1875) + best L24/N 2598 → triple dM=+1.5875 (syn=0.96, 11.0%)
+  Pair #4: L29/N 1878+L30/N 8662 (dM=+1.1250) + best L30/N 7041 → triple dM=+1.5625 (syn=1.18, 10.8%)
+  Pair #5: L30/N 8662+L30/N 7041 (dM=+1.1125) + best L24/N 2598 → triple dM=+1.6000 (syn=0.98, 11.1%)
+
+--- Phase 4: Progressive ablation (cumulative, by causal rank) ---
+    k  dMargin   %full  marginal added               
+    1  dM=+0.9250  ( 6.4%)  Δ=+0.9250  +L30/N 8662
+    2  dM=+1.2125  ( 8.4%)  Δ=+0.2875  +L18/N 8429
+    3  dM=+1.6375  (11.3%)  Δ=+0.4250  +L24/N 2598
+    4  dM=+1.8500  (12.8%)  Δ=+0.2125  +L28/N 6305
+    5  dM=+2.0500  (14.2%)  Δ=+0.2000  +L30/N 7041
+    6  dM=+2.4250  (16.8%)  Δ=+0.3750  +L29/N 1878
+    7  dM=+2.8250  (19.5%)  Δ=+0.4000  +L30/N 4128
+    8  dM=+3.2375  (22.4%)  Δ=+0.4125  +L30/N 3587
+    9  dM=+3.4125  (23.6%)  Δ=+0.1750  +L28/N 2807
+   10  dM=+3.5625  (24.6%)  Δ=+0.1500  +L28/N 1222
+   11  dM=+3.6500  (25.2%)  Δ=+0.0875  +L23/N 2069
+   12  dM=+3.7375  (25.8%)  Δ=+0.0875  +L22/N 3319
+   13  dM=+3.7500  (25.9%)  Δ=+0.0125  +L28/N 6394
+   14  dM=+3.7625  (26.0%)  Δ=+0.0125  +L22/N 7356
+   15  dM=+3.7375  (25.8%)  Δ=-0.0250  +L24/N 1619
+   16  dM=+3.7875  (26.2%)  Δ=+0.0500  +L21/N10092
+   17  dM=+3.8625  (26.7%)  Δ=+0.0750  +L20/N 9928
+   18  dM=+3.7000  (25.6%)  Δ=-0.1625  +L22/N11137
+   19  dM=+3.4875  (24.1%)  Δ=-0.2125  +L28/N 3413
+   20  dM=+3.4500  (23.9%)  Δ=-0.0375  +L26/N 4904
+   21  dM=+3.3750  (23.3%)  Δ=-0.0750  +L26/N11984
+   22  dM=+3.2625  (22.6%)  Δ=-0.1125  +L30/N  864
+   23  dM=+3.1500  (21.8%)  Δ=-0.1125  +L21/N 3057
+   24  dM=+3.0125  (20.8%)  Δ=-0.1375  +L29/N 4918
+
+--- Phase 5: Random pair controls (n=50) ---
+  Random pair dMargin: mean=-0.0107 std=0.0240
+
+======================================================================
+SUMMARY — BEHAVIORAL SYNERGY SEARCH
+======================================================================
+  Full circuit dMargin: 14.46
+  Best single: L30/N 8662 dM=+0.9250 (6.4%)
+  Best pair: L24/N 2598+L30/N 8662 dM=+1.3875 (9.6%), synergy=0.98
+  Best triple: dM=+1.6375 (11.3%), synergy=0.81
+  25% of full circuit at: k=11 neurons
+  50% not reached: max k=24 → 20.8%
+
+  Synergy distribution (149 meaningful pairs):
+    Synergistic (>1.2x): 48
+    Additive (0.8-1.2x): 82
+    Subadditive (<0.8x):  19
+    L24/N 2598+L30/N 8662: 58.3σ above random pairs
+    L30/N 8662+L18/N 8429: 51.0σ above random pairs
+    L28/N 6305+L30/N 8662: 50.0σ above random pairs
+    L29/N 1878+L30/N 8662: 47.4σ above random pairs
+    L30/N 8662+L30/N 7041: 46.8σ above random pairs
+
+  >> FAULT-TOLERANT: even all 24 bottleneck neurons capture only 21%
+
+  Saved to experiments/synergy_llama8b_20260305_182636/synergy_behavioral.json
+
+======================================================================
+SYNERGY SEARCH: FACTUAL
+======================================================================
+  Circuit size: 114 neurons
+  Unique bottleneck neurons: 56 (using top 24)
+
+--- Phase 0: Baseline & full circuit reference ---
+  Baseline margin: 0.00
+  Full circuit dMargin: 9.76
+
+--- Phase 1: Single-neuron effects (24 neurons) ---
+  [ 1] L25/N13461: dM=+0.0750 ( 0.8%)
+  [ 2] L23/N 2709: dM=-0.1750 (-1.8%)
+  [ 3] L23/N13769: dM=+0.2000 ( 2.0%)
+  [ 4] L26/N  824: dM=+0.1000 ( 1.0%)
+  [ 5] L22/N 5520: dM=-0.3250 (-3.3%)
+  [ 6] L22/N 6306: dM=+0.1750 ( 1.8%)
+  [ 7] L28/N13051: dM=-0.0750 (-0.8%)
+  [ 8] L27/N 3395: dM=+0.0000 ( 0.0%)
+  [ 9] L27/N 3765: dM=+0.1000 ( 1.0%)
+  [10] L29/N 5230: dM=+0.0000 ( 0.0%)
+  [11] L27/N 3766: dM=+0.0500 ( 0.5%)
+  [12] L27/N 4136: dM=-0.1250 (-1.3%)
+  [13] L21/N 4924: dM=+0.5250 ( 5.4%)
+  [14] L27/N 6450: dM=+0.1500 ( 1.5%)
+  [15] L28/N10950: dM=+0.0750 ( 0.8%)
+  [16] L28/N  781: dM=-0.1000 (-1.0%)
+  [17] L23/N10247: dM=-0.2500 (-2.6%)
+  [18] L29/N 8858: dM=-0.0500 (-0.5%)
+  [19] L29/N 3877: dM=+0.0750 ( 0.8%)
+  [20] L19/N 4155: dM=+0.0750 ( 0.8%)
+  [21] L19/N 1567: dM=-0.0500 (-0.5%)
+  [22] L21/N 7410: dM=-0.1500 (-1.5%)
+  [23] L20/N 8163: dM=+0.2500 ( 2.6%)
+  [24] L17/N11378: dM=-1.3250 (-13.6%)
+
+--- Phase 2: Exhaustive pair search (276 pairs) ---
+  Completed 50/276 pairs...
+  Completed 100/276 pairs...
+  Completed 150/276 pairs...
+  Completed 200/276 pairs...
+  Completed 250/276 pairs...
+  Completed 276/276 pairs...
+
+  Top 10 pairs by dMargin:
+  Pair                                 dM     sum1    syn   %full
+  L21/N 4924 + L20/N 8163  dM=+0.8500  sum=+0.7750   1.10  ( 8.7%)
+  L22/N 6306 + L21/N 4924  dM=+0.7250  sum=+0.7000   1.04  ( 7.4%)
+  L21/N 4924 + L27/N 6450  dM=+0.7250  sum=+0.6750   1.07  ( 7.4%)
+  L23/N13769 + L21/N 4924  dM=+0.6500  sum=+0.7250   0.90  ( 6.7%)
+  L21/N 4924 + L19/N 4155  dM=+0.6500  sum=+0.6000   1.08  ( 6.7%)
+  L27/N 3765 + L21/N 4924  dM=+0.6250  sum=+0.6250   1.00  ( 6.4%)
+  L21/N 4924 + L29/N 3877  dM=+0.6000  sum=+0.6000   1.00  ( 6.1%)
+  L25/N13461 + L21/N 4924  dM=+0.5750  sum=+0.6000   0.96  ( 5.9%)
+  L26/N  824 + L21/N 4924  dM=+0.5750  sum=+0.6250   0.92  ( 5.9%)
+  L29/N 5230 + L21/N 4924  dM=+0.5500  sum=+0.5250   1.05  ( 5.6%)
+
+  Top 5 most synergistic (ratio > 1):
+  L27/N 3395 + L29/N 5230  dM=+0.0500  syn=inf
+  L23/N 2709 + L22/N 6306  dM=+0.0250  syn=inf
+  L26/N  824 + L28/N  781  dM=+0.0250  syn=inf
+  L28/N13051 + L19/N 4155  dM=+0.0250  syn=inf
+  L27/N 3765 + L28/N  781  dM=+0.0250  syn=inf
+
+--- Phase 3: Greedy triple search (from top-5 pairs) ---
+  Pair #1: L21/N 4924+L20/N 8163 (dM=+0.8500) + best L22/N 6306 → triple dM=+1.1250 (syn=1.18, 11.5%)
+  Pair #2: L22/N 6306+L21/N 4924 (dM=+0.7250) + best L20/N 8163 → triple dM=+1.1250 (syn=1.18, 11.5%)
+  Pair #3: L21/N 4924+L27/N 6450 (dM=+0.7250) + best L20/N 8163 → triple dM=+1.0500 (syn=1.14, 10.8%)
+  Pair #4: L23/N13769+L21/N 4924 (dM=+0.6500) + best L20/N 8163 → triple dM=+0.9750 (syn=1.00, 10.0%)
+  Pair #5: L21/N 4924+L19/N 4155 (dM=+0.6500) + best L22/N 6306 → triple dM=+0.9250 (syn=1.19, 9.5%)
+
+--- Phase 4: Progressive ablation (cumulative, by causal rank) ---
+    k  dMargin   %full  marginal added               
+    1  dM=+0.5250  ( 5.4%)  Δ=+0.5250  +L21/N 4924
+    2  dM=+0.8500  ( 8.7%)  Δ=+0.3250  +L20/N 8163
+    3  dM=+0.9750  (10.0%)  Δ=+0.1250  +L23/N13769
+    4  dM=+1.2250  (12.5%)  Δ=+0.2500  +L22/N 6306
+    5  dM=+1.4250  (14.6%)  Δ=+0.2000  +L27/N 6450
+    6  dM=+1.5250  (15.6%)  Δ=+0.1000  +L26/N  824
+    7  dM=+1.6250  (16.6%)  Δ=+0.1000  +L27/N 3765
+    8  dM=+1.7750  (18.2%)  Δ=+0.1500  +L25/N13461
+    9  dM=+1.7750  (18.2%)  Δ=+0.0000  +L28/N10950
+   10  dM=+1.8500  (19.0%)  Δ=+0.0750  +L29/N 3877
+   11  dM=+1.9250  (19.7%)  Δ=+0.0750  +L19/N 4155
+   12  dM=+1.9250  (19.7%)  Δ=+0.0000  +L27/N 3766
+   13  dM=+1.9250  (19.7%)  Δ=+0.0000  +L27/N 3395
+   14  dM=+1.9250  (19.7%)  Δ=+0.0000  +L29/N 5230
+   15  dM=+1.8500  (19.0%)  Δ=-0.0750  +L29/N 8858
+   16  dM=+1.7500  (17.9%)  Δ=-0.1000  +L19/N 1567
+   17  dM=+1.6250  (16.6%)  Δ=-0.1250  +L28/N13051
+   18  dM=+1.6000  (16.4%)  Δ=-0.0250  +L28/N  781
+   19  dM=+1.5000  (15.4%)  Δ=-0.1000  +L27/N 4136
+   20  dM=+1.3250  (13.6%)  Δ=-0.1750  +L21/N 7410
+   21  dM=+1.3500  (13.8%)  Δ=+0.0250  +L23/N 2709
+   22  dM=+1.0750  (11.0%)  Δ=-0.2750  +L23/N10247
+   23  dM=+0.8000  ( 8.2%)  Δ=-0.2750  +L22/N 5520
+   24  dM=-0.8250  (-8.5%)  Δ=-1.6250  +L17/N11378
+
+--- Phase 5: Random pair controls (n=50) ---
+  Random pair dMargin: mean=-0.0035 std=0.0240
+
+======================================================================
+SUMMARY — FACTUAL SYNERGY SEARCH
+======================================================================
+  Full circuit dMargin: 9.76
+  Best single: L21/N 4924 dM=+0.5250 (5.4%)
+  Best pair: L21/N 4924+L20/N 8163 dM=+0.8500 (8.7%), synergy=1.10
+  Best triple: dM=+1.1250 (11.5%), synergy=1.18
+  25% not reached: max k=24 → -8.5%
+  50% not reached: max k=24 → -8.5%
+
+  Synergy distribution (126 meaningful pairs):
+    Synergistic (>1.2x): 23
+    Additive (0.8-1.2x): 78
+    Subadditive (<0.8x):  25
+    L21/N 4924+L20/N 8163: 35.6σ above random pairs
+    L22/N 6306+L21/N 4924: 30.4σ above random pairs
+    L21/N 4924+L27/N 6450: 30.4σ above random pairs
+    L23/N13769+L21/N 4924: 27.2σ above random pairs
+    L21/N 4924+L19/N 4155: 27.2σ above random pairs
+
+  >> FAULT-TOLERANT: even all 24 bottleneck neurons capture only -8%
+
+  Saved to experiments/synergy_llama8b_20260305_182636/synergy_factual.json
+
+All results saved to experiments/synergy_llama8b_20260305_182636

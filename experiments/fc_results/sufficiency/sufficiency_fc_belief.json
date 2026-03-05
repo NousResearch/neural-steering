@@ -1,0 +1,834 @@
+{
+  "task": "fc_belief",
+  "n_bottleneck_neurons": 24,
+  "control_baseline": {
+    "prob": 0.9333038568496704,
+    "logit": 28.175,
+    "logit_margin": 4.45
+  },
+  "neuron_activations": [
+    {
+      "layer": 21,
+      "neuron": 3400,
+      "source_mean": 0.20556640625,
+      "control_mean": 0.3296875,
+      "delta": -0.12412109375000002
+    },
+    {
+      "layer": 21,
+      "neuron": 11206,
+      "source_mean": -0.5541015625,
+      "control_mean": -0.354296875,
+      "delta": -0.19980468749999997
+    },
+    {
+      "layer": 21,
+      "neuron": 2382,
+      "source_mean": 0.44912109375,
+      "control_mean": 0.136328125,
+      "delta": 0.31279296874999996
+    },
+    {
+      "layer": 21,
+      "neuron": 13111,
+      "source_mean": -5.1953125,
+      "control_mean": -3.084375,
+      "delta": -2.1109375
+    },
+    {
+      "layer": 21,
+      "neuron": 3271,
+      "source_mean": -0.5732421875,
+      "control_mean": -0.2923828125,
+      "delta": -0.280859375
+    },
+    {
+      "layer": 22,
+      "neuron": 8117,
+      "source_mean": 6.753125,
+      "control_mean": 4.746875,
+      "delta": 2.0062499999999996
+    },
+    {
+      "layer": 22,
+      "neuron": 2094,
+      "source_mean": -0.1381744384765625,
+      "control_mean": -0.0892333984375,
+      "delta": -0.048941040039062494
+    },
+    {
+      "layer": 22,
+      "neuron": 9287,
+      "source_mean": 0.475390625,
+      "control_mean": 0.453125,
+      "delta": 0.02226562500000001
+    },
+    {
+      "layer": 22,
+      "neuron": 12065,
+      "source_mean": 0.3970703125,
+      "control_mean": 0.302734375,
+      "delta": 0.09433593750000002
+    },
+    {
+      "layer": 22,
+      "neuron": 5249,
+      "source_mean": -0.17529296875,
+      "control_mean": -0.0387420654296875,
+      "delta": -0.1365509033203125
+    },
+    {
+      "layer": 23,
+      "neuron": 11396,
+      "source_mean": 0.244921875,
+      "control_mean": 0.276171875,
+      "delta": -0.03125
+    },
+    {
+      "layer": 23,
+      "neuron": 2913,
+      "source_mean": 0.576171875,
+      "control_mean": 0.1552734375,
+      "delta": 0.4208984375
+    },
+    {
+      "layer": 20,
+      "neuron": 5697,
+      "source_mean": -1.628125,
+      "control_mean": -0.97578125,
+      "delta": -0.65234375
+    },
+    {
+      "layer": 20,
+      "neuron": 12753,
+      "source_mean": 0.124505615234375,
+      "control_mean": 0.0351318359375,
+      "delta": 0.08937377929687501
+    },
+    {
+      "layer": 23,
+      "neuron": 1955,
+      "source_mean": 0.8109375,
+      "control_mean": 0.522265625,
+      "delta": 0.288671875
+    },
+    {
+      "layer": 23,
+      "neuron": 5765,
+      "source_mean": 1.0671875,
+      "control_mean": 0.95703125,
+      "delta": 0.11015624999999996
+    },
+    {
+      "layer": 20,
+      "neuron": 8266,
+      "source_mean": -0.52890625,
+      "control_mean": -0.55703125,
+      "delta": 0.028124999999999956
+    },
+    {
+      "layer": 20,
+      "neuron": 8651,
+      "source_mean": 0.6498046875,
+      "control_mean": 0.36796875,
+      "delta": 0.28183593749999997
+    },
+    {
+      "layer": 20,
+      "neuron": 8388,
+      "source_mean": -0.4845703125,
+      "control_mean": -0.45234375,
+      "delta": -0.0322265625
+    },
+    {
+      "layer": 23,
+      "neuron": 4916,
+      "source_mean": -0.35029296875,
+      "control_mean": -0.091357421875,
+      "delta": -0.258935546875
+    },
+    {
+      "layer": 20,
+      "neuron": 4454,
+      "source_mean": -0.5330078125,
+      "control_mean": -0.6375,
+      "delta": 0.1044921875
+    },
+    {
+      "layer": 20,
+      "neuron": 776,
+      "source_mean": 0.199169921875,
+      "control_mean": 0.221435546875,
+      "delta": -0.02226562500000001
+    },
+    {
+      "layer": 23,
+      "neuron": 1653,
+      "source_mean": 0.533984375,
+      "control_mean": 0.165576171875,
+      "delta": 0.36840820312499994
+    },
+    {
+      "layer": 20,
+      "neuron": 5237,
+      "source_mean": 0.988671875,
+      "control_mean": 1.23828125,
+      "delta": -0.24960937500000002
+    }
+  ],
+  "full_transplant": {
+    "prob": 0.8912023782730103,
+    "logit": 27.375,
+    "logit_margin": 4.35
+  },
+  "dSufficiency_full": -0.10000000000000053,
+  "single_neuron_transplant": [
+    {
+      "layer": 21,
+      "neuron": 3400,
+      "source_activation": 0.20556640625,
+      "tx_prob": 0.931274139881134,
+      "tx_logit": 28.15,
+      "tx_logit_margin": 4.4,
+      "dSufficiency": -0.04999999999999982
+    },
+    {
+      "layer": 21,
+      "neuron": 11206,
+      "source_activation": -0.5541015625,
+      "tx_prob": 0.930369520187378,
+      "tx_logit": 28.125,
+      "tx_logit_margin": 4.425,
+      "dSufficiency": -0.025000000000000355
+    },
+    {
+      "layer": 21,
+      "neuron": 2382,
+      "source_activation": 0.44912109375,
+      "tx_prob": 0.9347662806510926,
+      "tx_logit": 28.2,
+      "tx_logit_margin": 4.575,
+      "dSufficiency": 0.125,
+      "sigma_above_random": 5.19615242270666
+    },
+    {
+      "layer": 21,
+      "neuron": 13111,
+      "source_activation": -5.1953125,
+      "tx_prob": 0.9626206517219543,
+      "tx_logit": 28.5,
+      "tx_logit_margin": 4.725,
+      "dSufficiency": 0.27499999999999947,
+      "sigma_above_random": 12.124355652982167
+    },
+    {
+      "layer": 21,
+      "neuron": 3271,
+      "source_activation": -0.5732421875,
+      "tx_prob": 0.934051239490509,
+      "tx_logit": 28.175,
+      "tx_logit_margin": 4.7,
+      "dSufficiency": 0.25,
+      "sigma_above_random": 10.969655114602936
+    },
+    {
+      "layer": 22,
+      "neuron": 8117,
+      "source_activation": 6.753125,
+      "tx_prob": 0.9292623400688171,
+      "tx_logit": 28.125,
+      "tx_logit_margin": 4.375,
+      "dSufficiency": -0.07500000000000018
+    },
+    {
+      "layer": 22,
+      "neuron": 2094,
+      "source_activation": -0.1381744384765625,
+      "tx_prob": 0.9317714095115661,
+      "tx_logit": 28.175,
+      "tx_logit_margin": 4.425,
+      "dSufficiency": -0.025000000000000355
+    },
+    {
+      "layer": 22,
+      "neuron": 9287,
+      "source_activation": 0.475390625,
+      "tx_prob": 0.9333323836326599,
+      "tx_logit": 28.175,
+      "tx_logit_margin": 4.475,
+      "dSufficiency": 0.024999999999999467,
+      "sigma_above_random": 0.5773502691896133
+    },
+    {
+      "layer": 22,
+      "neuron": 12065,
+      "source_activation": 0.3970703125,
+      "tx_prob": 0.933137834072113,
+      "tx_logit": 28.175,
+      "tx_logit_margin": 4.475,
+      "dSufficiency": 0.024999999999999467,
+      "sigma_above_random": 0.5773502691896133
+    },
+    {
+      "layer": 22,
+      "neuron": 5249,
+      "source_activation": -0.17529296875,
+      "tx_prob": 0.9311815857887268,
+      "tx_logit": 28.175,
+      "tx_logit_margin": 4.4,
+      "dSufficiency": -0.04999999999999982
+    },
+    {
+      "layer": 23,
+      "neuron": 11396,
+      "source_activation": 0.244921875,
+      "tx_prob": 0.9264109015464783,
+      "tx_logit": 28.125,
+      "tx_logit_margin": 4.4,
+      "dSufficiency": -0.04999999999999982
+    },
+    {
+      "layer": 23,
+      "neuron": 2913,
+      "source_activation": 0.576171875,
+      "tx_prob": 0.9313659191131591,
+      "tx_logit": 28.175,
+      "tx_logit_margin": 4.4,
+      "dSufficiency": -0.04999999999999982
+    },
+    {
+      "layer": 20,
+      "neuron": 5697,
+      "source_activation": -1.628125,
+      "tx_prob": 0.9265271663665772,
+      "tx_logit": 28.1,
+      "tx_logit_margin": 4.4,
+      "dSufficiency": -0.04999999999999982
+    },
+    {
+      "layer": 20,
+      "neuron": 12753,
+      "source_activation": 0.124505615234375,
+      "tx_prob": 0.9329610943794251,
+      "tx_logit": 28.175,
+      "tx_logit_margin": 4.45,
+      "dSufficiency": 0.0,
+      "sigma_above_random": -0.5773502691896175
+    },
+    {
+      "layer": 23,
+      "neuron": 1955,
+      "source_activation": 0.8109375,
+      "tx_prob": 0.932665479183197,
+      "tx_logit": 28.25,
+      "tx_logit_margin": 4.45,
+      "dSufficiency": 0.0,
+      "sigma_above_random": -0.5773502691896175
+    },
+    {
+      "layer": 23,
+      "neuron": 5765,
+      "source_activation": 1.0671875,
+      "tx_prob": 0.9269965887069702,
+      "tx_logit": 28.15,
+      "tx_logit_margin": 4.4,
+      "dSufficiency": -0.04999999999999982
+    },
+    {
+      "layer": 20,
+      "neuron": 8266,
+      "source_activation": -0.52890625,
+      "tx_prob": 0.9331860661506652,
+      "tx_logit": 28.15,
+      "tx_logit_margin": 4.45,
+      "dSufficiency": 0.0
+    },
+    {
+      "layer": 20,
+      "neuron": 8651,
+      "source_activation": 0.6498046875,
+      "tx_prob": 0.9330118536949158,
+      "tx_logit": 28.15,
+      "tx_logit_margin": 4.5,
+      "dSufficiency": 0.04999999999999982,
+      "sigma_above_random": 1.7320508075688852
+    },
+    {
+      "layer": 20,
+      "neuron": 8388,
+      "source_activation": -0.4845703125,
+      "tx_prob": 0.9333990812301636,
+      "tx_logit": 28.175,
+      "tx_logit_margin": 4.475,
+      "dSufficiency": 0.024999999999999467,
+      "sigma_above_random": 0.5773502691896133
+    },
+    {
+      "layer": 23,
+      "neuron": 4916,
+      "source_activation": -0.35029296875,
+      "tx_prob": 0.9356417894363404,
+      "tx_logit": 28.225,
+      "tx_logit_margin": 4.575,
+      "dSufficiency": 0.125,
+      "sigma_above_random": 5.19615242270666
+    },
+    {
+      "layer": 20,
+      "neuron": 4454,
+      "source_activation": -0.5330078125,
+      "tx_prob": 0.9283631563186645,
+      "tx_logit": 28.125,
+      "tx_logit_margin": 4.425,
+      "dSufficiency": -0.025000000000000355
+    },
+    {
+      "layer": 20,
+      "neuron": 776,
+      "source_activation": 0.199169921875,
+      "tx_prob": 0.9281532287597656,
+      "tx_logit": 28.15,
+      "tx_logit_margin": 4.45,
+      "dSufficiency": 0.0
+    },
+    {
+      "layer": 23,
+      "neuron": 1653,
+      "source_activation": 0.533984375,
+      "tx_prob": 0.930823814868927,
+      "tx_logit": 28.15,
+      "tx_logit_margin": 4.4,
+      "dSufficiency": -0.04999999999999982
+    },
+    {
+      "layer": 20,
+      "neuron": 5237,
+      "source_activation": 0.988671875,
+      "tx_prob": 0.9327907085418701,
+      "tx_logit": 28.175,
+      "tx_logit_margin": 4.45,
+      "dSufficiency": 0.0
+    }
+  ],
+  "progressive_transplant": [
+    {
+      "k": 1,
+      "added_neuron": {
+        "layer": 21,
+        "neuron": 13111
+      },
+      "cumulative_dSufficiency": 0.27499999999999947,
+      "fraction_of_full": -2.74999999999998,
+      "margin": 4.725
+    },
+    {
+      "k": 2,
+      "added_neuron": {
+        "layer": 21,
+        "neuron": 3271
+      },
+      "cumulative_dSufficiency": 0.5750000000000002,
+      "fraction_of_full": -5.749999999999972,
+      "margin": 5.025
+    },
+    {
+      "k": 3,
+      "added_neuron": {
+        "layer": 21,
+        "neuron": 2382
+      },
+      "cumulative_dSufficiency": 0.625,
+      "fraction_of_full": -6.249999999999967,
+      "margin": 5.075
+    },
+    {
+      "k": 4,
+      "added_neuron": {
+        "layer": 23,
+        "neuron": 4916
+      },
+      "cumulative_dSufficiency": 0.7000000000000002,
+      "fraction_of_full": -6.9999999999999645,
+      "margin": 5.15
+    },
+    {
+      "k": 5,
+      "added_neuron": {
+        "layer": 20,
+        "neuron": 8651
+      },
+      "cumulative_dSufficiency": 0.6749999999999998,
+      "fraction_of_full": -6.749999999999963,
+      "margin": 5.125
+    },
+    {
+      "k": 6,
+      "added_neuron": {
+        "layer": 22,
+        "neuron": 9287
+      },
+      "cumulative_dSufficiency": 0.75,
+      "fraction_of_full": -7.49999999999996,
+      "margin": 5.2
+    },
+    {
+      "k": 7,
+      "added_neuron": {
+        "layer": 22,
+        "neuron": 12065
+      },
+      "cumulative_dSufficiency": 0.75,
+      "fraction_of_full": -7.49999999999996,
+      "margin": 5.2
+    },
+    {
+      "k": 8,
+      "added_neuron": {
+        "layer": 20,
+        "neuron": 8388
+      },
+      "cumulative_dSufficiency": 0.75,
+      "fraction_of_full": -7.49999999999996,
+      "margin": 5.2
+    },
+    {
+      "k": 9,
+      "added_neuron": {
+        "layer": 20,
+        "neuron": 12753
+      },
+      "cumulative_dSufficiency": 0.75,
+      "fraction_of_full": -7.49999999999996,
+      "margin": 5.2
+    },
+    {
+      "k": 10,
+      "added_neuron": {
+        "layer": 23,
+        "neuron": 1955
+      },
+      "cumulative_dSufficiency": 0.6499999999999995,
+      "fraction_of_full": -6.49999999999996,
+      "margin": 5.1
+    },
+    {
+      "k": 11,
+      "added_neuron": {
+        "layer": 20,
+        "neuron": 8266
+      },
+      "cumulative_dSufficiency": 0.6499999999999995,
+      "fraction_of_full": -6.49999999999996,
+      "margin": 5.1
+    },
+    {
+      "k": 12,
+      "added_neuron": {
+        "layer": 20,
+        "neuron": 776
+      },
+      "cumulative_dSufficiency": 0.7000000000000002,
+      "fraction_of_full": -6.9999999999999645,
+      "margin": 5.15
+    },
+    {
+      "k": 13,
+      "added_neuron": {
+        "layer": 20,
+        "neuron": 5237
+      },
+      "cumulative_dSufficiency": 0.6499999999999995,
+      "fraction_of_full": -6.49999999999996,
+      "margin": 5.1
+    },
+    {
+      "k": 14,
+      "added_neuron": {
+        "layer": 21,
+        "neuron": 11206
+      },
+      "cumulative_dSufficiency": 0.6749999999999998,
+      "fraction_of_full": -6.749999999999963,
+      "margin": 5.125
+    },
+    {
+      "k": 15,
+      "added_neuron": {
+        "layer": 22,
+        "neuron": 2094
+      },
+      "cumulative_dSufficiency": 0.6749999999999998,
+      "fraction_of_full": -6.749999999999963,
+      "margin": 5.125
+    },
+    {
+      "k": 16,
+      "added_neuron": {
+        "layer": 20,
+        "neuron": 4454
+      },
+      "cumulative_dSufficiency": 0.7000000000000002,
+      "fraction_of_full": -6.9999999999999645,
+      "margin": 5.15
+    },
+    {
+      "k": 17,
+      "added_neuron": {
+        "layer": 21,
+        "neuron": 3400
+      },
+      "cumulative_dSufficiency": 0.6749999999999998,
+      "fraction_of_full": -6.749999999999963,
+      "margin": 5.125
+    },
+    {
+      "k": 18,
+      "added_neuron": {
+        "layer": 22,
+        "neuron": 5249
+      },
+      "cumulative_dSufficiency": 0.6749999999999998,
+      "fraction_of_full": -6.749999999999963,
+      "margin": 5.125
+    },
+    {
+      "k": 19,
+      "added_neuron": {
+        "layer": 23,
+        "neuron": 11396
+      },
+      "cumulative_dSufficiency": 0.625,
+      "fraction_of_full": -6.249999999999967,
+      "margin": 5.075
+    },
+    {
+      "k": 20,
+      "added_neuron": {
+        "layer": 23,
+        "neuron": 2913
+      },
+      "cumulative_dSufficiency": 0.5750000000000002,
+      "fraction_of_full": -5.749999999999972,
+      "margin": 5.025
+    },
+    {
+      "k": 21,
+      "added_neuron": {
+        "layer": 20,
+        "neuron": 5697
+      },
+      "cumulative_dSufficiency": 0.5999999999999996,
+      "fraction_of_full": -5.9999999999999645,
+      "margin": 5.05
+    },
+    {
+      "k": 22,
+      "added_neuron": {
+        "layer": 23,
+        "neuron": 5765
+      },
+      "cumulative_dSufficiency": 0.625,
+      "fraction_of_full": -6.249999999999967,
+      "margin": 5.075
+    },
+    {
+      "k": 23,
+      "added_neuron": {
+        "layer": 23,
+        "neuron": 1653
+      },
+      "cumulative_dSufficiency": 0.5249999999999995,
+      "fraction_of_full": -5.249999999999967,
+      "margin": 4.975
+    },
+    {
+      "k": 24,
+      "added_neuron": {
+        "layer": 22,
+        "neuron": 8117
+      },
+      "cumulative_dSufficiency": 0.5,
+      "fraction_of_full": -4.999999999999973,
+      "margin": 4.95
+    }
+  ],
+  "amplification": [
+    {
+      "layer": 21,
+      "neuron": 13111,
+      "multipliers": {
+        "2.0": {
+          "prob": 0.9660460233688355,
+          "logit": 28.6,
+          "logit_margin": 4.8,
+          "dAmplify": 0.34999999999999964
+        },
+        "3.0": {
+          "prob": 0.9799273848533631,
+          "logit": 28.5,
+          "logit_margin": 5.075,
+          "dAmplify": 0.625
+        },
+        "5.0": {
+          "prob": 0.9926859140396118,
+          "logit": 27.55,
+          "logit_margin": 5.8,
+          "dAmplify": 1.3499999999999996
+        },
+        "10.0": {
+          "prob": 0.9943415522575378,
+          "logit": 24.375,
+          "logit_margin": 5.5,
+          "dAmplify": 1.0499999999999998
+        }
+      }
+    },
+    {
+      "layer": 21,
+      "neuron": 3271,
+      "multipliers": {
+        "2.0": {
+          "prob": 0.9335154533386231,
+          "logit": 28.175,
+          "logit_margin": 4.65,
+          "dAmplify": 0.20000000000000018
+        },
+        "3.0": {
+          "prob": 0.9338503241539001,
+          "logit": 28.125,
+          "logit_margin": 4.775,
+          "dAmplify": 0.3250000000000002
+        },
+        "5.0": {
+          "prob": 0.9298068165779114,
+          "logit": 28.1,
+          "logit_margin": 5.05,
+          "dAmplify": 0.5999999999999996
+        },
+        "10.0": {
+          "prob": 0.9384855628013611,
+          "logit": 28.125,
+          "logit_margin": 5.45,
+          "dAmplify": 1.0
+        }
+      }
+    },
+    {
+      "layer": 21,
+      "neuron": 2382,
+      "multipliers": {
+        "2.0": {
+          "prob": 0.9366166591644287,
+          "logit": 28.175,
+          "logit_margin": 4.6,
+          "dAmplify": 0.14999999999999947
+        },
+        "3.0": {
+          "prob": 0.941433596611023,
+          "logit": 28.275,
+          "logit_margin": 4.875,
+          "dAmplify": 0.4249999999999998
+        },
+        "5.0": {
+          "prob": 0.9445523858070374,
+          "logit": 28.25,
+          "logit_margin": 5.175,
+          "dAmplify": 0.7249999999999996
+        },
+        "10.0": {
+          "prob": 0.9509183526039123,
+          "logit": 28.275,
+          "logit_margin": 5.425,
+          "dAmplify": 0.9749999999999996
+        }
+      }
+    },
+    {
+      "layer": 23,
+      "neuron": 4916,
+      "multipliers": {
+        "2.0": {
+          "prob": 0.934768533706665,
+          "logit": 28.225,
+          "logit_margin": 4.525,
+          "dAmplify": 0.07500000000000018
+        },
+        "3.0": {
+          "prob": 0.9342726826667785,
+          "logit": 28.175,
+          "logit_margin": 4.475,
+          "dAmplify": 0.024999999999999467
+        },
+        "5.0": {
+          "prob": 0.9372527718544006,
+          "logit": 28.25,
+          "logit_margin": 4.6,
+          "dAmplify": 0.14999999999999947
+        },
+        "10.0": {
+          "prob": 0.9432920455932617,
+          "logit": 28.35,
+          "logit_margin": 4.775,
+          "dAmplify": 0.3250000000000002
+        }
+      }
+    },
+    {
+      "layer": 20,
+      "neuron": 8651,
+      "multipliers": {
+        "2.0": {
+          "prob": 0.9209117889404297,
+          "logit": 28.05,
+          "logit_margin": 4.45,
+          "dAmplify": 0.0
+        },
+        "3.0": {
+          "prob": 0.9079880475997925,
+          "logit": 27.875,
+          "logit_margin": 4.4,
+          "dAmplify": -0.04999999999999982
+        },
+        "5.0": {
+          "prob": 0.8888687491416931,
+          "logit": 27.5,
+          "logit_margin": 4.25,
+          "dAmplify": -0.20000000000000018
+        },
+        "10.0": {
+          "prob": 0.8047921776771545,
+          "logit": 26.45,
+          "logit_margin": 3.9,
+          "dAmplify": -0.5500000000000003
+        }
+      }
+    }
+  ],
+  "random_controls": {
+    "n": 20,
+    "mean": 0.012499999999999779,
+    "std": 0.021650635094610893,
+    "values": [
+      0.04999999999999982,
+      0.0,
+      0.0,
+      0.0,
+      0.024999999999999467,
+      0.0,
+      0.024999999999999467,
+      0.04999999999999982,
+      0.04999999999999982,
+      0.024999999999999467,
+      -0.025000000000000355,
+      0.0,
+      -0.025000000000000355,
+      0.024999999999999467,
+      0.0,
+      0.024999999999999467,
+      0.0,
+      0.0,
+      0.0,
+      0.024999999999999467
+    ]
+  }
+}

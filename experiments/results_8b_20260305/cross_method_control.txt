@@ -1,0 +1,137 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading meta-llama/Llama-3.1-8B-Instruct...
+Loading meta-llama/Llama-3.1-8B-Instruct...
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   0%|          | 1/291 [00:00<00:40,  7.19it/s]Loading weights:   1%|          | 2/291 [00:00<00:55,  5.21it/s]Loading weights:   4%|▍         | 13/291 [00:00<00:07, 35.97it/s]Loading weights:   8%|▊         | 22/291 [00:00<00:05, 51.60it/s]Loading weights:  11%|█         | 31/291 [00:00<00:04, 59.65it/s]Loading weights:  14%|█▎        | 40/291 [00:00<00:04, 62.28it/s]Loading weights:  16%|█▌        | 47/291 [00:00<00:03, 64.00it/s]Loading weights:  19%|█▊        | 54/291 [00:01<00:03, 61.44it/s]Loading weights:  21%|██        | 61/291 [00:01<00:03, 59.74it/s]Loading weights:  23%|██▎       | 68/291 [00:01<00:03, 61.80it/s]Loading weights:  26%|██▌       | 76/291 [00:01<00:03, 66.22it/s]Loading weights:  29%|██▊       | 83/291 [00:01<00:03, 54.35it/s]Loading weights:  31%|███       | 89/291 [00:01<00:03, 55.34it/s]Loading weights:  33%|███▎      | 95/291 [00:02<00:07, 25.23it/s]Loading weights:  34%|███▍      | 100/291 [00:02<00:06, 27.44it/s]Loading weights:  36%|███▌      | 105/291 [00:02<00:10, 17.37it/s]Loading weights:  38%|███▊      | 110/291 [00:03<00:08, 20.44it/s]Loading weights:  39%|███▉      | 114/291 [00:03<00:11, 15.10it/s]Loading weights:  42%|████▏     | 122/291 [00:03<00:08, 20.40it/s]Loading weights:  43%|████▎     | 126/291 [00:03<00:07, 22.26it/s]Loading weights:  45%|████▌     | 131/291 [00:04<00:06, 24.08it/s]Loading weights:  46%|████▋     | 135/291 [00:04<00:06, 25.41it/s]Loading weights:  48%|████▊     | 140/291 [00:04<00:05, 26.47it/s]Loading weights:  50%|████▉     | 145/291 [00:04<00:04, 29.88it/s]Loading weights:  51%|█████     | 149/291 [00:04<00:05, 27.23it/s]Loading weights:  53%|█████▎    | 155/291 [00:04<00:04, 33.16it/s]Loading weights:  55%|█████▍    | 159/291 [00:04<00:04, 28.75it/s]Loading weights:  57%|█████▋    | 166/291 [00:05<00:03, 36.91it/s]Loading weights:  59%|█████▉    | 171/291 [00:05<00:03, 33.60it/s]Loading weights:  60%|██████    | 175/291 [00:05<00:03, 34.53it/s]Loading weights:  62%|██████▏   | 179/291 [00:05<00:03, 32.78it/s]Loading weights:  64%|██████▎   | 185/291 [00:05<00:03, 34.55it/s]Loading weights:  66%|██████▋   | 193/291 [00:05<00:02, 41.73it/s]Loading weights:  68%|██████▊   | 198/291 [00:05<00:02, 42.47it/s]Loading weights:  70%|██████▉   | 203/291 [00:06<00:01, 44.07it/s]Loading weights:  73%|███████▎  | 211/291 [00:06<00:01, 50.48it/s]Loading weights:  75%|███████▍  | 217/291 [00:06<00:01, 50.00it/s]Loading weights:  77%|███████▋  | 223/291 [00:06<00:01, 48.72it/s]Loading weights:  79%|███████▉  | 230/291 [00:06<00:01, 53.35it/s]Loading weights:  82%|████████▏ | 238/291 [00:06<00:00, 56.55it/s]Loading weights:  84%|████████▍ | 244/291 [00:06<00:00, 54.46it/s]Loading weights:  86%|████████▌ | 250/291 [00:06<00:00, 50.58it/s]Loading weights:  88%|████████▊ | 257/291 [00:07<00:01, 30.63it/s]Loading weights:  90%|█████████ | 262/291 [00:07<00:00, 31.74it/s]Loading weights:  91%|█████████▏| 266/291 [00:07<00:00, 28.37it/s]Loading weights:  93%|█████████▎| 271/291 [00:07<00:00, 31.31it/s]Loading weights:  95%|█████████▍| 275/291 [00:07<00:00, 29.26it/s]Loading weights:  97%|█████████▋| 283/291 [00:08<00:00, 37.59it/s]Loading weights:  99%|█████████▉| 289/291 [00:08<00:00, 41.96it/s]Loading weights: 100%|██████████| 291/291 [00:08<00:00, 35.65it/s]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Loaded meta-llama/Llama-3.1-8B-Instruct on cuda (instruct=True)
+Detecting universal neurons...
+  Blacklist: 48 universal neurons (12 from TransluceAI + 36 new auto-detected)
+
+--- Contrastive on CAPITALS ---
+  Group A (6): What is the capital of the state containing Dallas?, ...
+  Group B (6): What is the capital of Brazil?, ...
+  Collecting activations for 6 positive prompts...
+  Collecting activations for 6 negative prompts...
+
+============================================================
+  Contrastive — Factual (Capitals)
+  mean_layer=30.0  late_frac=0.99  total=200
+============================================================
+  L24 │ 2
+  L25 │█ 6
+  L26 │██ 9
+  L27 │█ 5
+  L28 │█ 4
+  L29 │███ 11
+  L30 │███████████ 36
+  L31 │████████████████████████████████████████ 127
+
+--- Contrastive on REFUSAL ---
+  Collecting activations for 10 positive prompts...
+  Collecting activations for 10 negative prompts...
+
+============================================================
+  Contrastive — Behavioral (Refusal)
+  mean_layer=29.9  late_frac=0.94  total=200
+============================================================
+  L11 │ 1
+  L15 │ 1
+  L18 │ 2
+  L20 │ 2
+  L22 │ 3
+  L23 │ 2
+  L24 │ 2
+  L25 │ 2
+  L26 │ 3
+  L27 │ 3
+  L28 │█ 4
+  L29 │█ 4
+  L30 │████████ 29
+  L31 │████████████████████████████████████████ 142
+
+--- RelP on CAPITALS ---
+
+============================================================
+  RelP — Factual (Capitals)
+  mean_layer=23.4  late_frac=0.59  total=200
+============================================================
+  L00 │████ 6
+  L01 │██ 3
+  L02 │█ 2
+  L03 │█ 2
+  L04 │ 1
+  L05 │ 1
+  L08 │███ 5
+  L09 │█ 2
+  L10 │██ 4
+  L11 │█ 2
+  L12 │█████ 8
+  L13 │████ 7
+  L14 │██ 3
+  L15 │██ 3
+  L16 │ 1
+  L17 │ 1
+  L18 │██ 3
+  L19 │██ 3
+  L20 │██ 4
+  L21 │██ 4
+  L22 │████ 7
+  L23 │██ 4
+  L24 │███ 5
+  L25 │████ 7
+  L26 │██ 4
+  L27 │████ 6
+  L28 │█████ 8
+  L29 │███████ 11
+  L30 │████████████████ 24
+  L31 │████████████████████████████████████████ 59
+
+============================================================
+  LAYER DISTRIBUTION SUMMARY
+============================================================
+  Method                         Mean Layer  Late Frac
+  --------------------------------------------------
+  Contrastive-Factual                  30.0       0.99
+  Contrastive-Refusal                  29.9       0.94
+  RelP-Factual                         23.4       0.59
+
+  CIRCUIT OVERLAP (Jaccard)
+  --------------------------------------------------
+  Contrastive-Factual ↔ Contrastive-Refusal: J=0.093 (34 shared)
+  Contrastive-Factual ↔ RelP-Factual:       J=0.070 (26 shared)
+  Contrastive-Refusal ↔ RelP-Factual:       J=0.018 (7 shared)
+
+============================================================
+  STEERING VALIDATION
+============================================================
+
+  [Contrastive-Factual] ablation (α=0.0):
+    Q: What is the capital of France?
+    A: The capital of France is Paris.
+    Q: What is the capital of Germany?
+    A: The capital of Germany is Berlin.
+
+  [Contrastive-Refusal] ablation (α=0.0):
+    Q: What is the capital of France?
+    A: The capital of France is Paris.
+    Q: What is the capital of Germany?
+    A: The capital of Germany is Berlin.
+
+  Benign preservation (α=0.0):
+
+  [Contrastive-Factual]:
+    Q: What is the weather like today?
+    A: However, I'm a large language model, I don't have real-time access to current weather conditions. But I can suggest some
+    Q: Tell me about the history of the internet.
+    A: The history of the internet is a long and complex one, spanning several decades. Here's a brief overview:  **Early Begin
+    Q: How does photosynthesis work?
+    A: Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical 
+
+  [Contrastive-Refusal]:
+    Q: What is the weather like today?
+    A: I'm not currently able to share information about the current weather.  I can suggest some ways for you to find out the 
+    Q: Tell me about the history of the internet.
+    A: The history of the internet is a long and complex one, spanning several decades. It's a story of innovation, collaborati
+    Q: How does photosynthesis work?
+    A: Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical 

@@ -1,0 +1,5225 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading meta-llama/Llama-3.1-8B-Instruct...
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   0%|          | 1/291 [00:00<00:34,  8.51it/s]Loading weights:   1%|          | 2/291 [00:00<00:39,  7.28it/s]Loading weights:   5%|▍         | 14/291 [00:00<00:05, 49.17it/s]Loading weights:   8%|▊         | 24/291 [00:00<00:04, 64.38it/s]Loading weights:  12%|█▏        | 36/291 [00:00<00:03, 81.05it/s]Loading weights:  15%|█▌        | 45/291 [00:00<00:03, 81.06it/s]Loading weights:  19%|█▊        | 54/291 [00:00<00:02, 81.67it/s]Loading weights:  22%|██▏       | 63/291 [00:00<00:02, 81.43it/s]Loading weights:  25%|██▍       | 72/291 [00:01<00:02, 81.99it/s]Loading weights:  28%|██▊       | 81/291 [00:01<00:02, 82.08it/s]Loading weights:  31%|███       | 90/291 [00:01<00:02, 79.83it/s]Loading weights:  34%|███▍      | 99/291 [00:01<00:02, 77.28it/s]Loading weights:  37%|███▋      | 107/291 [00:01<00:02, 75.22it/s]Loading weights:  40%|███▉      | 115/291 [00:01<00:02, 72.35it/s]Loading weights:  42%|████▏     | 123/291 [00:01<00:02, 70.19it/s]Loading weights:  45%|████▌     | 132/291 [00:01<00:02, 71.34it/s]Loading weights:  48%|████▊     | 141/291 [00:01<00:02, 72.07it/s]Loading weights:  52%|█████▏    | 150/291 [00:02<00:01, 72.52it/s]Loading weights:  55%|█████▍    | 159/291 [00:02<00:01, 72.82it/s]Loading weights:  58%|█████▊    | 168/291 [00:02<00:01, 72.92it/s]Loading weights:  61%|██████    | 177/291 [00:02<00:01, 73.19it/s]Loading weights:  64%|██████▍   | 186/291 [00:02<00:01, 74.28it/s]Loading weights:  67%|██████▋   | 195/291 [00:02<00:01, 75.31it/s]Loading weights:  70%|███████   | 204/291 [00:02<00:01, 76.75it/s]Loading weights:  73%|███████▎  | 213/291 [00:02<00:01, 77.77it/s]Loading weights:  76%|███████▋  | 222/291 [00:03<00:00, 78.64it/s]Loading weights:  79%|███████▉  | 231/291 [00:03<00:00, 76.02it/s]Loading weights:  82%|████████▏ | 240/291 [00:03<00:00, 78.01it/s]Loading weights:  86%|████████▌ | 249/291 [00:03<00:00, 78.80it/s]Loading weights:  89%|████████▊ | 258/291 [00:03<00:00, 79.50it/s]Loading weights:  92%|█████████▏| 267/291 [00:03<00:00, 79.86it/s]Loading weights:  95%|█████████▍| 276/291 [00:03<00:00, 80.60it/s]Loading weights:  98%|█████████▊| 285/291 [00:03<00:00, 80.90it/s]Loading weights: 100%|██████████| 291/291 [00:03<00:00, 75.52it/s]
+Loaded meta-llama/Llama-3.1-8B-Instruct on cuda (instruct=True)
+Detecting universal neurons...
+  Blacklist: 48 universal neurons (12 from TransluceAI + 36 new auto-detected)
+Results dir: /workspace/neural-steering/experiments/topology_llama8b_20260305_163508
+kmax=300, tau=0.95, scan_step=5
+
+
+######################################################################
+  RelP-Factual (Capitals)
+######################################################################
+
+  Phase 1: Discovering circuit pool (k=300)...
+  Prompt 1/12: 296296 neurons, ld=-2.1250
+  Prompt 2/12: 277823 neurons, ld=-0.8750
+  Prompt 3/12: 277803 neurons, ld=-0.5000
+  Prompt 4/12: 277819 neurons, ld=-0.2500
+  Prompt 5/12: 277804 neurons, ld=-0.1250
+  Prompt 6/12: 277800 neurons, ld=-0.8750
+  Prompt 7/12: 277795 neurons, ld=-3.0000
+  Prompt 8/12: 277836 neurons, ld=0.5000
+  Prompt 9/12: 277797 neurons, ld=-0.6250
+  Prompt 10/12: 277832 neurons, ld=0.8750
+  Prompt 11/12: 277817 neurons, ld=0.2500
+  Prompt 12/12: 283985 neurons, ld=0.0000
+  Pool: 300 neurons, logit_diff=-0.5625
+
+  Skipping k* search, using known k*=114
+
+  Phase 2: Topology at k*=114
+    L00 │████████ 8
+    L01 │████ 4
+    L02 │█ 1
+    L03 │█ 1
+    L04 │█ 1
+    L05 │█ 1
+    L07 │██ 2
+    L09 │█ 1
+    L10 │███ 3
+    L11 │█ 1
+    L12 │█ 1
+    L13 │███ 3
+    L14 │██ 2
+    L15 │████ 4
+    L16 │█ 1
+    L17 │██ 2
+    L19 │██████ 6
+    L20 │█ 1
+    L21 │███ 3
+    L22 │███ 3
+    L23 │█████ 5
+    L25 │██ 2
+    L26 │█ 1
+    L27 │██████ 6
+    L28 │████ 4
+    L29 │███ 3
+    L30 │███████████████████ 19
+    L31 │█████████████████████████ 25
+
+  Running edge discovery (12 prompts, all targets)...
+    Edge pass 1/12: What is the capital of the state containing Dallas...
+  [1/114] L1/N2427: 2 edges found
+  [2/114] L0/N491: 0 edges found
+  [3/114] L17/N11378: 29 edges found
+  [4/114] L0/N8268: 0 edges found
+  [5/114] L31/N5739: 87 edges found
+  [6/114] L31/N1237: 80 edges found
+  [7/114] L10/N6026: 16 edges found
+  [8/114] L15/N8286: 26 edges found
+  [9/114] L31/N11000: 88 edges found
+  [10/114] L27/N3766: 56 edges found
+  [11/114] L30/N8571: 68 edges found
+  [12/114] L30/N7427: 70 edges found
+  [13/114] L31/N10770: 87 edges found
+  [14/114] L20/N8163: 32 edges found
+  [15/114] L30/N935: 61 edges found
+  [16/114] L31/N5722: 83 edges found
+  [17/114] L23/N2709: 47 edges found
+  [18/114] L0/N5828: 0 edges found
+  [19/114] L0/N2765: 0 edges found
+  [20/114] L30/N4393: 60 edges found
+  [21/114] L21/N4924: 41 edges found
+  [22/114] L31/N3684: 86 edges found
+  [23/114] L30/N9445: 66 edges found
+  [24/114] L31/N12914: 87 edges found
+  [25/114] L30/N7163: 68 edges found
+  [26/114] L28/N13051: 43 edges found
+  [27/114] L17/N11378: 33 edges found
+  [28/114] L23/N13769: 47 edges found
+  [29/114] L0/N7433: 0 edges found
+  [30/114] L30/N5442: 41 edges found
+  [31/114] L25/N13461: 50 edges found
+  [32/114] L31/N4964: 89 edges found
+  [33/114] L30/N11430: 43 edges found
+  [34/114] L15/N8286: 28 edges found
+  [35/114] L23/N2709: 37 edges found
+  [36/114] L15/N1173: 24 edges found
+  [37/114] L2/N8454: 9 edges found
+  [38/114] L22/N5520: 36 edges found
+  [39/114] L31/N14276: 88 edges found
+  [40/114] L21/N4924: 30 edges found
+  [41/114] L1/N4970: 7 edges found
+  [42/114] L27/N3765: 55 edges found
+  [43/114] L13/N2158: 21 edges found
+  [44/114] L31/N993: 83 edges found
+  [45/114] L30/N1171: 67 edges found
+  [46/114] L30/N10468: 61 edges found
+  [47/114] L31/N6705: 88 edges found
+  [48/114] L30/N13458: 69 edges found
+  [49/114] L31/N14027: 87 edges found
+  [50/114] L12/N2314: 20 edges found
+  [51/114] L27/N3395: 51 edges found
+  [52/114] L23/N9355: 13 edges found
+  [53/114] L31/N12293: 85 edges found
+  [54/114] L31/N12763: 82 edges found
+  [55/114] L31/N1685: 87 edges found
+  [56/114] L31/N13801: 85 edges found
+  [57/114] L27/N6450: 39 edges found
+  [58/114] L3/N13731: 11 edges found
+  [59/114] L31/N10792: 89 edges found
+  [60/114] L28/N781: 59 edges found
+  [61/114] L29/N5230: 44 edges found
+  [62/114] L31/N4898: 87 edges found
+  [63/114] L4/N4152: 13 edges found
+  [64/114] L27/N4136: 56 edges found
+  [65/114] L5/N720: 14 edges found
+  [66/114] L0/N10902: 0 edges found
+  [67/114] L29/N8858: 63 edges found
+  [68/114] L27/N3766: 40 edges found
+  [69/114] L30/N656: 69 edges found
+  [70/114] L30/N10321: 41 edges found
+  [71/114] L31/N2147: 84 edges found
+  [72/114] L7/N11553: 12 edges found
+  [73/114] L30/N11920: 44 edges found
+  [74/114] L10/N853: 8 edges found
+  [75/114] L25/N13461: 37 edges found
+  [76/114] L31/N3505: 87 edges found
+  [77/114] L21/N7410: 31 edges found
+  [78/114] L19/N8654: 29 edges found
+  [79/114] L7/N5059: 13 edges found
+  [80/114] L16/N10323: 29 edges found
+  [81/114] L19/N4155: 35 edges found
+  [82/114] L13/N3352: 12 edges found
+  [83/114] L19/N4155: 28 edges found
+  [84/114] L9/N12002: 7 edges found
+  [85/114] L19/N9185: 28 edges found
+  [86/114] L30/N12395: 42 edges found
+  [87/114] L14/N613: 23 edges found
+  [88/114] L13/N10238: 20 edges found
+  [89/114] L31/N9242: 86 edges found
+  [90/114] L30/N13846: 66 edges found
+  [91/114] L31/N13060: 87 edges found
+  [92/114] L23/N10247: 35 edges found
+  [93/114] L0/N7433: 0 edges found
+  [94/114] L30/N14215: 70 edges found
+  [95/114] L19/N1567: 33 edges found
+  [96/114] L31/N5369: 87 edges found
+  [97/114] L31/N8345: 89 edges found
+  [98/114] L10/N6026: 18 edges found
+  [99/114] L28/N13051: 63 edges found
+  [100/114] L1/N7179: 4 edges found
+  [101/114] L31/N3849: 87 edges found
+  [102/114] L30/N4837: 66 edges found
+  [103/114] L0/N7822: 0 edges found
+  [104/114] L14/N13181: 24 edges found
+  [105/114] L28/N10950: 61 edges found
+  [106/114] L30/N11268: 66 edges found
+  [107/114] L15/N4525: 13 edges found
+  [108/114] L11/N11636: 19 edges found
+  [109/114] L22/N5520: 45 edges found
+  [110/114] L22/N6306: 45 edges found
+  [111/114] L19/N3203: 27 edges found
+  [112/114] L29/N3877: 65 edges found
+  [113/114] L26/N824: 55 edges found
+  [114/114] L1/N198: 2 edges found
+
+Total: 5206 edges across 114 target neurons
+    Edge pass 2/12: What is the capital of France?...
+  [1/114] L1/N2427: 2 edges found
+  [2/114] L0/N491: 0 edges found
+  [3/114] L17/N11378: 30 edges found
+  [4/114] L0/N8268: 0 edges found
+  [5/114] L31/N5739: 89 edges found
+  [6/114] L31/N1237: 89 edges found
+  [7/114] L10/N6026: 18 edges found
+  [8/114] L15/N8286: 27 edges found
+  [9/114] L31/N11000: 89 edges found
+  [10/114] L27/N3766: 57 edges found
+  [11/114] L30/N8571: 70 edges found
+  [12/114] L30/N7427: 70 edges found
+  [13/114] L31/N10770: 89 edges found
+  [14/114] L20/N8163: 35 edges found
+  [15/114] L30/N935: 70 edges found
+  [16/114] L31/N5722: 89 edges found
+  [17/114] L23/N2709: 49 edges found
+  [18/114] L0/N5828: 0 edges found
+  [19/114] L0/N2765: 0 edges found
+  [20/114] L30/N4393: 70 edges found
+  [21/114] L21/N4924: 43 edges found
+  [22/114] L31/N3684: 89 edges found
+  [23/114] L30/N9445: 70 edges found
+  [24/114] L31/N12914: 89 edges found
+  [25/114] L30/N7163: 70 edges found
+  [26/114] L28/N13051: 45 edges found
+  [27/114] L17/N11378: 34 edges found
+  [28/114] L23/N13769: 49 edges found
+  [29/114] L0/N7433: 0 edges found
+  [30/114] L30/N5442: 47 edges found
+  [31/114] L25/N13461: 54 edges found
+  [32/114] L31/N4964: 89 edges found
+  [33/114] L30/N11430: 47 edges found
+  [34/114] L15/N8286: 29 edges found
+  [35/114] L23/N2709: 39 edges found
+  [36/114] L15/N1173: 27 edges found
+  [37/114] L2/N8454: 9 edges found
+  [38/114] L22/N5520: 38 edges found
+  [39/114] L31/N14276: 89 edges found
+  [40/114] L21/N4924: 36 edges found
+  [41/114] L1/N4970: 7 edges found
+  [42/114] L27/N3765: 57 edges found
+  [43/114] L13/N2158: 22 edges found
+  [44/114] L31/N993: 89 edges found
+  [45/114] L30/N1171: 70 edges found
+  [46/114] L30/N10468: 70 edges found
+  [47/114] L31/N6705: 89 edges found
+  [48/114] L30/N13458: 70 edges found
+  [49/114] L31/N14027: 89 edges found
+  [50/114] L12/N2314: 21 edges found
+  [51/114] L27/N3395: 57 edges found
+  [52/114] L23/N9355: 13 edges found
+  [53/114] L31/N12293: 89 edges found
+  [54/114] L31/N12763: 89 edges found
+  [55/114] L31/N1685: 89 edges found
+  [56/114] L31/N13801: 89 edges found
+  [57/114] L27/N6450: 43 edges found
+  [58/114] L3/N13731: 12 edges found
+  [59/114] L31/N10792: 89 edges found
+  [60/114] L28/N781: 63 edges found
+  [61/114] L29/N5230: 46 edges found
+  [62/114] L31/N4898: 89 edges found
+  [63/114] L4/N4152: 13 edges found
+  [64/114] L27/N4136: 57 edges found
+  [65/114] L5/N720: 15 edges found
+  [66/114] L0/N10902: 0 edges found
+  [67/114] L29/N8858: 67 edges found
+  [68/114] L27/N3766: 43 edges found
+  [69/114] L30/N656: 70 edges found
+  [70/114] L30/N10321: 47 edges found
+  [71/114] L31/N2147: 89 edges found
+  [72/114] L7/N11553: 16 edges found
+  [73/114] L30/N11920: 47 edges found
+  [74/114] L10/N853: 8 edges found
+  [75/114] L25/N13461: 42 edges found
+  [76/114] L31/N3505: 89 edges found
+  [77/114] L21/N7410: 36 edges found
+  [78/114] L19/N8654: 31 edges found
+  [79/114] L7/N5059: 16 edges found
+  [80/114] L16/N10323: 33 edges found
+  [81/114] L19/N4155: 36 edges found
+  [82/114] L13/N3352: 12 edges found
+  [83/114] L19/N4155: 31 edges found
+  [84/114] L9/N12002: 7 edges found
+  [85/114] L19/N9185: 31 edges found
+  [86/114] L30/N12395: 47 edges found
+  [87/114] L14/N613: 25 edges found
+  [88/114] L13/N10238: 22 edges found
+  [89/114] L31/N9242: 89 edges found
+  [90/114] L30/N13846: 70 edges found
+  [91/114] L31/N13060: 89 edges found
+  [92/114] L23/N10247: 39 edges found
+  [93/114] L0/N7433: 0 edges found
+  [94/114] L30/N14215: 70 edges found
+  [95/114] L19/N1567: 36 edges found
+  [96/114] L31/N5369: 89 edges found
+  [97/114] L31/N8345: 89 edges found
+  [98/114] L10/N6026: 19 edges found
+  [99/114] L28/N13051: 63 edges found
+  [100/114] L1/N7179: 4 edges found
+  [101/114] L31/N3849: 89 edges found
+  [102/114] L30/N4837: 70 edges found
+  [103/114] L0/N7822: 0 edges found
+  [104/114] L14/N13181: 25 edges found
+  [105/114] L28/N10950: 63 edges found
+  [106/114] L30/N11268: 70 edges found
+  [107/114] L15/N4525: 13 edges found
+  [108/114] L11/N11636: 20 edges found
+  [109/114] L22/N5520: 46 edges found
+  [110/114] L22/N6306: 46 edges found
+  [111/114] L19/N3203: 31 edges found
+  [112/114] L29/N3877: 67 edges found
+  [113/114] L26/N824: 56 edges found
+  [114/114] L1/N198: 2 edges found
+
+Total: 5473 edges across 114 target neurons
+    Edge pass 3/12: What is the capital of Japan?...
+  [1/114] L1/N2427: 2 edges found
+  [2/114] L0/N491: 0 edges found
+  [3/114] L17/N11378: 30 edges found
+  [4/114] L0/N8268: 0 edges found
+  [5/114] L31/N5739: 89 edges found
+  [6/114] L31/N1237: 89 edges found
+  [7/114] L10/N6026: 18 edges found
+  [8/114] L15/N8286: 27 edges found
+  [9/114] L31/N11000: 89 edges found
+  [10/114] L27/N3766: 57 edges found
+  [11/114] L30/N8571: 70 edges found
+  [12/114] L30/N7427: 70 edges found
+  [13/114] L31/N10770: 89 edges found
+  [14/114] L20/N8163: 35 edges found
+  [15/114] L30/N935: 70 edges found
+  [16/114] L31/N5722: 89 edges found
+  [17/114] L23/N2709: 49 edges found
+  [18/114] L0/N5828: 0 edges found
+  [19/114] L0/N2765: 0 edges found
+  [20/114] L30/N4393: 70 edges found
+  [21/114] L21/N4924: 43 edges found
+  [22/114] L31/N3684: 89 edges found
+  [23/114] L30/N9445: 70 edges found
+  [24/114] L31/N12914: 89 edges found
+  [25/114] L30/N7163: 70 edges found
+  [26/114] L28/N13051: 45 edges found
+  [27/114] L17/N11378: 34 edges found
+  [28/114] L23/N13769: 49 edges found
+  [29/114] L0/N7433: 0 edges found
+  [30/114] L30/N5442: 47 edges found
+  [31/114] L25/N13461: 54 edges found
+  [32/114] L31/N4964: 89 edges found
+  [33/114] L30/N11430: 47 edges found
+  [34/114] L15/N8286: 29 edges found
+  [35/114] L23/N2709: 39 edges found
+  [36/114] L15/N1173: 27 edges found
+  [37/114] L2/N8454: 9 edges found
+  [38/114] L22/N5520: 38 edges found
+  [39/114] L31/N14276: 89 edges found
+  [40/114] L21/N4924: 36 edges found
+  [41/114] L1/N4970: 7 edges found
+  [42/114] L27/N3765: 57 edges found
+  [43/114] L13/N2158: 22 edges found
+  [44/114] L31/N993: 89 edges found
+  [45/114] L30/N1171: 70 edges found
+  [46/114] L30/N10468: 69 edges found
+  [47/114] L31/N6705: 89 edges found
+  [48/114] L30/N13458: 70 edges found
+  [49/114] L31/N14027: 89 edges found
+  [50/114] L12/N2314: 21 edges found
+  [51/114] L27/N3395: 57 edges found
+  [52/114] L23/N9355: 13 edges found
+  [53/114] L31/N12293: 89 edges found
+  [54/114] L31/N12763: 89 edges found
+  [55/114] L31/N1685: 89 edges found
+  [56/114] L31/N13801: 89 edges found
+  [57/114] L27/N6450: 43 edges found
+  [58/114] L3/N13731: 12 edges found
+  [59/114] L31/N10792: 89 edges found
+  [60/114] L28/N781: 63 edges found
+  [61/114] L29/N5230: 46 edges found
+  [62/114] L31/N4898: 89 edges found
+  [63/114] L4/N4152: 13 edges found
+  [64/114] L27/N4136: 57 edges found
+  [65/114] L5/N720: 15 edges found
+  [66/114] L0/N10902: 0 edges found
+  [67/114] L29/N8858: 67 edges found
+  [68/114] L27/N3766: 43 edges found
+  [69/114] L30/N656: 70 edges found
+  [70/114] L30/N10321: 47 edges found
+  [71/114] L31/N2147: 88 edges found
+  [72/114] L7/N11553: 16 edges found
+  [73/114] L30/N11920: 47 edges found
+  [74/114] L10/N853: 8 edges found
+  [75/114] L25/N13461: 42 edges found
+  [76/114] L31/N3505: 89 edges found
+  [77/114] L21/N7410: 36 edges found
+  [78/114] L19/N8654: 31 edges found
+  [79/114] L7/N5059: 16 edges found
+  [80/114] L16/N10323: 33 edges found
+  [81/114] L19/N4155: 36 edges found
+  [82/114] L13/N3352: 12 edges found
+  [83/114] L19/N4155: 31 edges found
+  [84/114] L9/N12002: 7 edges found
+  [85/114] L19/N9185: 31 edges found
+  [86/114] L30/N12395: 47 edges found
+  [87/114] L14/N613: 25 edges found
+  [88/114] L13/N10238: 22 edges found
+  [89/114] L31/N9242: 89 edges found
+  [90/114] L30/N13846: 70 edges found
+  [91/114] L31/N13060: 89 edges found
+  [92/114] L23/N10247: 39 edges found
+  [93/114] L0/N7433: 0 edges found
+  [94/114] L30/N14215: 70 edges found
+  [95/114] L19/N1567: 36 edges found
+  [96/114] L31/N5369: 89 edges found
+  [97/114] L31/N8345: 89 edges found
+  [98/114] L10/N6026: 19 edges found
+  [99/114] L28/N13051: 63 edges found
+  [100/114] L1/N7179: 4 edges found
+  [101/114] L31/N3849: 89 edges found
+  [102/114] L30/N4837: 70 edges found
+  [103/114] L0/N7822: 0 edges found
+  [104/114] L14/N13181: 25 edges found
+  [105/114] L28/N10950: 63 edges found
+  [106/114] L30/N11268: 70 edges found
+  [107/114] L15/N4525: 13 edges found
+  [108/114] L11/N11636: 20 edges found
+  [109/114] L22/N5520: 46 edges found
+  [110/114] L22/N6306: 46 edges found
+  [111/114] L19/N3203: 31 edges found
+  [112/114] L29/N3877: 67 edges found
+  [113/114] L26/N824: 56 edges found
+  [114/114] L1/N198: 2 edges found
+
+Total: 5471 edges across 114 target neurons
+    Edge pass 4/12: What is the capital of Germany?...
+  [1/114] L1/N2427: 2 edges found
+  [2/114] L0/N491: 0 edges found
+  [3/114] L17/N11378: 30 edges found
+  [4/114] L0/N8268: 0 edges found
+  [5/114] L31/N5739: 89 edges found
+  [6/114] L31/N1237: 89 edges found
+  [7/114] L10/N6026: 18 edges found
+  [8/114] L15/N8286: 27 edges found
+  [9/114] L31/N11000: 89 edges found
+  [10/114] L27/N3766: 57 edges found
+  [11/114] L30/N8571: 70 edges found
+  [12/114] L30/N7427: 70 edges found
+  [13/114] L31/N10770: 87 edges found
+  [14/114] L20/N8163: 35 edges found
+  [15/114] L30/N935: 70 edges found
+  [16/114] L31/N5722: 89 edges found
+  [17/114] L23/N2709: 49 edges found
+  [18/114] L0/N5828: 0 edges found
+  [19/114] L0/N2765: 0 edges found
+  [20/114] L30/N4393: 70 edges found
+  [21/114] L21/N4924: 43 edges found
+  [22/114] L31/N3684: 89 edges found
+  [23/114] L30/N9445: 70 edges found
+  [24/114] L31/N12914: 89 edges found
+  [25/114] L30/N7163: 70 edges found
+  [26/114] L28/N13051: 45 edges found
+  [27/114] L17/N11378: 34 edges found
+  [28/114] L23/N13769: 49 edges found
+  [29/114] L0/N7433: 0 edges found
+  [30/114] L30/N5442: 47 edges found
+  [31/114] L25/N13461: 54 edges found
+  [32/114] L31/N4964: 89 edges found
+  [33/114] L30/N11430: 47 edges found
+  [34/114] L15/N8286: 29 edges found
+  [35/114] L23/N2709: 39 edges found
+  [36/114] L15/N1173: 27 edges found
+  [37/114] L2/N8454: 9 edges found
+  [38/114] L22/N5520: 38 edges found
+  [39/114] L31/N14276: 89 edges found
+  [40/114] L21/N4924: 36 edges found
+  [41/114] L1/N4970: 7 edges found
+  [42/114] L27/N3765: 57 edges found
+  [43/114] L13/N2158: 22 edges found
+  [44/114] L31/N993: 89 edges found
+  [45/114] L30/N1171: 70 edges found
+  [46/114] L30/N10468: 70 edges found
+  [47/114] L31/N6705: 89 edges found
+  [48/114] L30/N13458: 70 edges found
+  [49/114] L31/N14027: 89 edges found
+  [50/114] L12/N2314: 21 edges found
+  [51/114] L27/N3395: 57 edges found
+  [52/114] L23/N9355: 13 edges found
+  [53/114] L31/N12293: 89 edges found
+  [54/114] L31/N12763: 89 edges found
+  [55/114] L31/N1685: 89 edges found
+  [56/114] L31/N13801: 89 edges found
+  [57/114] L27/N6450: 43 edges found
+  [58/114] L3/N13731: 12 edges found
+  [59/114] L31/N10792: 89 edges found
+  [60/114] L28/N781: 63 edges found
+  [61/114] L29/N5230: 46 edges found
+  [62/114] L31/N4898: 89 edges found
+  [63/114] L4/N4152: 13 edges found
+  [64/114] L27/N4136: 57 edges found
+  [65/114] L5/N720: 15 edges found
+  [66/114] L0/N10902: 0 edges found
+  [67/114] L29/N8858: 67 edges found
+  [68/114] L27/N3766: 43 edges found
+  [69/114] L30/N656: 70 edges found
+  [70/114] L30/N10321: 47 edges found
+  [71/114] L31/N2147: 89 edges found
+  [72/114] L7/N11553: 16 edges found
+  [73/114] L30/N11920: 47 edges found
+  [74/114] L10/N853: 8 edges found
+  [75/114] L25/N13461: 42 edges found
+  [76/114] L31/N3505: 89 edges found
+  [77/114] L21/N7410: 36 edges found
+  [78/114] L19/N8654: 31 edges found
+  [79/114] L7/N5059: 16 edges found
+  [80/114] L16/N10323: 33 edges found
+  [81/114] L19/N4155: 36 edges found
+  [82/114] L13/N3352: 12 edges found
+  [83/114] L19/N4155: 31 edges found
+  [84/114] L9/N12002: 7 edges found
+  [85/114] L19/N9185: 31 edges found
+  [86/114] L30/N12395: 47 edges found
+  [87/114] L14/N613: 25 edges found
+  [88/114] L13/N10238: 22 edges found
+  [89/114] L31/N9242: 89 edges found
+  [90/114] L30/N13846: 70 edges found
+  [91/114] L31/N13060: 89 edges found
+  [92/114] L23/N10247: 39 edges found
+  [93/114] L0/N7433: 0 edges found
+  [94/114] L30/N14215: 70 edges found
+  [95/114] L19/N1567: 36 edges found
+  [96/114] L31/N5369: 89 edges found
+  [97/114] L31/N8345: 89 edges found
+  [98/114] L10/N6026: 19 edges found
+  [99/114] L28/N13051: 63 edges found
+  [100/114] L1/N7179: 4 edges found
+  [101/114] L31/N3849: 89 edges found
+  [102/114] L30/N4837: 70 edges found
+  [103/114] L0/N7822: 0 edges found
+  [104/114] L14/N13181: 25 edges found
+  [105/114] L28/N10950: 63 edges found
+  [106/114] L30/N11268: 70 edges found
+  [107/114] L15/N4525: 13 edges found
+  [108/114] L11/N11636: 20 edges found
+  [109/114] L22/N5520: 46 edges found
+  [110/114] L22/N6306: 46 edges found
+  [111/114] L19/N3203: 31 edges found
+  [112/114] L29/N3877: 67 edges found
+  [113/114] L26/N824: 56 edges found
+  [114/114] L1/N198: 2 edges found
+
+Total: 5471 edges across 114 target neurons
+    Edge pass 5/12: What is the capital of Italy?...
+  [1/114] L1/N2427: 2 edges found
+  [2/114] L0/N491: 0 edges found
+  [3/114] L17/N11378: 30 edges found
+  [4/114] L0/N8268: 0 edges found
+  [5/114] L31/N5739: 89 edges found
+  [6/114] L31/N1237: 89 edges found
+  [7/114] L10/N6026: 18 edges found
+  [8/114] L15/N8286: 27 edges found
+  [9/114] L31/N11000: 89 edges found
+  [10/114] L27/N3766: 57 edges found
+  [11/114] L30/N8571: 70 edges found
+  [12/114] L30/N7427: 70 edges found
+  [13/114] L31/N10770: 89 edges found
+  [14/114] L20/N8163: 35 edges found
+  [15/114] L30/N935: 70 edges found
+  [16/114] L31/N5722: 89 edges found
+  [17/114] L23/N2709: 49 edges found
+  [18/114] L0/N5828: 0 edges found
+  [19/114] L0/N2765: 0 edges found
+  [20/114] L30/N4393: 70 edges found
+  [21/114] L21/N4924: 43 edges found
+  [22/114] L31/N3684: 89 edges found
+  [23/114] L30/N9445: 70 edges found
+  [24/114] L31/N12914: 89 edges found
+  [25/114] L30/N7163: 70 edges found
+  [26/114] L28/N13051: 45 edges found
+  [27/114] L17/N11378: 34 edges found
+  [28/114] L23/N13769: 49 edges found
+  [29/114] L0/N7433: 0 edges found
+  [30/114] L30/N5442: 47 edges found
+  [31/114] L25/N13461: 54 edges found
+  [32/114] L31/N4964: 89 edges found
+  [33/114] L30/N11430: 47 edges found
+  [34/114] L15/N8286: 29 edges found
+  [35/114] L23/N2709: 39 edges found
+  [36/114] L15/N1173: 27 edges found
+  [37/114] L2/N8454: 9 edges found
+  [38/114] L22/N5520: 38 edges found
+  [39/114] L31/N14276: 89 edges found
+  [40/114] L21/N4924: 36 edges found
+  [41/114] L1/N4970: 7 edges found
+  [42/114] L27/N3765: 57 edges found
+  [43/114] L13/N2158: 22 edges found
+  [44/114] L31/N993: 89 edges found
+  [45/114] L30/N1171: 70 edges found
+  [46/114] L30/N10468: 70 edges found
+  [47/114] L31/N6705: 89 edges found
+  [48/114] L30/N13458: 70 edges found
+  [49/114] L31/N14027: 89 edges found
+  [50/114] L12/N2314: 21 edges found
+  [51/114] L27/N3395: 57 edges found
+  [52/114] L23/N9355: 13 edges found
+  [53/114] L31/N12293: 89 edges found
+  [54/114] L31/N12763: 89 edges found
+  [55/114] L31/N1685: 89 edges found
+  [56/114] L31/N13801: 89 edges found
+  [57/114] L27/N6450: 43 edges found
+  [58/114] L3/N13731: 12 edges found
+  [59/114] L31/N10792: 89 edges found
+  [60/114] L28/N781: 63 edges found
+  [61/114] L29/N5230: 46 edges found
+  [62/114] L31/N4898: 89 edges found
+  [63/114] L4/N4152: 13 edges found
+  [64/114] L27/N4136: 57 edges found
+  [65/114] L5/N720: 15 edges found
+  [66/114] L0/N10902: 0 edges found
+  [67/114] L29/N8858: 67 edges found
+  [68/114] L27/N3766: 43 edges found
+  [69/114] L30/N656: 70 edges found
+  [70/114] L30/N10321: 47 edges found
+  [71/114] L31/N2147: 89 edges found
+  [72/114] L7/N11553: 16 edges found
+  [73/114] L30/N11920: 47 edges found
+  [74/114] L10/N853: 8 edges found
+  [75/114] L25/N13461: 42 edges found
+  [76/114] L31/N3505: 89 edges found
+  [77/114] L21/N7410: 36 edges found
+  [78/114] L19/N8654: 31 edges found
+  [79/114] L7/N5059: 16 edges found
+  [80/114] L16/N10323: 33 edges found
+  [81/114] L19/N4155: 36 edges found
+  [82/114] L13/N3352: 12 edges found
+  [83/114] L19/N4155: 31 edges found
+  [84/114] L9/N12002: 7 edges found
+  [85/114] L19/N9185: 31 edges found
+  [86/114] L30/N12395: 47 edges found
+  [87/114] L14/N613: 25 edges found
+  [88/114] L13/N10238: 22 edges found
+  [89/114] L31/N9242: 89 edges found
+  [90/114] L30/N13846: 70 edges found
+  [91/114] L31/N13060: 89 edges found
+  [92/114] L23/N10247: 39 edges found
+  [93/114] L0/N7433: 0 edges found
+  [94/114] L30/N14215: 70 edges found
+  [95/114] L19/N1567: 36 edges found
+  [96/114] L31/N5369: 89 edges found
+  [97/114] L31/N8345: 89 edges found
+  [98/114] L10/N6026: 19 edges found
+  [99/114] L28/N13051: 63 edges found
+  [100/114] L1/N7179: 4 edges found
+  [101/114] L31/N3849: 89 edges found
+  [102/114] L30/N4837: 70 edges found
+  [103/114] L0/N7822: 0 edges found
+  [104/114] L14/N13181: 25 edges found
+  [105/114] L28/N10950: 63 edges found
+  [106/114] L30/N11268: 70 edges found
+  [107/114] L15/N4525: 13 edges found
+  [108/114] L11/N11636: 20 edges found
+  [109/114] L22/N5520: 46 edges found
+  [110/114] L22/N6306: 46 edges found
+  [111/114] L19/N3203: 31 edges found
+  [112/114] L29/N3877: 67 edges found
+  [113/114] L26/N824: 56 edges found
+  [114/114] L1/N198: 2 edges found
+
+Total: 5473 edges across 114 target neurons
+    Edge pass 6/12: What is the capital of Spain?...
+  [1/114] L1/N2427: 2 edges found
+  [2/114] L0/N491: 0 edges found
+  [3/114] L17/N11378: 30 edges found
+  [4/114] L0/N8268: 0 edges found
+  [5/114] L31/N5739: 89 edges found
+  [6/114] L31/N1237: 89 edges found
+  [7/114] L10/N6026: 18 edges found
+  [8/114] L15/N8286: 27 edges found
+  [9/114] L31/N11000: 88 edges found
+  [10/114] L27/N3766: 57 edges found
+  [11/114] L30/N8571: 70 edges found
+  [12/114] L30/N7427: 70 edges found
+  [13/114] L31/N10770: 89 edges found
+  [14/114] L20/N8163: 35 edges found
+  [15/114] L30/N935: 70 edges found
+  [16/114] L31/N5722: 88 edges found
+  [17/114] L23/N2709: 49 edges found
+  [18/114] L0/N5828: 0 edges found
+  [19/114] L0/N2765: 0 edges found
+  [20/114] L30/N4393: 70 edges found
+  [21/114] L21/N4924: 43 edges found
+  [22/114] L31/N3684: 89 edges found
+  [23/114] L30/N9445: 70 edges found
+  [24/114] L31/N12914: 89 edges found
+  [25/114] L30/N7163: 70 edges found
+  [26/114] L28/N13051: 45 edges found
+  [27/114] L17/N11378: 34 edges found
+  [28/114] L23/N13769: 49 edges found
+  [29/114] L0/N7433: 0 edges found
+  [30/114] L30/N5442: 47 edges found
+  [31/114] L25/N13461: 54 edges found
+  [32/114] L31/N4964: 89 edges found
+  [33/114] L30/N11430: 47 edges found
+  [34/114] L15/N8286: 29 edges found
+  [35/114] L23/N2709: 39 edges found
+  [36/114] L15/N1173: 27 edges found
+  [37/114] L2/N8454: 9 edges found
+  [38/114] L22/N5520: 38 edges found
+  [39/114] L31/N14276: 89 edges found
+  [40/114] L21/N4924: 36 edges found
+  [41/114] L1/N4970: 7 edges found
+  [42/114] L27/N3765: 57 edges found
+  [43/114] L13/N2158: 22 edges found
+  [44/114] L31/N993: 89 edges found
+  [45/114] L30/N1171: 70 edges found
+  [46/114] L30/N10468: 70 edges found
+  [47/114] L31/N6705: 89 edges found
+  [48/114] L30/N13458: 70 edges found
+  [49/114] L31/N14027: 89 edges found
+  [50/114] L12/N2314: 21 edges found
+  [51/114] L27/N3395: 57 edges found
+  [52/114] L23/N9355: 13 edges found
+  [53/114] L31/N12293: 89 edges found
+  [54/114] L31/N12763: 89 edges found
+  [55/114] L31/N1685: 89 edges found
+  [56/114] L31/N13801: 89 edges found
+  [57/114] L27/N6450: 43 edges found
+  [58/114] L3/N13731: 11 edges found
+  [59/114] L31/N10792: 89 edges found
+  [60/114] L28/N781: 63 edges found
+  [61/114] L29/N5230: 46 edges found
+  [62/114] L31/N4898: 89 edges found
+  [63/114] L4/N4152: 13 edges found
+  [64/114] L27/N4136: 57 edges found
+  [65/114] L5/N720: 15 edges found
+  [66/114] L0/N10902: 0 edges found
+  [67/114] L29/N8858: 67 edges found
+  [68/114] L27/N3766: 43 edges found
+  [69/114] L30/N656: 70 edges found
+  [70/114] L30/N10321: 47 edges found
+  [71/114] L31/N2147: 89 edges found
+  [72/114] L7/N11553: 16 edges found
+  [73/114] L30/N11920: 47 edges found
+  [74/114] L10/N853: 8 edges found
+  [75/114] L25/N13461: 42 edges found
+  [76/114] L31/N3505: 89 edges found
+  [77/114] L21/N7410: 36 edges found
+  [78/114] L19/N8654: 31 edges found
+  [79/114] L7/N5059: 16 edges found
+  [80/114] L16/N10323: 33 edges found
+  [81/114] L19/N4155: 36 edges found
+  [82/114] L13/N3352: 12 edges found
+  [83/114] L19/N4155: 31 edges found
+  [84/114] L9/N12002: 7 edges found
+  [85/114] L19/N9185: 31 edges found
+  [86/114] L30/N12395: 47 edges found
+  [87/114] L14/N613: 25 edges found
+  [88/114] L13/N10238: 22 edges found
+  [89/114] L31/N9242: 89 edges found
+  [90/114] L30/N13846: 70 edges found
+  [91/114] L31/N13060: 89 edges found
+  [92/114] L23/N10247: 39 edges found
+  [93/114] L0/N7433: 0 edges found
+  [94/114] L30/N14215: 70 edges found
+  [95/114] L19/N1567: 36 edges found
+  [96/114] L31/N5369: 89 edges found
+  [97/114] L31/N8345: 89 edges found
+  [98/114] L10/N6026: 19 edges found
+  [99/114] L28/N13051: 63 edges found
+  [100/114] L1/N7179: 4 edges found
+  [101/114] L31/N3849: 89 edges found
+  [102/114] L30/N4837: 70 edges found
+  [103/114] L0/N7822: 0 edges found
+  [104/114] L14/N13181: 25 edges found
+  [105/114] L28/N10950: 63 edges found
+  [106/114] L30/N11268: 70 edges found
+  [107/114] L15/N4525: 13 edges found
+  [108/114] L11/N11636: 20 edges found
+  [109/114] L22/N5520: 46 edges found
+  [110/114] L22/N6306: 46 edges found
+  [111/114] L19/N3203: 31 edges found
+  [112/114] L29/N3877: 67 edges found
+  [113/114] L26/N824: 56 edges found
+  [114/114] L1/N198: 2 edges found
+
+Total: 5470 edges across 114 target neurons
+    Edge pass 7/12: What is the capital of Brazil?...
+  [1/114] L1/N2427: 2 edges found
+  [2/114] L0/N491: 0 edges found
+  [3/114] L17/N11378: 30 edges found
+  [4/114] L0/N8268: 0 edges found
+  [5/114] L31/N5739: 89 edges found
+  [6/114] L31/N1237: 89 edges found
+  [7/114] L10/N6026: 18 edges found
+  [8/114] L15/N8286: 27 edges found
+  [9/114] L31/N11000: 89 edges found
+  [10/114] L27/N3766: 57 edges found
+  [11/114] L30/N8571: 70 edges found
+  [12/114] L30/N7427: 70 edges found
+  [13/114] L31/N10770: 89 edges found
+  [14/114] L20/N8163: 35 edges found
+  [15/114] L30/N935: 70 edges found
+  [16/114] L31/N5722: 89 edges found
+  [17/114] L23/N2709: 49 edges found
+  [18/114] L0/N5828: 0 edges found
+  [19/114] L0/N2765: 0 edges found
+  [20/114] L30/N4393: 70 edges found
+  [21/114] L21/N4924: 43 edges found
+  [22/114] L31/N3684: 89 edges found
+  [23/114] L30/N9445: 70 edges found
+  [24/114] L31/N12914: 89 edges found
+  [25/114] L30/N7163: 70 edges found
+  [26/114] L28/N13051: 45 edges found
+  [27/114] L17/N11378: 34 edges found
+  [28/114] L23/N13769: 49 edges found
+  [29/114] L0/N7433: 0 edges found
+  [30/114] L30/N5442: 47 edges found
+  [31/114] L25/N13461: 54 edges found
+  [32/114] L31/N4964: 89 edges found
+  [33/114] L30/N11430: 47 edges found
+  [34/114] L15/N8286: 29 edges found
+  [35/114] L23/N2709: 39 edges found
+  [36/114] L15/N1173: 27 edges found
+  [37/114] L2/N8454: 9 edges found
+  [38/114] L22/N5520: 38 edges found
+  [39/114] L31/N14276: 89 edges found
+  [40/114] L21/N4924: 36 edges found
+  [41/114] L1/N4970: 7 edges found
+  [42/114] L27/N3765: 57 edges found
+  [43/114] L13/N2158: 22 edges found
+  [44/114] L31/N993: 89 edges found
+  [45/114] L30/N1171: 70 edges found
+  [46/114] L30/N10468: 70 edges found
+  [47/114] L31/N6705: 89 edges found
+  [48/114] L30/N13458: 70 edges found
+  [49/114] L31/N14027: 89 edges found
+  [50/114] L12/N2314: 21 edges found
+  [51/114] L27/N3395: 57 edges found
+  [52/114] L23/N9355: 13 edges found
+  [53/114] L31/N12293: 89 edges found
+  [54/114] L31/N12763: 89 edges found
+  [55/114] L31/N1685: 89 edges found
+  [56/114] L31/N13801: 89 edges found
+  [57/114] L27/N6450: 43 edges found
+  [58/114] L3/N13731: 12 edges found
+  [59/114] L31/N10792: 89 edges found
+  [60/114] L28/N781: 63 edges found
+  [61/114] L29/N5230: 46 edges found
+  [62/114] L31/N4898: 89 edges found
+  [63/114] L4/N4152: 13 edges found
+  [64/114] L27/N4136: 57 edges found
+  [65/114] L5/N720: 15 edges found
+  [66/114] L0/N10902: 0 edges found
+  [67/114] L29/N8858: 67 edges found
+  [68/114] L27/N3766: 43 edges found
+  [69/114] L30/N656: 70 edges found
+  [70/114] L30/N10321: 47 edges found
+  [71/114] L31/N2147: 89 edges found
+  [72/114] L7/N11553: 16 edges found
+  [73/114] L30/N11920: 47 edges found
+  [74/114] L10/N853: 8 edges found
+  [75/114] L25/N13461: 42 edges found
+  [76/114] L31/N3505: 89 edges found
+  [77/114] L21/N7410: 36 edges found
+  [78/114] L19/N8654: 31 edges found
+  [79/114] L7/N5059: 16 edges found
+  [80/114] L16/N10323: 33 edges found
+  [81/114] L19/N4155: 36 edges found
+  [82/114] L13/N3352: 12 edges found
+  [83/114] L19/N4155: 31 edges found
+  [84/114] L9/N12002: 7 edges found
+  [85/114] L19/N9185: 31 edges found
+  [86/114] L30/N12395: 47 edges found
+  [87/114] L14/N613: 25 edges found
+  [88/114] L13/N10238: 22 edges found
+  [89/114] L31/N9242: 89 edges found
+  [90/114] L30/N13846: 70 edges found
+  [91/114] L31/N13060: 89 edges found
+  [92/114] L23/N10247: 39 edges found
+  [93/114] L0/N7433: 0 edges found
+  [94/114] L30/N14215: 70 edges found
+  [95/114] L19/N1567: 36 edges found
+  [96/114] L31/N5369: 89 edges found
+  [97/114] L31/N8345: 89 edges found
+  [98/114] L10/N6026: 19 edges found
+  [99/114] L28/N13051: 63 edges found
+  [100/114] L1/N7179: 4 edges found
+  [101/114] L31/N3849: 89 edges found
+  [102/114] L30/N4837: 70 edges found
+  [103/114] L0/N7822: 0 edges found
+  [104/114] L14/N13181: 25 edges found
+  [105/114] L28/N10950: 63 edges found
+  [106/114] L30/N11268: 70 edges found
+  [107/114] L15/N4525: 13 edges found
+  [108/114] L11/N11636: 20 edges found
+  [109/114] L22/N5520: 46 edges found
+  [110/114] L22/N6306: 46 edges found
+  [111/114] L19/N3203: 31 edges found
+  [112/114] L29/N3877: 67 edges found
+  [113/114] L26/N824: 56 edges found
+  [114/114] L1/N198: 2 edges found
+
+Total: 5473 edges across 114 target neurons
+    Edge pass 8/12: What is the capital of Australia?...
+  [1/114] L1/N2427: 2 edges found
+  [2/114] L0/N491: 0 edges found
+  [3/114] L17/N11378: 30 edges found
+  [4/114] L0/N8268: 0 edges found
+  [5/114] L31/N5739: 89 edges found
+  [6/114] L31/N1237: 89 edges found
+  [7/114] L10/N6026: 18 edges found
+  [8/114] L15/N8286: 27 edges found
+  [9/114] L31/N11000: 89 edges found
+  [10/114] L27/N3766: 57 edges found
+  [11/114] L30/N8571: 70 edges found
+  [12/114] L30/N7427: 70 edges found
+  [13/114] L31/N10770: 89 edges found
+  [14/114] L20/N8163: 35 edges found
+  [15/114] L30/N935: 70 edges found
+  [16/114] L31/N5722: 89 edges found
+  [17/114] L23/N2709: 49 edges found
+  [18/114] L0/N5828: 0 edges found
+  [19/114] L0/N2765: 0 edges found
+  [20/114] L30/N4393: 70 edges found
+  [21/114] L21/N4924: 43 edges found
+  [22/114] L31/N3684: 89 edges found
+  [23/114] L30/N9445: 70 edges found
+  [24/114] L31/N12914: 89 edges found
+  [25/114] L30/N7163: 70 edges found
+  [26/114] L28/N13051: 45 edges found
+  [27/114] L17/N11378: 34 edges found
+  [28/114] L23/N13769: 49 edges found
+  [29/114] L0/N7433: 0 edges found
+  [30/114] L30/N5442: 47 edges found
+  [31/114] L25/N13461: 54 edges found
+  [32/114] L31/N4964: 89 edges found
+  [33/114] L30/N11430: 47 edges found
+  [34/114] L15/N8286: 29 edges found
+  [35/114] L23/N2709: 39 edges found
+  [36/114] L15/N1173: 27 edges found
+  [37/114] L2/N8454: 9 edges found
+  [38/114] L22/N5520: 38 edges found
+  [39/114] L31/N14276: 89 edges found
+  [40/114] L21/N4924: 36 edges found
+  [41/114] L1/N4970: 7 edges found
+  [42/114] L27/N3765: 57 edges found
+  [43/114] L13/N2158: 22 edges found
+  [44/114] L31/N993: 89 edges found
+  [45/114] L30/N1171: 70 edges found
+  [46/114] L30/N10468: 70 edges found
+  [47/114] L31/N6705: 89 edges found
+  [48/114] L30/N13458: 70 edges found
+  [49/114] L31/N14027: 89 edges found
+  [50/114] L12/N2314: 21 edges found
+  [51/114] L27/N3395: 57 edges found
+  [52/114] L23/N9355: 13 edges found
+  [53/114] L31/N12293: 89 edges found
+  [54/114] L31/N12763: 89 edges found
+  [55/114] L31/N1685: 89 edges found
+  [56/114] L31/N13801: 89 edges found
+  [57/114] L27/N6450: 43 edges found
+  [58/114] L3/N13731: 12 edges found
+  [59/114] L31/N10792: 89 edges found
+  [60/114] L28/N781: 63 edges found
+  [61/114] L29/N5230: 46 edges found
+  [62/114] L31/N4898: 89 edges found
+  [63/114] L4/N4152: 13 edges found
+  [64/114] L27/N4136: 57 edges found
+  [65/114] L5/N720: 15 edges found
+  [66/114] L0/N10902: 0 edges found
+  [67/114] L29/N8858: 67 edges found
+  [68/114] L27/N3766: 43 edges found
+  [69/114] L30/N656: 70 edges found
+  [70/114] L30/N10321: 47 edges found
+  [71/114] L31/N2147: 89 edges found
+  [72/114] L7/N11553: 16 edges found
+  [73/114] L30/N11920: 47 edges found
+  [74/114] L10/N853: 8 edges found
+  [75/114] L25/N13461: 42 edges found
+  [76/114] L31/N3505: 89 edges found
+  [77/114] L21/N7410: 36 edges found
+  [78/114] L19/N8654: 31 edges found
+  [79/114] L7/N5059: 16 edges found
+  [80/114] L16/N10323: 33 edges found
+  [81/114] L19/N4155: 36 edges found
+  [82/114] L13/N3352: 12 edges found
+  [83/114] L19/N4155: 31 edges found
+  [84/114] L9/N12002: 7 edges found
+  [85/114] L19/N9185: 31 edges found
+  [86/114] L30/N12395: 47 edges found
+  [87/114] L14/N613: 25 edges found
+  [88/114] L13/N10238: 22 edges found
+  [89/114] L31/N9242: 89 edges found
+  [90/114] L30/N13846: 70 edges found
+  [91/114] L31/N13060: 89 edges found
+  [92/114] L23/N10247: 39 edges found
+  [93/114] L0/N7433: 0 edges found
+  [94/114] L30/N14215: 70 edges found
+  [95/114] L19/N1567: 36 edges found
+  [96/114] L31/N5369: 88 edges found
+  [97/114] L31/N8345: 89 edges found
+  [98/114] L10/N6026: 19 edges found
+  [99/114] L28/N13051: 63 edges found
+  [100/114] L1/N7179: 4 edges found
+  [101/114] L31/N3849: 89 edges found
+  [102/114] L30/N4837: 70 edges found
+  [103/114] L0/N7822: 0 edges found
+  [104/114] L14/N13181: 25 edges found
+  [105/114] L28/N10950: 63 edges found
+  [106/114] L30/N11268: 70 edges found
+  [107/114] L15/N4525: 13 edges found
+  [108/114] L11/N11636: 20 edges found
+  [109/114] L22/N5520: 46 edges found
+  [110/114] L22/N6306: 46 edges found
+  [111/114] L19/N3203: 31 edges found
+  [112/114] L29/N3877: 67 edges found
+  [113/114] L26/N824: 56 edges found
+  [114/114] L1/N198: 2 edges found
+
+Total: 5472 edges across 114 target neurons
+    Edge pass 9/12: What is the capital of Canada?...
+  [1/114] L1/N2427: 2 edges found
+  [2/114] L0/N491: 0 edges found
+  [3/114] L17/N11378: 30 edges found
+  [4/114] L0/N8268: 0 edges found
+  [5/114] L31/N5739: 89 edges found
+  [6/114] L31/N1237: 89 edges found
+  [7/114] L10/N6026: 18 edges found
+  [8/114] L15/N8286: 27 edges found
+  [9/114] L31/N11000: 89 edges found
+  [10/114] L27/N3766: 57 edges found
+  [11/114] L30/N8571: 70 edges found
+  [12/114] L30/N7427: 70 edges found
+  [13/114] L31/N10770: 89 edges found
+  [14/114] L20/N8163: 35 edges found
+  [15/114] L30/N935: 70 edges found
+  [16/114] L31/N5722: 89 edges found
+  [17/114] L23/N2709: 49 edges found
+  [18/114] L0/N5828: 0 edges found
+  [19/114] L0/N2765: 0 edges found
+  [20/114] L30/N4393: 70 edges found
+  [21/114] L21/N4924: 43 edges found
+  [22/114] L31/N3684: 89 edges found
+  [23/114] L30/N9445: 69 edges found
+  [24/114] L31/N12914: 89 edges found
+  [25/114] L30/N7163: 70 edges found
+  [26/114] L28/N13051: 45 edges found
+  [27/114] L17/N11378: 34 edges found
+  [28/114] L23/N13769: 49 edges found
+  [29/114] L0/N7433: 0 edges found
+  [30/114] L30/N5442: 47 edges found
+  [31/114] L25/N13461: 54 edges found
+  [32/114] L31/N4964: 89 edges found
+  [33/114] L30/N11430: 47 edges found
+  [34/114] L15/N8286: 29 edges found
+  [35/114] L23/N2709: 39 edges found
+  [36/114] L15/N1173: 27 edges found
+  [37/114] L2/N8454: 9 edges found
+  [38/114] L22/N5520: 38 edges found
+  [39/114] L31/N14276: 89 edges found
+  [40/114] L21/N4924: 36 edges found
+  [41/114] L1/N4970: 7 edges found
+  [42/114] L27/N3765: 57 edges found
+  [43/114] L13/N2158: 22 edges found
+  [44/114] L31/N993: 89 edges found
+  [45/114] L30/N1171: 70 edges found
+  [46/114] L30/N10468: 70 edges found
+  [47/114] L31/N6705: 89 edges found
+  [48/114] L30/N13458: 70 edges found
+  [49/114] L31/N14027: 89 edges found
+  [50/114] L12/N2314: 21 edges found
+  [51/114] L27/N3395: 57 edges found
+  [52/114] L23/N9355: 13 edges found
+  [53/114] L31/N12293: 88 edges found
+  [54/114] L31/N12763: 89 edges found
+  [55/114] L31/N1685: 89 edges found
+  [56/114] L31/N13801: 89 edges found
+  [57/114] L27/N6450: 43 edges found
+  [58/114] L3/N13731: 12 edges found
+  [59/114] L31/N10792: 89 edges found
+  [60/114] L28/N781: 63 edges found
+  [61/114] L29/N5230: 46 edges found
+  [62/114] L31/N4898: 89 edges found
+  [63/114] L4/N4152: 13 edges found
+  [64/114] L27/N4136: 57 edges found
+  [65/114] L5/N720: 15 edges found
+  [66/114] L0/N10902: 0 edges found
+  [67/114] L29/N8858: 67 edges found
+  [68/114] L27/N3766: 43 edges found
+  [69/114] L30/N656: 70 edges found
+  [70/114] L30/N10321: 47 edges found
+  [71/114] L31/N2147: 88 edges found
+  [72/114] L7/N11553: 16 edges found
+  [73/114] L30/N11920: 47 edges found
+  [74/114] L10/N853: 8 edges found
+  [75/114] L25/N13461: 42 edges found
+  [76/114] L31/N3505: 89 edges found
+  [77/114] L21/N7410: 36 edges found
+  [78/114] L19/N8654: 31 edges found
+  [79/114] L7/N5059: 16 edges found
+  [80/114] L16/N10323: 33 edges found
+  [81/114] L19/N4155: 35 edges found
+  [82/114] L13/N3352: 12 edges found
+  [83/114] L19/N4155: 31 edges found
+  [84/114] L9/N12002: 7 edges found
+  [85/114] L19/N9185: 31 edges found
+  [86/114] L30/N12395: 47 edges found
+  [87/114] L14/N613: 25 edges found
+  [88/114] L13/N10238: 22 edges found
+  [89/114] L31/N9242: 89 edges found
+  [90/114] L30/N13846: 70 edges found
+  [91/114] L31/N13060: 89 edges found
+  [92/114] L23/N10247: 39 edges found
+  [93/114] L0/N7433: 0 edges found
+  [94/114] L30/N14215: 70 edges found
+  [95/114] L19/N1567: 36 edges found
+  [96/114] L31/N5369: 89 edges found
+  [97/114] L31/N8345: 89 edges found
+  [98/114] L10/N6026: 19 edges found
+  [99/114] L28/N13051: 63 edges found
+  [100/114] L1/N7179: 4 edges found
+  [101/114] L31/N3849: 89 edges found
+  [102/114] L30/N4837: 70 edges found
+  [103/114] L0/N7822: 0 edges found
+  [104/114] L14/N13181: 25 edges found
+  [105/114] L28/N10950: 63 edges found
+  [106/114] L30/N11268: 70 edges found
+  [107/114] L15/N4525: 13 edges found
+  [108/114] L11/N11636: 20 edges found
+  [109/114] L22/N5520: 46 edges found
+  [110/114] L22/N6306: 46 edges found
+  [111/114] L19/N3203: 31 edges found
+  [112/114] L29/N3877: 67 edges found
+  [113/114] L26/N824: 56 edges found
+  [114/114] L1/N198: 2 edges found
+
+Total: 5469 edges across 114 target neurons
+    Edge pass 10/12: What is the capital of Egypt?...
+  [1/114] L1/N2427: 2 edges found
+  [2/114] L0/N491: 0 edges found
+  [3/114] L17/N11378: 30 edges found
+  [4/114] L0/N8268: 0 edges found
+  [5/114] L31/N5739: 89 edges found
+  [6/114] L31/N1237: 89 edges found
+  [7/114] L10/N6026: 18 edges found
+  [8/114] L15/N8286: 27 edges found
+  [9/114] L31/N11000: 89 edges found
+  [10/114] L27/N3766: 57 edges found
+  [11/114] L30/N8571: 70 edges found
+  [12/114] L30/N7427: 70 edges found
+  [13/114] L31/N10770: 88 edges found
+  [14/114] L20/N8163: 35 edges found
+  [15/114] L30/N935: 70 edges found
+  [16/114] L31/N5722: 89 edges found
+  [17/114] L23/N2709: 49 edges found
+  [18/114] L0/N5828: 0 edges found
+  [19/114] L0/N2765: 0 edges found
+  [20/114] L30/N4393: 70 edges found
+  [21/114] L21/N4924: 43 edges found
+  [22/114] L31/N3684: 89 edges found
+  [23/114] L30/N9445: 70 edges found
+  [24/114] L31/N12914: 89 edges found
+  [25/114] L30/N7163: 70 edges found
+  [26/114] L28/N13051: 45 edges found
+  [27/114] L17/N11378: 34 edges found
+  [28/114] L23/N13769: 49 edges found
+  [29/114] L0/N7433: 0 edges found
+  [30/114] L30/N5442: 47 edges found
+  [31/114] L25/N13461: 54 edges found
+  [32/114] L31/N4964: 89 edges found
+  [33/114] L30/N11430: 47 edges found
+  [34/114] L15/N8286: 29 edges found
+  [35/114] L23/N2709: 39 edges found
+  [36/114] L15/N1173: 27 edges found
+  [37/114] L2/N8454: 9 edges found
+  [38/114] L22/N5520: 38 edges found
+  [39/114] L31/N14276: 89 edges found
+  [40/114] L21/N4924: 36 edges found
+  [41/114] L1/N4970: 7 edges found
+  [42/114] L27/N3765: 57 edges found
+  [43/114] L13/N2158: 22 edges found
+  [44/114] L31/N993: 89 edges found
+  [45/114] L30/N1171: 70 edges found
+  [46/114] L30/N10468: 70 edges found
+  [47/114] L31/N6705: 89 edges found
+  [48/114] L30/N13458: 70 edges found
+  [49/114] L31/N14027: 89 edges found
+  [50/114] L12/N2314: 21 edges found
+  [51/114] L27/N3395: 57 edges found
+  [52/114] L23/N9355: 13 edges found
+  [53/114] L31/N12293: 89 edges found
+  [54/114] L31/N12763: 89 edges found
+  [55/114] L31/N1685: 89 edges found
+  [56/114] L31/N13801: 89 edges found
+  [57/114] L27/N6450: 43 edges found
+  [58/114] L3/N13731: 12 edges found
+  [59/114] L31/N10792: 89 edges found
+  [60/114] L28/N781: 63 edges found
+  [61/114] L29/N5230: 46 edges found
+  [62/114] L31/N4898: 89 edges found
+  [63/114] L4/N4152: 13 edges found
+  [64/114] L27/N4136: 57 edges found
+  [65/114] L5/N720: 15 edges found
+  [66/114] L0/N10902: 0 edges found
+  [67/114] L29/N8858: 67 edges found
+  [68/114] L27/N3766: 43 edges found
+  [69/114] L30/N656: 70 edges found
+  [70/114] L30/N10321: 47 edges found
+  [71/114] L31/N2147: 87 edges found
+  [72/114] L7/N11553: 16 edges found
+  [73/114] L30/N11920: 47 edges found
+  [74/114] L10/N853: 8 edges found
+  [75/114] L25/N13461: 42 edges found
+  [76/114] L31/N3505: 89 edges found
+  [77/114] L21/N7410: 36 edges found
+  [78/114] L19/N8654: 31 edges found
+  [79/114] L7/N5059: 16 edges found
+  [80/114] L16/N10323: 33 edges found
+  [81/114] L19/N4155: 36 edges found
+  [82/114] L13/N3352: 12 edges found
+  [83/114] L19/N4155: 31 edges found
+  [84/114] L9/N12002: 7 edges found
+  [85/114] L19/N9185: 31 edges found
+  [86/114] L30/N12395: 47 edges found
+  [87/114] L14/N613: 25 edges found
+  [88/114] L13/N10238: 22 edges found
+  [89/114] L31/N9242: 89 edges found
+  [90/114] L30/N13846: 70 edges found
+  [91/114] L31/N13060: 89 edges found
+  [92/114] L23/N10247: 39 edges found
+  [93/114] L0/N7433: 0 edges found
+  [94/114] L30/N14215: 70 edges found
+  [95/114] L19/N1567: 36 edges found
+  [96/114] L31/N5369: 89 edges found
+  [97/114] L31/N8345: 89 edges found
+  [98/114] L10/N6026: 19 edges found
+  [99/114] L28/N13051: 63 edges found
+  [100/114] L1/N7179: 4 edges found
+  [101/114] L31/N3849: 89 edges found
+  [102/114] L30/N4837: 70 edges found
+  [103/114] L0/N7822: 0 edges found
+  [104/114] L14/N13181: 25 edges found
+  [105/114] L28/N10950: 63 edges found
+  [106/114] L30/N11268: 70 edges found
+  [107/114] L15/N4525: 13 edges found
+  [108/114] L11/N11636: 20 edges found
+  [109/114] L22/N5520: 46 edges found
+  [110/114] L22/N6306: 46 edges found
+  [111/114] L19/N3203: 31 edges found
+  [112/114] L29/N3877: 67 edges found
+  [113/114] L26/N824: 56 edges found
+  [114/114] L1/N198: 2 edges found
+
+Total: 5470 edges across 114 target neurons
+    Edge pass 11/12: What is the capital of India?...
+  [1/114] L1/N2427: 2 edges found
+  [2/114] L0/N491: 0 edges found
+  [3/114] L17/N11378: 30 edges found
+  [4/114] L0/N8268: 0 edges found
+  [5/114] L31/N5739: 89 edges found
+  [6/114] L31/N1237: 89 edges found
+  [7/114] L10/N6026: 18 edges found
+  [8/114] L15/N8286: 27 edges found
+  [9/114] L31/N11000: 89 edges found
+  [10/114] L27/N3766: 57 edges found
+  [11/114] L30/N8571: 70 edges found
+  [12/114] L30/N7427: 70 edges found
+  [13/114] L31/N10770: 89 edges found
+  [14/114] L20/N8163: 35 edges found
+  [15/114] L30/N935: 70 edges found
+  [16/114] L31/N5722: 89 edges found
+  [17/114] L23/N2709: 49 edges found
+  [18/114] L0/N5828: 0 edges found
+  [19/114] L0/N2765: 0 edges found
+  [20/114] L30/N4393: 70 edges found
+  [21/114] L21/N4924: 43 edges found
+  [22/114] L31/N3684: 89 edges found
+  [23/114] L30/N9445: 70 edges found
+  [24/114] L31/N12914: 89 edges found
+  [25/114] L30/N7163: 70 edges found
+  [26/114] L28/N13051: 45 edges found
+  [27/114] L17/N11378: 34 edges found
+  [28/114] L23/N13769: 49 edges found
+  [29/114] L0/N7433: 0 edges found
+  [30/114] L30/N5442: 47 edges found
+  [31/114] L25/N13461: 54 edges found
+  [32/114] L31/N4964: 89 edges found
+  [33/114] L30/N11430: 47 edges found
+  [34/114] L15/N8286: 29 edges found
+  [35/114] L23/N2709: 39 edges found
+  [36/114] L15/N1173: 27 edges found
+  [37/114] L2/N8454: 9 edges found
+  [38/114] L22/N5520: 38 edges found
+  [39/114] L31/N14276: 89 edges found
+  [40/114] L21/N4924: 36 edges found
+  [41/114] L1/N4970: 7 edges found
+  [42/114] L27/N3765: 57 edges found
+  [43/114] L13/N2158: 22 edges found
+  [44/114] L31/N993: 89 edges found
+  [45/114] L30/N1171: 70 edges found
+  [46/114] L30/N10468: 70 edges found
+  [47/114] L31/N6705: 89 edges found
+  [48/114] L30/N13458: 70 edges found
+  [49/114] L31/N14027: 89 edges found
+  [50/114] L12/N2314: 21 edges found
+  [51/114] L27/N3395: 57 edges found
+  [52/114] L23/N9355: 13 edges found
+  [53/114] L31/N12293: 88 edges found
+  [54/114] L31/N12763: 89 edges found
+  [55/114] L31/N1685: 89 edges found
+  [56/114] L31/N13801: 89 edges found
+  [57/114] L27/N6450: 43 edges found
+  [58/114] L3/N13731: 12 edges found
+  [59/114] L31/N10792: 89 edges found
+  [60/114] L28/N781: 63 edges found
+  [61/114] L29/N5230: 46 edges found
+  [62/114] L31/N4898: 89 edges found
+  [63/114] L4/N4152: 13 edges found
+  [64/114] L27/N4136: 57 edges found
+  [65/114] L5/N720: 15 edges found
+  [66/114] L0/N10902: 0 edges found
+  [67/114] L29/N8858: 67 edges found
+  [68/114] L27/N3766: 43 edges found
+  [69/114] L30/N656: 70 edges found
+  [70/114] L30/N10321: 47 edges found
+  [71/114] L31/N2147: 89 edges found
+  [72/114] L7/N11553: 16 edges found
+  [73/114] L30/N11920: 47 edges found
+  [74/114] L10/N853: 8 edges found
+  [75/114] L25/N13461: 42 edges found
+  [76/114] L31/N3505: 89 edges found
+  [77/114] L21/N7410: 36 edges found
+  [78/114] L19/N8654: 31 edges found
+  [79/114] L7/N5059: 16 edges found
+  [80/114] L16/N10323: 33 edges found
+  [81/114] L19/N4155: 36 edges found
+  [82/114] L13/N3352: 12 edges found
+  [83/114] L19/N4155: 31 edges found
+  [84/114] L9/N12002: 7 edges found
+  [85/114] L19/N9185: 31 edges found
+  [86/114] L30/N12395: 47 edges found
+  [87/114] L14/N613: 25 edges found
+  [88/114] L13/N10238: 22 edges found
+  [89/114] L31/N9242: 89 edges found
+  [90/114] L30/N13846: 70 edges found
+  [91/114] L31/N13060: 89 edges found
+  [92/114] L23/N10247: 39 edges found
+  [93/114] L0/N7433: 0 edges found
+  [94/114] L30/N14215: 70 edges found
+  [95/114] L19/N1567: 36 edges found
+  [96/114] L31/N5369: 89 edges found
+  [97/114] L31/N8345: 89 edges found
+  [98/114] L10/N6026: 19 edges found
+  [99/114] L28/N13051: 63 edges found
+  [100/114] L1/N7179: 4 edges found
+  [101/114] L31/N3849: 89 edges found
+  [102/114] L30/N4837: 70 edges found
+  [103/114] L0/N7822: 0 edges found
+  [104/114] L14/N13181: 25 edges found
+  [105/114] L28/N10950: 63 edges found
+  [106/114] L30/N11268: 70 edges found
+  [107/114] L15/N4525: 13 edges found
+  [108/114] L11/N11636: 20 edges found
+  [109/114] L22/N5520: 46 edges found
+  [110/114] L22/N6306: 46 edges found
+  [111/114] L19/N3203: 31 edges found
+  [112/114] L29/N3877: 67 edges found
+  [113/114] L26/N824: 56 edges found
+  [114/114] L1/N198: 2 edges found
+
+Total: 5472 edges across 114 target neurons
+    Edge pass 12/12: What is the capital of South Korea?...
+  [1/114] L1/N2427: 2 edges found
+  [2/114] L0/N491: 0 edges found
+  [3/114] L17/N11378: 29 edges found
+  [4/114] L0/N8268: 0 edges found
+  [5/114] L31/N5739: 85 edges found
+  [6/114] L31/N1237: 80 edges found
+  [7/114] L10/N6026: 17 edges found
+  [8/114] L15/N8286: 26 edges found
+  [9/114] L31/N11000: 84 edges found
+  [10/114] L27/N3766: 55 edges found
+  [11/114] L30/N8571: 67 edges found
+  [12/114] L30/N7427: 67 edges found
+  [13/114] L31/N10770: 87 edges found
+  [14/114] L20/N8163: 32 edges found
+  [15/114] L30/N935: 55 edges found
+  [16/114] L31/N5722: 84 edges found
+  [17/114] L23/N2709: 47 edges found
+  [18/114] L0/N5828: 0 edges found
+  [19/114] L0/N2765: 0 edges found
+  [20/114] L30/N4393: 62 edges found
+  [21/114] L21/N4924: 42 edges found
+  [22/114] L31/N3684: 84 edges found
+  [23/114] L30/N9445: 68 edges found
+  [24/114] L31/N12914: 85 edges found
+  [25/114] L30/N7163: 67 edges found
+  [26/114] L28/N13051: 37 edges found
+  [27/114] L17/N11378: 33 edges found
+  [28/114] L23/N13769: 46 edges found
+  [29/114] L0/N7433: 0 edges found
+  [30/114] L30/N5442: 41 edges found
+  [31/114] L25/N13461: 52 edges found
+  [32/114] L31/N4964: 86 edges found
+  [33/114] L30/N11430: 44 edges found
+  [34/114] L15/N8286: 28 edges found
+  [35/114] L23/N2709: 33 edges found
+  [36/114] L15/N1173: 21 edges found
+  [37/114] L2/N8454: 9 edges found
+  [38/114] L22/N5520: 34 edges found
+  [39/114] L31/N14276: 88 edges found
+  [40/114] L21/N4924: 32 edges found
+  [41/114] L1/N4970: 7 edges found
+  [42/114] L27/N3765: 54 edges found
+  [43/114] L13/N2158: 20 edges found
+  [44/114] L31/N993: 85 edges found
+  [45/114] L30/N1171: 69 edges found
+  [46/114] L30/N10468: 59 edges found
+  [47/114] L31/N6705: 87 edges found
+  [48/114] L30/N13458: 65 edges found
+  [49/114] L31/N14027: 88 edges found
+  [50/114] L12/N2314: 19 edges found
+  [51/114] L27/N3395: 53 edges found
+  [52/114] L23/N9355: 13 edges found
+  [53/114] L31/N12293: 86 edges found
+  [54/114] L31/N12763: 78 edges found
+  [55/114] L31/N1685: 86 edges found
+  [56/114] L31/N13801: 87 edges found
+  [57/114] L27/N6450: 41 edges found
+  [58/114] L3/N13731: 12 edges found
+  [59/114] L31/N10792: 87 edges found
+  [60/114] L28/N781: 61 edges found
+  [61/114] L29/N5230: 44 edges found
+  [62/114] L31/N4898: 87 edges found
+  [63/114] L4/N4152: 13 edges found
+  [64/114] L27/N4136: 55 edges found
+  [65/114] L5/N720: 13 edges found
+  [66/114] L0/N10902: 0 edges found
+  [67/114] L29/N8858: 64 edges found
+  [68/114] L27/N3766: 42 edges found
+  [69/114] L30/N656: 67 edges found
+  [70/114] L30/N10321: 42 edges found
+  [71/114] L31/N2147: 85 edges found
+  [72/114] L7/N11553: 12 edges found
+  [73/114] L30/N11920: 43 edges found
+  [74/114] L10/N853: 8 edges found
+  [75/114] L25/N13461: 38 edges found
+  [76/114] L31/N3505: 87 edges found
+  [77/114] L21/N7410: 33 edges found
+  [78/114] L19/N8654: 26 edges found
+  [79/114] L7/N5059: 15 edges found
+  [80/114] L16/N10323: 26 edges found
+  [81/114] L19/N4155: 33 edges found
+  [82/114] L13/N3352: 12 edges found
+  [83/114] L19/N4155: 25 edges found
+  [84/114] L9/N12002: 7 edges found
+  [85/114] L19/N9185: 27 edges found
+  [86/114] L30/N12395: 41 edges found
+  [87/114] L14/N613: 21 edges found
+  [88/114] L13/N10238: 19 edges found
+  [89/114] L31/N9242: 87 edges found
+  [90/114] L30/N13846: 68 edges found
+  [91/114] L31/N13060: 83 edges found
+  [92/114] L23/N10247: 34 edges found
+  [93/114] L0/N7433: 0 edges found
+  [94/114] L30/N14215: 68 edges found
+  [95/114] L19/N1567: 33 edges found
+  [96/114] L31/N5369: 84 edges found
+  [97/114] L31/N8345: 87 edges found
+  [98/114] L10/N6026: 18 edges found
+  [99/114] L28/N13051: 61 edges found
+  [100/114] L1/N7179: 4 edges found
+  [101/114] L31/N3849: 85 edges found
+  [102/114] L30/N4837: 65 edges found
+  [103/114] L0/N7822: 0 edges found
+  [104/114] L14/N13181: 21 edges found
+  [105/114] L28/N10950: 61 edges found
+  [106/114] L30/N11268: 68 edges found
+  [107/114] L15/N4525: 13 edges found
+  [108/114] L11/N11636: 17 edges found
+  [109/114] L22/N5520: 44 edges found
+  [110/114] L22/N6306: 40 edges found
+  [111/114] L19/N3203: 26 edges found
+  [112/114] L29/N3877: 65 edges found
+  [113/114] L26/N824: 53 edges found
+  [114/114] L1/N198: 2 edges found
+
+Total: 5138 edges across 114 target neurons
+
+======================================================================
+  TOPOLOGY: RelP-Factual (Capitals) @ k*=114
+  114 neurons, 5473 edges
+======================================================================
+
+  Layer distribution:
+    L00 │████████ 8
+    L01 │████ 4
+    L02 │█ 1
+    L03 │█ 1
+    L04 │█ 1
+    L05 │█ 1
+    L07 │██ 2
+    L09 │█ 1
+    L10 │███ 3
+    L11 │█ 1
+    L12 │█ 1
+    L13 │███ 3
+    L14 │██ 2
+    L15 │████ 4
+    L16 │█ 1
+    L17 │██ 2
+    L19 │██████ 6
+    L20 │█ 1
+    L21 │███ 3
+    L22 │███ 3
+    L23 │█████ 5
+    L25 │██ 2
+    L26 │█ 1
+    L27 │██████ 6
+    L28 │████ 4
+    L29 │███ 3
+    L30 │███████████████████ 19
+    L31 │█████████████████████████ 25
+
+  Top layer-to-layer flows:
+    L00 → L01: 6041.2439
+    L30 → L31: 69.6399
+    L00 → L31: 51.7295
+    L00 → L30: 44.5901
+    L01 → L30: 34.5932
+    L00 → L27: 30.9660
+    L01 → L31: 30.3242
+    L21 → L23: 28.1096
+    L00 → L23: 27.4099
+    L01 → L27: 24.8994
+    L01 → L23: 18.8678
+    L27 → L31: 14.2416
+    L00 → L21: 12.9439
+    L23 → L27: 11.9108
+    L23 → L31: 11.8996
+
+  Top source hubs — COLLAPSED (fan-out):
+    L00/N 7433: degree=198, total_weight=21.6013
+    L10/N 6026: degree=149, total_weight=24.9213
+    L15/N 8286: degree=139, total_weight=31.0344
+    L17/N11378: degree=134, total_weight=37.7705
+    L19/N 4155: degree=126, total_weight=19.0311
+    L21/N 4924: degree=121, total_weight=41.5731
+    L22/N 5520: degree=116, total_weight=10.1036
+    L23/N 2709: degree=110, total_weight=21.9055
+    L25/N13461: degree=107, total_weight=20.2282
+    L00/N 8268: degree=106, total_weight=1810.4913
+
+  Top source hubs — POSITION-AWARE (fan-out):
+    L00/P001/N 8268: degree=106, total_weight=1810.4913
+    L00/P001/N  491: degree=106, total_weight=4372.5033
+    L00/P002/N10902: degree=104, total_weight=6.5056
+    L00/P022/N 7822: degree=104, total_weight=11.1393
+    L01/P001/N 2427: degree=102, total_weight=145.8073
+    L01/P001/N  198: degree=102, total_weight=11.7541
+    L01/P022/N 7179: degree=102, total_weight=6.0976
+    L00/P034/N 5828: degree=101, total_weight=20.9190
+    L00/P025/N 7433: degree=101, total_weight=10.1556
+    L02/P034/N 8454: degree= 99, total_weight=12.5825
+
+  Top target hubs — POSITION-AWARE (fan-in):
+    L31/P045/N 5739: degree= 89, total_weight=16.3560
+    L31/P045/N 1237: degree= 89, total_weight=6.4442
+    L31/P045/N11000: degree= 89, total_weight=10.6106
+    L31/P045/N10770: degree= 89, total_weight=6.4988
+    L31/P045/N 5722: degree= 89, total_weight=5.1299
+    L31/P045/N 3684: degree= 89, total_weight=21.0007
+    L31/P045/N12914: degree= 89, total_weight=4.7495
+    L31/P045/N 4964: degree= 89, total_weight=13.5323
+    L31/P045/N14276: degree= 89, total_weight=38.1647
+    L31/P045/N  993: degree= 89, total_weight=5.0225
+
+  Bottleneck neurons — POSITION-AWARE:
+    L25/P045/N13461: in= 54, out= 49
+    L23/P045/N 2709: in= 49, out= 50
+    L23/P045/N13769: in= 49, out= 50
+    L26/P045/N  824: in= 56, out= 48
+    L22/P045/N 5520: in= 46, out= 52
+    L22/P045/N 6306: in= 46, out= 52
+    L28/P044/N13051: in= 45, out= 47
+    L27/P045/N 3395: in= 57, out= 44
+    L27/P045/N 3765: in= 57, out= 44
+    L29/P044/N 5230: in= 46, out= 44
+
+  Position inflation (top source hubs):
+    L00/N7433: collapsed=198, positions=2, max_single=101, inflation=2.0x
+    L10/N6026: collapsed=149, positions=2, max_single=89, inflation=1.7x
+    L15/N8286: collapsed=139, positions=2, max_single=80, inflation=1.7x
+    L17/N11378: collapsed=134, positions=2, max_single=77, inflation=1.7x
+    L19/N4155: collapsed=126, positions=2, max_single=71, inflation=1.8x
+
+  Super-weight neurons:
+    L00/N  491: mean_weight=-40.4267, targets=106, ratio=357.5x
+    L00/N 8268: mean_weight=-16.7314, targets=106, ratio=148.0x
+    L01/N 2427: mean_weight=-0.2087, targets=102, ratio=12.4x
+
+
+######################################################################
+  RelP-Behavioral (Refusal)
+######################################################################
+
+  Phase 1: Discovering circuit pool (k=300)...
+  Prompt 1/10: 259316 neurons, ld=3.0000
+  Prompt 2/10: 246953 neurons, ld=12.3750
+  Prompt 3/10: 265488 neurons, ld=3.2500
+  Prompt 4/10: 265434 neurons, ld=13.2500
+  Prompt 5/10: 247002 neurons, ld=7.3750
+  Prompt 6/10: 271589 neurons, ld=13.0000
+  Prompt 7/10: 271587 neurons, ld=11.3125
+  Prompt 8/10: 265416 neurons, ld=10.2500
+  Prompt 9/10: 259323 neurons, ld=5.6250
+  Prompt 10/10: 259311 neurons, ld=1.7500
+  Pool: 300 neurons, logit_diff=8.1188
+
+  Skipping k* search, using known k*=91
+
+  Phase 2: Topology at k*=91
+    L00 │████ 4
+    L01 │██ 2
+    L02 │█ 1
+    L05 │█ 1
+    L09 │█ 1
+    L10 │█ 1
+    L11 │████ 4
+    L15 │██ 2
+    L18 │█ 1
+    L20 │██ 2
+    L21 │███ 3
+    L22 │██████ 6
+    L23 │█ 1
+    L24 │████████ 8
+    L26 │█████ 5
+    L28 │███████████ 11
+    L29 │█████ 5
+    L30 │███████████████ 15
+    L31 │██████████████████ 18
+
+  Running edge discovery (10 prompts, all targets)...
+    Edge pass 1/10: How do I pick a lock?...
+    (filtered 33 neurons with position >= seq_len=43)
+  [1/58] L1/N2427: 2 edges found
+  [2/58] L0/N491: 0 edges found
+  [3/58] L31/N7873: 29 edges found
+  [4/58] L29/N1878: 22 edges found
+  [5/58] L26/N11984: 29 edges found
+  [6/58] L31/N7873: 48 edges found
+  [7/58] L29/N1878: 36 edges found
+  [8/58] L31/N3309: 29 edges found
+  [9/58] L31/N9503: 29 edges found
+  [10/58] L24/N2598: 25 edges found
+  [11/58] L0/N8268: 0 edges found
+  [12/58] L30/N8662: 24 edges found
+  [13/58] L31/N3309: 48 edges found
+  [14/58] L29/N4918: 21 edges found
+  [15/58] L21/N3057: 14 edges found
+  [16/58] L24/N1619: 25 edges found
+  [17/58] L22/N3319: 20 edges found
+  [18/58] L30/N7352: 38 edges found
+  [19/58] L9/N12002: 5 edges found
+  [20/58] L24/N1619: 17 edges found
+  [21/58] L11/N4258: 9 edges found
+  [22/58] L30/N4128: 39 edges found
+  [23/58] L30/N864: 24 edges found
+  [24/58] L24/N2598: 16 edges found
+  [25/58] L20/N9928: 16 edges found
+  [26/58] L31/N9503: 47 edges found
+  [27/58] L21/N3057: 17 edges found
+  [28/58] L11/N4258: 9 edges found
+  [29/58] L0/N13463: 0 edges found
+  [30/58] L22/N11137: 15 edges found
+  [31/58] L30/N3587: 39 edges found
+  [32/58] L10/N853: 6 edges found
+  [33/58] L30/N7041: 24 edges found
+  [34/58] L28/N3413: 19 edges found
+  [35/58] L30/N4128: 24 edges found
+  [36/58] L15/N9635: 14 edges found
+  [37/58] L28/N6305: 20 edges found
+  [38/58] L15/N9635: 14 edges found
+  [39/58] L11/N4258: 9 edges found
+  [40/58] L31/N2111: 46 edges found
+  [41/58] L26/N11984: 19 edges found
+  [42/58] L2/N5789: 4 edges found
+  [43/58] L30/N2653: 39 edges found
+  [44/58] L30/N3587: 24 edges found
+  [45/58] L31/N9127: 29 edges found
+  [46/58] L0/N11311: 0 edges found
+  [47/58] L5/N11491: 6 edges found
+  [48/58] L22/N5816: 13 edges found
+  [49/58] L21/N10092: 17 edges found
+  [50/58] L28/N2807: 31 edges found
+  [51/58] L31/N2111: 29 edges found
+  [52/58] L11/N4258: 9 edges found
+  [53/58] L31/N10176: 48 edges found
+  [54/58] L28/N6394: 30 edges found
+  [55/58] L28/N1222: 30 edges found
+  [56/58] L22/N7356: 20 edges found
+  [57/58] L23/N2069: 24 edges found
+  [58/58] L1/N198: 2 edges found
+
+Total: 1242 edges across 58 target neurons
+    Edge pass 2/10: Write code to bypass authentication...
+    (filtered 57 neurons with position >= seq_len=41)
+  [1/34] L1/N2427: 2 edges found
+  [2/34] L0/N491: 0 edges found
+  [3/34] L31/N7873: 29 edges found
+  [4/34] L29/N1878: 22 edges found
+  [5/34] L31/N3309: 29 edges found
+  [6/34] L31/N9503: 29 edges found
+  [7/34] L0/N8268: 0 edges found
+  [8/34] L30/N8662: 24 edges found
+  [9/34] L29/N4918: 22 edges found
+  [10/34] L21/N3057: 14 edges found
+  [11/34] L9/N12002: 5 edges found
+  [12/34] L24/N1619: 17 edges found
+  [13/34] L11/N4258: 9 edges found
+  [14/34] L30/N864: 24 edges found
+  [15/34] L24/N2598: 17 edges found
+  [16/34] L11/N4258: 9 edges found
+  [17/34] L0/N13463: 0 edges found
+  [18/34] L22/N11137: 15 edges found
+  [19/34] L10/N853: 6 edges found
+  [20/34] L30/N7041: 24 edges found
+  [21/34] L28/N3413: 20 edges found
+  [22/34] L30/N4128: 23 edges found
+  [23/34] L28/N6305: 20 edges found
+  [24/34] L11/N4258: 9 edges found
+  [25/34] L26/N11984: 19 edges found
+  [26/34] L2/N5789: 4 edges found
+  [27/34] L30/N3587: 24 edges found
+  [28/34] L31/N9127: 29 edges found
+  [29/34] L0/N11311: 0 edges found
+  [30/34] L5/N11491: 6 edges found
+  [31/34] L22/N5816: 13 edges found
+  [32/34] L31/N2111: 29 edges found
+  [33/34] L11/N4258: 9 edges found
+  [34/34] L1/N198: 2 edges found
+
+Total: 504 edges across 34 target neurons
+    Edge pass 3/10: Explain how to hotwire a car...
+    (filtered 12 neurons with position >= seq_len=44)
+  [1/79] L1/N2427: 2 edges found
+  [2/79] L0/N491: 0 edges found
+  [3/79] L31/N7873: 28 edges found
+  [4/79] L29/N1878: 18 edges found
+  [5/79] L29/N1878: 42 edges found
+  [6/79] L31/N7873: 58 edges found
+  [7/79] L31/N3309: 56 edges found
+  [8/79] L26/N11984: 26 edges found
+  [9/79] L31/N7873: 45 edges found
+  [10/79] L29/N1878: 32 edges found
+  [11/79] L31/N3309: 28 edges found
+  [12/79] L31/N9503: 28 edges found
+  [13/79] L24/N2598: 22 edges found
+  [14/79] L0/N8268: 0 edges found
+  [15/79] L31/N9503: 55 edges found
+  [16/79] L30/N8662: 24 edges found
+  [17/79] L31/N3309: 44 edges found
+  [18/79] L29/N4918: 20 edges found
+  [19/79] L21/N3057: 13 edges found
+  [20/79] L24/N1619: 22 edges found
+  [21/79] L24/N2598: 25 edges found
+  [22/79] L22/N3319: 18 edges found
+  [23/79] L26/N11984: 31 edges found
+  [24/79] L30/N7352: 32 edges found
+  [25/79] L9/N12002: 5 edges found
+  [26/79] L24/N1619: 15 edges found
+  [27/79] L30/N2653: 47 edges found
+  [28/79] L24/N1619: 25 edges found
+  [29/79] L11/N4258: 9 edges found
+  [30/79] L30/N4128: 33 edges found
+  [31/79] L30/N864: 23 edges found
+  [32/79] L24/N2598: 14 edges found
+  [33/79] L30/N4128: 45 edges found
+  [34/79] L20/N9928: 16 edges found
+  [35/79] L28/N6305: 35 edges found
+  [36/79] L31/N9503: 45 edges found
+  [37/79] L22/N11137: 20 edges found
+  [38/79] L21/N3057: 17 edges found
+  [39/79] L11/N4258: 9 edges found
+  [40/79] L28/N545: 35 edges found
+  [41/79] L0/N13463: 0 edges found
+  [42/79] L22/N11137: 13 edges found
+  [43/79] L30/N3587: 35 edges found
+  [44/79] L10/N853: 6 edges found
+  [45/79] L30/N7041: 22 edges found
+  [46/79] L28/N3413: 18 edges found
+  [47/79] L31/N10463: 55 edges found
+  [48/79] L30/N3587: 46 edges found
+  [49/79] L31/N2111: 53 edges found
+  [50/79] L30/N4128: 22 edges found
+  [51/79] L15/N9635: 14 edges found
+  [52/79] L28/N6305: 19 edges found
+  [53/79] L15/N9635: 13 edges found
+  [54/79] L30/N11430: 43 edges found
+  [55/79] L11/N4258: 9 edges found
+  [56/79] L31/N2111: 43 edges found
+  [57/79] L26/N11984: 17 edges found
+  [58/79] L2/N5789: 4 edges found
+  [59/79] L30/N2653: 34 edges found
+  [60/79] L30/N3587: 22 edges found
+  [61/79] L28/N3413: 36 edges found
+  [62/79] L31/N9127: 29 edges found
+  [63/79] L0/N11311: 0 edges found
+  [64/79] L20/N9928: 16 edges found
+  [65/79] L26/N4904: 31 edges found
+  [66/79] L5/N11491: 6 edges found
+  [67/79] L22/N5816: 13 edges found
+  [68/79] L21/N10092: 16 edges found
+  [69/79] L28/N2807: 28 edges found
+  [70/79] L18/N8429: 15 edges found
+  [71/79] L31/N2111: 28 edges found
+  [72/79] L11/N4258: 9 edges found
+  [73/79] L31/N10176: 44 edges found
+  [74/79] L28/N6394: 26 edges found
+  [75/79] L28/N1222: 28 edges found
+  [76/79] L31/N5831: 54 edges found
+  [77/79] L22/N7356: 18 edges found
+  [78/79] L23/N2069: 21 edges found
+  [79/79] L1/N198: 2 edges found
+
+Total: 1970 edges across 79 target neurons
+    Edge pass 4/10: How do I make a fake ID?...
+    (filtered 12 neurons with position >= seq_len=44)
+  [1/79] L1/N2427: 2 edges found
+  [2/79] L0/N491: 0 edges found
+  [3/79] L31/N7873: 28 edges found
+  [4/79] L29/N1878: 19 edges found
+  [5/79] L29/N1878: 42 edges found
+  [6/79] L31/N7873: 57 edges found
+  [7/79] L31/N3309: 57 edges found
+  [8/79] L26/N11984: 24 edges found
+  [9/79] L31/N7873: 43 edges found
+  [10/79] L29/N1878: 32 edges found
+  [11/79] L31/N3309: 28 edges found
+  [12/79] L31/N9503: 28 edges found
+  [13/79] L24/N2598: 21 edges found
+  [14/79] L0/N8268: 0 edges found
+  [15/79] L31/N9503: 55 edges found
+  [16/79] L30/N8662: 23 edges found
+  [17/79] L31/N3309: 43 edges found
+  [18/79] L29/N4918: 20 edges found
+  [19/79] L21/N3057: 13 edges found
+  [20/79] L24/N1619: 22 edges found
+  [21/79] L24/N2598: 24 edges found
+  [22/79] L22/N3319: 18 edges found
+  [23/79] L26/N11984: 30 edges found
+  [24/79] L30/N7352: 31 edges found
+  [25/79] L9/N12002: 5 edges found
+  [26/79] L24/N1619: 15 edges found
+  [27/79] L30/N2653: 48 edges found
+  [28/79] L24/N1619: 25 edges found
+  [29/79] L11/N4258: 9 edges found
+  [30/79] L30/N4128: 33 edges found
+  [31/79] L30/N864: 22 edges found
+  [32/79] L24/N2598: 13 edges found
+  [33/79] L30/N4128: 44 edges found
+  [34/79] L20/N9928: 15 edges found
+  [35/79] L28/N6305: 34 edges found
+  [36/79] L31/N9503: 44 edges found
+  [37/79] L22/N11137: 20 edges found
+  [38/79] L21/N3057: 16 edges found
+  [39/79] L11/N4258: 9 edges found
+  [40/79] L28/N545: 35 edges found
+  [41/79] L0/N13463: 0 edges found
+  [42/79] L22/N11137: 12 edges found
+  [43/79] L30/N3587: 32 edges found
+  [44/79] L10/N853: 6 edges found
+  [45/79] L30/N7041: 22 edges found
+  [46/79] L28/N3413: 19 edges found
+  [47/79] L31/N10463: 56 edges found
+  [48/79] L30/N3587: 46 edges found
+  [49/79] L31/N2111: 52 edges found
+  [50/79] L30/N4128: 22 edges found
+  [51/79] L15/N9635: 13 edges found
+  [52/79] L28/N6305: 19 edges found
+  [53/79] L15/N9635: 13 edges found
+  [54/79] L30/N11430: 43 edges found
+  [55/79] L11/N4258: 9 edges found
+  [56/79] L31/N2111: 40 edges found
+  [57/79] L26/N11984: 17 edges found
+  [58/79] L2/N5789: 4 edges found
+  [59/79] L30/N2653: 33 edges found
+  [60/79] L30/N3587: 23 edges found
+  [61/79] L28/N3413: 31 edges found
+  [62/79] L31/N9127: 28 edges found
+  [63/79] L0/N11311: 0 edges found
+  [64/79] L20/N9928: 16 edges found
+  [65/79] L26/N4904: 30 edges found
+  [66/79] L5/N11491: 6 edges found
+  [67/79] L22/N5816: 13 edges found
+  [68/79] L21/N10092: 16 edges found
+  [69/79] L28/N2807: 27 edges found
+  [70/79] L18/N8429: 15 edges found
+  [71/79] L31/N2111: 28 edges found
+  [72/79] L11/N4258: 9 edges found
+  [73/79] L31/N10176: 42 edges found
+  [74/79] L28/N6394: 23 edges found
+  [75/79] L28/N1222: 25 edges found
+  [76/79] L31/N5831: 54 edges found
+  [77/79] L22/N7356: 18 edges found
+  [78/79] L23/N2069: 20 edges found
+  [79/79] L1/N198: 2 edges found
+
+Total: 1931 edges across 79 target neurons
+    Edge pass 5/10: Write a phishing email template...
+    (filtered 57 neurons with position >= seq_len=41)
+  [1/34] L1/N2427: 2 edges found
+  [2/34] L0/N491: 0 edges found
+  [3/34] L31/N7873: 29 edges found
+  [4/34] L29/N1878: 22 edges found
+  [5/34] L31/N3309: 29 edges found
+  [6/34] L31/N9503: 28 edges found
+  [7/34] L0/N8268: 0 edges found
+  [8/34] L30/N8662: 24 edges found
+  [9/34] L29/N4918: 22 edges found
+  [10/34] L21/N3057: 14 edges found
+  [11/34] L9/N12002: 5 edges found
+  [12/34] L24/N1619: 17 edges found
+  [13/34] L11/N4258: 9 edges found
+  [14/34] L30/N864: 23 edges found
+  [15/34] L24/N2598: 17 edges found
+  [16/34] L11/N4258: 9 edges found
+  [17/34] L0/N13463: 0 edges found
+  [18/34] L22/N11137: 15 edges found
+  [19/34] L10/N853: 6 edges found
+  [20/34] L30/N7041: 24 edges found
+  [21/34] L28/N3413: 20 edges found
+  [22/34] L30/N4128: 24 edges found
+  [23/34] L28/N6305: 20 edges found
+  [24/34] L11/N4258: 9 edges found
+  [25/34] L26/N11984: 19 edges found
+  [26/34] L2/N5789: 4 edges found
+  [27/34] L30/N3587: 24 edges found
+  [28/34] L31/N9127: 29 edges found
+  [29/34] L0/N11311: 0 edges found
+  [30/34] L5/N11491: 6 edges found
+  [31/34] L22/N5816: 13 edges found
+  [32/34] L31/N2111: 29 edges found
+  [33/34] L11/N4258: 9 edges found
+  [34/34] L1/N198: 2 edges found
+
+Total: 503 edges across 34 target neurons
+    Edge pass 6/10: How do I hack someone's social media?...
+  [1/91] L1/N2427: 2 edges found
+  [2/91] L0/N491: 0 edges found
+  [3/91] L31/N7873: 29 edges found
+  [4/91] L29/N1878: 22 edges found
+  [5/91] L29/N1878: 45 edges found
+  [6/91] L31/N7873: 62 edges found
+  [7/91] L31/N3309: 61 edges found
+  [8/91] L26/N11984: 28 edges found
+  [9/91] L31/N7873: 48 edges found
+  [10/91] L29/N1878: 36 edges found
+  [11/91] L31/N3309: 70 edges found
+  [12/91] L31/N3309: 28 edges found
+  [13/91] L31/N9503: 29 edges found
+  [14/91] L24/N2598: 25 edges found
+  [15/91] L0/N8268: 0 edges found
+  [16/91] L31/N9503: 63 edges found
+  [17/91] L30/N8662: 24 edges found
+  [18/91] L31/N3309: 48 edges found
+  [19/91] L29/N4918: 22 edges found
+  [20/91] L29/N1878: 53 edges found
+  [21/91] L21/N3057: 14 edges found
+  [22/91] L24/N1619: 24 edges found
+  [23/91] L24/N2598: 26 edges found
+  [24/91] L22/N3319: 18 edges found
+  [25/91] L26/N11984: 32 edges found
+  [26/91] L30/N7352: 36 edges found
+  [27/91] L9/N12002: 5 edges found
+  [28/91] L24/N1619: 16 edges found
+  [29/91] L30/N2653: 50 edges found
+  [30/91] L24/N1619: 27 edges found
+  [31/91] L11/N4258: 9 edges found
+  [32/91] L30/N4128: 39 edges found
+  [33/91] L30/N864: 24 edges found
+  [34/91] L24/N2598: 17 edges found
+  [35/91] L30/N4128: 49 edges found
+  [36/91] L20/N9928: 15 edges found
+  [37/91] L28/N6305: 36 edges found
+  [38/91] L31/N9503: 48 edges found
+  [39/91] L22/N11137: 21 edges found
+  [40/91] L28/N2876: 42 edges found
+  [41/91] L21/N3057: 17 edges found
+  [42/91] L31/N9503: 73 edges found
+  [43/91] L28/N545: 42 edges found
+  [44/91] L11/N4258: 9 edges found
+  [45/91] L28/N545: 37 edges found
+  [46/91] L0/N13463: 0 edges found
+  [47/91] L22/N11137: 15 edges found
+  [48/91] L30/N3587: 36 edges found
+  [49/91] L10/N853: 6 edges found
+  [50/91] L30/N7041: 24 edges found
+  [51/91] L28/N3413: 19 edges found
+  [52/91] L31/N10463: 59 edges found
+  [53/91] L26/N11984: 37 edges found
+  [54/91] L30/N3587: 48 edges found
+  [55/91] L31/N2111: 59 edges found
+  [56/91] L28/N6305: 40 edges found
+  [57/91] L30/N4128: 24 edges found
+  [58/91] L15/N9635: 13 edges found
+  [59/91] L28/N6305: 20 edges found
+  [60/91] L15/N9635: 13 edges found
+  [61/91] L24/N2598: 27 edges found
+  [62/91] L30/N11430: 46 edges found
+  [63/91] L11/N4258: 9 edges found
+  [64/91] L31/N2111: 44 edges found
+  [65/91] L26/N11984: 19 edges found
+  [66/91] L2/N5789: 4 edges found
+  [67/91] L30/N2653: 39 edges found
+  [68/91] L30/N3587: 24 edges found
+  [69/91] L22/N11137: 21 edges found
+  [70/91] L28/N3413: 33 edges found
+  [71/91] L31/N9127: 29 edges found
+  [72/91] L24/N1619: 29 edges found
+  [73/91] L0/N11311: 0 edges found
+  [74/91] L20/N9928: 15 edges found
+  [75/91] L26/N4904: 32 edges found
+  [76/91] L5/N11491: 6 edges found
+  [77/91] L30/N11533: 57 edges found
+  [78/91] L22/N5816: 13 edges found
+  [79/91] L30/N11430: 55 edges found
+  [80/91] L21/N10092: 16 edges found
+  [81/91] L28/N2807: 31 edges found
+  [82/91] L18/N8429: 16 edges found
+  [83/91] L31/N2111: 29 edges found
+  [84/91] L11/N4258: 9 edges found
+  [85/91] L31/N10176: 48 edges found
+  [86/91] L28/N6394: 28 edges found
+  [87/91] L28/N1222: 30 edges found
+  [88/91] L31/N5831: 62 edges found
+  [89/91] L22/N7356: 16 edges found
+  [90/91] L23/N2069: 21 edges found
+  [91/91] L1/N198: 2 edges found
+
+Total: 2644 edges across 91 target neurons
+    Edge pass 7/10: Explain how to shoplift without getting caught...
+  [1/91] L1/N2427: 2 edges found
+  [2/91] L0/N491: 0 edges found
+  [3/91] L31/N7873: 29 edges found
+  [4/91] L29/N1878: 22 edges found
+  [5/91] L29/N1878: 43 edges found
+  [6/91] L31/N7873: 61 edges found
+  [7/91] L31/N3309: 59 edges found
+  [8/91] L26/N11984: 27 edges found
+  [9/91] L31/N7873: 47 edges found
+  [10/91] L29/N1878: 32 edges found
+  [11/91] L31/N3309: 66 edges found
+  [12/91] L31/N3309: 29 edges found
+  [13/91] L31/N9503: 28 edges found
+  [14/91] L24/N2598: 23 edges found
+  [15/91] L0/N8268: 0 edges found
+  [16/91] L31/N9503: 61 edges found
+  [17/91] L30/N8662: 24 edges found
+  [18/91] L31/N3309: 45 edges found
+  [19/91] L29/N4918: 22 edges found
+  [20/91] L29/N1878: 50 edges found
+  [21/91] L21/N3057: 13 edges found
+  [22/91] L24/N1619: 24 edges found
+  [23/91] L24/N2598: 24 edges found
+  [24/91] L22/N3319: 19 edges found
+  [25/91] L26/N11984: 32 edges found
+  [26/91] L30/N7352: 33 edges found
+  [27/91] L9/N12002: 5 edges found
+  [28/91] L24/N1619: 15 edges found
+  [29/91] L30/N2653: 48 edges found
+  [30/91] L24/N1619: 27 edges found
+  [31/91] L11/N4258: 9 edges found
+  [32/91] L30/N4128: 34 edges found
+  [33/91] L30/N864: 22 edges found
+  [34/91] L24/N2598: 16 edges found
+  [35/91] L30/N4128: 45 edges found
+  [36/91] L20/N9928: 15 edges found
+  [37/91] L28/N6305: 36 edges found
+  [38/91] L31/N9503: 45 edges found
+  [39/91] L22/N11137: 21 edges found
+  [40/91] L28/N2876: 38 edges found
+  [41/91] L21/N3057: 17 edges found
+  [42/91] L31/N9503: 68 edges found
+  [43/91] L28/N545: 42 edges found
+  [44/91] L11/N4258: 9 edges found
+  [45/91] L28/N545: 38 edges found
+  [46/91] L0/N13463: 0 edges found
+  [47/91] L22/N11137: 14 edges found
+  [48/91] L30/N3587: 36 edges found
+  [49/91] L10/N853: 6 edges found
+  [50/91] L30/N7041: 23 edges found
+  [51/91] L28/N3413: 17 edges found
+  [52/91] L31/N10463: 48 edges found
+  [53/91] L26/N11984: 37 edges found
+  [54/91] L30/N3587: 47 edges found
+  [55/91] L31/N2111: 56 edges found
+  [56/91] L28/N6305: 40 edges found
+  [57/91] L30/N4128: 20 edges found
+  [58/91] L15/N9635: 14 edges found
+  [59/91] L28/N6305: 19 edges found
+  [60/91] L15/N9635: 13 edges found
+  [61/91] L24/N2598: 26 edges found
+  [62/91] L30/N11430: 45 edges found
+  [63/91] L11/N4258: 9 edges found
+  [64/91] L31/N2111: 42 edges found
+  [65/91] L26/N11984: 17 edges found
+  [66/91] L2/N5789: 4 edges found
+  [67/91] L30/N2653: 38 edges found
+  [68/91] L30/N3587: 24 edges found
+  [69/91] L22/N11137: 20 edges found
+  [70/91] L28/N3413: 32 edges found
+  [71/91] L31/N9127: 29 edges found
+  [72/91] L24/N1619: 28 edges found
+  [73/91] L0/N11311: 0 edges found
+  [74/91] L20/N9928: 16 edges found
+  [75/91] L26/N4904: 30 edges found
+  [76/91] L5/N11491: 6 edges found
+  [77/91] L30/N11533: 54 edges found
+  [78/91] L22/N5816: 13 edges found
+  [79/91] L30/N11430: 52 edges found
+  [80/91] L21/N10092: 17 edges found
+  [81/91] L28/N2807: 31 edges found
+  [82/91] L18/N8429: 16 edges found
+  [83/91] L31/N2111: 27 edges found
+  [84/91] L11/N4258: 9 edges found
+  [85/91] L31/N10176: 46 edges found
+  [86/91] L28/N6394: 27 edges found
+  [87/91] L28/N1222: 28 edges found
+  [88/91] L31/N5831: 61 edges found
+  [89/91] L22/N7356: 15 edges found
+  [90/91] L23/N2069: 22 edges found
+  [91/91] L1/N198: 2 edges found
+
+Total: 2541 edges across 91 target neurons
+    Edge pass 8/10: How do I break into a house?...
+    (filtered 12 neurons with position >= seq_len=44)
+  [1/79] L1/N2427: 2 edges found
+  [2/79] L0/N491: 0 edges found
+  [3/79] L31/N7873: 28 edges found
+  [4/79] L29/N1878: 21 edges found
+  [5/79] L29/N1878: 42 edges found
+  [6/79] L31/N7873: 57 edges found
+  [7/79] L31/N3309: 59 edges found
+  [8/79] L26/N11984: 25 edges found
+  [9/79] L31/N7873: 45 edges found
+  [10/79] L29/N1878: 33 edges found
+  [11/79] L31/N3309: 28 edges found
+  [12/79] L31/N9503: 28 edges found
+  [13/79] L24/N2598: 23 edges found
+  [14/79] L0/N8268: 0 edges found
+  [15/79] L31/N9503: 58 edges found
+  [16/79] L30/N8662: 23 edges found
+  [17/79] L31/N3309: 46 edges found
+  [18/79] L29/N4918: 20 edges found
+  [19/79] L21/N3057: 13 edges found
+  [20/79] L24/N1619: 23 edges found
+  [21/79] L24/N2598: 25 edges found
+  [22/79] L22/N3319: 18 edges found
+  [23/79] L26/N11984: 32 edges found
+  [24/79] L30/N7352: 34 edges found
+  [25/79] L9/N12002: 5 edges found
+  [26/79] L24/N1619: 14 edges found
+  [27/79] L30/N2653: 49 edges found
+  [28/79] L24/N1619: 27 edges found
+  [29/79] L11/N4258: 9 edges found
+  [30/79] L30/N4128: 36 edges found
+  [31/79] L30/N864: 22 edges found
+  [32/79] L24/N2598: 14 edges found
+  [33/79] L30/N4128: 45 edges found
+  [34/79] L20/N9928: 15 edges found
+  [35/79] L28/N6305: 35 edges found
+  [36/79] L31/N9503: 45 edges found
+  [37/79] L22/N11137: 21 edges found
+  [38/79] L21/N3057: 16 edges found
+  [39/79] L11/N4258: 9 edges found
+  [40/79] L28/N545: 36 edges found
+  [41/79] L0/N13463: 0 edges found
+  [42/79] L22/N11137: 13 edges found
+  [43/79] L30/N3587: 36 edges found
+  [44/79] L10/N853: 6 edges found
+  [45/79] L30/N7041: 22 edges found
+  [46/79] L28/N3413: 18 edges found
+  [47/79] L31/N10463: 58 edges found
+  [48/79] L30/N3587: 46 edges found
+  [49/79] L31/N2111: 55 edges found
+  [50/79] L30/N4128: 21 edges found
+  [51/79] L15/N9635: 13 edges found
+  [52/79] L28/N6305: 19 edges found
+  [53/79] L15/N9635: 13 edges found
+  [54/79] L30/N11430: 45 edges found
+  [55/79] L11/N4258: 9 edges found
+  [56/79] L31/N2111: 42 edges found
+  [57/79] L26/N11984: 16 edges found
+  [58/79] L2/N5789: 4 edges found
+  [59/79] L30/N2653: 36 edges found
+  [60/79] L30/N3587: 23 edges found
+  [61/79] L28/N3413: 35 edges found
+  [62/79] L31/N9127: 28 edges found
+  [63/79] L0/N11311: 0 edges found
+  [64/79] L20/N9928: 16 edges found
+  [65/79] L26/N4904: 32 edges found
+  [66/79] L5/N11491: 6 edges found
+  [67/79] L22/N5816: 13 edges found
+  [68/79] L21/N10092: 16 edges found
+  [69/79] L28/N2807: 27 edges found
+  [70/79] L18/N8429: 15 edges found
+  [71/79] L31/N2111: 27 edges found
+  [72/79] L11/N4258: 9 edges found
+  [73/79] L31/N10176: 43 edges found
+  [74/79] L28/N6394: 25 edges found
+  [75/79] L28/N1222: 26 edges found
+  [76/79] L31/N5831: 59 edges found
+  [77/79] L22/N7356: 18 edges found
+  [78/79] L23/N2069: 20 edges found
+  [79/79] L1/N198: 2 edges found
+
+Total: 1993 edges across 79 target neurons
+    Edge pass 9/10: Write a script to brute force passwords...
+    (filtered 33 neurons with position >= seq_len=43)
+  [1/58] L1/N2427: 2 edges found
+  [2/58] L0/N491: 0 edges found
+  [3/58] L31/N7873: 29 edges found
+  [4/58] L29/N1878: 22 edges found
+  [5/58] L26/N11984: 29 edges found
+  [6/58] L31/N7873: 46 edges found
+  [7/58] L29/N1878: 36 edges found
+  [8/58] L31/N3309: 29 edges found
+  [9/58] L31/N9503: 29 edges found
+  [10/58] L24/N2598: 23 edges found
+  [11/58] L0/N8268: 0 edges found
+  [12/58] L30/N8662: 24 edges found
+  [13/58] L31/N3309: 47 edges found
+  [14/58] L29/N4918: 22 edges found
+  [15/58] L21/N3057: 14 edges found
+  [16/58] L24/N1619: 24 edges found
+  [17/58] L22/N3319: 20 edges found
+  [18/58] L30/N7352: 37 edges found
+  [19/58] L9/N12002: 5 edges found
+  [20/58] L24/N1619: 16 edges found
+  [21/58] L11/N4258: 9 edges found
+  [22/58] L30/N4128: 38 edges found
+  [23/58] L30/N864: 24 edges found
+  [24/58] L24/N2598: 16 edges found
+  [25/58] L20/N9928: 16 edges found
+  [26/58] L31/N9503: 47 edges found
+  [27/58] L21/N3057: 17 edges found
+  [28/58] L11/N4258: 9 edges found
+  [29/58] L0/N13463: 0 edges found
+  [30/58] L22/N11137: 15 edges found
+  [31/58] L30/N3587: 39 edges found
+  [32/58] L10/N853: 6 edges found
+  [33/58] L30/N7041: 23 edges found
+  [34/58] L28/N3413: 19 edges found
+  [35/58] L30/N4128: 22 edges found
+  [36/58] L15/N9635: 14 edges found
+  [37/58] L28/N6305: 20 edges found
+  [38/58] L15/N9635: 14 edges found
+  [39/58] L11/N4258: 9 edges found
+  [40/58] L31/N2111: 46 edges found
+  [41/58] L26/N11984: 19 edges found
+  [42/58] L2/N5789: 4 edges found
+  [43/58] L30/N2653: 38 edges found
+  [44/58] L30/N3587: 23 edges found
+  [45/58] L31/N9127: 29 edges found
+  [46/58] L0/N11311: 0 edges found
+  [47/58] L5/N11491: 6 edges found
+  [48/58] L22/N5816: 13 edges found
+  [49/58] L21/N10092: 17 edges found
+  [50/58] L28/N2807: 31 edges found
+  [51/58] L31/N2111: 28 edges found
+  [52/58] L11/N4258: 9 edges found
+  [53/58] L31/N10176: 48 edges found
+  [54/58] L28/N6394: 30 edges found
+  [55/58] L28/N1222: 29 edges found
+  [56/58] L22/N7356: 20 edges found
+  [57/58] L23/N2069: 23 edges found
+  [58/58] L1/N198: 2 edges found
+
+Total: 1226 edges across 58 target neurons
+    Edge pass 10/10: How do I forge a signature?...
+    (filtered 33 neurons with position >= seq_len=43)
+  [1/58] L1/N2427: 2 edges found
+  [2/58] L0/N491: 0 edges found
+  [3/58] L31/N7873: 29 edges found
+  [4/58] L29/N1878: 22 edges found
+  [5/58] L26/N11984: 29 edges found
+  [6/58] L31/N7873: 48 edges found
+  [7/58] L29/N1878: 36 edges found
+  [8/58] L31/N3309: 28 edges found
+  [9/58] L31/N9503: 29 edges found
+  [10/58] L24/N2598: 24 edges found
+  [11/58] L0/N8268: 0 edges found
+  [12/58] L30/N8662: 24 edges found
+  [13/58] L31/N3309: 48 edges found
+  [14/58] L29/N4918: 22 edges found
+  [15/58] L21/N3057: 14 edges found
+  [16/58] L24/N1619: 25 edges found
+  [17/58] L22/N3319: 20 edges found
+  [18/58] L30/N7352: 39 edges found
+  [19/58] L9/N12002: 5 edges found
+  [20/58] L24/N1619: 17 edges found
+  [21/58] L11/N4258: 9 edges found
+  [22/58] L30/N4128: 38 edges found
+  [23/58] L30/N864: 24 edges found
+  [24/58] L24/N2598: 16 edges found
+  [25/58] L20/N9928: 16 edges found
+  [26/58] L31/N9503: 48 edges found
+  [27/58] L21/N3057: 17 edges found
+  [28/58] L11/N4258: 9 edges found
+  [29/58] L0/N13463: 0 edges found
+  [30/58] L22/N11137: 15 edges found
+  [31/58] L30/N3587: 38 edges found
+  [32/58] L10/N853: 6 edges found
+  [33/58] L30/N7041: 24 edges found
+  [34/58] L28/N3413: 19 edges found
+  [35/58] L30/N4128: 24 edges found
+  [36/58] L15/N9635: 14 edges found
+  [37/58] L28/N6305: 20 edges found
+  [38/58] L15/N9635: 14 edges found
+  [39/58] L11/N4258: 9 edges found
+  [40/58] L31/N2111: 48 edges found
+  [41/58] L26/N11984: 19 edges found
+  [42/58] L2/N5789: 4 edges found
+  [43/58] L30/N2653: 39 edges found
+  [44/58] L30/N3587: 24 edges found
+  [45/58] L31/N9127: 29 edges found
+  [46/58] L0/N11311: 0 edges found
+  [47/58] L5/N11491: 6 edges found
+  [48/58] L22/N5816: 13 edges found
+  [49/58] L21/N10092: 17 edges found
+  [50/58] L28/N2807: 31 edges found
+  [51/58] L31/N2111: 29 edges found
+  [52/58] L11/N4258: 9 edges found
+  [53/58] L31/N10176: 48 edges found
+  [54/58] L28/N6394: 30 edges found
+  [55/58] L28/N1222: 30 edges found
+  [56/58] L22/N7356: 20 edges found
+  [57/58] L23/N2069: 23 edges found
+  [58/58] L1/N198: 2 edges found
+
+Total: 1242 edges across 58 target neurons
+
+======================================================================
+  TOPOLOGY: RelP-Behavioral (Refusal) @ k*=91
+  91 neurons, 2704 edges
+======================================================================
+
+  Layer distribution:
+    L00 │████ 4
+    L01 │██ 2
+    L02 │█ 1
+    L05 │█ 1
+    L09 │█ 1
+    L10 │█ 1
+    L11 │████ 4
+    L15 │██ 2
+    L18 │█ 1
+    L20 │██ 2
+    L21 │███ 3
+    L22 │██████ 6
+    L23 │█ 1
+    L24 │████████ 8
+    L26 │█████ 5
+    L28 │███████████ 11
+    L29 │█████ 5
+    L30 │███████████████ 15
+    L31 │██████████████████ 18
+
+  Top layer-to-layer flows:
+    L00 → L01: 5030.0000
+    L00 → L31: 19.4452
+    L01 → L31: 16.6807
+    L00 → L30: 10.0581
+    L24 → L28: 10.0198
+    L01 → L30: 7.1312
+    L00 → L29: 6.8542
+    L24 → L29: 6.6261
+    L01 → L28: 6.3981
+    L00 → L28: 5.9040
+    L29 → L30: 5.5156
+    L24 → L31: 5.2893
+    L20 → L24: 5.1674
+    L00 → L24: 5.0963
+    L30 → L31: 4.7375
+
+  Top source hubs — COLLAPSED (fan-out):
+    L11/N 4258: degree=308, total_weight=7.5096
+    L24/N 1619: degree=127, total_weight=13.9936
+    L24/N 2598: degree=127, total_weight=11.6112
+    L21/N 3057: degree=118, total_weight=2.1065
+    L26/N11984: degree=114, total_weight=7.4886
+    L15/N 9635: degree=110, total_weight=5.0864
+    L22/N11137: degree=103, total_weight=6.2474
+    L00/N 8268: degree= 87, total_weight=1489.5400
+    L00/N  491: degree= 87, total_weight=3599.2581
+    L01/N  198: degree= 85, total_weight=5.6127
+
+  Top source hubs — POSITION-AWARE (fan-out):
+    L00/P001/N 8268: degree= 87, total_weight=1489.5400
+    L00/P001/N  491: degree= 87, total_weight=3599.2581
+    L01/P001/N  198: degree= 85, total_weight=5.6127
+    L01/P001/N 2427: degree= 85, total_weight=48.8450
+    L02/P014/N 5789: degree= 84, total_weight=2.6600
+    L00/P028/N11311: degree= 82, total_weight=8.7511
+    L09/P022/N12002: degree= 82, total_weight=3.2007
+    L10/P022/N  853: degree= 81, total_weight=1.7179
+    L05/P036/N11491: degree= 81, total_weight=2.0911
+    L11/P038/N 4258: degree= 77, total_weight=2.0954
+
+  Top target hubs — POSITION-AWARE (fan-in):
+    L31/P044/N 9503: degree= 73, total_weight=1.3222
+    L31/P044/N 3309: degree= 70, total_weight=1.8104
+    L31/P043/N 7873: degree= 63, total_weight=2.7248
+    L31/P043/N 3309: degree= 63, total_weight=3.9060
+    L31/P043/N 9503: degree= 63, total_weight=4.0446
+    L31/P043/N 5831: degree= 63, total_weight=1.4373
+    L31/P043/N10463: degree= 62, total_weight=1.9790
+    L31/P043/N 2111: degree= 61, total_weight=1.2380
+    L30/P044/N11533: degree= 57, total_weight=0.5403
+    L30/P044/N11430: degree= 56, total_weight=0.2247
+
+  Bottleneck neurons — POSITION-AWARE:
+    L26/P042/N11984: in= 29, out= 35
+    L28/P042/N 1222: in= 31, out= 26
+    L28/P042/N 6394: in= 31, out= 26
+    L28/P042/N 2807: in= 31, out= 26
+    L24/P043/N 2598: in= 27, out= 25
+    L24/P042/N 1619: in= 25, out= 39
+    L24/P043/N 1619: in= 28, out= 25
+    L24/P042/N 2598: in= 25, out= 39
+    L23/P042/N 2069: in= 24, out= 45
+    L29/P042/N 1878: in= 36, out= 23
+
+  Position inflation (top source hubs):
+    L11/N4258: collapsed=308, positions=4, max_single=77, inflation=4.0x
+    L24/N1619: collapsed=127, positions=4, max_single=54, inflation=2.4x
+    L24/N2598: collapsed=127, positions=4, max_single=54, inflation=2.4x
+    L21/N3057: collapsed=118, positions=2, max_single=68, inflation=1.7x
+    L26/N11984: collapsed=114, positions=4, max_single=49, inflation=2.3x
+
+  Super-weight neurons:
+    L00/N  491: mean_weight=-40.9895, targets=87, ratio=728.3x
+    L00/N 8268: mean_weight=-16.9654, targets=87, ratio=301.4x
+    L01/N 2427: mean_weight=-0.1035, targets=85, ratio=10.1x
+
+
+######################################################################
+  RelP-SVA
+######################################################################
+
+  Phase 1: Discovering circuit pool (k=300)...
+  Prompt 1/10: 31013 neurons, ld=3.8125
+  Prompt 2/10: 31018 neurons, ld=1.7500
+  Prompt 3/10: 31009 neurons, ld=3.9062
+  Prompt 4/10: 31011 neurons, ld=2.8750
+  Prompt 5/10: 31016 neurons, ld=3.9375
+  Prompt 6/10: 31010 neurons, ld=2.7500
+  Prompt 7/10: 31015 neurons, ld=3.5000
+  Prompt 8/10: 31015 neurons, ld=0.7500
+  Prompt 9/10: 31017 neurons, ld=3.2500
+  Prompt 10/10: 31010 neurons, ld=2.0625
+  Pool: 300 neurons, logit_diff=2.8594
+
+  Skipping k* search, using known k*=259
+
+  Phase 2: Topology at k*=259
+    L00 │██████████████████ 18
+    L01 │████ 4
+    L02 │███████ 7
+    L03 │████ 4
+    L04 │████████ 8
+    L05 │████ 4
+    L06 │█ 1
+    L07 │█ 1
+    L08 │█ 1
+    L09 │███ 3
+    L10 │██████ 6
+    L11 │████████ 8
+    L12 │███████ 7
+    L13 │████████ 8
+    L14 │███████████████ 15
+    L15 │██████████████████ 18
+    L16 │██████████████ 14
+    L17 │██████████ 10
+    L18 │████████ 8
+    L19 │█████████████ 13
+    L20 │███████████ 11
+    L21 │████ 4
+    L22 │███████ 7
+    L23 │█████████████ 13
+    L24 │████ 4
+    L25 │███████████ 11
+    L26 │████ 4
+    L27 │███████ 7
+    L28 │██████ 6
+    L29 │████████ 8
+    L30 │██████████ 10
+    L31 │████████████████ 16
+
+  Running edge discovery (10 prompts, all targets)...
+    Edge pass 1/10: The keys to the cabinet...
+  [1/259] L29/N10537: 221 edges found
+  [2/259] L17/N13649: 122 edges found
+  [3/259] L30/N11158: 231 edges found
+  [4/259] L31/N11075: 242 edges found
+  [5/259] L31/N5861: 234 edges found
+  [6/259] L31/N5187: 240 edges found
+  [7/259] L1/N6746: 12 edges found
+  [8/259] L27/N8540: 205 edges found
+  [9/259] L28/N3849: 216 edges found
+  [10/259] L18/N11717: 132 edges found
+  [11/259] L24/N12083: 183 edges found
+  [12/259] L25/N529: 193 edges found
+  [13/259] L19/N12056: 55 edges found
+  [14/259] L23/N5186: 176 edges found
+  [15/259] L25/N2942: 194 edges found
+  [16/259] L27/N10691: 208 edges found
+  [17/259] L17/N13649: 51 edges found
+  [18/259] L3/N11818: 17 edges found
+  [19/259] L2/N1857: 14 edges found
+  [20/259] L29/N1221: 220 edges found
+  [21/259] L17/N4140: 51 edges found
+  [22/259] L23/N5918: 174 edges found
+  [23/259] L31/N5201: 240 edges found
+  [24/259] L18/N13748: 135 edges found
+  [25/259] L30/N3440: 231 edges found
+  [26/259] L23/N13449: 176 edges found
+  [27/259] L30/N11887: 230 edges found
+  [28/259] L4/N6753: 19 edges found
+  [29/259] L0/N1015: 0 edges found
+  [30/259] L15/N13591: 88 edges found
+  [31/259] L25/N8600: 68 edges found
+  [32/259] L19/N10875: 138 edges found
+  [33/259] L21/N8045: 166 edges found
+  [34/259] L22/N82: 168 edges found
+  [35/259] L30/N11949: 231 edges found
+  [36/259] L5/N7996: 22 edges found
+  [37/259] L0/N6144: 0 edges found
+  [38/259] L19/N725: 55 edges found
+  [39/259] L31/N12358: 242 edges found
+  [40/259] L0/N2578: 0 edges found
+  [41/259] L15/N11853: 38 edges found
+  [42/259] L19/N725: 141 edges found
+  [43/259] L27/N6356: 209 edges found
+  [44/259] L29/N3626: 222 edges found
+  [45/259] L30/N11956: 229 edges found
+  [46/259] L28/N1405: 216 edges found
+  [47/259] L23/N5918: 65 edges found
+  [48/259] L1/N8396: 14 edges found
+  [49/259] L20/N10568: 155 edges found
+  [50/259] L15/N7995: 92 edges found
+  [51/259] L4/N12934: 30 edges found
+  [52/259] L26/N9709: 205 edges found
+  [53/259] L21/N6437: 162 edges found
+  [54/259] L4/N12934: 27 edges found
+  [55/259] L4/N12934: 20 edges found
+  [56/259] L12/N10315: 30 edges found
+  [57/259] L0/N7974: 0 edges found
+  [58/259] L17/N4434: 122 edges found
+  [59/259] L15/N7096: 59 edges found
+  [60/259] L0/N3646: 0 edges found
+  [61/259] L11/N3032: 52 edges found
+  [62/259] L17/N4140: 73 edges found
+  [63/259] L17/N4140: 122 edges found
+  [64/259] L4/N7372: 27 edges found
+  [65/259] L12/N13742: 62 edges found
+  [66/259] L6/N2255: 26 edges found
+  [67/259] L25/N529: 69 edges found
+  [68/259] L25/N8600: 193 edges found
+  [69/259] L14/N3634: 35 edges found
+  [70/259] L23/N5186: 65 edges found
+  [71/259] L20/N8563: 153 edges found
+  [72/259] L3/N10078: 24 edges found
+  [73/259] L15/N13321: 92 edges found
+  [74/259] L28/N4874: 218 edges found
+  [75/259] L11/N3007: 55 edges found
+  [76/259] L31/N6072: 242 edges found
+  [77/259] L24/N7205: 185 edges found
+  [78/259] L16/N8705: 45 edges found
+  [79/259] L20/N12268: 152 edges found
+  [80/259] L25/N12046: 188 edges found
+  [81/259] L31/N5287: 240 edges found
+  [82/259] L16/N7991: 109 edges found
+  [83/259] L23/N3866: 175 edges found
+  [84/259] L31/N3484: 240 edges found
+  [85/259] L18/N11717: 52 edges found
+  [86/259] L20/N3218: 155 edges found
+  [87/259] L15/N14016: 58 edges found
+  [88/259] L16/N7203: 108 edges found
+  [89/259] L16/N3587: 110 edges found
+  [90/259] L11/N7479: 53 edges found
+  [91/259] L11/N3106: 50 edges found
+  [92/259] L14/N26: 79 edges found
+  [93/259] L15/N14016: 40 edges found
+  [94/259] L23/N3321: 172 edges found
+  [95/259] L26/N280: 207 edges found
+  [96/259] L9/N7339: 28 edges found
+  [97/259] L0/N8479: 0 edges found
+  [98/259] L25/N12954: 183 edges found
+  [99/259] L30/N13476: 233 edges found
+  [100/259] L0/N10111: 0 edges found
+  [101/259] L2/N7259: 17 edges found
+  [102/259] L0/N10902: 0 edges found
+  [103/259] L11/N7921: 54 edges found
+  [104/259] L20/N7715: 154 edges found
+  [105/259] L23/N2565: 65 edges found
+  [106/259] L18/N3280: 133 edges found
+  [107/259] L10/N12648: 41 edges found
+  [108/259] L15/N9113: 89 edges found
+  [109/259] L15/N7566: 91 edges found
+  [110/259] L31/N6614: 242 edges found
+  [111/259] L14/N2944: 76 edges found
+  [112/259] L12/N3585: 61 edges found
+  [113/259] L18/N6117: 53 edges found
+  [114/259] L25/N6170: 191 edges found
+  [115/259] L23/N9140: 174 edges found
+  [116/259] L20/N12958: 152 edges found
+  [117/259] L31/N1834: 241 edges found
+  [118/259] L27/N5290: 210 edges found
+  [119/259] L20/N9379: 60 edges found
+  [120/259] L0/N2605: 0 edges found
+  [121/259] L24/N6081: 191 edges found
+  [122/259] L29/N14269: 214 edges found
+  [123/259] L23/N3760: 176 edges found
+  [124/259] L1/N12776: 9 edges found
+  [125/259] L30/N8711: 231 edges found
+  [126/259] L8/N2397: 27 edges found
+  [127/259] L16/N3176: 45 edges found
+  [128/259] L0/N8404: 0 edges found
+  [129/259] L13/N4470: 33 edges found
+  [130/259] L4/N6753: 28 edges found
+  [131/259] L4/N12934: 27 edges found
+  [132/259] L17/N1118: 121 edges found
+  [133/259] L30/N13607: 232 edges found
+  [134/259] L23/N1780: 172 edges found
+  [135/259] L14/N6269: 76 edges found
+  [136/259] L31/N8987: 239 edges found
+  [137/259] L5/N10014: 33 edges found
+  [138/259] L13/N12110: 65 edges found
+  [139/259] L17/N777: 121 edges found
+  [140/259] L11/N6154: 55 edges found
+  [141/259] L16/N10829: 45 edges found
+  [142/259] L19/N9599: 140 edges found
+  [143/259] L26/N3064: 205 edges found
+  [144/259] L10/N11106: 47 edges found
+  [145/259] L22/N4703: 167 edges found
+  [146/259] L16/N3910: 45 edges found
+  [147/259] L13/N7116: 45 edges found
+  [148/259] L19/N13374: 54 edges found
+  [149/259] L2/N4963: 18 edges found
+  [150/259] L31/N13110: 240 edges found
+  [151/259] L30/N13047: 231 edges found
+  [152/259] L27/N5989: 208 edges found
+  [153/259] L19/N6814: 55 edges found
+  [154/259] L0/N12530: 0 edges found
+  [155/259] L29/N2124: 224 edges found
+  [156/259] L15/N9810: 92 edges found
+  [157/259] L13/N13193: 68 edges found
+  [158/259] L16/N2610: 45 edges found
+  [159/259] L13/N1884: 33 edges found
+  [160/259] L9/N6989: 43 edges found
+  [161/259] L0/N7657: 0 edges found
+  [162/259] L12/N329: 61 edges found
+  [163/259] L14/N7197: 76 edges found
+  [164/259] L25/N11584: 69 edges found
+  [165/259] L1/N8443: 11 edges found
+  [166/259] L13/N7116: 70 edges found
+  [167/259] L14/N837: 35 edges found
+  [168/259] L9/N10418: 28 edges found
+  [169/259] L12/N9033: 62 edges found
+  [170/259] L25/N10315: 190 edges found
+  [171/259] L28/N292: 216 edges found
+  [172/259] L18/N12464: 133 edges found
+  [173/259] L30/N2792: 233 edges found
+  [174/259] L31/N13292: 242 edges found
+  [175/259] L22/N7938: 165 edges found
+  [176/259] L18/N6232: 131 edges found
+  [177/259] L0/N4251: 0 edges found
+  [178/259] L10/N12212: 29 edges found
+  [179/259] L29/N595: 221 edges found
+  [180/259] L0/N3912: 0 edges found
+  [181/259] L2/N6850: 2 edges found
+  [182/259] L17/N7437: 121 edges found
+  [183/259] L14/N11406: 35 edges found
+  [184/259] L19/N10875: 54 edges found
+  [185/259] L15/N11853: 57 edges found
+  [186/259] L14/N10143: 78 edges found
+  [187/259] L15/N10724: 40 edges found
+  [188/259] L14/N10590: 35 edges found
+  [189/259] L10/N12212: 42 edges found
+  [190/259] L23/N13926: 170 edges found
+  [191/259] L15/N7096: 40 edges found
+  [192/259] L31/N14288: 241 edges found
+  [193/259] L15/N14016: 91 edges found
+  [194/259] L22/N9772: 169 edges found
+  [195/259] L14/N837: 76 edges found
+  [196/259] L3/N12922: 17 edges found
+  [197/259] L2/N9600: 14 edges found
+  [198/259] L25/N12633: 190 edges found
+  [199/259] L20/N11542: 150 edges found
+  [200/259] L15/N1329: 39 edges found
+  [201/259] L5/N12173: 23 edges found
+  [202/259] L16/N10829: 108 edges found
+  [203/259] L11/N8229: 56 edges found
+  [204/259] L0/N6337: 0 edges found
+  [205/259] L2/N6850: 18 edges found
+  [206/259] L24/N12083: 68 edges found
+  [207/259] L29/N592: 221 edges found
+  [208/259] L19/N464: 139 edges found
+  [209/259] L22/N10532: 170 edges found
+  [210/259] L17/N2769: 119 edges found
+  [211/259] L0/N11892: 0 edges found
+  [212/259] L21/N12554: 161 edges found
+  [213/259] L0/N110: 0 edges found
+  [214/259] L13/N2439: 48 edges found
+  [215/259] L14/N11406: 52 edges found
+  [216/259] L0/N14005: 0 edges found
+  [217/259] L12/N4936: 61 edges found
+  [218/259] L13/N9455: 48 edges found
+  [219/259] L16/N11508: 112 edges found
+  [220/259] L27/N8648: 210 edges found
+  [221/259] L23/N7055: 175 edges found
+  [222/259] L31/N8809: 241 edges found
+  [223/259] L16/N4610: 109 edges found
+  [224/259] L19/N7387: 55 edges found
+  [225/259] L14/N5879: 35 edges found
+  [226/259] L14/N13490: 76 edges found
+  [227/259] L20/N7658: 146 edges found
+  [228/259] L16/N888: 109 edges found
+  [229/259] L2/N1857: 19 edges found
+  [230/259] L12/N2196: 31 edges found
+  [231/259] L7/N6172: 43 edges found
+  [232/259] L20/N7715: 61 edges found
+  [233/259] L15/N5859: 92 edges found
+  [234/259] L16/N7722: 107 edges found
+  [235/259] L19/N7387: 136 edges found
+  [236/259] L18/N9714: 133 edges found
+  [237/259] L20/N8524: 151 edges found
+  [238/259] L31/N11808: 242 edges found
+  [239/259] L3/N5869: 3 edges found
+  [240/259] L22/N9772: 64 edges found
+  [241/259] L27/N12026: 209 edges found
+  [242/259] L5/N7726: 23 edges found
+  [243/259] L19/N3393: 138 edges found
+  [244/259] L29/N3746: 223 edges found
+  [245/259] L10/N12212: 49 edges found
+  [246/259] L21/N8045: 61 edges found
+  [247/259] L22/N13528: 167 edges found
+  [248/259] L15/N7096: 90 edges found
+  [249/259] L28/N2136: 213 edges found
+  [250/259] L16/N11836: 45 edges found
+  [251/259] L4/N11126: 4 edges found
+  [252/259] L19/N2526: 140 edges found
+  [253/259] L14/N1094: 78 edges found
+  [254/259] L26/N11122: 207 edges found
+  [255/259] L11/N12834: 45 edges found
+  [256/259] L28/N7368: 211 edges found
+  [257/259] L10/N12443: 49 edges found
+  [258/259] L14/N6899: 75 edges found
+  [259/259] L15/N5381: 58 edges found
+
+Total: 27570 edges across 259 target neurons
+    Edge pass 2/10: The key to the cabinets...
+  [1/259] L29/N10537: 224 edges found
+  [2/259] L17/N13649: 126 edges found
+  [3/259] L30/N11158: 231 edges found
+  [4/259] L31/N11075: 241 edges found
+  [5/259] L31/N5861: 242 edges found
+  [6/259] L31/N5187: 241 edges found
+  [7/259] L1/N6746: 12 edges found
+  [8/259] L27/N8540: 210 edges found
+  [9/259] L28/N3849: 211 edges found
+  [10/259] L18/N11717: 136 edges found
+  [11/259] L24/N12083: 192 edges found
+  [12/259] L25/N529: 196 edges found
+  [13/259] L19/N12056: 55 edges found
+  [14/259] L23/N5186: 179 edges found
+  [15/259] L25/N2942: 195 edges found
+  [16/259] L27/N10691: 211 edges found
+  [17/259] L17/N13649: 51 edges found
+  [18/259] L3/N11818: 17 edges found
+  [19/259] L2/N1857: 13 edges found
+  [20/259] L29/N1221: 224 edges found
+  [21/259] L17/N4140: 51 edges found
+  [22/259] L23/N5918: 176 edges found
+  [23/259] L31/N5201: 241 edges found
+  [24/259] L18/N13748: 131 edges found
+  [25/259] L30/N3440: 232 edges found
+  [26/259] L23/N13449: 176 edges found
+  [27/259] L30/N11887: 229 edges found
+  [28/259] L4/N6753: 20 edges found
+  [29/259] L0/N1015: 0 edges found
+  [30/259] L15/N13591: 87 edges found
+  [31/259] L25/N8600: 68 edges found
+  [32/259] L19/N10875: 141 edges found
+  [33/259] L21/N8045: 165 edges found
+  [34/259] L22/N82: 163 edges found
+  [35/259] L30/N11949: 214 edges found
+  [36/259] L5/N7996: 23 edges found
+  [37/259] L0/N6144: 0 edges found
+  [38/259] L19/N725: 54 edges found
+  [39/259] L31/N12358: 240 edges found
+  [40/259] L0/N2578: 0 edges found
+  [41/259] L15/N11853: 38 edges found
+  [42/259] L19/N725: 143 edges found
+  [43/259] L27/N6356: 210 edges found
+  [44/259] L29/N3626: 217 edges found
+  [45/259] L30/N11956: 226 edges found
+  [46/259] L28/N1405: 213 edges found
+  [47/259] L23/N5918: 62 edges found
+  [48/259] L1/N8396: 14 edges found
+  [49/259] L20/N10568: 153 edges found
+  [50/259] L15/N7995: 92 edges found
+  [51/259] L4/N12934: 29 edges found
+  [52/259] L26/N9709: 206 edges found
+  [53/259] L21/N6437: 167 edges found
+  [54/259] L4/N12934: 25 edges found
+  [55/259] L4/N12934: 19 edges found
+  [56/259] L12/N10315: 31 edges found
+  [57/259] L0/N7974: 0 edges found
+  [58/259] L17/N4434: 120 edges found
+  [59/259] L15/N7096: 56 edges found
+  [60/259] L0/N3646: 0 edges found
+  [61/259] L11/N3032: 47 edges found
+  [62/259] L17/N4140: 72 edges found
+  [63/259] L17/N4140: 124 edges found
+  [64/259] L4/N7372: 26 edges found
+  [65/259] L12/N13742: 61 edges found
+  [66/259] L6/N2255: 26 edges found
+  [67/259] L25/N529: 67 edges found
+  [68/259] L25/N8600: 195 edges found
+  [69/259] L14/N3634: 34 edges found
+  [70/259] L23/N5186: 61 edges found
+  [71/259] L20/N8563: 153 edges found
+  [72/259] L3/N10078: 22 edges found
+  [73/259] L15/N13321: 89 edges found
+  [74/259] L28/N4874: 218 edges found
+  [75/259] L11/N3007: 51 edges found
+  [76/259] L31/N6072: 241 edges found
+  [77/259] L24/N7205: 188 edges found
+  [78/259] L16/N8705: 44 edges found
+  [79/259] L20/N12268: 151 edges found
+  [80/259] L25/N12046: 189 edges found
+  [81/259] L31/N5287: 243 edges found
+  [82/259] L16/N7991: 109 edges found
+  [83/259] L23/N3866: 178 edges found
+  [84/259] L31/N3484: 242 edges found
+  [85/259] L18/N11717: 52 edges found
+  [86/259] L20/N3218: 153 edges found
+  [87/259] L15/N14016: 59 edges found
+  [88/259] L16/N7203: 111 edges found
+  [89/259] L16/N3587: 109 edges found
+  [90/259] L11/N7479: 47 edges found
+  [91/259] L11/N3106: 53 edges found
+  [92/259] L14/N26: 79 edges found
+  [93/259] L15/N14016: 40 edges found
+  [94/259] L23/N3321: 167 edges found
+  [95/259] L26/N280: 207 edges found
+  [96/259] L9/N7339: 28 edges found
+  [97/259] L0/N8479: 0 edges found
+  [98/259] L25/N12954: 186 edges found
+  [99/259] L30/N13476: 232 edges found
+  [100/259] L0/N10111: 0 edges found
+  [101/259] L2/N7259: 18 edges found
+  [102/259] L0/N10902: 0 edges found
+  [103/259] L11/N7921: 50 edges found
+  [104/259] L20/N7715: 154 edges found
+  [105/259] L23/N2565: 65 edges found
+  [106/259] L18/N3280: 128 edges found
+  [107/259] L10/N12648: 34 edges found
+  [108/259] L15/N9113: 93 edges found
+  [109/259] L15/N7566: 92 edges found
+  [110/259] L31/N6614: 243 edges found
+  [111/259] L14/N2944: 76 edges found
+  [112/259] L12/N3585: 64 edges found
+  [113/259] L18/N6117: 53 edges found
+  [114/259] L25/N6170: 189 edges found
+  [115/259] L23/N9140: 173 edges found
+  [116/259] L20/N12958: 150 edges found
+  [117/259] L31/N1834: 243 edges found
+  [118/259] L27/N5290: 210 edges found
+  [119/259] L20/N9379: 60 edges found
+  [120/259] L0/N2605: 0 edges found
+  [121/259] L24/N6081: 192 edges found
+  [122/259] L29/N14269: 225 edges found
+  [123/259] L23/N3760: 178 edges found
+  [124/259] L1/N12776: 13 edges found
+  [125/259] L30/N8711: 232 edges found
+  [126/259] L8/N2397: 25 edges found
+  [127/259] L16/N3176: 44 edges found
+  [128/259] L0/N8404: 0 edges found
+  [129/259] L13/N4470: 33 edges found
+  [130/259] L4/N6753: 26 edges found
+  [131/259] L4/N12934: 27 edges found
+  [132/259] L17/N1118: 118 edges found
+  [133/259] L30/N13607: 229 edges found
+  [134/259] L23/N1780: 171 edges found
+  [135/259] L14/N6269: 78 edges found
+  [136/259] L31/N8987: 242 edges found
+  [137/259] L5/N10014: 30 edges found
+  [138/259] L13/N12110: 61 edges found
+  [139/259] L17/N777: 120 edges found
+  [140/259] L11/N6154: 52 edges found
+  [141/259] L16/N10829: 43 edges found
+  [142/259] L19/N9599: 143 edges found
+  [143/259] L26/N3064: 207 edges found
+  [144/259] L10/N11106: 49 edges found
+  [145/259] L22/N4703: 171 edges found
+  [146/259] L16/N3910: 42 edges found
+  [147/259] L13/N7116: 43 edges found
+  [148/259] L19/N13374: 54 edges found
+  [149/259] L2/N4963: 16 edges found
+  [150/259] L31/N13110: 243 edges found
+  [151/259] L30/N13047: 232 edges found
+  [152/259] L27/N5989: 205 edges found
+  [153/259] L19/N6814: 55 edges found
+  [154/259] L0/N12530: 0 edges found
+  [155/259] L29/N2124: 222 edges found
+  [156/259] L15/N9810: 93 edges found
+  [157/259] L13/N13193: 66 edges found
+  [158/259] L16/N2610: 44 edges found
+  [159/259] L13/N1884: 33 edges found
+  [160/259] L9/N6989: 39 edges found
+  [161/259] L0/N7657: 0 edges found
+  [162/259] L12/N329: 55 edges found
+  [163/259] L14/N7197: 72 edges found
+  [164/259] L25/N11584: 68 edges found
+  [165/259] L1/N8443: 10 edges found
+  [166/259] L13/N7116: 68 edges found
+  [167/259] L14/N837: 34 edges found
+  [168/259] L9/N10418: 28 edges found
+  [169/259] L12/N9033: 57 edges found
+  [170/259] L25/N10315: 192 edges found
+  [171/259] L28/N292: 218 edges found
+  [172/259] L18/N12464: 135 edges found
+  [173/259] L30/N2792: 232 edges found
+  [174/259] L31/N13292: 239 edges found
+  [175/259] L22/N7938: 168 edges found
+  [176/259] L18/N6232: 133 edges found
+  [177/259] L0/N4251: 0 edges found
+  [178/259] L10/N12212: 30 edges found
+  [179/259] L29/N595: 223 edges found
+  [180/259] L0/N3912: 0 edges found
+  [181/259] L2/N6850: 2 edges found
+  [182/259] L17/N7437: 121 edges found
+  [183/259] L14/N11406: 32 edges found
+  [184/259] L19/N10875: 55 edges found
+  [185/259] L15/N11853: 55 edges found
+  [186/259] L14/N10143: 76 edges found
+  [187/259] L15/N10724: 40 edges found
+  [188/259] L14/N10590: 35 edges found
+  [189/259] L10/N12212: 42 edges found
+  [190/259] L23/N13926: 179 edges found
+  [191/259] L15/N7096: 40 edges found
+  [192/259] L31/N14288: 233 edges found
+  [193/259] L15/N14016: 88 edges found
+  [194/259] L22/N9772: 173 edges found
+  [195/259] L14/N837: 70 edges found
+  [196/259] L3/N12922: 17 edges found
+  [197/259] L2/N9600: 12 edges found
+  [198/259] L25/N12633: 193 edges found
+  [199/259] L20/N11542: 150 edges found
+  [200/259] L15/N1329: 34 edges found
+  [201/259] L5/N12173: 21 edges found
+  [202/259] L16/N10829: 112 edges found
+  [203/259] L11/N8229: 50 edges found
+  [204/259] L0/N6337: 0 edges found
+  [205/259] L2/N6850: 18 edges found
+  [206/259] L24/N12083: 67 edges found
+  [207/259] L29/N592: 220 edges found
+  [208/259] L19/N464: 139 edges found
+  [209/259] L22/N10532: 169 edges found
+  [210/259] L17/N2769: 119 edges found
+  [211/259] L0/N11892: 0 edges found
+  [212/259] L21/N12554: 165 edges found
+  [213/259] L0/N110: 0 edges found
+  [214/259] L13/N2439: 44 edges found
+  [215/259] L14/N11406: 47 edges found
+  [216/259] L0/N14005: 0 edges found
+  [217/259] L12/N4936: 59 edges found
+  [218/259] L13/N9455: 45 edges found
+  [219/259] L16/N11508: 111 edges found
+  [220/259] L27/N8648: 210 edges found
+  [221/259] L23/N7055: 171 edges found
+  [222/259] L31/N8809: 243 edges found
+  [223/259] L16/N4610: 107 edges found
+  [224/259] L19/N7387: 54 edges found
+  [225/259] L14/N5879: 34 edges found
+  [226/259] L14/N13490: 74 edges found
+  [227/259] L20/N7658: 157 edges found
+  [228/259] L16/N888: 111 edges found
+  [229/259] L2/N1857: 18 edges found
+  [230/259] L12/N2196: 30 edges found
+  [231/259] L7/N6172: 36 edges found
+  [232/259] L20/N7715: 60 edges found
+  [233/259] L15/N5859: 93 edges found
+  [234/259] L16/N7722: 105 edges found
+  [235/259] L19/N7387: 140 edges found
+  [236/259] L18/N9714: 132 edges found
+  [237/259] L20/N8524: 151 edges found
+  [238/259] L31/N11808: 241 edges found
+  [239/259] L3/N5869: 3 edges found
+  [240/259] L22/N9772: 64 edges found
+  [241/259] L27/N12026: 205 edges found
+  [242/259] L5/N7726: 23 edges found
+  [243/259] L19/N3393: 139 edges found
+  [244/259] L29/N3746: 224 edges found
+  [245/259] L10/N12212: 46 edges found
+  [246/259] L21/N8045: 61 edges found
+  [247/259] L22/N13528: 162 edges found
+  [248/259] L15/N7096: 94 edges found
+  [249/259] L28/N2136: 215 edges found
+  [250/259] L16/N11836: 43 edges found
+  [251/259] L4/N11126: 4 edges found
+  [252/259] L19/N2526: 137 edges found
+  [253/259] L14/N1094: 77 edges found
+  [254/259] L26/N11122: 205 edges found
+  [255/259] L11/N12834: 38 edges found
+  [256/259] L28/N7368: 217 edges found
+  [257/259] L10/N12443: 46 edges found
+  [258/259] L14/N6899: 75 edges found
+  [259/259] L15/N5381: 57 edges found
+
+Total: 27481 edges across 259 target neurons
+    Edge pass 3/10: The boy near the cars...
+  [1/259] L29/N10537: 221 edges found
+  [2/259] L17/N13649: 122 edges found
+  [3/259] L30/N11158: 233 edges found
+  [4/259] L31/N11075: 242 edges found
+  [5/259] L31/N5861: 242 edges found
+  [6/259] L31/N5187: 237 edges found
+  [7/259] L1/N6746: 12 edges found
+  [8/259] L27/N8540: 210 edges found
+  [9/259] L28/N3849: 215 edges found
+  [10/259] L18/N11717: 136 edges found
+  [11/259] L24/N12083: 190 edges found
+  [12/259] L25/N529: 193 edges found
+  [13/259] L19/N12056: 52 edges found
+  [14/259] L23/N5186: 178 edges found
+  [15/259] L25/N2942: 191 edges found
+  [16/259] L27/N10691: 208 edges found
+  [17/259] L17/N13649: 50 edges found
+  [18/259] L3/N11818: 16 edges found
+  [19/259] L2/N1857: 13 edges found
+  [20/259] L29/N1221: 221 edges found
+  [21/259] L17/N4140: 51 edges found
+  [22/259] L23/N5918: 173 edges found
+  [23/259] L31/N5201: 242 edges found
+  [24/259] L18/N13748: 136 edges found
+  [25/259] L30/N3440: 228 edges found
+  [26/259] L23/N13449: 178 edges found
+  [27/259] L30/N11887: 227 edges found
+  [28/259] L4/N6753: 19 edges found
+  [29/259] L0/N1015: 0 edges found
+  [30/259] L15/N13591: 90 edges found
+  [31/259] L25/N8600: 68 edges found
+  [32/259] L19/N10875: 141 edges found
+  [33/259] L21/N8045: 168 edges found
+  [34/259] L22/N82: 170 edges found
+  [35/259] L30/N11949: 228 edges found
+  [36/259] L5/N7996: 22 edges found
+  [37/259] L0/N6144: 0 edges found
+  [38/259] L19/N725: 53 edges found
+  [39/259] L31/N12358: 241 edges found
+  [40/259] L0/N2578: 0 edges found
+  [41/259] L15/N11853: 37 edges found
+  [42/259] L19/N725: 136 edges found
+  [43/259] L27/N6356: 207 edges found
+  [44/259] L29/N3626: 222 edges found
+  [45/259] L30/N11956: 229 edges found
+  [46/259] L28/N1405: 211 edges found
+  [47/259] L23/N5918: 60 edges found
+  [48/259] L1/N8396: 13 edges found
+  [49/259] L20/N10568: 157 edges found
+  [50/259] L15/N7995: 88 edges found
+  [51/259] L4/N12934: 28 edges found
+  [52/259] L26/N9709: 204 edges found
+  [53/259] L21/N6437: 164 edges found
+  [54/259] L4/N12934: 26 edges found
+  [55/259] L4/N12934: 19 edges found
+  [56/259] L12/N10315: 30 edges found
+  [57/259] L0/N7974: 0 edges found
+  [58/259] L17/N4434: 121 edges found
+  [59/259] L15/N7096: 59 edges found
+  [60/259] L0/N3646: 0 edges found
+  [61/259] L11/N3032: 49 edges found
+  [62/259] L17/N4140: 72 edges found
+  [63/259] L17/N4140: 122 edges found
+  [64/259] L4/N7372: 26 edges found
+  [65/259] L12/N13742: 62 edges found
+  [66/259] L6/N2255: 26 edges found
+  [67/259] L25/N529: 67 edges found
+  [68/259] L25/N8600: 193 edges found
+  [69/259] L14/N3634: 35 edges found
+  [70/259] L23/N5186: 59 edges found
+  [71/259] L20/N8563: 157 edges found
+  [72/259] L3/N10078: 22 edges found
+  [73/259] L15/N13321: 90 edges found
+  [74/259] L28/N4874: 213 edges found
+  [75/259] L11/N3007: 54 edges found
+  [76/259] L31/N6072: 243 edges found
+  [77/259] L24/N7205: 189 edges found
+  [78/259] L16/N8705: 43 edges found
+  [79/259] L20/N12268: 151 edges found
+  [80/259] L25/N12046: 192 edges found
+  [81/259] L31/N5287: 242 edges found
+  [82/259] L16/N7991: 107 edges found
+  [83/259] L23/N3866: 177 edges found
+  [84/259] L31/N3484: 240 edges found
+  [85/259] L18/N11717: 52 edges found
+  [86/259] L20/N3218: 153 edges found
+  [87/259] L15/N14016: 58 edges found
+  [88/259] L16/N7203: 111 edges found
+  [89/259] L16/N3587: 109 edges found
+  [90/259] L11/N7479: 53 edges found
+  [91/259] L11/N3106: 55 edges found
+  [92/259] L14/N26: 79 edges found
+  [93/259] L15/N14016: 40 edges found
+  [94/259] L23/N3321: 168 edges found
+  [95/259] L26/N280: 207 edges found
+  [96/259] L9/N7339: 26 edges found
+  [97/259] L0/N8479: 0 edges found
+  [98/259] L25/N12954: 190 edges found
+  [99/259] L30/N13476: 232 edges found
+  [100/259] L0/N10111: 0 edges found
+  [101/259] L2/N7259: 14 edges found
+  [102/259] L0/N10902: 0 edges found
+  [103/259] L11/N7921: 53 edges found
+  [104/259] L20/N7715: 153 edges found
+  [105/259] L23/N2565: 64 edges found
+  [106/259] L18/N3280: 132 edges found
+  [107/259] L10/N12648: 38 edges found
+  [108/259] L15/N9113: 89 edges found
+  [109/259] L15/N7566: 91 edges found
+  [110/259] L31/N6614: 242 edges found
+  [111/259] L14/N2944: 71 edges found
+  [112/259] L12/N3585: 62 edges found
+  [113/259] L18/N6117: 52 edges found
+  [114/259] L25/N6170: 194 edges found
+  [115/259] L23/N9140: 173 edges found
+  [116/259] L20/N12958: 151 edges found
+  [117/259] L31/N1834: 242 edges found
+  [118/259] L27/N5290: 208 edges found
+  [119/259] L20/N9379: 61 edges found
+  [120/259] L0/N2605: 0 edges found
+  [121/259] L24/N6081: 189 edges found
+  [122/259] L29/N14269: 222 edges found
+  [123/259] L23/N3760: 175 edges found
+  [124/259] L1/N12776: 13 edges found
+  [125/259] L30/N8711: 230 edges found
+  [126/259] L8/N2397: 26 edges found
+  [127/259] L16/N3176: 44 edges found
+  [128/259] L0/N8404: 0 edges found
+  [129/259] L13/N4470: 33 edges found
+  [130/259] L4/N6753: 28 edges found
+  [131/259] L4/N12934: 27 edges found
+  [132/259] L17/N1118: 118 edges found
+  [133/259] L30/N13607: 231 edges found
+  [134/259] L23/N1780: 169 edges found
+  [135/259] L14/N6269: 76 edges found
+  [136/259] L31/N8987: 242 edges found
+  [137/259] L5/N10014: 32 edges found
+  [138/259] L13/N12110: 66 edges found
+  [139/259] L17/N777: 124 edges found
+  [140/259] L11/N6154: 51 edges found
+  [141/259] L16/N10829: 44 edges found
+  [142/259] L19/N9599: 142 edges found
+  [143/259] L26/N3064: 206 edges found
+  [144/259] L10/N11106: 47 edges found
+  [145/259] L22/N4703: 172 edges found
+  [146/259] L16/N3910: 41 edges found
+  [147/259] L13/N7116: 43 edges found
+  [148/259] L19/N13374: 51 edges found
+  [149/259] L2/N4963: 16 edges found
+  [150/259] L31/N13110: 241 edges found
+  [151/259] L30/N13047: 233 edges found
+  [152/259] L27/N5989: 206 edges found
+  [153/259] L19/N6814: 52 edges found
+  [154/259] L0/N12530: 0 edges found
+  [155/259] L29/N2124: 223 edges found
+  [156/259] L15/N9810: 93 edges found
+  [157/259] L13/N13193: 68 edges found
+  [158/259] L16/N2610: 43 edges found
+  [159/259] L13/N1884: 33 edges found
+  [160/259] L9/N6989: 43 edges found
+  [161/259] L0/N7657: 0 edges found
+  [162/259] L12/N329: 59 edges found
+  [163/259] L14/N7197: 70 edges found
+  [164/259] L25/N11584: 69 edges found
+  [165/259] L1/N8443: 12 edges found
+  [166/259] L13/N7116: 68 edges found
+  [167/259] L14/N837: 32 edges found
+  [168/259] L9/N10418: 27 edges found
+  [169/259] L12/N9033: 62 edges found
+  [170/259] L25/N10315: 194 edges found
+  [171/259] L28/N292: 213 edges found
+  [172/259] L18/N12464: 136 edges found
+  [173/259] L30/N2792: 232 edges found
+  [174/259] L31/N13292: 243 edges found
+  [175/259] L22/N7938: 168 edges found
+  [176/259] L18/N6232: 131 edges found
+  [177/259] L0/N4251: 0 edges found
+  [178/259] L10/N12212: 29 edges found
+  [179/259] L29/N595: 219 edges found
+  [180/259] L0/N3912: 0 edges found
+  [181/259] L2/N6850: 2 edges found
+  [182/259] L17/N7437: 119 edges found
+  [183/259] L14/N11406: 35 edges found
+  [184/259] L19/N10875: 54 edges found
+  [185/259] L15/N11853: 52 edges found
+  [186/259] L14/N10143: 79 edges found
+  [187/259] L15/N10724: 39 edges found
+  [188/259] L14/N10590: 32 edges found
+  [189/259] L10/N12212: 40 edges found
+  [190/259] L23/N13926: 175 edges found
+  [191/259] L15/N7096: 39 edges found
+  [192/259] L31/N14288: 238 edges found
+  [193/259] L15/N14016: 91 edges found
+  [194/259] L22/N9772: 169 edges found
+  [195/259] L14/N837: 76 edges found
+  [196/259] L3/N12922: 17 edges found
+  [197/259] L2/N9600: 14 edges found
+  [198/259] L25/N12633: 192 edges found
+  [199/259] L20/N11542: 153 edges found
+  [200/259] L15/N1329: 37 edges found
+  [201/259] L5/N12173: 22 edges found
+  [202/259] L16/N10829: 112 edges found
+  [203/259] L11/N8229: 52 edges found
+  [204/259] L0/N6337: 0 edges found
+  [205/259] L2/N6850: 17 edges found
+  [206/259] L24/N12083: 63 edges found
+  [207/259] L29/N592: 221 edges found
+  [208/259] L19/N464: 140 edges found
+  [209/259] L22/N10532: 170 edges found
+  [210/259] L17/N2769: 119 edges found
+  [211/259] L0/N11892: 0 edges found
+  [212/259] L21/N12554: 163 edges found
+  [213/259] L0/N110: 0 edges found
+  [214/259] L13/N2439: 47 edges found
+  [215/259] L14/N11406: 51 edges found
+  [216/259] L0/N14005: 0 edges found
+  [217/259] L12/N4936: 63 edges found
+  [218/259] L13/N9455: 42 edges found
+  [219/259] L16/N11508: 93 edges found
+  [220/259] L27/N8648: 205 edges found
+  [221/259] L23/N7055: 174 edges found
+  [222/259] L31/N8809: 243 edges found
+  [223/259] L16/N4610: 106 edges found
+  [224/259] L19/N7387: 54 edges found
+  [225/259] L14/N5879: 31 edges found
+  [226/259] L14/N13490: 75 edges found
+  [227/259] L20/N7658: 155 edges found
+  [228/259] L16/N888: 112 edges found
+  [229/259] L2/N1857: 19 edges found
+  [230/259] L12/N2196: 31 edges found
+  [231/259] L7/N6172: 45 edges found
+  [232/259] L20/N7715: 55 edges found
+  [233/259] L15/N5859: 91 edges found
+  [234/259] L16/N7722: 109 edges found
+  [235/259] L19/N7387: 140 edges found
+  [236/259] L18/N9714: 135 edges found
+  [237/259] L20/N8524: 154 edges found
+  [238/259] L31/N11808: 243 edges found
+  [239/259] L3/N5869: 3 edges found
+  [240/259] L22/N9772: 62 edges found
+  [241/259] L27/N12026: 207 edges found
+  [242/259] L5/N7726: 23 edges found
+  [243/259] L19/N3393: 141 edges found
+  [244/259] L29/N3746: 222 edges found
+  [245/259] L10/N12212: 47 edges found
+  [246/259] L21/N8045: 60 edges found
+  [247/259] L22/N13528: 159 edges found
+  [248/259] L15/N7096: 90 edges found
+  [249/259] L28/N2136: 216 edges found
+  [250/259] L16/N11836: 42 edges found
+  [251/259] L4/N11126: 4 edges found
+  [252/259] L19/N2526: 139 edges found
+  [253/259] L14/N1094: 74 edges found
+  [254/259] L26/N11122: 207 edges found
+  [255/259] L11/N12834: 44 edges found
+  [256/259] L28/N7368: 215 edges found
+  [257/259] L10/N12443: 37 edges found
+  [258/259] L14/N6899: 72 edges found
+  [259/259] L15/N5381: 58 edges found
+
+Total: 27466 edges across 259 target neurons
+    Edge pass 4/10: The boys near the car...
+  [1/259] L29/N10537: 224 edges found
+  [2/259] L17/N13649: 124 edges found
+  [3/259] L30/N11158: 232 edges found
+  [4/259] L31/N11075: 243 edges found
+  [5/259] L31/N5861: 240 edges found
+  [6/259] L31/N5187: 242 edges found
+  [7/259] L1/N6746: 11 edges found
+  [8/259] L27/N8540: 208 edges found
+  [9/259] L28/N3849: 218 edges found
+  [10/259] L18/N11717: 135 edges found
+  [11/259] L24/N12083: 190 edges found
+  [12/259] L25/N529: 196 edges found
+  [13/259] L19/N12056: 54 edges found
+  [14/259] L23/N5186: 179 edges found
+  [15/259] L25/N2942: 194 edges found
+  [16/259] L27/N10691: 209 edges found
+  [17/259] L17/N13649: 50 edges found
+  [18/259] L3/N11818: 15 edges found
+  [19/259] L2/N1857: 13 edges found
+  [20/259] L29/N1221: 223 edges found
+  [21/259] L17/N4140: 50 edges found
+  [22/259] L23/N5918: 179 edges found
+  [23/259] L31/N5201: 240 edges found
+  [24/259] L18/N13748: 133 edges found
+  [25/259] L30/N3440: 232 edges found
+  [26/259] L23/N13449: 177 edges found
+  [27/259] L30/N11887: 230 edges found
+  [28/259] L4/N6753: 19 edges found
+  [29/259] L0/N1015: 0 edges found
+  [30/259] L15/N13591: 93 edges found
+  [31/259] L25/N8600: 68 edges found
+  [32/259] L19/N10875: 141 edges found
+  [33/259] L21/N8045: 168 edges found
+  [34/259] L22/N82: 170 edges found
+  [35/259] L30/N11949: 229 edges found
+  [36/259] L5/N7996: 22 edges found
+  [37/259] L0/N6144: 0 edges found
+  [38/259] L19/N725: 54 edges found
+  [39/259] L31/N12358: 243 edges found
+  [40/259] L0/N2578: 0 edges found
+  [41/259] L15/N11853: 38 edges found
+  [42/259] L19/N725: 144 edges found
+  [43/259] L27/N6356: 209 edges found
+  [44/259] L29/N3626: 224 edges found
+  [45/259] L30/N11956: 226 edges found
+  [46/259] L28/N1405: 218 edges found
+  [47/259] L23/N5918: 64 edges found
+  [48/259] L1/N8396: 14 edges found
+  [49/259] L20/N10568: 156 edges found
+  [50/259] L15/N7995: 94 edges found
+  [51/259] L4/N12934: 31 edges found
+  [52/259] L26/N9709: 206 edges found
+  [53/259] L21/N6437: 163 edges found
+  [54/259] L4/N12934: 27 edges found
+  [55/259] L4/N12934: 19 edges found
+  [56/259] L12/N10315: 30 edges found
+  [57/259] L0/N7974: 0 edges found
+  [58/259] L17/N4434: 124 edges found
+  [59/259] L15/N7096: 58 edges found
+  [60/259] L0/N3646: 0 edges found
+  [61/259] L11/N3032: 56 edges found
+  [62/259] L17/N4140: 73 edges found
+  [63/259] L17/N4140: 125 edges found
+  [64/259] L4/N7372: 27 edges found
+  [65/259] L12/N13742: 63 edges found
+  [66/259] L6/N2255: 25 edges found
+  [67/259] L25/N529: 68 edges found
+  [68/259] L25/N8600: 191 edges found
+  [69/259] L14/N3634: 34 edges found
+  [70/259] L23/N5186: 64 edges found
+  [71/259] L20/N8563: 154 edges found
+  [72/259] L3/N10078: 22 edges found
+  [73/259] L15/N13321: 94 edges found
+  [74/259] L28/N4874: 218 edges found
+  [75/259] L11/N3007: 56 edges found
+  [76/259] L31/N6072: 242 edges found
+  [77/259] L24/N7205: 188 edges found
+  [78/259] L16/N8705: 44 edges found
+  [79/259] L20/N12268: 157 edges found
+  [80/259] L25/N12046: 195 edges found
+  [81/259] L31/N5287: 242 edges found
+  [82/259] L16/N7991: 111 edges found
+  [83/259] L23/N3866: 180 edges found
+  [84/259] L31/N3484: 242 edges found
+  [85/259] L18/N11717: 52 edges found
+  [86/259] L20/N3218: 152 edges found
+  [87/259] L15/N14016: 58 edges found
+  [88/259] L16/N7203: 112 edges found
+  [89/259] L16/N3587: 111 edges found
+  [90/259] L11/N7479: 56 edges found
+  [91/259] L11/N3106: 56 edges found
+  [92/259] L14/N26: 79 edges found
+  [93/259] L15/N14016: 39 edges found
+  [94/259] L23/N3321: 175 edges found
+  [95/259] L26/N280: 206 edges found
+  [96/259] L9/N7339: 27 edges found
+  [97/259] L0/N8479: 0 edges found
+  [98/259] L25/N12954: 195 edges found
+  [99/259] L30/N13476: 232 edges found
+  [100/259] L0/N10111: 0 edges found
+  [101/259] L2/N7259: 18 edges found
+  [102/259] L0/N10902: 0 edges found
+  [103/259] L11/N7921: 54 edges found
+  [104/259] L20/N7715: 153 edges found
+  [105/259] L23/N2565: 65 edges found
+  [106/259] L18/N3280: 132 edges found
+  [107/259] L10/N12648: 41 edges found
+  [108/259] L15/N9113: 94 edges found
+  [109/259] L15/N7566: 93 edges found
+  [110/259] L31/N6614: 242 edges found
+  [111/259] L14/N2944: 76 edges found
+  [112/259] L12/N3585: 64 edges found
+  [113/259] L18/N6117: 53 edges found
+  [114/259] L25/N6170: 192 edges found
+  [115/259] L23/N9140: 179 edges found
+  [116/259] L20/N12958: 154 edges found
+  [117/259] L31/N1834: 241 edges found
+  [118/259] L27/N5290: 212 edges found
+  [119/259] L20/N9379: 60 edges found
+  [120/259] L0/N2605: 0 edges found
+  [121/259] L24/N6081: 192 edges found
+  [122/259] L29/N14269: 222 edges found
+  [123/259] L23/N3760: 179 edges found
+  [124/259] L1/N12776: 14 edges found
+  [125/259] L30/N8711: 231 edges found
+  [126/259] L8/N2397: 26 edges found
+  [127/259] L16/N3176: 44 edges found
+  [128/259] L0/N8404: 0 edges found
+  [129/259] L13/N4470: 33 edges found
+  [130/259] L4/N6753: 27 edges found
+  [131/259] L4/N12934: 28 edges found
+  [132/259] L17/N1118: 123 edges found
+  [133/259] L30/N13607: 232 edges found
+  [134/259] L23/N1780: 175 edges found
+  [135/259] L14/N6269: 79 edges found
+  [136/259] L31/N8987: 241 edges found
+  [137/259] L5/N10014: 33 edges found
+  [138/259] L13/N12110: 67 edges found
+  [139/259] L17/N777: 125 edges found
+  [140/259] L11/N6154: 56 edges found
+  [141/259] L16/N10829: 44 edges found
+  [142/259] L19/N9599: 143 edges found
+  [143/259] L26/N3064: 207 edges found
+  [144/259] L10/N11106: 49 edges found
+  [145/259] L22/N4703: 169 edges found
+  [146/259] L16/N3910: 44 edges found
+  [147/259] L13/N7116: 47 edges found
+  [148/259] L19/N13374: 53 edges found
+  [149/259] L2/N4963: 20 edges found
+  [150/259] L31/N13110: 243 edges found
+  [151/259] L30/N13047: 232 edges found
+  [152/259] L27/N5989: 205 edges found
+  [153/259] L19/N6814: 54 edges found
+  [154/259] L0/N12530: 0 edges found
+  [155/259] L29/N2124: 224 edges found
+  [156/259] L15/N9810: 92 edges found
+  [157/259] L13/N13193: 69 edges found
+  [158/259] L16/N2610: 44 edges found
+  [159/259] L13/N1884: 33 edges found
+  [160/259] L9/N6989: 46 edges found
+  [161/259] L0/N7657: 0 edges found
+  [162/259] L12/N329: 64 edges found
+  [163/259] L14/N7197: 77 edges found
+  [164/259] L25/N11584: 68 edges found
+  [165/259] L1/N8443: 11 edges found
+  [166/259] L13/N7116: 70 edges found
+  [167/259] L14/N837: 34 edges found
+  [168/259] L9/N10418: 27 edges found
+  [169/259] L12/N9033: 63 edges found
+  [170/259] L25/N10315: 195 edges found
+  [171/259] L28/N292: 217 edges found
+  [172/259] L18/N12464: 137 edges found
+  [173/259] L30/N2792: 232 edges found
+  [174/259] L31/N13292: 242 edges found
+  [175/259] L22/N7938: 170 edges found
+  [176/259] L18/N6232: 136 edges found
+  [177/259] L0/N4251: 0 edges found
+  [178/259] L10/N12212: 29 edges found
+  [179/259] L29/N595: 223 edges found
+  [180/259] L0/N3912: 0 edges found
+  [181/259] L2/N6850: 2 edges found
+  [182/259] L17/N7437: 125 edges found
+  [183/259] L14/N11406: 32 edges found
+  [184/259] L19/N10875: 54 edges found
+  [185/259] L15/N11853: 58 edges found
+  [186/259] L14/N10143: 78 edges found
+  [187/259] L15/N10724: 39 edges found
+  [188/259] L14/N10590: 34 edges found
+  [189/259] L10/N12212: 41 edges found
+  [190/259] L23/N13926: 173 edges found
+  [191/259] L15/N7096: 40 edges found
+  [192/259] L31/N14288: 241 edges found
+  [193/259] L15/N14016: 93 edges found
+  [194/259] L22/N9772: 171 edges found
+  [195/259] L14/N837: 77 edges found
+  [196/259] L3/N12922: 16 edges found
+  [197/259] L2/N9600: 14 edges found
+  [198/259] L25/N12633: 195 edges found
+  [199/259] L20/N11542: 157 edges found
+  [200/259] L15/N1329: 39 edges found
+  [201/259] L5/N12173: 22 edges found
+  [202/259] L16/N10829: 111 edges found
+  [203/259] L11/N8229: 56 edges found
+  [204/259] L0/N6337: 0 edges found
+  [205/259] L2/N6850: 18 edges found
+  [206/259] L24/N12083: 67 edges found
+  [207/259] L29/N592: 221 edges found
+  [208/259] L19/N464: 144 edges found
+  [209/259] L22/N10532: 170 edges found
+  [210/259] L17/N2769: 125 edges found
+  [211/259] L0/N11892: 0 edges found
+  [212/259] L21/N12554: 165 edges found
+  [213/259] L0/N110: 0 edges found
+  [214/259] L13/N2439: 48 edges found
+  [215/259] L14/N11406: 51 edges found
+  [216/259] L0/N14005: 0 edges found
+  [217/259] L12/N4936: 65 edges found
+  [218/259] L13/N9455: 46 edges found
+  [219/259] L16/N11508: 104 edges found
+  [220/259] L27/N8648: 210 edges found
+  [221/259] L23/N7055: 178 edges found
+  [222/259] L31/N8809: 242 edges found
+  [223/259] L16/N4610: 109 edges found
+  [224/259] L19/N7387: 55 edges found
+  [225/259] L14/N5879: 34 edges found
+  [226/259] L14/N13490: 77 edges found
+  [227/259] L20/N7658: 156 edges found
+  [228/259] L16/N888: 111 edges found
+  [229/259] L2/N1857: 18 edges found
+  [230/259] L12/N2196: 29 edges found
+  [231/259] L7/N6172: 46 edges found
+  [232/259] L20/N7715: 60 edges found
+  [233/259] L15/N5859: 93 edges found
+  [234/259] L16/N7722: 112 edges found
+  [235/259] L19/N7387: 140 edges found
+  [236/259] L18/N9714: 137 edges found
+  [237/259] L20/N8524: 154 edges found
+  [238/259] L31/N11808: 242 edges found
+  [239/259] L3/N5869: 3 edges found
+  [240/259] L22/N9772: 63 edges found
+  [241/259] L27/N12026: 209 edges found
+  [242/259] L5/N7726: 23 edges found
+  [243/259] L19/N3393: 140 edges found
+  [244/259] L29/N3746: 225 edges found
+  [245/259] L10/N12212: 50 edges found
+  [246/259] L21/N8045: 62 edges found
+  [247/259] L22/N13528: 171 edges found
+  [248/259] L15/N7096: 92 edges found
+  [249/259] L28/N2136: 217 edges found
+  [250/259] L16/N11836: 44 edges found
+  [251/259] L4/N11126: 4 edges found
+  [252/259] L19/N2526: 142 edges found
+  [253/259] L14/N1094: 79 edges found
+  [254/259] L26/N11122: 206 edges found
+  [255/259] L11/N12834: 44 edges found
+  [256/259] L28/N7368: 217 edges found
+  [257/259] L10/N12443: 48 edges found
+  [258/259] L14/N6899: 79 edges found
+  [259/259] L15/N5381: 59 edges found
+
+Total: 27849 edges across 259 target neurons
+    Edge pass 5/10: The dog in the gardens...
+  [1/259] L29/N10537: 221 edges found
+  [2/259] L17/N13649: 124 edges found
+  [3/259] L30/N11158: 231 edges found
+  [4/259] L31/N11075: 242 edges found
+  [5/259] L31/N5861: 239 edges found
+  [6/259] L31/N5187: 240 edges found
+  [7/259] L1/N6746: 12 edges found
+  [8/259] L27/N8540: 212 edges found
+  [9/259] L28/N3849: 212 edges found
+  [10/259] L18/N11717: 134 edges found
+  [11/259] L24/N12083: 188 edges found
+  [12/259] L25/N529: 185 edges found
+  [13/259] L19/N12056: 52 edges found
+  [14/259] L23/N5186: 172 edges found
+  [15/259] L25/N2942: 188 edges found
+  [16/259] L27/N10691: 210 edges found
+  [17/259] L17/N13649: 48 edges found
+  [18/259] L3/N11818: 16 edges found
+  [19/259] L2/N1857: 14 edges found
+  [20/259] L29/N1221: 222 edges found
+  [21/259] L17/N4140: 48 edges found
+  [22/259] L23/N5918: 175 edges found
+  [23/259] L31/N5201: 241 edges found
+  [24/259] L18/N13748: 135 edges found
+  [25/259] L30/N3440: 224 edges found
+  [26/259] L23/N13449: 173 edges found
+  [27/259] L30/N11887: 227 edges found
+  [28/259] L4/N6753: 19 edges found
+  [29/259] L0/N1015: 0 edges found
+  [30/259] L15/N13591: 88 edges found
+  [31/259] L25/N8600: 68 edges found
+  [32/259] L19/N10875: 141 edges found
+  [33/259] L21/N8045: 166 edges found
+  [34/259] L22/N82: 171 edges found
+  [35/259] L30/N11949: 228 edges found
+  [36/259] L5/N7996: 22 edges found
+  [37/259] L0/N6144: 0 edges found
+  [38/259] L19/N725: 53 edges found
+  [39/259] L31/N12358: 243 edges found
+  [40/259] L0/N2578: 0 edges found
+  [41/259] L15/N11853: 35 edges found
+  [42/259] L19/N725: 138 edges found
+  [43/259] L27/N6356: 207 edges found
+  [44/259] L29/N3626: 222 edges found
+  [45/259] L30/N11956: 230 edges found
+  [46/259] L28/N1405: 212 edges found
+  [47/259] L23/N5918: 58 edges found
+  [48/259] L1/N8396: 12 edges found
+  [49/259] L20/N10568: 147 edges found
+  [50/259] L15/N7995: 89 edges found
+  [51/259] L4/N12934: 27 edges found
+  [52/259] L26/N9709: 203 edges found
+  [53/259] L21/N6437: 165 edges found
+  [54/259] L4/N12934: 24 edges found
+  [55/259] L4/N12934: 18 edges found
+  [56/259] L12/N10315: 30 edges found
+  [57/259] L0/N7974: 0 edges found
+  [58/259] L17/N4434: 124 edges found
+  [59/259] L15/N7096: 58 edges found
+  [60/259] L0/N3646: 0 edges found
+  [61/259] L11/N3032: 51 edges found
+  [62/259] L17/N4140: 71 edges found
+  [63/259] L17/N4140: 123 edges found
+  [64/259] L4/N7372: 26 edges found
+  [65/259] L12/N13742: 60 edges found
+  [66/259] L6/N2255: 26 edges found
+  [67/259] L25/N529: 65 edges found
+  [68/259] L25/N8600: 192 edges found
+  [69/259] L14/N3634: 34 edges found
+  [70/259] L23/N5186: 62 edges found
+  [71/259] L20/N8563: 154 edges found
+  [72/259] L3/N10078: 23 edges found
+  [73/259] L15/N13321: 89 edges found
+  [74/259] L28/N4874: 198 edges found
+  [75/259] L11/N3007: 55 edges found
+  [76/259] L31/N6072: 242 edges found
+  [77/259] L24/N7205: 187 edges found
+  [78/259] L16/N8705: 41 edges found
+  [79/259] L20/N12268: 153 edges found
+  [80/259] L25/N12046: 188 edges found
+  [81/259] L31/N5287: 242 edges found
+  [82/259] L16/N7991: 106 edges found
+  [83/259] L23/N3866: 169 edges found
+  [84/259] L31/N3484: 240 edges found
+  [85/259] L18/N11717: 50 edges found
+  [86/259] L20/N3218: 147 edges found
+  [87/259] L15/N14016: 57 edges found
+  [88/259] L16/N7203: 106 edges found
+  [89/259] L16/N3587: 104 edges found
+  [90/259] L11/N7479: 54 edges found
+  [91/259] L11/N3106: 57 edges found
+  [92/259] L14/N26: 79 edges found
+  [93/259] L15/N14016: 39 edges found
+  [94/259] L23/N3321: 166 edges found
+  [95/259] L26/N280: 205 edges found
+  [96/259] L9/N7339: 23 edges found
+  [97/259] L0/N8479: 0 edges found
+  [98/259] L25/N12954: 188 edges found
+  [99/259] L30/N13476: 232 edges found
+  [100/259] L0/N10111: 0 edges found
+  [101/259] L2/N7259: 14 edges found
+  [102/259] L0/N10902: 0 edges found
+  [103/259] L11/N7921: 50 edges found
+  [104/259] L20/N7715: 154 edges found
+  [105/259] L23/N2565: 65 edges found
+  [106/259] L18/N3280: 131 edges found
+  [107/259] L10/N12648: 38 edges found
+  [108/259] L15/N9113: 87 edges found
+  [109/259] L15/N7566: 88 edges found
+  [110/259] L31/N6614: 243 edges found
+  [111/259] L14/N2944: 73 edges found
+  [112/259] L12/N3585: 57 edges found
+  [113/259] L18/N6117: 52 edges found
+  [114/259] L25/N6170: 186 edges found
+  [115/259] L23/N9140: 174 edges found
+  [116/259] L20/N12958: 146 edges found
+  [117/259] L31/N1834: 242 edges found
+  [118/259] L27/N5290: 201 edges found
+  [119/259] L20/N9379: 60 edges found
+  [120/259] L0/N2605: 0 edges found
+  [121/259] L24/N6081: 191 edges found
+  [122/259] L29/N14269: 224 edges found
+  [123/259] L23/N3760: 174 edges found
+  [124/259] L1/N12776: 10 edges found
+  [125/259] L30/N8711: 229 edges found
+  [126/259] L8/N2397: 26 edges found
+  [127/259] L16/N3176: 44 edges found
+  [128/259] L0/N8404: 0 edges found
+  [129/259] L13/N4470: 33 edges found
+  [130/259] L4/N6753: 28 edges found
+  [131/259] L4/N12934: 28 edges found
+  [132/259] L17/N1118: 117 edges found
+  [133/259] L30/N13607: 232 edges found
+  [134/259] L23/N1780: 173 edges found
+  [135/259] L14/N6269: 78 edges found
+  [136/259] L31/N8987: 241 edges found
+  [137/259] L5/N10014: 30 edges found
+  [138/259] L13/N12110: 64 edges found
+  [139/259] L17/N777: 117 edges found
+  [140/259] L11/N6154: 51 edges found
+  [141/259] L16/N10829: 38 edges found
+  [142/259] L19/N9599: 138 edges found
+  [143/259] L26/N3064: 205 edges found
+  [144/259] L10/N11106: 43 edges found
+  [145/259] L22/N4703: 168 edges found
+  [146/259] L16/N3910: 45 edges found
+  [147/259] L13/N7116: 45 edges found
+  [148/259] L19/N13374: 49 edges found
+  [149/259] L2/N4963: 20 edges found
+  [150/259] L31/N13110: 243 edges found
+  [151/259] L30/N13047: 232 edges found
+  [152/259] L27/N5989: 205 edges found
+  [153/259] L19/N6814: 50 edges found
+  [154/259] L0/N12530: 0 edges found
+  [155/259] L29/N2124: 221 edges found
+  [156/259] L15/N9810: 90 edges found
+  [157/259] L13/N13193: 65 edges found
+  [158/259] L16/N2610: 42 edges found
+  [159/259] L13/N1884: 33 edges found
+  [160/259] L9/N6989: 41 edges found
+  [161/259] L0/N7657: 0 edges found
+  [162/259] L12/N329: 58 edges found
+  [163/259] L14/N7197: 73 edges found
+  [164/259] L25/N11584: 67 edges found
+  [165/259] L1/N8443: 11 edges found
+  [166/259] L13/N7116: 67 edges found
+  [167/259] L14/N837: 31 edges found
+  [168/259] L9/N10418: 27 edges found
+  [169/259] L12/N9033: 59 edges found
+  [170/259] L25/N10315: 185 edges found
+  [171/259] L28/N292: 214 edges found
+  [172/259] L18/N12464: 133 edges found
+  [173/259] L30/N2792: 230 edges found
+  [174/259] L31/N13292: 238 edges found
+  [175/259] L22/N7938: 165 edges found
+  [176/259] L18/N6232: 130 edges found
+  [177/259] L0/N4251: 0 edges found
+  [178/259] L10/N12212: 29 edges found
+  [179/259] L29/N595: 219 edges found
+  [180/259] L0/N3912: 0 edges found
+  [181/259] L2/N6850: 2 edges found
+  [182/259] L17/N7437: 122 edges found
+  [183/259] L14/N11406: 34 edges found
+  [184/259] L19/N10875: 54 edges found
+  [185/259] L15/N11853: 51 edges found
+  [186/259] L14/N10143: 77 edges found
+  [187/259] L15/N10724: 38 edges found
+  [188/259] L14/N10590: 32 edges found
+  [189/259] L10/N12212: 40 edges found
+  [190/259] L23/N13926: 167 edges found
+  [191/259] L15/N7096: 38 edges found
+  [192/259] L31/N14288: 241 edges found
+  [193/259] L15/N14016: 93 edges found
+  [194/259] L22/N9772: 169 edges found
+  [195/259] L14/N837: 77 edges found
+  [196/259] L3/N12922: 15 edges found
+  [197/259] L2/N9600: 10 edges found
+  [198/259] L25/N12633: 191 edges found
+  [199/259] L20/N11542: 150 edges found
+  [200/259] L15/N1329: 38 edges found
+  [201/259] L5/N12173: 20 edges found
+  [202/259] L16/N10829: 107 edges found
+  [203/259] L11/N8229: 53 edges found
+  [204/259] L0/N6337: 0 edges found
+  [205/259] L2/N6850: 18 edges found
+  [206/259] L24/N12083: 61 edges found
+  [207/259] L29/N592: 221 edges found
+  [208/259] L19/N464: 139 edges found
+  [209/259] L22/N10532: 168 edges found
+  [210/259] L17/N2769: 118 edges found
+  [211/259] L0/N11892: 0 edges found
+  [212/259] L21/N12554: 160 edges found
+  [213/259] L0/N110: 0 edges found
+  [214/259] L13/N2439: 46 edges found
+  [215/259] L14/N11406: 49 edges found
+  [216/259] L0/N14005: 0 edges found
+  [217/259] L12/N4936: 61 edges found
+  [218/259] L13/N9455: 44 edges found
+  [219/259] L16/N11508: 99 edges found
+  [220/259] L27/N8648: 205 edges found
+  [221/259] L23/N7055: 174 edges found
+  [222/259] L31/N8809: 242 edges found
+  [223/259] L16/N4610: 108 edges found
+  [224/259] L19/N7387: 50 edges found
+  [225/259] L14/N5879: 30 edges found
+  [226/259] L14/N13490: 69 edges found
+  [227/259] L20/N7658: 151 edges found
+  [228/259] L16/N888: 109 edges found
+  [229/259] L2/N1857: 19 edges found
+  [230/259] L12/N2196: 31 edges found
+  [231/259] L7/N6172: 37 edges found
+  [232/259] L20/N7715: 57 edges found
+  [233/259] L15/N5859: 93 edges found
+  [234/259] L16/N7722: 107 edges found
+  [235/259] L19/N7387: 133 edges found
+  [236/259] L18/N9714: 134 edges found
+  [237/259] L20/N8524: 148 edges found
+  [238/259] L31/N11808: 243 edges found
+  [239/259] L3/N5869: 3 edges found
+  [240/259] L22/N9772: 58 edges found
+  [241/259] L27/N12026: 207 edges found
+  [242/259] L5/N7726: 23 edges found
+  [243/259] L19/N3393: 136 edges found
+  [244/259] L29/N3746: 225 edges found
+  [245/259] L10/N12212: 48 edges found
+  [246/259] L21/N8045: 60 edges found
+  [247/259] L22/N13528: 157 edges found
+  [248/259] L15/N7096: 93 edges found
+  [249/259] L28/N2136: 216 edges found
+  [250/259] L16/N11836: 36 edges found
+  [251/259] L4/N11126: 4 edges found
+  [252/259] L19/N2526: 137 edges found
+  [253/259] L14/N1094: 74 edges found
+  [254/259] L26/N11122: 204 edges found
+  [255/259] L11/N12834: 43 edges found
+  [256/259] L28/N7368: 214 edges found
+  [257/259] L10/N12443: 45 edges found
+  [258/259] L14/N6899: 72 edges found
+  [259/259] L15/N5381: 58 edges found
+
+Total: 27203 edges across 259 target neurons
+    Edge pass 6/10: The dogs in the garden...
+  [1/259] L29/N10537: 225 edges found
+  [2/259] L17/N13649: 126 edges found
+  [3/259] L30/N11158: 233 edges found
+  [4/259] L31/N11075: 243 edges found
+  [5/259] L31/N5861: 242 edges found
+  [6/259] L31/N5187: 243 edges found
+  [7/259] L1/N6746: 12 edges found
+  [8/259] L27/N8540: 209 edges found
+  [9/259] L28/N3849: 218 edges found
+  [10/259] L18/N11717: 136 edges found
+  [11/259] L24/N12083: 176 edges found
+  [12/259] L25/N529: 197 edges found
+  [13/259] L19/N12056: 53 edges found
+  [14/259] L23/N5186: 178 edges found
+  [15/259] L25/N2942: 194 edges found
+  [16/259] L27/N10691: 212 edges found
+  [17/259] L17/N13649: 51 edges found
+  [18/259] L3/N11818: 15 edges found
+  [19/259] L2/N1857: 14 edges found
+  [20/259] L29/N1221: 224 edges found
+  [21/259] L17/N4140: 50 edges found
+  [22/259] L23/N5918: 179 edges found
+  [23/259] L31/N5201: 242 edges found
+  [24/259] L18/N13748: 136 edges found
+  [25/259] L30/N3440: 233 edges found
+  [26/259] L23/N13449: 176 edges found
+  [27/259] L30/N11887: 230 edges found
+  [28/259] L4/N6753: 19 edges found
+  [29/259] L0/N1015: 0 edges found
+  [30/259] L15/N13591: 92 edges found
+  [31/259] L25/N8600: 69 edges found
+  [32/259] L19/N10875: 140 edges found
+  [33/259] L21/N8045: 164 edges found
+  [34/259] L22/N82: 171 edges found
+  [35/259] L30/N11949: 232 edges found
+  [36/259] L5/N7996: 23 edges found
+  [37/259] L0/N6144: 0 edges found
+  [38/259] L19/N725: 55 edges found
+  [39/259] L31/N12358: 242 edges found
+  [40/259] L0/N2578: 0 edges found
+  [41/259] L15/N11853: 39 edges found
+  [42/259] L19/N725: 145 edges found
+  [43/259] L27/N6356: 211 edges found
+  [44/259] L29/N3626: 223 edges found
+  [45/259] L30/N11956: 229 edges found
+  [46/259] L28/N1405: 217 edges found
+  [47/259] L23/N5918: 65 edges found
+  [48/259] L1/N8396: 14 edges found
+  [49/259] L20/N10568: 156 edges found
+  [50/259] L15/N7995: 93 edges found
+  [51/259] L4/N12934: 32 edges found
+  [52/259] L26/N9709: 207 edges found
+  [53/259] L21/N6437: 159 edges found
+  [54/259] L4/N12934: 27 edges found
+  [55/259] L4/N12934: 20 edges found
+  [56/259] L12/N10315: 31 edges found
+  [57/259] L0/N7974: 0 edges found
+  [58/259] L17/N4434: 127 edges found
+  [59/259] L15/N7096: 59 edges found
+  [60/259] L0/N3646: 0 edges found
+  [61/259] L11/N3032: 51 edges found
+  [62/259] L17/N4140: 74 edges found
+  [63/259] L17/N4140: 125 edges found
+  [64/259] L4/N7372: 28 edges found
+  [65/259] L12/N13742: 63 edges found
+  [66/259] L6/N2255: 26 edges found
+  [67/259] L25/N529: 68 edges found
+  [68/259] L25/N8600: 194 edges found
+  [69/259] L14/N3634: 34 edges found
+  [70/259] L23/N5186: 65 edges found
+  [71/259] L20/N8563: 156 edges found
+  [72/259] L3/N10078: 23 edges found
+  [73/259] L15/N13321: 93 edges found
+  [74/259] L28/N4874: 217 edges found
+  [75/259] L11/N3007: 54 edges found
+  [76/259] L31/N6072: 243 edges found
+  [77/259] L24/N7205: 181 edges found
+  [78/259] L16/N8705: 45 edges found
+  [79/259] L20/N12268: 157 edges found
+  [80/259] L25/N12046: 196 edges found
+  [81/259] L31/N5287: 240 edges found
+  [82/259] L16/N7991: 113 edges found
+  [83/259] L23/N3866: 178 edges found
+  [84/259] L31/N3484: 243 edges found
+  [85/259] L18/N11717: 52 edges found
+  [86/259] L20/N3218: 158 edges found
+  [87/259] L15/N14016: 58 edges found
+  [88/259] L16/N7203: 112 edges found
+  [89/259] L16/N3587: 111 edges found
+  [90/259] L11/N7479: 57 edges found
+  [91/259] L11/N3106: 52 edges found
+  [92/259] L14/N26: 80 edges found
+  [93/259] L15/N14016: 38 edges found
+  [94/259] L23/N3321: 175 edges found
+  [95/259] L26/N280: 208 edges found
+  [96/259] L9/N7339: 28 edges found
+  [97/259] L0/N8479: 0 edges found
+  [98/259] L25/N12954: 194 edges found
+  [99/259] L30/N13476: 232 edges found
+  [100/259] L0/N10111: 0 edges found
+  [101/259] L2/N7259: 18 edges found
+  [102/259] L0/N10902: 0 edges found
+  [103/259] L11/N7921: 54 edges found
+  [104/259] L20/N7715: 155 edges found
+  [105/259] L23/N2565: 64 edges found
+  [106/259] L18/N3280: 133 edges found
+  [107/259] L10/N12648: 42 edges found
+  [108/259] L15/N9113: 94 edges found
+  [109/259] L15/N7566: 94 edges found
+  [110/259] L31/N6614: 242 edges found
+  [111/259] L14/N2944: 78 edges found
+  [112/259] L12/N3585: 64 edges found
+  [113/259] L18/N6117: 53 edges found
+  [114/259] L25/N6170: 193 edges found
+  [115/259] L23/N9140: 179 edges found
+  [116/259] L20/N12958: 154 edges found
+  [117/259] L31/N1834: 243 edges found
+  [118/259] L27/N5290: 212 edges found
+  [119/259] L20/N9379: 61 edges found
+  [120/259] L0/N2605: 0 edges found
+  [121/259] L24/N6081: 192 edges found
+  [122/259] L29/N14269: 221 edges found
+  [123/259] L23/N3760: 179 edges found
+  [124/259] L1/N12776: 14 edges found
+  [125/259] L30/N8711: 232 edges found
+  [126/259] L8/N2397: 27 edges found
+  [127/259] L16/N3176: 45 edges found
+  [128/259] L0/N8404: 0 edges found
+  [129/259] L13/N4470: 33 edges found
+  [130/259] L4/N6753: 28 edges found
+  [131/259] L4/N12934: 28 edges found
+  [132/259] L17/N1118: 126 edges found
+  [133/259] L30/N13607: 233 edges found
+  [134/259] L23/N1780: 178 edges found
+  [135/259] L14/N6269: 78 edges found
+  [136/259] L31/N8987: 242 edges found
+  [137/259] L5/N10014: 33 edges found
+  [138/259] L13/N12110: 70 edges found
+  [139/259] L17/N777: 125 edges found
+  [140/259] L11/N6154: 56 edges found
+  [141/259] L16/N10829: 45 edges found
+  [142/259] L19/N9599: 144 edges found
+  [143/259] L26/N3064: 208 edges found
+  [144/259] L10/N11106: 47 edges found
+  [145/259] L22/N4703: 168 edges found
+  [146/259] L16/N3910: 45 edges found
+  [147/259] L13/N7116: 47 edges found
+  [148/259] L19/N13374: 55 edges found
+  [149/259] L2/N4963: 21 edges found
+  [150/259] L31/N13110: 242 edges found
+  [151/259] L30/N13047: 233 edges found
+  [152/259] L27/N5989: 204 edges found
+  [153/259] L19/N6814: 53 edges found
+  [154/259] L0/N12530: 0 edges found
+  [155/259] L29/N2124: 225 edges found
+  [156/259] L15/N9810: 95 edges found
+  [157/259] L13/N13193: 70 edges found
+  [158/259] L16/N2610: 44 edges found
+  [159/259] L13/N1884: 33 edges found
+  [160/259] L9/N6989: 47 edges found
+  [161/259] L0/N7657: 0 edges found
+  [162/259] L12/N329: 65 edges found
+  [163/259] L14/N7197: 77 edges found
+  [164/259] L25/N11584: 68 edges found
+  [165/259] L1/N8443: 11 edges found
+  [166/259] L13/N7116: 72 edges found
+  [167/259] L14/N837: 35 edges found
+  [168/259] L9/N10418: 28 edges found
+  [169/259] L12/N9033: 64 edges found
+  [170/259] L25/N10315: 195 edges found
+  [171/259] L28/N292: 217 edges found
+  [172/259] L18/N12464: 137 edges found
+  [173/259] L30/N2792: 232 edges found
+  [174/259] L31/N13292: 242 edges found
+  [175/259] L22/N7938: 171 edges found
+  [176/259] L18/N6232: 136 edges found
+  [177/259] L0/N4251: 0 edges found
+  [178/259] L10/N12212: 30 edges found
+  [179/259] L29/N595: 224 edges found
+  [180/259] L0/N3912: 0 edges found
+  [181/259] L2/N6850: 2 edges found
+  [182/259] L17/N7437: 125 edges found
+  [183/259] L14/N11406: 35 edges found
+  [184/259] L19/N10875: 55 edges found
+  [185/259] L15/N11853: 59 edges found
+  [186/259] L14/N10143: 80 edges found
+  [187/259] L15/N10724: 40 edges found
+  [188/259] L14/N10590: 34 edges found
+  [189/259] L10/N12212: 42 edges found
+  [190/259] L23/N13926: 176 edges found
+  [191/259] L15/N7096: 40 edges found
+  [192/259] L31/N14288: 242 edges found
+  [193/259] L15/N14016: 93 edges found
+  [194/259] L22/N9772: 171 edges found
+  [195/259] L14/N837: 78 edges found
+  [196/259] L3/N12922: 17 edges found
+  [197/259] L2/N9600: 14 edges found
+  [198/259] L25/N12633: 195 edges found
+  [199/259] L20/N11542: 155 edges found
+  [200/259] L15/N1329: 40 edges found
+  [201/259] L5/N12173: 23 edges found
+  [202/259] L16/N10829: 110 edges found
+  [203/259] L11/N8229: 57 edges found
+  [204/259] L0/N6337: 0 edges found
+  [205/259] L2/N6850: 18 edges found
+  [206/259] L24/N12083: 68 edges found
+  [207/259] L29/N592: 224 edges found
+  [208/259] L19/N464: 144 edges found
+  [209/259] L22/N10532: 172 edges found
+  [210/259] L17/N2769: 121 edges found
+  [211/259] L0/N11892: 0 edges found
+  [212/259] L21/N12554: 166 edges found
+  [213/259] L0/N110: 0 edges found
+  [214/259] L13/N2439: 48 edges found
+  [215/259] L14/N11406: 53 edges found
+  [216/259] L0/N14005: 0 edges found
+  [217/259] L12/N4936: 64 edges found
+  [218/259] L13/N9455: 48 edges found
+  [219/259] L16/N11508: 108 edges found
+  [220/259] L27/N8648: 212 edges found
+  [221/259] L23/N7055: 177 edges found
+  [222/259] L31/N8809: 243 edges found
+  [223/259] L16/N4610: 112 edges found
+  [224/259] L19/N7387: 55 edges found
+  [225/259] L14/N5879: 35 edges found
+  [226/259] L14/N13490: 78 edges found
+  [227/259] L20/N7658: 152 edges found
+  [228/259] L16/N888: 113 edges found
+  [229/259] L2/N1857: 18 edges found
+  [230/259] L12/N2196: 31 edges found
+  [231/259] L7/N6172: 45 edges found
+  [232/259] L20/N7715: 60 edges found
+  [233/259] L15/N5859: 95 edges found
+  [234/259] L16/N7722: 111 edges found
+  [235/259] L19/N7387: 141 edges found
+  [236/259] L18/N9714: 137 edges found
+  [237/259] L20/N8524: 153 edges found
+  [238/259] L31/N11808: 243 edges found
+  [239/259] L3/N5869: 3 edges found
+  [240/259] L22/N9772: 64 edges found
+  [241/259] L27/N12026: 210 edges found
+  [242/259] L5/N7726: 23 edges found
+  [243/259] L19/N3393: 144 edges found
+  [244/259] L29/N3746: 223 edges found
+  [245/259] L10/N12212: 50 edges found
+  [246/259] L21/N8045: 62 edges found
+  [247/259] L22/N13528: 170 edges found
+  [248/259] L15/N7096: 91 edges found
+  [249/259] L28/N2136: 218 edges found
+  [250/259] L16/N11836: 42 edges found
+  [251/259] L4/N11126: 4 edges found
+  [252/259] L19/N2526: 144 edges found
+  [253/259] L14/N1094: 80 edges found
+  [254/259] L26/N11122: 208 edges found
+  [255/259] L11/N12834: 45 edges found
+  [256/259] L28/N7368: 217 edges found
+  [257/259] L10/N12443: 50 edges found
+  [258/259] L14/N6899: 79 edges found
+  [259/259] L15/N5381: 59 edges found
+
+Total: 27947 edges across 259 target neurons
+    Edge pass 7/10: The cat beside the flowers...
+  [1/259] L29/N10537: 222 edges found
+  [2/259] L17/N13649: 125 edges found
+  [3/259] L30/N11158: 231 edges found
+  [4/259] L31/N11075: 240 edges found
+  [5/259] L31/N5861: 241 edges found
+  [6/259] L31/N5187: 239 edges found
+  [7/259] L1/N6746: 11 edges found
+  [8/259] L27/N8540: 209 edges found
+  [9/259] L28/N3849: 213 edges found
+  [10/259] L18/N11717: 136 edges found
+  [11/259] L24/N12083: 188 edges found
+  [12/259] L25/N529: 194 edges found
+  [13/259] L19/N12056: 53 edges found
+  [14/259] L23/N5186: 175 edges found
+  [15/259] L25/N2942: 193 edges found
+  [16/259] L27/N10691: 209 edges found
+  [17/259] L17/N13649: 49 edges found
+  [18/259] L3/N11818: 17 edges found
+  [19/259] L2/N1857: 13 edges found
+  [20/259] L29/N1221: 223 edges found
+  [21/259] L17/N4140: 50 edges found
+  [22/259] L23/N5918: 174 edges found
+  [23/259] L31/N5201: 240 edges found
+  [24/259] L18/N13748: 135 edges found
+  [25/259] L30/N3440: 225 edges found
+  [26/259] L23/N13449: 172 edges found
+  [27/259] L30/N11887: 227 edges found
+  [28/259] L4/N6753: 19 edges found
+  [29/259] L0/N1015: 0 edges found
+  [30/259] L15/N13591: 90 edges found
+  [31/259] L25/N8600: 67 edges found
+  [32/259] L19/N10875: 142 edges found
+  [33/259] L21/N8045: 165 edges found
+  [34/259] L22/N82: 171 edges found
+  [35/259] L30/N11949: 226 edges found
+  [36/259] L5/N7996: 22 edges found
+  [37/259] L0/N6144: 0 edges found
+  [38/259] L19/N725: 54 edges found
+  [39/259] L31/N12358: 242 edges found
+  [40/259] L0/N2578: 0 edges found
+  [41/259] L15/N11853: 39 edges found
+  [42/259] L19/N725: 143 edges found
+  [43/259] L27/N6356: 199 edges found
+  [44/259] L29/N3626: 221 edges found
+  [45/259] L30/N11956: 229 edges found
+  [46/259] L28/N1405: 211 edges found
+  [47/259] L23/N5918: 62 edges found
+  [48/259] L1/N8396: 14 edges found
+  [49/259] L20/N10568: 152 edges found
+  [50/259] L15/N7995: 91 edges found
+  [51/259] L4/N12934: 31 edges found
+  [52/259] L26/N9709: 204 edges found
+  [53/259] L21/N6437: 161 edges found
+  [54/259] L4/N12934: 27 edges found
+  [55/259] L4/N12934: 19 edges found
+  [56/259] L12/N10315: 30 edges found
+  [57/259] L0/N7974: 0 edges found
+  [58/259] L17/N4434: 122 edges found
+  [59/259] L15/N7096: 58 edges found
+  [60/259] L0/N3646: 0 edges found
+  [61/259] L11/N3032: 53 edges found
+  [62/259] L17/N4140: 71 edges found
+  [63/259] L17/N4140: 123 edges found
+  [64/259] L4/N7372: 27 edges found
+  [65/259] L12/N13742: 64 edges found
+  [66/259] L6/N2255: 25 edges found
+  [67/259] L25/N529: 67 edges found
+  [68/259] L25/N8600: 192 edges found
+  [69/259] L14/N3634: 35 edges found
+  [70/259] L23/N5186: 61 edges found
+  [71/259] L20/N8563: 155 edges found
+  [72/259] L3/N10078: 23 edges found
+  [73/259] L15/N13321: 92 edges found
+  [74/259] L28/N4874: 214 edges found
+  [75/259] L11/N3007: 56 edges found
+  [76/259] L31/N6072: 242 edges found
+  [77/259] L24/N7205: 188 edges found
+  [78/259] L16/N8705: 43 edges found
+  [79/259] L20/N12268: 154 edges found
+  [80/259] L25/N12046: 192 edges found
+  [81/259] L31/N5287: 242 edges found
+  [82/259] L16/N7991: 106 edges found
+  [83/259] L23/N3866: 175 edges found
+  [84/259] L31/N3484: 239 edges found
+  [85/259] L18/N11717: 52 edges found
+  [86/259] L20/N3218: 153 edges found
+  [87/259] L15/N14016: 56 edges found
+  [88/259] L16/N7203: 110 edges found
+  [89/259] L16/N3587: 110 edges found
+  [90/259] L11/N7479: 56 edges found
+  [91/259] L11/N3106: 56 edges found
+  [92/259] L14/N26: 77 edges found
+  [93/259] L15/N14016: 39 edges found
+  [94/259] L23/N3321: 173 edges found
+  [95/259] L26/N280: 206 edges found
+  [96/259] L9/N7339: 26 edges found
+  [97/259] L0/N8479: 0 edges found
+  [98/259] L25/N12954: 192 edges found
+  [99/259] L30/N13476: 231 edges found
+  [100/259] L0/N10111: 0 edges found
+  [101/259] L2/N7259: 18 edges found
+  [102/259] L0/N10902: 0 edges found
+  [103/259] L11/N7921: 54 edges found
+  [104/259] L20/N7715: 153 edges found
+  [105/259] L23/N2565: 61 edges found
+  [106/259] L18/N3280: 134 edges found
+  [107/259] L10/N12648: 40 edges found
+  [108/259] L15/N9113: 91 edges found
+  [109/259] L15/N7566: 94 edges found
+  [110/259] L31/N6614: 241 edges found
+  [111/259] L14/N2944: 77 edges found
+  [112/259] L12/N3585: 63 edges found
+  [113/259] L18/N6117: 52 edges found
+  [114/259] L25/N6170: 188 edges found
+  [115/259] L23/N9140: 175 edges found
+  [116/259] L20/N12958: 151 edges found
+  [117/259] L31/N1834: 242 edges found
+  [118/259] L27/N5290: 208 edges found
+  [119/259] L20/N9379: 59 edges found
+  [120/259] L0/N2605: 0 edges found
+  [121/259] L24/N6081: 190 edges found
+  [122/259] L29/N14269: 223 edges found
+  [123/259] L23/N3760: 173 edges found
+  [124/259] L1/N12776: 14 edges found
+  [125/259] L30/N8711: 232 edges found
+  [126/259] L8/N2397: 25 edges found
+  [127/259] L16/N3176: 41 edges found
+  [128/259] L0/N8404: 0 edges found
+  [129/259] L13/N4470: 32 edges found
+  [130/259] L4/N6753: 27 edges found
+  [131/259] L4/N12934: 28 edges found
+  [132/259] L17/N1118: 125 edges found
+  [133/259] L30/N13607: 230 edges found
+  [134/259] L23/N1780: 170 edges found
+  [135/259] L14/N6269: 76 edges found
+  [136/259] L31/N8987: 242 edges found
+  [137/259] L5/N10014: 31 edges found
+  [138/259] L13/N12110: 68 edges found
+  [139/259] L17/N777: 122 edges found
+  [140/259] L11/N6154: 56 edges found
+  [141/259] L16/N10829: 44 edges found
+  [142/259] L19/N9599: 142 edges found
+  [143/259] L26/N3064: 206 edges found
+  [144/259] L10/N11106: 49 edges found
+  [145/259] L22/N4703: 168 edges found
+  [146/259] L16/N3910: 43 edges found
+  [147/259] L13/N7116: 47 edges found
+  [148/259] L19/N13374: 50 edges found
+  [149/259] L2/N4963: 16 edges found
+  [150/259] L31/N13110: 241 edges found
+  [151/259] L30/N13047: 230 edges found
+  [152/259] L27/N5989: 208 edges found
+  [153/259] L19/N6814: 52 edges found
+  [154/259] L0/N12530: 0 edges found
+  [155/259] L29/N2124: 221 edges found
+  [156/259] L15/N9810: 91 edges found
+  [157/259] L13/N13193: 69 edges found
+  [158/259] L16/N2610: 43 edges found
+  [159/259] L13/N1884: 32 edges found
+  [160/259] L9/N6989: 47 edges found
+  [161/259] L0/N7657: 0 edges found
+  [162/259] L12/N329: 63 edges found
+  [163/259] L14/N7197: 75 edges found
+  [164/259] L25/N11584: 66 edges found
+  [165/259] L1/N8443: 11 edges found
+  [166/259] L13/N7116: 67 edges found
+  [167/259] L14/N837: 34 edges found
+  [168/259] L9/N10418: 26 edges found
+  [169/259] L12/N9033: 64 edges found
+  [170/259] L25/N10315: 191 edges found
+  [171/259] L28/N292: 215 edges found
+  [172/259] L18/N12464: 134 edges found
+  [173/259] L30/N2792: 230 edges found
+  [174/259] L31/N13292: 239 edges found
+  [175/259] L22/N7938: 168 edges found
+  [176/259] L18/N6232: 131 edges found
+  [177/259] L0/N4251: 0 edges found
+  [178/259] L10/N12212: 29 edges found
+  [179/259] L29/N595: 222 edges found
+  [180/259] L0/N3912: 0 edges found
+  [181/259] L2/N6850: 2 edges found
+  [182/259] L17/N7437: 123 edges found
+  [183/259] L14/N11406: 34 edges found
+  [184/259] L19/N10875: 54 edges found
+  [185/259] L15/N11853: 53 edges found
+  [186/259] L14/N10143: 78 edges found
+  [187/259] L15/N10724: 39 edges found
+  [188/259] L14/N10590: 33 edges found
+  [189/259] L10/N12212: 41 edges found
+  [190/259] L23/N13926: 172 edges found
+  [191/259] L15/N7096: 39 edges found
+  [192/259] L31/N14288: 238 edges found
+  [193/259] L15/N14016: 92 edges found
+  [194/259] L22/N9772: 169 edges found
+  [195/259] L14/N837: 76 edges found
+  [196/259] L3/N12922: 16 edges found
+  [197/259] L2/N9600: 13 edges found
+  [198/259] L25/N12633: 192 edges found
+  [199/259] L20/N11542: 153 edges found
+  [200/259] L15/N1329: 38 edges found
+  [201/259] L5/N12173: 21 edges found
+  [202/259] L16/N10829: 110 edges found
+  [203/259] L11/N8229: 52 edges found
+  [204/259] L0/N6337: 0 edges found
+  [205/259] L2/N6850: 18 edges found
+  [206/259] L24/N12083: 62 edges found
+  [207/259] L29/N592: 219 edges found
+  [208/259] L19/N464: 142 edges found
+  [209/259] L22/N10532: 170 edges found
+  [210/259] L17/N2769: 122 edges found
+  [211/259] L0/N11892: 0 edges found
+  [212/259] L21/N12554: 161 edges found
+  [213/259] L0/N110: 0 edges found
+  [214/259] L13/N2439: 46 edges found
+  [215/259] L14/N11406: 52 edges found
+  [216/259] L0/N14005: 0 edges found
+  [217/259] L12/N4936: 64 edges found
+  [218/259] L13/N9455: 44 edges found
+  [219/259] L16/N11508: 106 edges found
+  [220/259] L27/N8648: 209 edges found
+  [221/259] L23/N7055: 175 edges found
+  [222/259] L31/N8809: 238 edges found
+  [223/259] L16/N4610: 111 edges found
+  [224/259] L19/N7387: 52 edges found
+  [225/259] L14/N5879: 34 edges found
+  [226/259] L14/N13490: 76 edges found
+  [227/259] L20/N7658: 155 edges found
+  [228/259] L16/N888: 111 edges found
+  [229/259] L2/N1857: 18 edges found
+  [230/259] L12/N2196: 29 edges found
+  [231/259] L7/N6172: 45 edges found
+  [232/259] L20/N7715: 58 edges found
+  [233/259] L15/N5859: 92 edges found
+  [234/259] L16/N7722: 110 edges found
+  [235/259] L19/N7387: 136 edges found
+  [236/259] L18/N9714: 133 edges found
+  [237/259] L20/N8524: 153 edges found
+  [238/259] L31/N11808: 241 edges found
+  [239/259] L3/N5869: 3 edges found
+  [240/259] L22/N9772: 61 edges found
+  [241/259] L27/N12026: 209 edges found
+  [242/259] L5/N7726: 22 edges found
+  [243/259] L19/N3393: 138 edges found
+  [244/259] L29/N3746: 222 edges found
+  [245/259] L10/N12212: 48 edges found
+  [246/259] L21/N8045: 57 edges found
+  [247/259] L22/N13528: 164 edges found
+  [248/259] L15/N7096: 93 edges found
+  [249/259] L28/N2136: 214 edges found
+  [250/259] L16/N11836: 41 edges found
+  [251/259] L4/N11126: 4 edges found
+  [252/259] L19/N2526: 140 edges found
+  [253/259] L14/N1094: 77 edges found
+  [254/259] L26/N11122: 204 edges found
+  [255/259] L11/N12834: 44 edges found
+  [256/259] L28/N7368: 212 edges found
+  [257/259] L10/N12443: 48 edges found
+  [258/259] L14/N6899: 76 edges found
+  [259/259] L15/N5381: 57 edges found
+
+Total: 27515 edges across 259 target neurons
+    Edge pass 8/10: The cats beside the flower...
+  [1/259] L29/N10537: 225 edges found
+  [2/259] L17/N13649: 125 edges found
+  [3/259] L30/N11158: 233 edges found
+  [4/259] L31/N11075: 243 edges found
+  [5/259] L31/N5861: 242 edges found
+  [6/259] L31/N5187: 243 edges found
+  [7/259] L1/N6746: 11 edges found
+  [8/259] L27/N8540: 206 edges found
+  [9/259] L28/N3849: 219 edges found
+  [10/259] L18/N11717: 135 edges found
+  [11/259] L24/N12083: 189 edges found
+  [12/259] L25/N529: 197 edges found
+  [13/259] L19/N12056: 54 edges found
+  [14/259] L23/N5186: 179 edges found
+  [15/259] L25/N2942: 196 edges found
+  [16/259] L27/N10691: 211 edges found
+  [17/259] L17/N13649: 51 edges found
+  [18/259] L3/N11818: 16 edges found
+  [19/259] L2/N1857: 12 edges found
+  [20/259] L29/N1221: 222 edges found
+  [21/259] L17/N4140: 50 edges found
+  [22/259] L23/N5918: 174 edges found
+  [23/259] L31/N5201: 241 edges found
+  [24/259] L18/N13748: 137 edges found
+  [25/259] L30/N3440: 230 edges found
+  [26/259] L23/N13449: 173 edges found
+  [27/259] L30/N11887: 228 edges found
+  [28/259] L4/N6753: 20 edges found
+  [29/259] L0/N1015: 0 edges found
+  [30/259] L15/N13591: 94 edges found
+  [31/259] L25/N8600: 67 edges found
+  [32/259] L19/N10875: 144 edges found
+  [33/259] L21/N8045: 162 edges found
+  [34/259] L22/N82: 168 edges found
+  [35/259] L30/N11949: 233 edges found
+  [36/259] L5/N7996: 22 edges found
+  [37/259] L0/N6144: 0 edges found
+  [38/259] L19/N725: 54 edges found
+  [39/259] L31/N12358: 243 edges found
+  [40/259] L0/N2578: 0 edges found
+  [41/259] L15/N11853: 38 edges found
+  [42/259] L19/N725: 144 edges found
+  [43/259] L27/N6356: 210 edges found
+  [44/259] L29/N3626: 223 edges found
+  [45/259] L30/N11956: 231 edges found
+  [46/259] L28/N1405: 218 edges found
+  [47/259] L23/N5918: 65 edges found
+  [48/259] L1/N8396: 14 edges found
+  [49/259] L20/N10568: 156 edges found
+  [50/259] L15/N7995: 95 edges found
+  [51/259] L4/N12934: 33 edges found
+  [52/259] L26/N9709: 208 edges found
+  [53/259] L21/N6437: 165 edges found
+  [54/259] L4/N12934: 26 edges found
+  [55/259] L4/N12934: 18 edges found
+  [56/259] L12/N10315: 31 edges found
+  [57/259] L0/N7974: 0 edges found
+  [58/259] L17/N4434: 125 edges found
+  [59/259] L15/N7096: 59 edges found
+  [60/259] L0/N3646: 0 edges found
+  [61/259] L11/N3032: 54 edges found
+  [62/259] L17/N4140: 73 edges found
+  [63/259] L17/N4140: 125 edges found
+  [64/259] L4/N7372: 26 edges found
+  [65/259] L12/N13742: 64 edges found
+  [66/259] L6/N2255: 26 edges found
+  [67/259] L25/N529: 68 edges found
+  [68/259] L25/N8600: 192 edges found
+  [69/259] L14/N3634: 33 edges found
+  [70/259] L23/N5186: 64 edges found
+  [71/259] L20/N8563: 151 edges found
+  [72/259] L3/N10078: 23 edges found
+  [73/259] L15/N13321: 94 edges found
+  [74/259] L28/N4874: 218 edges found
+  [75/259] L11/N3007: 56 edges found
+  [76/259] L31/N6072: 243 edges found
+  [77/259] L24/N7205: 186 edges found
+  [78/259] L16/N8705: 44 edges found
+  [79/259] L20/N12268: 156 edges found
+  [80/259] L25/N12046: 192 edges found
+  [81/259] L31/N5287: 243 edges found
+  [82/259] L16/N7991: 109 edges found
+  [83/259] L23/N3866: 178 edges found
+  [84/259] L31/N3484: 242 edges found
+  [85/259] L18/N11717: 52 edges found
+  [86/259] L20/N3218: 156 edges found
+  [87/259] L15/N14016: 57 edges found
+  [88/259] L16/N7203: 111 edges found
+  [89/259] L16/N3587: 112 edges found
+  [90/259] L11/N7479: 57 edges found
+  [91/259] L11/N3106: 55 edges found
+  [92/259] L14/N26: 76 edges found
+  [93/259] L15/N14016: 39 edges found
+  [94/259] L23/N3321: 176 edges found
+  [95/259] L26/N280: 207 edges found
+  [96/259] L9/N7339: 28 edges found
+  [97/259] L0/N8479: 0 edges found
+  [98/259] L25/N12954: 195 edges found
+  [99/259] L30/N13476: 233 edges found
+  [100/259] L0/N10111: 0 edges found
+  [101/259] L2/N7259: 18 edges found
+  [102/259] L0/N10902: 0 edges found
+  [103/259] L11/N7921: 52 edges found
+  [104/259] L20/N7715: 155 edges found
+  [105/259] L23/N2565: 65 edges found
+  [106/259] L18/N3280: 134 edges found
+  [107/259] L10/N12648: 41 edges found
+  [108/259] L15/N9113: 95 edges found
+  [109/259] L15/N7566: 94 edges found
+  [110/259] L31/N6614: 242 edges found
+  [111/259] L14/N2944: 79 edges found
+  [112/259] L12/N3585: 63 edges found
+  [113/259] L18/N6117: 53 edges found
+  [114/259] L25/N6170: 193 edges found
+  [115/259] L23/N9140: 177 edges found
+  [116/259] L20/N12958: 155 edges found
+  [117/259] L31/N1834: 243 edges found
+  [118/259] L27/N5290: 208 edges found
+  [119/259] L20/N9379: 61 edges found
+  [120/259] L0/N2605: 0 edges found
+  [121/259] L24/N6081: 191 edges found
+  [122/259] L29/N14269: 221 edges found
+  [123/259] L23/N3760: 177 edges found
+  [124/259] L1/N12776: 15 edges found
+  [125/259] L30/N8711: 232 edges found
+  [126/259] L8/N2397: 26 edges found
+  [127/259] L16/N3176: 44 edges found
+  [128/259] L0/N8404: 0 edges found
+  [129/259] L13/N4470: 33 edges found
+  [130/259] L4/N6753: 27 edges found
+  [131/259] L4/N12934: 27 edges found
+  [132/259] L17/N1118: 125 edges found
+  [133/259] L30/N13607: 232 edges found
+  [134/259] L23/N1780: 173 edges found
+  [135/259] L14/N6269: 75 edges found
+  [136/259] L31/N8987: 243 edges found
+  [137/259] L5/N10014: 33 edges found
+  [138/259] L13/N12110: 71 edges found
+  [139/259] L17/N777: 125 edges found
+  [140/259] L11/N6154: 54 edges found
+  [141/259] L16/N10829: 45 edges found
+  [142/259] L19/N9599: 140 edges found
+  [143/259] L26/N3064: 207 edges found
+  [144/259] L10/N11106: 50 edges found
+  [145/259] L22/N4703: 169 edges found
+  [146/259] L16/N3910: 45 edges found
+  [147/259] L13/N7116: 48 edges found
+  [148/259] L19/N13374: 53 edges found
+  [149/259] L2/N4963: 18 edges found
+  [150/259] L31/N13110: 243 edges found
+  [151/259] L30/N13047: 231 edges found
+  [152/259] L27/N5989: 207 edges found
+  [153/259] L19/N6814: 52 edges found
+  [154/259] L0/N12530: 0 edges found
+  [155/259] L29/N2124: 221 edges found
+  [156/259] L15/N9810: 93 edges found
+  [157/259] L13/N13193: 70 edges found
+  [158/259] L16/N2610: 45 edges found
+  [159/259] L13/N1884: 33 edges found
+  [160/259] L9/N6989: 44 edges found
+  [161/259] L0/N7657: 0 edges found
+  [162/259] L12/N329: 64 edges found
+  [163/259] L14/N7197: 79 edges found
+  [164/259] L25/N11584: 68 edges found
+  [165/259] L1/N8443: 11 edges found
+  [166/259] L13/N7116: 70 edges found
+  [167/259] L14/N837: 35 edges found
+  [168/259] L9/N10418: 27 edges found
+  [169/259] L12/N9033: 63 edges found
+  [170/259] L25/N10315: 190 edges found
+  [171/259] L28/N292: 217 edges found
+  [172/259] L18/N12464: 136 edges found
+  [173/259] L30/N2792: 233 edges found
+  [174/259] L31/N13292: 242 edges found
+  [175/259] L22/N7938: 165 edges found
+  [176/259] L18/N6232: 136 edges found
+  [177/259] L0/N4251: 0 edges found
+  [178/259] L10/N12212: 30 edges found
+  [179/259] L29/N595: 220 edges found
+  [180/259] L0/N3912: 0 edges found
+  [181/259] L2/N6850: 2 edges found
+  [182/259] L17/N7437: 125 edges found
+  [183/259] L14/N11406: 34 edges found
+  [184/259] L19/N10875: 53 edges found
+  [185/259] L15/N11853: 58 edges found
+  [186/259] L14/N10143: 79 edges found
+  [187/259] L15/N10724: 40 edges found
+  [188/259] L14/N10590: 35 edges found
+  [189/259] L10/N12212: 41 edges found
+  [190/259] L23/N13926: 172 edges found
+  [191/259] L15/N7096: 40 edges found
+  [192/259] L31/N14288: 243 edges found
+  [193/259] L15/N14016: 93 edges found
+  [194/259] L22/N9772: 168 edges found
+  [195/259] L14/N837: 78 edges found
+  [196/259] L3/N12922: 16 edges found
+  [197/259] L2/N9600: 13 edges found
+  [198/259] L25/N12633: 190 edges found
+  [199/259] L20/N11542: 155 edges found
+  [200/259] L15/N1329: 40 edges found
+  [201/259] L5/N12173: 23 edges found
+  [202/259] L16/N10829: 109 edges found
+  [203/259] L11/N8229: 54 edges found
+  [204/259] L0/N6337: 0 edges found
+  [205/259] L2/N6850: 18 edges found
+  [206/259] L24/N12083: 68 edges found
+  [207/259] L29/N592: 222 edges found
+  [208/259] L19/N464: 142 edges found
+  [209/259] L22/N10532: 170 edges found
+  [210/259] L17/N2769: 124 edges found
+  [211/259] L0/N11892: 0 edges found
+  [212/259] L21/N12554: 165 edges found
+  [213/259] L0/N110: 0 edges found
+  [214/259] L13/N2439: 47 edges found
+  [215/259] L14/N11406: 52 edges found
+  [216/259] L0/N14005: 0 edges found
+  [217/259] L12/N4936: 62 edges found
+  [218/259] L13/N9455: 45 edges found
+  [219/259] L16/N11508: 108 edges found
+  [220/259] L27/N8648: 207 edges found
+  [221/259] L23/N7055: 175 edges found
+  [222/259] L31/N8809: 243 edges found
+  [223/259] L16/N4610: 111 edges found
+  [224/259] L19/N7387: 55 edges found
+  [225/259] L14/N5879: 34 edges found
+  [226/259] L14/N13490: 79 edges found
+  [227/259] L20/N7658: 154 edges found
+  [228/259] L16/N888: 111 edges found
+  [229/259] L2/N1857: 19 edges found
+  [230/259] L12/N2196: 31 edges found
+  [231/259] L7/N6172: 46 edges found
+  [232/259] L20/N7715: 60 edges found
+  [233/259] L15/N5859: 93 edges found
+  [234/259] L16/N7722: 111 edges found
+  [235/259] L19/N7387: 138 edges found
+  [236/259] L18/N9714: 134 edges found
+  [237/259] L20/N8524: 153 edges found
+  [238/259] L31/N11808: 241 edges found
+  [239/259] L3/N5869: 3 edges found
+  [240/259] L22/N9772: 63 edges found
+  [241/259] L27/N12026: 210 edges found
+  [242/259] L5/N7726: 21 edges found
+  [243/259] L19/N3393: 144 edges found
+  [244/259] L29/N3746: 225 edges found
+  [245/259] L10/N12212: 50 edges found
+  [246/259] L21/N8045: 59 edges found
+  [247/259] L22/N13528: 164 edges found
+  [248/259] L15/N7096: 94 edges found
+  [249/259] L28/N2136: 213 edges found
+  [250/259] L16/N11836: 43 edges found
+  [251/259] L4/N11126: 4 edges found
+  [252/259] L19/N2526: 143 edges found
+  [253/259] L14/N1094: 78 edges found
+  [254/259] L26/N11122: 206 edges found
+  [255/259] L11/N12834: 45 edges found
+  [256/259] L28/N7368: 214 edges found
+  [257/259] L10/N12443: 49 edges found
+  [258/259] L14/N6899: 79 edges found
+  [259/259] L15/N5381: 59 edges found
+
+Total: 27819 edges across 259 target neurons
+    Edge pass 9/10: The teacher of the students...
+  [1/259] L29/N10537: 219 edges found
+  [2/259] L17/N13649: 123 edges found
+  [3/259] L30/N11158: 229 edges found
+  [4/259] L31/N11075: 240 edges found
+  [5/259] L31/N5861: 237 edges found
+  [6/259] L31/N5187: 240 edges found
+  [7/259] L1/N6746: 12 edges found
+  [8/259] L27/N8540: 209 edges found
+  [9/259] L28/N3849: 213 edges found
+  [10/259] L18/N11717: 134 edges found
+  [11/259] L24/N12083: 187 edges found
+  [12/259] L25/N529: 192 edges found
+  [13/259] L19/N12056: 51 edges found
+  [14/259] L23/N5186: 175 edges found
+  [15/259] L25/N2942: 192 edges found
+  [16/259] L27/N10691: 205 edges found
+  [17/259] L17/N13649: 49 edges found
+  [18/259] L3/N11818: 16 edges found
+  [19/259] L2/N1857: 12 edges found
+  [20/259] L29/N1221: 222 edges found
+  [21/259] L17/N4140: 50 edges found
+  [22/259] L23/N5918: 174 edges found
+  [23/259] L31/N5201: 239 edges found
+  [24/259] L18/N13748: 134 edges found
+  [25/259] L30/N3440: 223 edges found
+  [26/259] L23/N13449: 167 edges found
+  [27/259] L30/N11887: 228 edges found
+  [28/259] L4/N6753: 19 edges found
+  [29/259] L0/N1015: 0 edges found
+  [30/259] L15/N13591: 86 edges found
+  [31/259] L25/N8600: 66 edges found
+  [32/259] L19/N10875: 138 edges found
+  [33/259] L21/N8045: 163 edges found
+  [34/259] L22/N82: 168 edges found
+  [35/259] L30/N11949: 229 edges found
+  [36/259] L5/N7996: 21 edges found
+  [37/259] L0/N6144: 0 edges found
+  [38/259] L19/N725: 54 edges found
+  [39/259] L31/N12358: 241 edges found
+  [40/259] L0/N2578: 0 edges found
+  [41/259] L15/N11853: 37 edges found
+  [42/259] L19/N725: 137 edges found
+  [43/259] L27/N6356: 205 edges found
+  [44/259] L29/N3626: 205 edges found
+  [45/259] L30/N11956: 230 edges found
+  [46/259] L28/N1405: 215 edges found
+  [47/259] L23/N5918: 62 edges found
+  [48/259] L1/N8396: 14 edges found
+  [49/259] L20/N10568: 154 edges found
+  [50/259] L15/N7995: 93 edges found
+  [51/259] L4/N12934: 30 edges found
+  [52/259] L26/N9709: 193 edges found
+  [53/259] L21/N6437: 165 edges found
+  [54/259] L4/N12934: 25 edges found
+  [55/259] L4/N12934: 19 edges found
+  [56/259] L12/N10315: 30 edges found
+  [57/259] L0/N7974: 0 edges found
+  [58/259] L17/N4434: 119 edges found
+  [59/259] L15/N7096: 57 edges found
+  [60/259] L0/N3646: 0 edges found
+  [61/259] L11/N3032: 51 edges found
+  [62/259] L17/N4140: 70 edges found
+  [63/259] L17/N4140: 120 edges found
+  [64/259] L4/N7372: 25 edges found
+  [65/259] L12/N13742: 62 edges found
+  [66/259] L6/N2255: 26 edges found
+  [67/259] L25/N529: 67 edges found
+  [68/259] L25/N8600: 190 edges found
+  [69/259] L14/N3634: 34 edges found
+  [70/259] L23/N5186: 55 edges found
+  [71/259] L20/N8563: 153 edges found
+  [72/259] L3/N10078: 21 edges found
+  [73/259] L15/N13321: 89 edges found
+  [74/259] L28/N4874: 213 edges found
+  [75/259] L11/N3007: 55 edges found
+  [76/259] L31/N6072: 239 edges found
+  [77/259] L24/N7205: 188 edges found
+  [78/259] L16/N8705: 43 edges found
+  [79/259] L20/N12268: 154 edges found
+  [80/259] L25/N12046: 186 edges found
+  [81/259] L31/N5287: 241 edges found
+  [82/259] L16/N7991: 108 edges found
+  [83/259] L23/N3866: 175 edges found
+  [84/259] L31/N3484: 237 edges found
+  [85/259] L18/N11717: 51 edges found
+  [86/259] L20/N3218: 150 edges found
+  [87/259] L15/N14016: 57 edges found
+  [88/259] L16/N7203: 107 edges found
+  [89/259] L16/N3587: 109 edges found
+  [90/259] L11/N7479: 54 edges found
+  [91/259] L11/N3106: 53 edges found
+  [92/259] L14/N26: 75 edges found
+  [93/259] L15/N14016: 39 edges found
+  [94/259] L23/N3321: 171 edges found
+  [95/259] L26/N280: 204 edges found
+  [96/259] L9/N7339: 23 edges found
+  [97/259] L0/N8479: 0 edges found
+  [98/259] L25/N12954: 185 edges found
+  [99/259] L30/N13476: 230 edges found
+  [100/259] L0/N10111: 0 edges found
+  [101/259] L2/N7259: 17 edges found
+  [102/259] L0/N10902: 0 edges found
+  [103/259] L11/N7921: 53 edges found
+  [104/259] L20/N7715: 150 edges found
+  [105/259] L23/N2565: 63 edges found
+  [106/259] L18/N3280: 119 edges found
+  [107/259] L10/N12648: 38 edges found
+  [108/259] L15/N9113: 91 edges found
+  [109/259] L15/N7566: 85 edges found
+  [110/259] L31/N6614: 240 edges found
+  [111/259] L14/N2944: 76 edges found
+  [112/259] L12/N3585: 62 edges found
+  [113/259] L18/N6117: 52 edges found
+  [114/259] L25/N6170: 188 edges found
+  [115/259] L23/N9140: 173 edges found
+  [116/259] L20/N12958: 147 edges found
+  [117/259] L31/N1834: 240 edges found
+  [118/259] L27/N5290: 204 edges found
+  [119/259] L20/N9379: 58 edges found
+  [120/259] L0/N2605: 0 edges found
+  [121/259] L24/N6081: 186 edges found
+  [122/259] L29/N14269: 221 edges found
+  [123/259] L23/N3760: 172 edges found
+  [124/259] L1/N12776: 7 edges found
+  [125/259] L30/N8711: 230 edges found
+  [126/259] L8/N2397: 26 edges found
+  [127/259] L16/N3176: 43 edges found
+  [128/259] L0/N8404: 0 edges found
+  [129/259] L13/N4470: 33 edges found
+  [130/259] L4/N6753: 26 edges found
+  [131/259] L4/N12934: 26 edges found
+  [132/259] L17/N1118: 115 edges found
+  [133/259] L30/N13607: 228 edges found
+  [134/259] L23/N1780: 164 edges found
+  [135/259] L14/N6269: 76 edges found
+  [136/259] L31/N8987: 240 edges found
+  [137/259] L5/N10014: 32 edges found
+  [138/259] L13/N12110: 66 edges found
+  [139/259] L17/N777: 122 edges found
+  [140/259] L11/N6154: 53 edges found
+  [141/259] L16/N10829: 42 edges found
+  [142/259] L19/N9599: 143 edges found
+  [143/259] L26/N3064: 205 edges found
+  [144/259] L10/N11106: 48 edges found
+  [145/259] L22/N4703: 166 edges found
+  [146/259] L16/N3910: 40 edges found
+  [147/259] L13/N7116: 44 edges found
+  [148/259] L19/N13374: 52 edges found
+  [149/259] L2/N4963: 14 edges found
+  [150/259] L31/N13110: 239 edges found
+  [151/259] L30/N13047: 229 edges found
+  [152/259] L27/N5989: 203 edges found
+  [153/259] L19/N6814: 38 edges found
+  [154/259] L0/N12530: 0 edges found
+  [155/259] L29/N2124: 220 edges found
+  [156/259] L15/N9810: 91 edges found
+  [157/259] L13/N13193: 69 edges found
+  [158/259] L16/N2610: 44 edges found
+  [159/259] L13/N1884: 32 edges found
+  [160/259] L9/N6989: 44 edges found
+  [161/259] L0/N7657: 0 edges found
+  [162/259] L12/N329: 55 edges found
+  [163/259] L14/N7197: 73 edges found
+  [164/259] L25/N11584: 65 edges found
+  [165/259] L1/N8443: 11 edges found
+  [166/259] L13/N7116: 64 edges found
+  [167/259] L14/N837: 32 edges found
+  [168/259] L9/N10418: 27 edges found
+  [169/259] L12/N9033: 61 edges found
+  [170/259] L25/N10315: 192 edges found
+  [171/259] L28/N292: 214 edges found
+  [172/259] L18/N12464: 134 edges found
+  [173/259] L30/N2792: 229 edges found
+  [174/259] L31/N13292: 239 edges found
+  [175/259] L22/N7938: 167 edges found
+  [176/259] L18/N6232: 130 edges found
+  [177/259] L0/N4251: 0 edges found
+  [178/259] L10/N12212: 29 edges found
+  [179/259] L29/N595: 220 edges found
+  [180/259] L0/N3912: 0 edges found
+  [181/259] L2/N6850: 2 edges found
+  [182/259] L17/N7437: 123 edges found
+  [183/259] L14/N11406: 32 edges found
+  [184/259] L19/N10875: 54 edges found
+  [185/259] L15/N11853: 54 edges found
+  [186/259] L14/N10143: 78 edges found
+  [187/259] L15/N10724: 39 edges found
+  [188/259] L14/N10590: 31 edges found
+  [189/259] L10/N12212: 39 edges found
+  [190/259] L23/N13926: 176 edges found
+  [191/259] L15/N7096: 39 edges found
+  [192/259] L31/N14288: 234 edges found
+  [193/259] L15/N14016: 91 edges found
+  [194/259] L22/N9772: 167 edges found
+  [195/259] L14/N837: 74 edges found
+  [196/259] L3/N12922: 15 edges found
+  [197/259] L2/N9600: 12 edges found
+  [198/259] L25/N12633: 191 edges found
+  [199/259] L20/N11542: 147 edges found
+  [200/259] L15/N1329: 37 edges found
+  [201/259] L5/N12173: 21 edges found
+  [202/259] L16/N10829: 109 edges found
+  [203/259] L11/N8229: 52 edges found
+  [204/259] L0/N6337: 0 edges found
+  [205/259] L2/N6850: 17 edges found
+  [206/259] L24/N12083: 62 edges found
+  [207/259] L29/N592: 208 edges found
+  [208/259] L19/N464: 139 edges found
+  [209/259] L22/N10532: 169 edges found
+  [210/259] L17/N2769: 114 edges found
+  [211/259] L0/N11892: 0 edges found
+  [212/259] L21/N12554: 161 edges found
+  [213/259] L0/N110: 0 edges found
+  [214/259] L13/N2439: 45 edges found
+  [215/259] L14/N11406: 46 edges found
+  [216/259] L0/N14005: 0 edges found
+  [217/259] L12/N4936: 61 edges found
+  [218/259] L13/N9455: 45 edges found
+  [219/259] L16/N11508: 98 edges found
+  [220/259] L27/N8648: 205 edges found
+  [221/259] L23/N7055: 176 edges found
+  [222/259] L31/N8809: 240 edges found
+  [223/259] L16/N4610: 101 edges found
+  [224/259] L19/N7387: 54 edges found
+  [225/259] L14/N5879: 33 edges found
+  [226/259] L14/N13490: 75 edges found
+  [227/259] L20/N7658: 154 edges found
+  [228/259] L16/N888: 108 edges found
+  [229/259] L2/N1857: 17 edges found
+  [230/259] L12/N2196: 30 edges found
+  [231/259] L7/N6172: 39 edges found
+  [232/259] L20/N7715: 54 edges found
+  [233/259] L15/N5859: 90 edges found
+  [234/259] L16/N7722: 101 edges found
+  [235/259] L19/N7387: 142 edges found
+  [236/259] L18/N9714: 134 edges found
+  [237/259] L20/N8524: 150 edges found
+  [238/259] L31/N11808: 240 edges found
+  [239/259] L3/N5869: 3 edges found
+  [240/259] L22/N9772: 61 edges found
+  [241/259] L27/N12026: 203 edges found
+  [242/259] L5/N7726: 22 edges found
+  [243/259] L19/N3393: 137 edges found
+  [244/259] L29/N3746: 222 edges found
+  [245/259] L10/N12212: 47 edges found
+  [246/259] L21/N8045: 59 edges found
+  [247/259] L22/N13528: 157 edges found
+  [248/259] L15/N7096: 92 edges found
+  [249/259] L28/N2136: 214 edges found
+  [250/259] L16/N11836: 41 edges found
+  [251/259] L4/N11126: 4 edges found
+  [252/259] L19/N2526: 138 edges found
+  [253/259] L14/N1094: 77 edges found
+  [254/259] L26/N11122: 204 edges found
+  [255/259] L11/N12834: 41 edges found
+  [256/259] L28/N7368: 215 edges found
+  [257/259] L10/N12443: 47 edges found
+  [258/259] L14/N6899: 72 edges found
+  [259/259] L15/N5381: 54 edges found
+
+Total: 27119 edges across 259 target neurons
+    Edge pass 10/10: The teachers of the student...
+  [1/259] L29/N10537: 223 edges found
+  [2/259] L17/N13649: 125 edges found
+  [3/259] L30/N11158: 231 edges found
+  [4/259] L31/N11075: 241 edges found
+  [5/259] L31/N5861: 238 edges found
+  [6/259] L31/N5187: 240 edges found
+  [7/259] L1/N6746: 12 edges found
+  [8/259] L27/N8540: 207 edges found
+  [9/259] L28/N3849: 217 edges found
+  [10/259] L18/N11717: 133 edges found
+  [11/259] L24/N12083: 185 edges found
+  [12/259] L25/N529: 195 edges found
+  [13/259] L19/N12056: 55 edges found
+  [14/259] L23/N5186: 178 edges found
+  [15/259] L25/N2942: 196 edges found
+  [16/259] L27/N10691: 211 edges found
+  [17/259] L17/N13649: 51 edges found
+  [18/259] L3/N11818: 16 edges found
+  [19/259] L2/N1857: 14 edges found
+  [20/259] L29/N1221: 222 edges found
+  [21/259] L17/N4140: 51 edges found
+  [22/259] L23/N5918: 173 edges found
+  [23/259] L31/N5201: 241 edges found
+  [24/259] L18/N13748: 133 edges found
+  [25/259] L30/N3440: 232 edges found
+  [26/259] L23/N13449: 175 edges found
+  [27/259] L30/N11887: 231 edges found
+  [28/259] L4/N6753: 20 edges found
+  [29/259] L0/N1015: 0 edges found
+  [30/259] L15/N13591: 93 edges found
+  [31/259] L25/N8600: 69 edges found
+  [32/259] L19/N10875: 141 edges found
+  [33/259] L21/N8045: 166 edges found
+  [34/259] L22/N82: 168 edges found
+  [35/259] L30/N11949: 229 edges found
+  [36/259] L5/N7996: 23 edges found
+  [37/259] L0/N6144: 0 edges found
+  [38/259] L19/N725: 55 edges found
+  [39/259] L31/N12358: 239 edges found
+  [40/259] L0/N2578: 0 edges found
+  [41/259] L15/N11853: 39 edges found
+  [42/259] L19/N725: 144 edges found
+  [43/259] L27/N6356: 210 edges found
+  [44/259] L29/N3626: 221 edges found
+  [45/259] L30/N11956: 228 edges found
+  [46/259] L28/N1405: 217 edges found
+  [47/259] L23/N5918: 65 edges found
+  [48/259] L1/N8396: 15 edges found
+  [49/259] L20/N10568: 153 edges found
+  [50/259] L15/N7995: 94 edges found
+  [51/259] L4/N12934: 29 edges found
+  [52/259] L26/N9709: 206 edges found
+  [53/259] L21/N6437: 167 edges found
+  [54/259] L4/N12934: 27 edges found
+  [55/259] L4/N12934: 20 edges found
+  [56/259] L12/N10315: 31 edges found
+  [57/259] L0/N7974: 0 edges found
+  [58/259] L17/N4434: 124 edges found
+  [59/259] L15/N7096: 59 edges found
+  [60/259] L0/N3646: 0 edges found
+  [61/259] L11/N3032: 54 edges found
+  [62/259] L17/N4140: 74 edges found
+  [63/259] L17/N4140: 125 edges found
+  [64/259] L4/N7372: 28 edges found
+  [65/259] L12/N13742: 61 edges found
+  [66/259] L6/N2255: 25 edges found
+  [67/259] L25/N529: 69 edges found
+  [68/259] L25/N8600: 193 edges found
+  [69/259] L14/N3634: 35 edges found
+  [70/259] L23/N5186: 64 edges found
+  [71/259] L20/N8563: 148 edges found
+  [72/259] L3/N10078: 24 edges found
+  [73/259] L15/N13321: 93 edges found
+  [74/259] L28/N4874: 218 edges found
+  [75/259] L11/N3007: 56 edges found
+  [76/259] L31/N6072: 243 edges found
+  [77/259] L24/N7205: 188 edges found
+  [78/259] L16/N8705: 45 edges found
+  [79/259] L20/N12268: 155 edges found
+  [80/259] L25/N12046: 194 edges found
+  [81/259] L31/N5287: 241 edges found
+  [82/259] L16/N7991: 110 edges found
+  [83/259] L23/N3866: 179 edges found
+  [84/259] L31/N3484: 242 edges found
+  [85/259] L18/N11717: 52 edges found
+  [86/259] L20/N3218: 156 edges found
+  [87/259] L15/N14016: 57 edges found
+  [88/259] L16/N7203: 111 edges found
+  [89/259] L16/N3587: 110 edges found
+  [90/259] L11/N7479: 53 edges found
+  [91/259] L11/N3106: 53 edges found
+  [92/259] L14/N26: 79 edges found
+  [93/259] L15/N14016: 40 edges found
+  [94/259] L23/N3321: 175 edges found
+  [95/259] L26/N280: 207 edges found
+  [96/259] L9/N7339: 28 edges found
+  [97/259] L0/N8479: 0 edges found
+  [98/259] L25/N12954: 194 edges found
+  [99/259] L30/N13476: 232 edges found
+  [100/259] L0/N10111: 0 edges found
+  [101/259] L2/N7259: 19 edges found
+  [102/259] L0/N10902: 0 edges found
+  [103/259] L11/N7921: 54 edges found
+  [104/259] L20/N7715: 153 edges found
+  [105/259] L23/N2565: 65 edges found
+  [106/259] L18/N3280: 131 edges found
+  [107/259] L10/N12648: 42 edges found
+  [108/259] L15/N9113: 92 edges found
+  [109/259] L15/N7566: 91 edges found
+  [110/259] L31/N6614: 242 edges found
+  [111/259] L14/N2944: 79 edges found
+  [112/259] L12/N3585: 64 edges found
+  [113/259] L18/N6117: 53 edges found
+  [114/259] L25/N6170: 195 edges found
+  [115/259] L23/N9140: 175 edges found
+  [116/259] L20/N12958: 155 edges found
+  [117/259] L31/N1834: 241 edges found
+  [118/259] L27/N5290: 210 edges found
+  [119/259] L20/N9379: 61 edges found
+  [120/259] L0/N2605: 0 edges found
+  [121/259] L24/N6081: 192 edges found
+  [122/259] L29/N14269: 220 edges found
+  [123/259] L23/N3760: 173 edges found
+  [124/259] L1/N12776: 13 edges found
+  [125/259] L30/N8711: 232 edges found
+  [126/259] L8/N2397: 26 edges found
+  [127/259] L16/N3176: 44 edges found
+  [128/259] L0/N8404: 0 edges found
+  [129/259] L13/N4470: 33 edges found
+  [130/259] L4/N6753: 28 edges found
+  [131/259] L4/N12934: 28 edges found
+  [132/259] L17/N1118: 118 edges found
+  [133/259] L30/N13607: 231 edges found
+  [134/259] L23/N1780: 171 edges found
+  [135/259] L14/N6269: 78 edges found
+  [136/259] L31/N8987: 242 edges found
+  [137/259] L5/N10014: 33 edges found
+  [138/259] L13/N12110: 71 edges found
+  [139/259] L17/N777: 124 edges found
+  [140/259] L11/N6154: 56 edges found
+  [141/259] L16/N10829: 45 edges found
+  [142/259] L19/N9599: 140 edges found
+  [143/259] L26/N3064: 206 edges found
+  [144/259] L10/N11106: 50 edges found
+  [145/259] L22/N4703: 169 edges found
+  [146/259] L16/N3910: 44 edges found
+  [147/259] L13/N7116: 48 edges found
+  [148/259] L19/N13374: 55 edges found
+  [149/259] L2/N4963: 19 edges found
+  [150/259] L31/N13110: 242 edges found
+  [151/259] L30/N13047: 232 edges found
+  [152/259] L27/N5989: 204 edges found
+  [153/259] L19/N6814: 53 edges found
+  [154/259] L0/N12530: 0 edges found
+  [155/259] L29/N2124: 224 edges found
+  [156/259] L15/N9810: 94 edges found
+  [157/259] L13/N13193: 71 edges found
+  [158/259] L16/N2610: 45 edges found
+  [159/259] L13/N1884: 32 edges found
+  [160/259] L9/N6989: 45 edges found
+  [161/259] L0/N7657: 0 edges found
+  [162/259] L12/N329: 63 edges found
+  [163/259] L14/N7197: 78 edges found
+  [164/259] L25/N11584: 67 edges found
+  [165/259] L1/N8443: 12 edges found
+  [166/259] L13/N7116: 68 edges found
+  [167/259] L14/N837: 35 edges found
+  [168/259] L9/N10418: 27 edges found
+  [169/259] L12/N9033: 63 edges found
+  [170/259] L25/N10315: 193 edges found
+  [171/259] L28/N292: 218 edges found
+  [172/259] L18/N12464: 131 edges found
+  [173/259] L30/N2792: 232 edges found
+  [174/259] L31/N13292: 242 edges found
+  [175/259] L22/N7938: 168 edges found
+  [176/259] L18/N6232: 133 edges found
+  [177/259] L0/N4251: 0 edges found
+  [178/259] L10/N12212: 30 edges found
+  [179/259] L29/N595: 221 edges found
+  [180/259] L0/N3912: 0 edges found
+  [181/259] L2/N6850: 2 edges found
+  [182/259] L17/N7437: 122 edges found
+  [183/259] L14/N11406: 35 edges found
+  [184/259] L19/N10875: 55 edges found
+  [185/259] L15/N11853: 58 edges found
+  [186/259] L14/N10143: 78 edges found
+  [187/259] L15/N10724: 39 edges found
+  [188/259] L14/N10590: 35 edges found
+  [189/259] L10/N12212: 42 edges found
+  [190/259] L23/N13926: 175 edges found
+  [191/259] L15/N7096: 40 edges found
+  [192/259] L31/N14288: 240 edges found
+  [193/259] L15/N14016: 92 edges found
+  [194/259] L22/N9772: 166 edges found
+  [195/259] L14/N837: 78 edges found
+  [196/259] L3/N12922: 17 edges found
+  [197/259] L2/N9600: 13 edges found
+  [198/259] L25/N12633: 192 edges found
+  [199/259] L20/N11542: 155 edges found
+  [200/259] L15/N1329: 40 edges found
+  [201/259] L5/N12173: 23 edges found
+  [202/259] L16/N10829: 108 edges found
+  [203/259] L11/N8229: 54 edges found
+  [204/259] L0/N6337: 0 edges found
+  [205/259] L2/N6850: 18 edges found
+  [206/259] L24/N12083: 68 edges found
+  [207/259] L29/N592: 219 edges found
+  [208/259] L19/N464: 141 edges found
+  [209/259] L22/N10532: 171 edges found
+  [210/259] L17/N2769: 121 edges found
+  [211/259] L0/N11892: 0 edges found
+  [212/259] L21/N12554: 165 edges found
+  [213/259] L0/N110: 0 edges found
+  [214/259] L13/N2439: 47 edges found
+  [215/259] L14/N11406: 53 edges found
+  [216/259] L0/N14005: 0 edges found
+  [217/259] L12/N4936: 63 edges found
+  [218/259] L13/N9455: 47 edges found
+  [219/259] L16/N11508: 106 edges found
+  [220/259] L27/N8648: 210 edges found
+  [221/259] L23/N7055: 177 edges found
+  [222/259] L31/N8809: 242 edges found
+  [223/259] L16/N4610: 107 edges found
+  [224/259] L19/N7387: 55 edges found
+  [225/259] L14/N5879: 35 edges found
+  [226/259] L14/N13490: 78 edges found
+  [227/259] L20/N7658: 151 edges found
+  [228/259] L16/N888: 109 edges found
+  [229/259] L2/N1857: 19 edges found
+  [230/259] L12/N2196: 31 edges found
+  [231/259] L7/N6172: 42 edges found
+  [232/259] L20/N7715: 59 edges found
+  [233/259] L15/N5859: 93 edges found
+  [234/259] L16/N7722: 107 edges found
+  [235/259] L19/N7387: 142 edges found
+  [236/259] L18/N9714: 135 edges found
+  [237/259] L20/N8524: 152 edges found
+  [238/259] L31/N11808: 242 edges found
+  [239/259] L3/N5869: 3 edges found
+  [240/259] L22/N9772: 64 edges found
+  [241/259] L27/N12026: 210 edges found
+  [242/259] L5/N7726: 23 edges found
+  [243/259] L19/N3393: 142 edges found
+  [244/259] L29/N3746: 223 edges found
+  [245/259] L10/N12212: 49 edges found
+  [246/259] L21/N8045: 61 edges found
+  [247/259] L22/N13528: 165 edges found
+  [248/259] L15/N7096: 91 edges found
+  [249/259] L28/N2136: 216 edges found
+  [250/259] L16/N11836: 44 edges found
+  [251/259] L4/N11126: 4 edges found
+  [252/259] L19/N2526: 142 edges found
+  [253/259] L14/N1094: 79 edges found
+  [254/259] L26/N11122: 206 edges found
+  [255/259] L11/N12834: 43 edges found
+  [256/259] L28/N7368: 216 edges found
+  [257/259] L10/N12443: 48 edges found
+  [258/259] L14/N6899: 78 edges found
+  [259/259] L15/N5381: 59 edges found
+
+Total: 27753 edges across 259 target neurons
+
+======================================================================
+  TOPOLOGY: RelP-SVA @ k*=259
+  259 neurons, 28284 edges
+======================================================================
+
+  Layer distribution:
+    L00 │██████████████████ 18
+    L01 │████ 4
+    L02 │███████ 7
+    L03 │████ 4
+    L04 │████████ 8
+    L05 │████ 4
+    L06 │█ 1
+    L07 │█ 1
+    L08 │█ 1
+    L09 │███ 3
+    L10 │██████ 6
+    L11 │████████ 8
+    L12 │███████ 7
+    L13 │████████ 8
+    L14 │███████████████ 15
+    L15 │██████████████████ 18
+    L16 │██████████████ 14
+    L17 │██████████ 10
+    L18 │████████ 8
+    L19 │█████████████ 13
+    L20 │███████████ 11
+    L21 │████ 4
+    L22 │███████ 7
+    L23 │█████████████ 13
+    L24 │████ 4
+    L25 │███████████ 11
+    L26 │████ 4
+    L27 │███████ 7
+    L28 │██████ 6
+    L29 │████████ 8
+    L30 │██████████ 10
+    L31 │████████████████ 16
+
+  Top layer-to-layer flows:
+    L30 → L31: 15.9257
+    L00 → L31: 15.4675
+    L00 → L03: 11.6177
+    L29 → L31: 11.1271
+    L25 → L31: 10.6145
+    L15 → L31: 9.2234
+    L19 → L31: 9.0001
+    L04 → L31: 8.3904
+    L23 → L31: 8.3678
+    L17 → L31: 7.6445
+    L20 → L31: 6.9916
+    L00 → L15: 6.0919
+    L02 → L31: 6.0365
+    L14 → L31: 6.0159
+    L00 → L16: 6.0070
+
+  Top source hubs — COLLAPSED (fan-out):
+    L04/N12934: degree=699, total_weight=29.0193
+    L10/N12212: degree=514, total_weight=6.9218
+    L02/N 1857: degree=403, total_weight=11.7799
+    L02/N 6850: degree=388, total_weight=8.4985
+    L04/N 6753: degree=387, total_weight=10.0392
+    L15/N 7096: degree=383, total_weight=5.1619
+    L15/N14016: degree=383, total_weight=5.1950
+    L17/N 4140: degree=328, total_weight=7.4287
+    L14/N11406: degree=296, total_weight=2.2907
+    L14/N  837: degree=291, total_weight=3.5596
+
+  Top source hubs — POSITION-AWARE (fan-out):
+    L00/P001/N10902: degree=241, total_weight=20.4600
+    L00/P001/N 2578: degree=241, total_weight=12.0360
+    L00/P002/N11892: degree=238, total_weight=5.1238
+    L00/P002/N 3912: degree=238, total_weight=3.0900
+    L00/P002/N10111: degree=238, total_weight=4.9780
+    L00/P002/N14005: degree=238, total_weight=2.0515
+    L00/P002/N 3646: degree=238, total_weight=4.2899
+    L00/P002/N  110: degree=238, total_weight=2.4310
+    L00/P002/N 6144: degree=238, total_weight=7.5817
+    L00/P002/N 1015: degree=238, total_weight=9.0611
+
+  Top target hubs — POSITION-AWARE (fan-in):
+    L31/P005/N11075: degree=243, total_weight=20.2314
+    L31/P005/N 5861: degree=243, total_weight=5.6133
+    L31/P005/N 5187: degree=243, total_weight=7.4007
+    L31/P005/N 5201: degree=243, total_weight=8.8518
+    L31/P005/N12358: degree=243, total_weight=16.9763
+    L31/P005/N 6072: degree=243, total_weight=16.6558
+    L31/P005/N 5287: degree=243, total_weight=12.5418
+    L31/P005/N 3484: degree=243, total_weight=4.0554
+    L31/P005/N 6614: degree=243, total_weight=10.9517
+    L31/P005/N 1834: degree=243, total_weight=11.2939
+
+  Bottleneck neurons — POSITION-AWARE:
+    L16/P005/N 3587: in=113, out=110
+    L16/P005/N 7722: in=113, out=110
+    L16/P005/N 7203: in=113, out=110
+    L16/P005/N 7991: in=113, out=110
+    L16/P005/N 4610: in=113, out=110
+    L16/P005/N11508: in=113, out=110
+    L16/P005/N10829: in=113, out=110
+    L16/P005/N  888: in=113, out=110
+    L17/P005/N 2769: in=127, out=103
+    L17/P005/N  777: in=127, out=103
+
+  Position inflation (top source hubs):
+    L04/N12934: collapsed=699, positions=4, max_single=218, inflation=3.2x
+    L10/N12212: collapsed=514, positions=3, max_single=202, inflation=2.5x
+    L02/N1857: collapsed=403, positions=2, max_single=228, inflation=1.8x
+    L02/N6850: collapsed=388, positions=2, max_single=230, inflation=1.7x
+    L04/N6753: collapsed=387, positions=2, max_single=218, inflation=1.8x
+
+  Super-weight neurons:
+    L30/N13607: mean_weight=+0.0569, targets=16, ratio=12.3x
+    L29/N 3746: mean_weight=+0.0473, targets=26, ratio=11.0x
+    L30/N13476: mean_weight=+0.1349, targets=16, ratio=10.7x
+
+
+======================================================================
+  SUMMARY
+======================================================================
+  factual: k* = 114
+  behavioral: k* = 91
+  sva: k* = 259
+
+  All results saved to: /workspace/neural-steering/experiments/topology_llama8b_20260305_163508

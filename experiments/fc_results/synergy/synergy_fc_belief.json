@@ -1,0 +1,4962 @@
+{
+  "task": "fc_belief",
+  "n_bottleneck_neurons": 24,
+  "max_neurons": 24,
+  "baseline": {
+    "prob": 0.9951510310173035,
+    "logit": 29.925,
+    "logit_margin": 6.05
+  },
+  "full_ablated": {
+    "prob": 3.1812874658498914e-05,
+    "logit": 4.35625,
+    "logit_margin": -6.94375
+  },
+  "dMargin_full": 12.993749999999999,
+  "single_neuron_dM": [
+    {
+      "layer": 21,
+      "neuron": 3400,
+      "dMargin": 0.125
+    },
+    {
+      "layer": 21,
+      "neuron": 11206,
+      "dMargin": 0.0
+    },
+    {
+      "layer": 21,
+      "neuron": 2382,
+      "dMargin": 0.7000000000000002
+    },
+    {
+      "layer": 21,
+      "neuron": 13111,
+      "dMargin": 1.0
+    },
+    {
+      "layer": 21,
+      "neuron": 3271,
+      "dMargin": 0.5249999999999995
+    },
+    {
+      "layer": 22,
+      "neuron": 8117,
+      "dMargin": 0.0
+    },
+    {
+      "layer": 22,
+      "neuron": 2094,
+      "dMargin": -0.17499999999999982
+    },
+    {
+      "layer": 22,
+      "neuron": 9287,
+      "dMargin": 0.25
+    },
+    {
+      "layer": 22,
+      "neuron": 12065,
+      "dMargin": 0.2999999999999998
+    },
+    {
+      "layer": 22,
+      "neuron": 5249,
+      "dMargin": -0.15000000000000036
+    },
+    {
+      "layer": 23,
+      "neuron": 11396,
+      "dMargin": 0.22499999999999964
+    },
+    {
+      "layer": 23,
+      "neuron": 2913,
+      "dMargin": -0.125
+    },
+    {
+      "layer": 20,
+      "neuron": 5697,
+      "dMargin": -0.25
+    },
+    {
+      "layer": 20,
+      "neuron": 12753,
+      "dMargin": -0.07500000000000018
+    },
+    {
+      "layer": 23,
+      "neuron": 1955,
+      "dMargin": -0.6749999999999998
+    },
+    {
+      "layer": 23,
+      "neuron": 5765,
+      "dMargin": -0.07500000000000018
+    },
+    {
+      "layer": 20,
+      "neuron": 8266,
+      "dMargin": 0.125
+    },
+    {
+      "layer": 20,
+      "neuron": 8651,
+      "dMargin": 0.024999999999999467
+    },
+    {
+      "layer": 20,
+      "neuron": 8388,
+      "dMargin": 0.024999999999999467
+    },
+    {
+      "layer": 23,
+      "neuron": 4916,
+      "dMargin": 0.20000000000000018
+    },
+    {
+      "layer": 20,
+      "neuron": 4454,
+      "dMargin": 0.07500000000000018
+    },
+    {
+      "layer": 20,
+      "neuron": 776,
+      "dMargin": -0.35000000000000053
+    },
+    {
+      "layer": 23,
+      "neuron": 1653,
+      "dMargin": -0.15000000000000036
+    },
+    {
+      "layer": 20,
+      "neuron": 5237,
+      "dMargin": -0.17499999999999982
+    }
+  ],
+  "pair_search": [
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 21,
+          "neuron": 13111
+        }
+      ],
+      "dMargin": 1.625,
+      "sum_singles": 1.7000000000000002,
+      "synergy_ratio": 0.9558823529411764,
+      "fraction_of_full": 0.12506012506012507
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 21,
+          "neuron": 3271
+        }
+      ],
+      "dMargin": 1.4749999999999996,
+      "sum_singles": 1.5249999999999995,
+      "synergy_ratio": 0.9672131147540984,
+      "fraction_of_full": 0.1135161135161135
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 22,
+          "neuron": 12065
+        }
+      ],
+      "dMargin": 1.2999999999999998,
+      "sum_singles": 1.2999999999999998,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.10004810004810004
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 22,
+          "neuron": 9287
+        }
+      ],
+      "dMargin": 1.1749999999999998,
+      "sum_singles": 1.25,
+      "synergy_ratio": 0.9399999999999998,
+      "fraction_of_full": 0.09042809042809043
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 23,
+          "neuron": 11396
+        }
+      ],
+      "dMargin": 1.1749999999999998,
+      "sum_singles": 1.2249999999999996,
+      "synergy_ratio": 0.9591836734693879,
+      "fraction_of_full": 0.09042809042809043
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": 1.1499999999999995,
+      "sum_singles": 1.2000000000000002,
+      "synergy_ratio": 0.9583333333333327,
+      "fraction_of_full": 0.08850408850408847
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 21,
+          "neuron": 13111
+        }
+      ],
+      "dMargin": 1.125,
+      "sum_singles": 1.125,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.08658008658008659
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 1.125,
+      "sum_singles": 1.0750000000000002,
+      "synergy_ratio": 1.0465116279069766,
+      "fraction_of_full": 0.08658008658008659
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 21,
+          "neuron": 3271
+        }
+      ],
+      "dMargin": 1.0999999999999996,
+      "sum_singles": 1.2249999999999996,
+      "synergy_ratio": 0.8979591836734694,
+      "fraction_of_full": 0.08465608465608464
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": 1.0999999999999996,
+      "sum_singles": 0.9000000000000004,
+      "synergy_ratio": 1.2222222222222214,
+      "fraction_of_full": 0.08465608465608464
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 20,
+          "neuron": 8266
+        }
+      ],
+      "dMargin": 1.0750000000000002,
+      "sum_singles": 1.125,
+      "synergy_ratio": 0.9555555555555557,
+      "fraction_of_full": 0.08273208273208275
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 23,
+          "neuron": 11396
+        }
+      ],
+      "dMargin": 1.0499999999999998,
+      "sum_singles": 0.9249999999999998,
+      "synergy_ratio": 1.135135135135135,
+      "fraction_of_full": 0.0808080808080808
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 1.0499999999999998,
+      "sum_singles": 0.7750000000000004,
+      "synergy_ratio": 1.3548387096774186,
+      "fraction_of_full": 0.0808080808080808
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 22,
+          "neuron": 8117
+        }
+      ],
+      "dMargin": 1.0249999999999995,
+      "sum_singles": 0.7000000000000002,
+      "synergy_ratio": 1.464285714285713,
+      "fraction_of_full": 0.07888407888407885
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": 1.0249999999999995,
+      "sum_singles": 1.0249999999999995,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.07888407888407885
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": 1.0,
+      "sum_singles": 1.0249999999999995,
+      "synergy_ratio": 0.9756097560975615,
+      "fraction_of_full": 0.07696007696007696
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 21,
+          "neuron": 13111
+        }
+      ],
+      "dMargin": 0.9749999999999996,
+      "sum_singles": 1.0,
+      "synergy_ratio": 0.9749999999999996,
+      "fraction_of_full": 0.07503607503607501
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 22,
+          "neuron": 12065
+        }
+      ],
+      "dMargin": 0.9500000000000002,
+      "sum_singles": 1.0,
+      "synergy_ratio": 0.9500000000000002,
+      "fraction_of_full": 0.07311207311207313
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 22,
+          "neuron": 8117
+        }
+      ],
+      "dMargin": 0.9500000000000002,
+      "sum_singles": 1.0,
+      "synergy_ratio": 0.9500000000000002,
+      "fraction_of_full": 0.07311207311207313
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 20,
+          "neuron": 12753
+        }
+      ],
+      "dMargin": 0.8999999999999995,
+      "sum_singles": 0.9249999999999998,
+      "synergy_ratio": 0.9729729729729726,
+      "fraction_of_full": 0.06926406926406924
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 23,
+          "neuron": 5765
+        }
+      ],
+      "dMargin": 0.875,
+      "sum_singles": 0.9249999999999998,
+      "synergy_ratio": 0.9459459459459462,
+      "fraction_of_full": 0.06734006734006735
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": 0.875,
+      "sum_singles": 0.8499999999999996,
+      "synergy_ratio": 1.0294117647058827,
+      "fraction_of_full": 0.06734006734006735
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 21,
+          "neuron": 2382
+        }
+      ],
+      "dMargin": 0.8499999999999996,
+      "sum_singles": 0.8250000000000002,
+      "synergy_ratio": 1.0303030303030296,
+      "fraction_of_full": 0.0654160654160654
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 22,
+          "neuron": 9287
+        }
+      ],
+      "dMargin": 0.8499999999999996,
+      "sum_singles": 0.9500000000000002,
+      "synergy_ratio": 0.8947368421052626,
+      "fraction_of_full": 0.0654160654160654
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 22,
+          "neuron": 2094
+        }
+      ],
+      "dMargin": 0.8499999999999996,
+      "sum_singles": 0.8250000000000002,
+      "synergy_ratio": 1.0303030303030296,
+      "fraction_of_full": 0.0654160654160654
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 23,
+          "neuron": 2913
+        }
+      ],
+      "dMargin": 0.8499999999999996,
+      "sum_singles": 0.875,
+      "synergy_ratio": 0.971428571428571,
+      "fraction_of_full": 0.0654160654160654
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 20,
+          "neuron": 8266
+        }
+      ],
+      "dMargin": 0.8250000000000002,
+      "sum_singles": 0.8250000000000002,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.06349206349206352
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": 0.8250000000000002,
+      "sum_singles": 0.8250000000000002,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.06349206349206352
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 22,
+          "neuron": 12065
+        }
+      ],
+      "dMargin": 0.8250000000000002,
+      "sum_singles": 0.8249999999999993,
+      "synergy_ratio": 1.000000000000001,
+      "fraction_of_full": 0.06349206349206352
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 22,
+          "neuron": 5249
+        }
+      ],
+      "dMargin": 0.7999999999999998,
+      "sum_singles": 0.8499999999999996,
+      "synergy_ratio": 0.9411764705882355,
+      "fraction_of_full": 0.06156806156806156
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 20,
+          "neuron": 5697
+        }
+      ],
+      "dMargin": 0.7999999999999998,
+      "sum_singles": 0.75,
+      "synergy_ratio": 1.0666666666666664,
+      "fraction_of_full": 0.06156806156806156
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": 0.7000000000000002,
+      "sum_singles": 0.7249999999999996,
+      "synergy_ratio": 0.965517241379311,
+      "fraction_of_full": 0.05387205387205389
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": 0.7000000000000002,
+      "sum_singles": 0.6499999999999995,
+      "synergy_ratio": 1.076923076923078,
+      "fraction_of_full": 0.05387205387205389
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 22,
+          "neuron": 9287
+        }
+      ],
+      "dMargin": 0.7000000000000002,
+      "sum_singles": 0.7749999999999995,
+      "synergy_ratio": 0.9032258064516138,
+      "fraction_of_full": 0.05387205387205389
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": 0.7000000000000002,
+      "sum_singles": 0.7249999999999996,
+      "synergy_ratio": 0.965517241379311,
+      "fraction_of_full": 0.05387205387205389
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 20,
+          "neuron": 8266
+        }
+      ],
+      "dMargin": 0.6749999999999998,
+      "sum_singles": 0.6499999999999995,
+      "synergy_ratio": 1.038461538461539,
+      "fraction_of_full": 0.05194805194805194
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 23,
+          "neuron": 11396
+        }
+      ],
+      "dMargin": 0.6499999999999995,
+      "sum_singles": 0.7499999999999991,
+      "synergy_ratio": 0.866666666666667,
+      "fraction_of_full": 0.05002405002404999
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 0.6499999999999995,
+      "sum_singles": 0.5999999999999996,
+      "synergy_ratio": 1.083333333333333,
+      "fraction_of_full": 0.05002405002404999
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 21,
+          "neuron": 3271
+        }
+      ],
+      "dMargin": 0.625,
+      "sum_singles": 0.6499999999999995,
+      "synergy_ratio": 0.9615384615384623,
+      "fraction_of_full": 0.04810004810004811
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 21,
+          "neuron": 2382
+        }
+      ],
+      "dMargin": 0.625,
+      "sum_singles": 0.7000000000000002,
+      "synergy_ratio": 0.8928571428571427,
+      "fraction_of_full": 0.04810004810004811
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": 0.5999999999999996,
+      "sum_singles": 0.7249999999999996,
+      "synergy_ratio": 0.8275862068965516,
+      "fraction_of_full": 0.046176046176046155
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 23,
+          "neuron": 11396
+        }
+      ],
+      "dMargin": 0.5999999999999996,
+      "sum_singles": 0.22499999999999964,
+      "synergy_ratio": 2.666666666666669,
+      "fraction_of_full": 0.046176046176046155
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 23,
+          "neuron": 5765
+        }
+      ],
+      "dMargin": 0.5750000000000002,
+      "sum_singles": 0.625,
+      "synergy_ratio": 0.9200000000000003,
+      "fraction_of_full": 0.04425204425204427
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 9287
+        },
+        {
+          "layer": 22,
+          "neuron": 12065
+        }
+      ],
+      "dMargin": 0.5750000000000002,
+      "sum_singles": 0.5499999999999998,
+      "synergy_ratio": 1.045454545454546,
+      "fraction_of_full": 0.04425204425204427
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 21,
+          "neuron": 3271
+        }
+      ],
+      "dMargin": 0.5499999999999998,
+      "sum_singles": 0.5249999999999995,
+      "synergy_ratio": 1.0476190476190483,
+      "fraction_of_full": 0.04232804232804232
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 11396
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": 0.5499999999999998,
+      "sum_singles": 0.4249999999999998,
+      "synergy_ratio": 1.2941176470588236,
+      "fraction_of_full": 0.04232804232804232
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 20,
+          "neuron": 12753
+        }
+      ],
+      "dMargin": 0.5249999999999995,
+      "sum_singles": 0.625,
+      "synergy_ratio": 0.8399999999999992,
+      "fraction_of_full": 0.040404040404040366
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 22,
+          "neuron": 8117
+        }
+      ],
+      "dMargin": 0.5249999999999995,
+      "sum_singles": 0.5249999999999995,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.040404040404040366
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": 0.5249999999999995,
+      "sum_singles": 0.5499999999999989,
+      "synergy_ratio": 0.9545454545454555,
+      "fraction_of_full": 0.040404040404040366
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 12065
+        },
+        {
+          "layer": 23,
+          "neuron": 11396
+        }
+      ],
+      "dMargin": 0.5249999999999995,
+      "sum_singles": 0.5249999999999995,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.040404040404040366
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": 0.5,
+      "sum_singles": 0.5499999999999998,
+      "synergy_ratio": 0.9090909090909094,
+      "fraction_of_full": 0.03848003848003848
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 12065
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": 0.5,
+      "sum_singles": 0.5,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.03848003848003848
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 11396
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 0.5,
+      "sum_singles": 0.2999999999999998,
+      "synergy_ratio": 1.6666666666666676,
+      "fraction_of_full": 0.03848003848003848
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 4916
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 0.5,
+      "sum_singles": 0.27500000000000036,
+      "synergy_ratio": 1.818181818181816,
+      "fraction_of_full": 0.03848003848003848
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 23,
+          "neuron": 5765
+        }
+      ],
+      "dMargin": 0.47499999999999964,
+      "sum_singles": 0.4499999999999993,
+      "synergy_ratio": 1.0555555555555565,
+      "fraction_of_full": 0.03655603655603653
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": 0.47499999999999964,
+      "sum_singles": 0.5499999999999989,
+      "synergy_ratio": 0.8636363636363646,
+      "fraction_of_full": 0.03655603655603653
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 22,
+          "neuron": 12065
+        }
+      ],
+      "dMargin": 0.4500000000000002,
+      "sum_singles": 0.4249999999999998,
+      "synergy_ratio": 1.0588235294117656,
+      "fraction_of_full": 0.03463203463203465
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 22,
+          "neuron": 2094
+        }
+      ],
+      "dMargin": 0.4500000000000002,
+      "sum_singles": 0.5250000000000004,
+      "synergy_ratio": 0.8571428571428569,
+      "fraction_of_full": 0.03463203463203465
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 22,
+          "neuron": 5249
+        }
+      ],
+      "dMargin": 0.4500000000000002,
+      "sum_singles": 0.5499999999999998,
+      "synergy_ratio": 0.8181818181818188,
+      "fraction_of_full": 0.03463203463203465
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 23,
+          "neuron": 2913
+        }
+      ],
+      "dMargin": 0.4249999999999998,
+      "sum_singles": 0.5750000000000002,
+      "synergy_ratio": 0.7391304347826082,
+      "fraction_of_full": 0.0327080327080327
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": 0.4249999999999998,
+      "sum_singles": 0.5250000000000004,
+      "synergy_ratio": 0.8095238095238086,
+      "fraction_of_full": 0.0327080327080327
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 20,
+          "neuron": 12753
+        }
+      ],
+      "dMargin": 0.4249999999999998,
+      "sum_singles": 0.4499999999999993,
+      "synergy_ratio": 0.9444444444444455,
+      "fraction_of_full": 0.0327080327080327
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 9287
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": 0.4249999999999998,
+      "sum_singles": 0.4500000000000002,
+      "synergy_ratio": 0.9444444444444436,
+      "fraction_of_full": 0.0327080327080327
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 12065
+        },
+        {
+          "layer": 20,
+          "neuron": 8266
+        }
+      ],
+      "dMargin": 0.4249999999999998,
+      "sum_singles": 0.4249999999999998,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.0327080327080327
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 12065
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 0.4249999999999998,
+      "sum_singles": 0.375,
+      "synergy_ratio": 1.1333333333333329,
+      "fraction_of_full": 0.0327080327080327
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 20,
+          "neuron": 5697
+        }
+      ],
+      "dMargin": 0.39999999999999947,
+      "sum_singles": 0.4500000000000002,
+      "synergy_ratio": 0.8888888888888874,
+      "fraction_of_full": 0.030784030784030747
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 23,
+          "neuron": 2913
+        }
+      ],
+      "dMargin": 0.39999999999999947,
+      "sum_singles": 0.39999999999999947,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.030784030784030747
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 22,
+          "neuron": 5249
+        }
+      ],
+      "dMargin": 0.375,
+      "sum_singles": 0.3749999999999991,
+      "synergy_ratio": 1.0000000000000024,
+      "fraction_of_full": 0.028860028860028863
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": 0.375,
+      "sum_singles": 0.3749999999999991,
+      "synergy_ratio": 1.0000000000000024,
+      "fraction_of_full": 0.028860028860028863
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 0.375,
+      "sum_singles": 0.07500000000000018,
+      "synergy_ratio": 4.9999999999999885,
+      "fraction_of_full": 0.028860028860028863
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 9287
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 0.375,
+      "sum_singles": 0.3250000000000002,
+      "synergy_ratio": 1.1538461538461533,
+      "fraction_of_full": 0.028860028860028863
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 22,
+          "neuron": 2094
+        }
+      ],
+      "dMargin": 0.34999999999999964,
+      "sum_singles": 0.34999999999999964,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.02693602693602691
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": 0.34999999999999964,
+      "sum_singles": 0.20000000000000018,
+      "synergy_ratio": 1.7499999999999967,
+      "fraction_of_full": 0.02693602693602691
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 9287
+        },
+        {
+          "layer": 23,
+          "neuron": 11396
+        }
+      ],
+      "dMargin": 0.34999999999999964,
+      "sum_singles": 0.47499999999999964,
+      "synergy_ratio": 0.7368421052631577,
+      "fraction_of_full": 0.02693602693602691
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 23,
+          "neuron": 11396
+        }
+      ],
+      "dMargin": 0.3250000000000002,
+      "sum_singles": 0.34999999999999964,
+      "synergy_ratio": 0.92857142857143,
+      "fraction_of_full": 0.025012025012025027
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": 0.3250000000000002,
+      "sum_singles": 0.34999999999999964,
+      "synergy_ratio": 0.92857142857143,
+      "fraction_of_full": 0.025012025012025027
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 22,
+          "neuron": 12065
+        }
+      ],
+      "dMargin": 0.3250000000000002,
+      "sum_singles": 0.2999999999999998,
+      "synergy_ratio": 1.0833333333333346,
+      "fraction_of_full": 0.025012025012025027
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 12065
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": 0.3250000000000002,
+      "sum_singles": 0.3249999999999993,
+      "synergy_ratio": 1.0000000000000027,
+      "fraction_of_full": 0.025012025012025027
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 22,
+          "neuron": 9287
+        }
+      ],
+      "dMargin": 0.2999999999999998,
+      "sum_singles": 0.375,
+      "synergy_ratio": 0.7999999999999995,
+      "fraction_of_full": 0.023088023088023078
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": 0.2999999999999998,
+      "sum_singles": 0.3250000000000002,
+      "synergy_ratio": 0.923076923076922,
+      "fraction_of_full": 0.023088023088023078
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 22,
+          "neuron": 12065
+        }
+      ],
+      "dMargin": 0.2999999999999998,
+      "sum_singles": 0.2999999999999998,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.023088023088023078
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": 0.2999999999999998,
+      "sum_singles": 0.34999999999999964,
+      "synergy_ratio": 0.8571428571428575,
+      "fraction_of_full": 0.023088023088023078
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 9287
+        },
+        {
+          "layer": 20,
+          "neuron": 8266
+        }
+      ],
+      "dMargin": 0.2999999999999998,
+      "sum_singles": 0.375,
+      "synergy_ratio": 0.7999999999999995,
+      "fraction_of_full": 0.023088023088023078
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 11396
+        },
+        {
+          "layer": 20,
+          "neuron": 8266
+        }
+      ],
+      "dMargin": 0.2999999999999998,
+      "sum_singles": 0.34999999999999964,
+      "synergy_ratio": 0.8571428571428575,
+      "fraction_of_full": 0.023088023088023078
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8266
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": 0.2999999999999998,
+      "sum_singles": 0.3250000000000002,
+      "synergy_ratio": 0.923076923076922,
+      "fraction_of_full": 0.023088023088023078
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 12065
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": 0.27499999999999947,
+      "sum_singles": 0.3249999999999993,
+      "synergy_ratio": 0.8461538461538464,
+      "fraction_of_full": 0.021164021164021125
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 0.25,
+      "sum_singles": 0.20000000000000018,
+      "synergy_ratio": 1.249999999999999,
+      "fraction_of_full": 0.01924001924001924
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 22,
+          "neuron": 9287
+        }
+      ],
+      "dMargin": 0.25,
+      "sum_singles": 0.25,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.01924001924001924
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 12065
+        },
+        {
+          "layer": 20,
+          "neuron": 12753
+        }
+      ],
+      "dMargin": 0.25,
+      "sum_singles": 0.22499999999999964,
+      "synergy_ratio": 1.111111111111113,
+      "fraction_of_full": 0.01924001924001924
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 22,
+          "neuron": 8117
+        }
+      ],
+      "dMargin": 0.22499999999999964,
+      "sum_singles": 0.125,
+      "synergy_ratio": 1.7999999999999972,
+      "fraction_of_full": 0.01731601731601729
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 20,
+          "neuron": 8266
+        }
+      ],
+      "dMargin": 0.22499999999999964,
+      "sum_singles": 0.25,
+      "synergy_ratio": 0.8999999999999986,
+      "fraction_of_full": 0.01731601731601729
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 23,
+          "neuron": 11396
+        }
+      ],
+      "dMargin": 0.22499999999999964,
+      "sum_singles": 0.22499999999999964,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.01731601731601729
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": 0.22499999999999964,
+      "sum_singles": 0.20000000000000018,
+      "synergy_ratio": 1.1249999999999973,
+      "fraction_of_full": 0.01731601731601729
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 20,
+          "neuron": 5697
+        }
+      ],
+      "dMargin": 0.22499999999999964,
+      "sum_singles": 0.27499999999999947,
+      "synergy_ratio": 0.8181818181818185,
+      "fraction_of_full": 0.01731601731601729
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": 0.22499999999999964,
+      "sum_singles": 0.17499999999999893,
+      "synergy_ratio": 1.2857142857142916,
+      "fraction_of_full": 0.01731601731601729
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 9287
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": 0.22499999999999964,
+      "sum_singles": 0.27499999999999947,
+      "synergy_ratio": 0.8181818181818185,
+      "fraction_of_full": 0.01731601731601729
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8266
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 0.22499999999999964,
+      "sum_singles": 0.20000000000000018,
+      "synergy_ratio": 1.1249999999999973,
+      "fraction_of_full": 0.01731601731601729
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 23,
+          "neuron": 1955
+        }
+      ],
+      "dMargin": 0.20000000000000018,
+      "sum_singles": 0.3250000000000002,
+      "synergy_ratio": 0.6153846153846156,
+      "fraction_of_full": 0.015392015392015408
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 22,
+          "neuron": 9287
+        }
+      ],
+      "dMargin": 0.20000000000000018,
+      "sum_singles": 0.25,
+      "synergy_ratio": 0.8000000000000007,
+      "fraction_of_full": 0.015392015392015408
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 12065
+        },
+        {
+          "layer": 23,
+          "neuron": 5765
+        }
+      ],
+      "dMargin": 0.20000000000000018,
+      "sum_singles": 0.22499999999999964,
+      "synergy_ratio": 0.8888888888888911,
+      "fraction_of_full": 0.015392015392015408
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 12065
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": 0.20000000000000018,
+      "sum_singles": 0.14999999999999947,
+      "synergy_ratio": 1.3333333333333393,
+      "fraction_of_full": 0.015392015392015408
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 11396
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": 0.20000000000000018,
+      "sum_singles": 0.2499999999999991,
+      "synergy_ratio": 0.8000000000000036,
+      "fraction_of_full": 0.015392015392015408
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8651
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": 0.20000000000000018,
+      "sum_singles": 0.22499999999999964,
+      "synergy_ratio": 0.8888888888888911,
+      "fraction_of_full": 0.015392015392015408
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8388
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": 0.20000000000000018,
+      "sum_singles": 0.22499999999999964,
+      "synergy_ratio": 0.8888888888888911,
+      "fraction_of_full": 0.015392015392015408
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8388
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 0.20000000000000018,
+      "sum_singles": 0.09999999999999964,
+      "synergy_ratio": 2.000000000000009,
+      "fraction_of_full": 0.015392015392015408
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 12065
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": 0.17499999999999982,
+      "sum_singles": 0.125,
+      "synergy_ratio": 1.3999999999999986,
+      "fraction_of_full": 0.013468013468013455
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 20,
+          "neuron": 8266
+        }
+      ],
+      "dMargin": 0.14999999999999947,
+      "sum_singles": 0.125,
+      "synergy_ratio": 1.1999999999999957,
+      "fraction_of_full": 0.011544011544011504
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 0.14999999999999947,
+      "sum_singles": 0.07500000000000018,
+      "synergy_ratio": 1.9999999999999882,
+      "fraction_of_full": 0.011544011544011504
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 9287
+        },
+        {
+          "layer": 20,
+          "neuron": 12753
+        }
+      ],
+      "dMargin": 0.14999999999999947,
+      "sum_singles": 0.17499999999999982,
+      "synergy_ratio": 0.857142857142855,
+      "fraction_of_full": 0.011544011544011504
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 12065
+        },
+        {
+          "layer": 22,
+          "neuron": 5249
+        }
+      ],
+      "dMargin": 0.14999999999999947,
+      "sum_singles": 0.14999999999999947,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.011544011544011504
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 11396
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": 0.14999999999999947,
+      "sum_singles": 0.2499999999999991,
+      "synergy_ratio": 0.6,
+      "fraction_of_full": 0.011544011544011504
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 12753
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 0.14999999999999947,
+      "sum_singles": 0.0,
+      "synergy_ratio": Infinity,
+      "fraction_of_full": 0.011544011544011504
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 21,
+          "neuron": 11206
+        }
+      ],
+      "dMargin": 0.125,
+      "sum_singles": 0.125,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": 0.125,
+      "sum_singles": 0.14999999999999947,
+      "synergy_ratio": 0.8333333333333363,
+      "fraction_of_full": 0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 9287
+        },
+        {
+          "layer": 23,
+          "neuron": 5765
+        }
+      ],
+      "dMargin": 0.125,
+      "sum_singles": 0.17499999999999982,
+      "synergy_ratio": 0.714285714285715,
+      "fraction_of_full": 0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 9287
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": 0.125,
+      "sum_singles": 0.27499999999999947,
+      "synergy_ratio": 0.4545454545454554,
+      "fraction_of_full": 0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 9287
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": 0.125,
+      "sum_singles": 0.09999999999999964,
+      "synergy_ratio": 1.2500000000000044,
+      "fraction_of_full": 0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 12065
+        },
+        {
+          "layer": 23,
+          "neuron": 2913
+        }
+      ],
+      "dMargin": 0.125,
+      "sum_singles": 0.17499999999999982,
+      "synergy_ratio": 0.714285714285715,
+      "fraction_of_full": 0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 12065
+        },
+        {
+          "layer": 20,
+          "neuron": 5697
+        }
+      ],
+      "dMargin": 0.125,
+      "sum_singles": 0.04999999999999982,
+      "synergy_ratio": 2.500000000000009,
+      "fraction_of_full": 0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 11396
+        },
+        {
+          "layer": 20,
+          "neuron": 12753
+        }
+      ],
+      "dMargin": 0.125,
+      "sum_singles": 0.14999999999999947,
+      "synergy_ratio": 0.8333333333333363,
+      "fraction_of_full": 0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 12753
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": 0.125,
+      "sum_singles": 0.125,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 20,
+          "neuron": 12753
+        }
+      ],
+      "dMargin": 0.09999999999999964,
+      "sum_singles": 0.04999999999999982,
+      "synergy_ratio": 2.0,
+      "fraction_of_full": 0.007696007696007669
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": 0.09999999999999964,
+      "sum_singles": 0.14999999999999947,
+      "synergy_ratio": 0.6666666666666666,
+      "fraction_of_full": 0.007696007696007669
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 20,
+          "neuron": 8266
+        }
+      ],
+      "dMargin": 0.09999999999999964,
+      "sum_singles": 0.125,
+      "synergy_ratio": 0.7999999999999972,
+      "fraction_of_full": 0.007696007696007669
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 22,
+          "neuron": 12065
+        }
+      ],
+      "dMargin": 0.09999999999999964,
+      "sum_singles": 0.125,
+      "synergy_ratio": 0.7999999999999972,
+      "fraction_of_full": 0.007696007696007669
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 11396
+        },
+        {
+          "layer": 23,
+          "neuron": 5765
+        }
+      ],
+      "dMargin": 0.09999999999999964,
+      "sum_singles": 0.14999999999999947,
+      "synergy_ratio": 0.6666666666666666,
+      "fraction_of_full": 0.007696007696007669
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 5765
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": 0.09999999999999964,
+      "sum_singles": 0.125,
+      "synergy_ratio": 0.7999999999999972,
+      "fraction_of_full": 0.007696007696007669
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 5765
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 0.09999999999999964,
+      "sum_singles": 0.0,
+      "synergy_ratio": Infinity,
+      "fraction_of_full": 0.007696007696007669
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8266
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": 0.09999999999999964,
+      "sum_singles": 0.14999999999999947,
+      "synergy_ratio": 0.6666666666666666,
+      "fraction_of_full": 0.007696007696007669
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 23,
+          "neuron": 1955
+        }
+      ],
+      "dMargin": 0.07500000000000018,
+      "sum_singles": 0.025000000000000355,
+      "synergy_ratio": 2.9999999999999645,
+      "fraction_of_full": 0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 9287
+        },
+        {
+          "layer": 23,
+          "neuron": 2913
+        }
+      ],
+      "dMargin": 0.07500000000000018,
+      "sum_singles": 0.125,
+      "synergy_ratio": 0.6000000000000014,
+      "fraction_of_full": 0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 11396
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": 0.07500000000000018,
+      "sum_singles": 0.07499999999999929,
+      "synergy_ratio": 1.0000000000000118,
+      "fraction_of_full": 0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 11396
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": 0.07500000000000018,
+      "sum_singles": 0.04999999999999982,
+      "synergy_ratio": 1.5000000000000089,
+      "fraction_of_full": 0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8266
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": 0.07500000000000018,
+      "sum_singles": 0.14999999999999947,
+      "synergy_ratio": 0.500000000000003,
+      "fraction_of_full": 0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8651
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 0.07500000000000018,
+      "sum_singles": 0.09999999999999964,
+      "synergy_ratio": 0.7500000000000044,
+      "fraction_of_full": 0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 4916
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": 0.07500000000000018,
+      "sum_singles": 0.04999999999999982,
+      "synergy_ratio": 1.5000000000000089,
+      "fraction_of_full": 0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": 0.04999999999999982,
+      "sum_singles": 0.024999999999999467,
+      "synergy_ratio": 2.0000000000000355,
+      "fraction_of_full": 0.0038480038480038347
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 0.04999999999999982,
+      "sum_singles": -0.09999999999999964,
+      "synergy_ratio": -0.5,
+      "fraction_of_full": 0.0038480038480038347
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 9287
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": 0.04999999999999982,
+      "sum_singles": 0.07500000000000018,
+      "synergy_ratio": 0.6666666666666627,
+      "fraction_of_full": 0.0038480038480038347
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 5249
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 0.04999999999999982,
+      "sum_singles": -0.07500000000000018,
+      "synergy_ratio": -0.6666666666666627,
+      "fraction_of_full": 0.0038480038480038347
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 4454
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": 0.04999999999999982,
+      "sum_singles": -0.07500000000000018,
+      "synergy_ratio": -0.6666666666666627,
+      "fraction_of_full": 0.0038480038480038347
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 22,
+          "neuron": 9287
+        }
+      ],
+      "dMargin": 0.024999999999999467,
+      "sum_singles": 0.07500000000000018,
+      "synergy_ratio": 0.33333333333332543,
+      "fraction_of_full": 0.0019240019240018833
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 9287
+        },
+        {
+          "layer": 22,
+          "neuron": 5249
+        }
+      ],
+      "dMargin": 0.024999999999999467,
+      "sum_singles": 0.09999999999999964,
+      "synergy_ratio": 0.24999999999999556,
+      "fraction_of_full": 0.0019240019240018833
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 12065
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": 0.024999999999999467,
+      "sum_singles": -0.05000000000000071,
+      "synergy_ratio": -0.49999999999998224,
+      "fraction_of_full": 0.0019240019240018833
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 5249
+        },
+        {
+          "layer": 23,
+          "neuron": 11396
+        }
+      ],
+      "dMargin": 0.024999999999999467,
+      "sum_singles": 0.07499999999999929,
+      "synergy_ratio": 0.3333333333333294,
+      "fraction_of_full": 0.0019240019240018833
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 2913
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": 0.024999999999999467,
+      "sum_singles": -0.04999999999999982,
+      "synergy_ratio": -0.4999999999999911,
+      "fraction_of_full": 0.0019240019240018833
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 5765
+        },
+        {
+          "layer": 20,
+          "neuron": 8266
+        }
+      ],
+      "dMargin": 0.024999999999999467,
+      "sum_singles": 0.04999999999999982,
+      "synergy_ratio": 0.4999999999999911,
+      "fraction_of_full": 0.0019240019240018833
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 23,
+          "neuron": 5765
+        }
+      ],
+      "dMargin": 0.0,
+      "sum_singles": 0.04999999999999982,
+      "synergy_ratio": 0.0,
+      "fraction_of_full": 0.0
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 22,
+          "neuron": 8117
+        }
+      ],
+      "dMargin": 0.0,
+      "sum_singles": 0.0,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": 0.0
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": 0.0,
+      "sum_singles": 0.024999999999999467,
+      "synergy_ratio": 0.0,
+      "fraction_of_full": 0.0
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": 0.0,
+      "sum_singles": 0.024999999999999467,
+      "synergy_ratio": 0.0,
+      "fraction_of_full": 0.0
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 5249
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": 0.0,
+      "sum_singles": 0.04999999999999982,
+      "synergy_ratio": 0.0,
+      "fraction_of_full": 0.0
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 11396
+        },
+        {
+          "layer": 23,
+          "neuron": 2913
+        }
+      ],
+      "dMargin": 0.0,
+      "sum_singles": 0.09999999999999964,
+      "synergy_ratio": 0.0,
+      "fraction_of_full": 0.0
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 2913
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": 0.0,
+      "sum_singles": 0.07500000000000018,
+      "synergy_ratio": 0.0,
+      "fraction_of_full": 0.0
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8651
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": 0.0,
+      "sum_singles": 0.049999999999998934,
+      "synergy_ratio": 0.0,
+      "fraction_of_full": 0.0
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 4916
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": 0.0,
+      "sum_singles": 0.025000000000000355,
+      "synergy_ratio": 0.0,
+      "fraction_of_full": 0.0
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": -0.025000000000000355,
+      "sum_singles": -0.025000000000000355,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.0019240019240019516
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": -0.025000000000000355,
+      "sum_singles": -0.04999999999999982,
+      "synergy_ratio": 0.5000000000000089,
+      "fraction_of_full": -0.0019240019240019516
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": -0.025000000000000355,
+      "sum_singles": 0.024999999999999467,
+      "synergy_ratio": -1.0000000000000355,
+      "fraction_of_full": -0.0019240019240019516
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 23,
+          "neuron": 11396
+        }
+      ],
+      "dMargin": -0.025000000000000355,
+      "sum_singles": 0.04999999999999982,
+      "synergy_ratio": -0.5000000000000089,
+      "fraction_of_full": -0.0019240019240019516
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": -0.025000000000000355,
+      "sum_singles": 0.025000000000000355,
+      "synergy_ratio": -1.0,
+      "fraction_of_full": -0.0019240019240019516
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 12753
+        },
+        {
+          "layer": 20,
+          "neuron": 8266
+        }
+      ],
+      "dMargin": -0.025000000000000355,
+      "sum_singles": 0.04999999999999982,
+      "synergy_ratio": -0.5000000000000089,
+      "fraction_of_full": -0.0019240019240019516
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 12753
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": -0.025000000000000355,
+      "sum_singles": -0.05000000000000071,
+      "synergy_ratio": 0.5,
+      "fraction_of_full": -0.0019240019240019516
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8266
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": -0.025000000000000355,
+      "sum_singles": -0.025000000000000355,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.0019240019240019516
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 4454
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": -0.025000000000000355,
+      "sum_singles": -0.09999999999999964,
+      "synergy_ratio": 0.25000000000000444,
+      "fraction_of_full": -0.0019240019240019516
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 5249
+        },
+        {
+          "layer": 20,
+          "neuron": 8266
+        }
+      ],
+      "dMargin": -0.04999999999999982,
+      "sum_singles": -0.025000000000000355,
+      "synergy_ratio": 1.9999999999999645,
+      "fraction_of_full": -0.0038480038480038347
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 2913
+        },
+        {
+          "layer": 20,
+          "neuron": 8266
+        }
+      ],
+      "dMargin": -0.04999999999999982,
+      "sum_singles": 0.0,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.0038480038480038347
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8266
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": -0.04999999999999982,
+      "sum_singles": -0.04999999999999982,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.0038480038480038347
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 22,
+          "neuron": 2094
+        }
+      ],
+      "dMargin": -0.07500000000000018,
+      "sum_singles": -0.04999999999999982,
+      "synergy_ratio": 1.5000000000000089,
+      "fraction_of_full": -0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 22,
+          "neuron": 5249
+        }
+      ],
+      "dMargin": -0.07500000000000018,
+      "sum_singles": -0.025000000000000355,
+      "synergy_ratio": 2.9999999999999645,
+      "fraction_of_full": -0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 20,
+          "neuron": 12753
+        }
+      ],
+      "dMargin": -0.07500000000000018,
+      "sum_singles": -0.07500000000000018,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 23,
+          "neuron": 5765
+        }
+      ],
+      "dMargin": -0.07500000000000018,
+      "sum_singles": -0.07500000000000018,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": -0.07500000000000018,
+      "sum_singles": -0.15000000000000036,
+      "synergy_ratio": 0.5,
+      "fraction_of_full": -0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 9287
+        },
+        {
+          "layer": 20,
+          "neuron": 5697
+        }
+      ],
+      "dMargin": -0.07500000000000018,
+      "sum_singles": 0.0,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 9287
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.07500000000000018,
+      "sum_singles": -0.10000000000000053,
+      "synergy_ratio": 0.7499999999999978,
+      "fraction_of_full": -0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 5697
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": -0.07500000000000018,
+      "sum_singles": -0.04999999999999982,
+      "synergy_ratio": 1.5000000000000089,
+      "fraction_of_full": -0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 12753
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": -0.07500000000000018,
+      "sum_singles": -0.05000000000000071,
+      "synergy_ratio": 1.4999999999999822,
+      "fraction_of_full": -0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 5765
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": -0.07500000000000018,
+      "sum_singles": -0.05000000000000071,
+      "synergy_ratio": 1.4999999999999822,
+      "fraction_of_full": -0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 4454
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.07500000000000018,
+      "sum_singles": -0.27500000000000036,
+      "synergy_ratio": 0.27272727272727304,
+      "fraction_of_full": -0.005772005772005786
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 23,
+          "neuron": 5765
+        }
+      ],
+      "dMargin": -0.10000000000000053,
+      "sum_singles": -0.07500000000000018,
+      "synergy_ratio": 1.3333333333333373,
+      "fraction_of_full": -0.007696007696007738
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 11396
+        },
+        {
+          "layer": 20,
+          "neuron": 5697
+        }
+      ],
+      "dMargin": -0.10000000000000053,
+      "sum_singles": -0.025000000000000355,
+      "synergy_ratio": 3.9999999999999645,
+      "fraction_of_full": -0.007696007696007738
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8388
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": -0.10000000000000053,
+      "sum_singles": -0.1250000000000009,
+      "synergy_ratio": 0.7999999999999986,
+      "fraction_of_full": -0.007696007696007738
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8388
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": -0.10000000000000053,
+      "sum_singles": -0.15000000000000036,
+      "synergy_ratio": 0.6666666666666686,
+      "fraction_of_full": -0.007696007696007738
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 23,
+          "neuron": 2913
+        }
+      ],
+      "dMargin": -0.125,
+      "sum_singles": 0.0,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 20,
+          "neuron": 8266
+        }
+      ],
+      "dMargin": -0.125,
+      "sum_singles": -0.04999999999999982,
+      "synergy_ratio": 2.500000000000009,
+      "fraction_of_full": -0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 11396
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.125,
+      "sum_singles": -0.1250000000000009,
+      "synergy_ratio": 0.9999999999999929,
+      "fraction_of_full": -0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 2913
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": -0.125,
+      "sum_singles": -0.10000000000000053,
+      "synergy_ratio": 1.2499999999999933,
+      "fraction_of_full": -0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 5697
+        },
+        {
+          "layer": 20,
+          "neuron": 8266
+        }
+      ],
+      "dMargin": -0.125,
+      "sum_singles": -0.125,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 5697
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": -0.125,
+      "sum_singles": -0.17499999999999982,
+      "synergy_ratio": 0.714285714285715,
+      "fraction_of_full": -0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 5765
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": -0.125,
+      "sum_singles": -0.05000000000000071,
+      "synergy_ratio": 2.4999999999999645,
+      "fraction_of_full": -0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 4916
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.125,
+      "sum_singles": -0.15000000000000036,
+      "synergy_ratio": 0.8333333333333314,
+      "fraction_of_full": -0.00962000962000962
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 22,
+          "neuron": 5249
+        }
+      ],
+      "dMargin": -0.15000000000000036,
+      "sum_singles": -0.15000000000000036,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.011544011544011572
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": -0.15000000000000036,
+      "sum_singles": -0.17499999999999982,
+      "synergy_ratio": 0.8571428571428601,
+      "fraction_of_full": -0.011544011544011572
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 12753
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": -0.15000000000000036,
+      "sum_singles": -0.22500000000000053,
+      "synergy_ratio": 0.6666666666666666,
+      "fraction_of_full": -0.011544011544011572
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8651
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": -0.15000000000000036,
+      "sum_singles": -0.1250000000000009,
+      "synergy_ratio": 1.1999999999999944,
+      "fraction_of_full": -0.011544011544011572
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 22,
+          "neuron": 2094
+        }
+      ],
+      "dMargin": -0.17499999999999982,
+      "sum_singles": -0.17499999999999982,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.013468013468013455
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 23,
+          "neuron": 2913
+        }
+      ],
+      "dMargin": -0.17499999999999982,
+      "sum_singles": -0.125,
+      "synergy_ratio": 1.3999999999999986,
+      "fraction_of_full": -0.013468013468013455
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": -0.17499999999999982,
+      "sum_singles": -0.17499999999999982,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.013468013468013455
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 20,
+          "neuron": 12753
+        }
+      ],
+      "dMargin": -0.17499999999999982,
+      "sum_singles": -0.07500000000000018,
+      "synergy_ratio": 2.3333333333333255,
+      "fraction_of_full": -0.013468013468013455
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": -0.17499999999999982,
+      "sum_singles": -0.15000000000000036,
+      "synergy_ratio": 1.1666666666666627,
+      "fraction_of_full": -0.013468013468013455
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 5249
+        },
+        {
+          "layer": 20,
+          "neuron": 12753
+        }
+      ],
+      "dMargin": -0.17499999999999982,
+      "sum_singles": -0.22500000000000053,
+      "synergy_ratio": 0.7777777777777751,
+      "fraction_of_full": -0.013468013468013455
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 5249
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": -0.17499999999999982,
+      "sum_singles": -0.1250000000000009,
+      "synergy_ratio": 1.3999999999999886,
+      "fraction_of_full": -0.013468013468013455
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 12753
+        },
+        {
+          "layer": 23,
+          "neuron": 5765
+        }
+      ],
+      "dMargin": -0.17499999999999982,
+      "sum_singles": -0.15000000000000036,
+      "synergy_ratio": 1.1666666666666627,
+      "fraction_of_full": -0.013468013468013455
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 5765
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": -0.17499999999999982,
+      "sum_singles": -0.22500000000000053,
+      "synergy_ratio": 0.7777777777777751,
+      "fraction_of_full": -0.013468013468013455
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8266
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.17499999999999982,
+      "sum_singles": -0.22500000000000053,
+      "synergy_ratio": 0.7777777777777751,
+      "fraction_of_full": -0.013468013468013455
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8651
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": -0.17499999999999982,
+      "sum_singles": -0.15000000000000036,
+      "synergy_ratio": 1.1666666666666627,
+      "fraction_of_full": -0.013468013468013455
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 20,
+          "neuron": 5697
+        }
+      ],
+      "dMargin": -0.20000000000000018,
+      "sum_singles": -0.125,
+      "synergy_ratio": 1.6000000000000014,
+      "fraction_of_full": -0.015392015392015408
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3271
+        },
+        {
+          "layer": 23,
+          "neuron": 1955
+        }
+      ],
+      "dMargin": -0.20000000000000018,
+      "sum_singles": -0.15000000000000036,
+      "synergy_ratio": 1.3333333333333313,
+      "fraction_of_full": -0.015392015392015408
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 22,
+          "neuron": 5249
+        }
+      ],
+      "dMargin": -0.20000000000000018,
+      "sum_singles": -0.15000000000000036,
+      "synergy_ratio": 1.3333333333333313,
+      "fraction_of_full": -0.015392015392015408
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 23,
+          "neuron": 2913
+        }
+      ],
+      "dMargin": -0.20000000000000018,
+      "sum_singles": -0.125,
+      "synergy_ratio": 1.6000000000000014,
+      "fraction_of_full": -0.015392015392015408
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": -0.20000000000000018,
+      "sum_singles": -0.15000000000000036,
+      "synergy_ratio": 1.3333333333333313,
+      "fraction_of_full": -0.015392015392015408
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 5249
+        },
+        {
+          "layer": 23,
+          "neuron": 5765
+        }
+      ],
+      "dMargin": -0.20000000000000018,
+      "sum_singles": -0.22500000000000053,
+      "synergy_ratio": 0.8888888888888876,
+      "fraction_of_full": -0.015392015392015408
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 5249
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": -0.20000000000000018,
+      "sum_singles": -0.1250000000000009,
+      "synergy_ratio": 1.59999999999999,
+      "fraction_of_full": -0.015392015392015408
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 2913
+        },
+        {
+          "layer": 20,
+          "neuron": 12753
+        }
+      ],
+      "dMargin": -0.20000000000000018,
+      "sum_singles": -0.20000000000000018,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.015392015392015408
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.22500000000000053,
+      "sum_singles": -0.22500000000000053,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.017316017316017358
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 20,
+          "neuron": 5697
+        }
+      ],
+      "dMargin": -0.22500000000000053,
+      "sum_singles": -0.25,
+      "synergy_ratio": 0.9000000000000021,
+      "fraction_of_full": -0.017316017316017358
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 20,
+          "neuron": 12753
+        }
+      ],
+      "dMargin": -0.22500000000000053,
+      "sum_singles": -0.25,
+      "synergy_ratio": 0.9000000000000021,
+      "fraction_of_full": -0.017316017316017358
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": -0.22500000000000053,
+      "sum_singles": -0.15000000000000036,
+      "synergy_ratio": 1.5,
+      "fraction_of_full": -0.017316017316017358
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 2913
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": -0.22500000000000053,
+      "sum_singles": -0.10000000000000053,
+      "synergy_ratio": 2.2499999999999933,
+      "fraction_of_full": -0.017316017316017358
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 5697
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": -0.22500000000000053,
+      "sum_singles": -0.22500000000000053,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.017316017316017358
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 12753
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": -0.22500000000000053,
+      "sum_singles": -0.25,
+      "synergy_ratio": 0.9000000000000021,
+      "fraction_of_full": -0.017316017316017358
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 1955
+        },
+        {
+          "layer": 20,
+          "neuron": 4454
+        }
+      ],
+      "dMargin": -0.22500000000000053,
+      "sum_singles": -0.5999999999999996,
+      "synergy_ratio": 0.3750000000000011,
+      "fraction_of_full": -0.017316017316017358
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 22,
+          "neuron": 2094
+        }
+      ],
+      "dMargin": -0.25,
+      "sum_singles": -0.17499999999999982,
+      "synergy_ratio": 1.42857142857143,
+      "fraction_of_full": -0.01924001924001924
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 20,
+          "neuron": 5697
+        }
+      ],
+      "dMargin": -0.27500000000000036,
+      "sum_singles": -0.25,
+      "synergy_ratio": 1.1000000000000014,
+      "fraction_of_full": -0.021164021164021194
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 22,
+          "neuron": 5249
+        }
+      ],
+      "dMargin": -0.27500000000000036,
+      "sum_singles": -0.3250000000000002,
+      "synergy_ratio": 0.8461538461538468,
+      "fraction_of_full": -0.021164021164021194
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 23,
+          "neuron": 5765
+        }
+      ],
+      "dMargin": -0.27500000000000036,
+      "sum_singles": -0.25,
+      "synergy_ratio": 1.1000000000000014,
+      "fraction_of_full": -0.021164021164021194
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 5249
+        },
+        {
+          "layer": 23,
+          "neuron": 2913
+        }
+      ],
+      "dMargin": -0.27500000000000036,
+      "sum_singles": -0.27500000000000036,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.021164021164021194
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 5249
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": -0.27500000000000036,
+      "sum_singles": -0.3000000000000007,
+      "synergy_ratio": 0.9166666666666656,
+      "fraction_of_full": -0.021164021164021194
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 5697
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": -0.27500000000000036,
+      "sum_singles": -0.22500000000000053,
+      "synergy_ratio": 1.222222222222221,
+      "fraction_of_full": -0.021164021164021194
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 5765
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": -0.27500000000000036,
+      "sum_singles": -0.25,
+      "synergy_ratio": 1.1000000000000014,
+      "fraction_of_full": -0.021164021164021194
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 1653
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": -0.27500000000000036,
+      "sum_singles": -0.3250000000000002,
+      "synergy_ratio": 0.8461538461538468,
+      "fraction_of_full": -0.021164021164021194
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.2999999999999998,
+      "sum_singles": -0.35000000000000053,
+      "synergy_ratio": 0.8571428571428553,
+      "fraction_of_full": -0.023088023088023078
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 5249
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": -0.2999999999999998,
+      "sum_singles": -0.3250000000000002,
+      "synergy_ratio": 0.923076923076922,
+      "fraction_of_full": -0.023088023088023078
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 2913
+        },
+        {
+          "layer": 23,
+          "neuron": 5765
+        }
+      ],
+      "dMargin": -0.2999999999999998,
+      "sum_singles": -0.20000000000000018,
+      "synergy_ratio": 1.4999999999999978,
+      "fraction_of_full": -0.023088023088023078
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 2913
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": -0.2999999999999998,
+      "sum_singles": -0.27500000000000036,
+      "synergy_ratio": 1.0909090909090888,
+      "fraction_of_full": -0.023088023088023078
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 5697
+        },
+        {
+          "layer": 20,
+          "neuron": 12753
+        }
+      ],
+      "dMargin": -0.2999999999999998,
+      "sum_singles": -0.3250000000000002,
+      "synergy_ratio": 0.923076923076922,
+      "fraction_of_full": -0.023088023088023078
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": -0.3250000000000002,
+      "sum_singles": -0.3250000000000002,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.025012025012025027
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 2913
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": -0.3250000000000002,
+      "sum_singles": -0.2999999999999998,
+      "synergy_ratio": 1.0833333333333346,
+      "fraction_of_full": -0.025012025012025027
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8388
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.3250000000000002,
+      "sum_singles": -0.32500000000000107,
+      "synergy_ratio": 0.9999999999999972,
+      "fraction_of_full": -0.025012025012025027
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 776
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": -0.3250000000000002,
+      "sum_singles": -0.5000000000000009,
+      "synergy_ratio": 0.6499999999999992,
+      "fraction_of_full": -0.025012025012025027
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.35000000000000053,
+      "sum_singles": -0.35000000000000053,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.02693602693602698
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 23,
+          "neuron": 2913
+        }
+      ],
+      "dMargin": -0.35000000000000053,
+      "sum_singles": -0.2999999999999998,
+      "synergy_ratio": 1.1666666666666692,
+      "fraction_of_full": -0.02693602693602698
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 11396
+        },
+        {
+          "layer": 23,
+          "neuron": 1955
+        }
+      ],
+      "dMargin": -0.35000000000000053,
+      "sum_singles": -0.4500000000000002,
+      "synergy_ratio": 0.7777777777777787,
+      "fraction_of_full": -0.02693602693602698
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 12753
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.35000000000000053,
+      "sum_singles": -0.4250000000000007,
+      "synergy_ratio": 0.8235294117647057,
+      "fraction_of_full": -0.02693602693602698
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 8651
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.35000000000000053,
+      "sum_singles": -0.32500000000000107,
+      "synergy_ratio": 1.076923076923075,
+      "fraction_of_full": -0.02693602693602698
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": -0.375,
+      "sum_singles": -0.34999999999999964,
+      "synergy_ratio": 1.0714285714285725,
+      "fraction_of_full": -0.028860028860028863
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 12065
+        },
+        {
+          "layer": 23,
+          "neuron": 1955
+        }
+      ],
+      "dMargin": -0.375,
+      "sum_singles": -0.375,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.028860028860028863
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 5249
+        },
+        {
+          "layer": 20,
+          "neuron": 5697
+        }
+      ],
+      "dMargin": -0.375,
+      "sum_singles": -0.40000000000000036,
+      "synergy_ratio": 0.9374999999999992,
+      "fraction_of_full": -0.028860028860028863
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 5697
+        },
+        {
+          "layer": 23,
+          "neuron": 5765
+        }
+      ],
+      "dMargin": -0.375,
+      "sum_singles": -0.3250000000000002,
+      "synergy_ratio": 1.1538461538461533,
+      "fraction_of_full": -0.028860028860028863
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 5697
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": -0.375,
+      "sum_singles": -0.40000000000000036,
+      "synergy_ratio": 0.9374999999999992,
+      "fraction_of_full": -0.028860028860028863
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 5765
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.375,
+      "sum_singles": -0.4250000000000007,
+      "synergy_ratio": 0.8823529411764691,
+      "fraction_of_full": -0.028860028860028863
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 20,
+          "neuron": 5697
+        }
+      ],
+      "dMargin": -0.40000000000000036,
+      "sum_singles": -0.4249999999999998,
+      "synergy_ratio": 0.9411764705882365,
+      "fraction_of_full": -0.030784030784030816
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 2913
+        },
+        {
+          "layer": 20,
+          "neuron": 5697
+        }
+      ],
+      "dMargin": -0.40000000000000036,
+      "sum_singles": -0.375,
+      "synergy_ratio": 1.0666666666666675,
+      "fraction_of_full": -0.030784030784030816
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.4249999999999998,
+      "sum_singles": -0.5250000000000004,
+      "synergy_ratio": 0.8095238095238086,
+      "fraction_of_full": -0.0327080327080327
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 5249
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.4249999999999998,
+      "sum_singles": -0.5000000000000009,
+      "synergy_ratio": 0.8499999999999981,
+      "fraction_of_full": -0.0327080327080327
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 2913
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.4249999999999998,
+      "sum_singles": -0.47500000000000053,
+      "synergy_ratio": 0.8947368421052618,
+      "fraction_of_full": -0.0327080327080327
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 1955
+        },
+        {
+          "layer": 23,
+          "neuron": 4916
+        }
+      ],
+      "dMargin": -0.4249999999999998,
+      "sum_singles": -0.47499999999999964,
+      "synergy_ratio": 0.8947368421052635,
+      "fraction_of_full": -0.0327080327080327
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 5697
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": -0.4500000000000002,
+      "sum_singles": -0.4249999999999998,
+      "synergy_ratio": 1.0588235294117656,
+      "fraction_of_full": -0.03463203463203465
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 8117
+        },
+        {
+          "layer": 23,
+          "neuron": 1955
+        }
+      ],
+      "dMargin": -0.47500000000000053,
+      "sum_singles": -0.6749999999999998,
+      "synergy_ratio": 0.7037037037037047,
+      "fraction_of_full": -0.0365560365560366
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 9287
+        },
+        {
+          "layer": 23,
+          "neuron": 1955
+        }
+      ],
+      "dMargin": -0.47500000000000053,
+      "sum_singles": -0.4249999999999998,
+      "synergy_ratio": 1.1176470588235312,
+      "fraction_of_full": -0.0365560365560366
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 776
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": -0.47500000000000053,
+      "sum_singles": -0.5250000000000004,
+      "synergy_ratio": 0.9047619047619052,
+      "fraction_of_full": -0.0365560365560366
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 3400
+        },
+        {
+          "layer": 23,
+          "neuron": 1955
+        }
+      ],
+      "dMargin": -0.6000000000000005,
+      "sum_singles": -0.5499999999999998,
+      "synergy_ratio": 1.0909090909090922,
+      "fraction_of_full": -0.046176046176046225
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 5697
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.6000000000000005,
+      "sum_singles": -0.6000000000000005,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.046176046176046225
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 1955
+        },
+        {
+          "layer": 20,
+          "neuron": 8266
+        }
+      ],
+      "dMargin": -0.6000000000000005,
+      "sum_singles": -0.5499999999999998,
+      "synergy_ratio": 1.0909090909090922,
+      "fraction_of_full": -0.046176046176046225
+    },
+    {
+      "neurons": [
+        {
+          "layer": 21,
+          "neuron": 11206
+        },
+        {
+          "layer": 23,
+          "neuron": 1955
+        }
+      ],
+      "dMargin": -0.6749999999999998,
+      "sum_singles": -0.6749999999999998,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.05194805194805194
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 12753
+        },
+        {
+          "layer": 23,
+          "neuron": 1955
+        }
+      ],
+      "dMargin": -0.7000000000000002,
+      "sum_singles": -0.75,
+      "synergy_ratio": 0.9333333333333336,
+      "fraction_of_full": -0.05387205387205389
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 1955
+        },
+        {
+          "layer": 20,
+          "neuron": 8388
+        }
+      ],
+      "dMargin": -0.7000000000000002,
+      "sum_singles": -0.6500000000000004,
+      "synergy_ratio": 1.0769230769230766,
+      "fraction_of_full": -0.05387205387205389
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 1955
+        },
+        {
+          "layer": 20,
+          "neuron": 8651
+        }
+      ],
+      "dMargin": -0.75,
+      "sum_singles": -0.6500000000000004,
+      "synergy_ratio": 1.1538461538461533,
+      "fraction_of_full": -0.05772005772005773
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 1955
+        },
+        {
+          "layer": 23,
+          "neuron": 1653
+        }
+      ],
+      "dMargin": -0.75,
+      "sum_singles": -0.8250000000000002,
+      "synergy_ratio": 0.909090909090909,
+      "fraction_of_full": -0.05772005772005773
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 1955
+        },
+        {
+          "layer": 23,
+          "neuron": 5765
+        }
+      ],
+      "dMargin": -0.7750000000000004,
+      "sum_singles": -0.75,
+      "synergy_ratio": 1.0333333333333339,
+      "fraction_of_full": -0.05964405964405968
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 1955
+        },
+        {
+          "layer": 20,
+          "neuron": 5237
+        }
+      ],
+      "dMargin": -0.7750000000000004,
+      "sum_singles": -0.8499999999999996,
+      "synergy_ratio": 0.9117647058823537,
+      "fraction_of_full": -0.05964405964405968
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 2094
+        },
+        {
+          "layer": 23,
+          "neuron": 1955
+        }
+      ],
+      "dMargin": -0.7999999999999998,
+      "sum_singles": -0.8499999999999996,
+      "synergy_ratio": 0.9411764705882355,
+      "fraction_of_full": -0.06156806156806156
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 2913
+        },
+        {
+          "layer": 23,
+          "neuron": 1955
+        }
+      ],
+      "dMargin": -0.7999999999999998,
+      "sum_singles": -0.7999999999999998,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.06156806156806156
+    },
+    {
+      "neurons": [
+        {
+          "layer": 20,
+          "neuron": 5697
+        },
+        {
+          "layer": 23,
+          "neuron": 1955
+        }
+      ],
+      "dMargin": -0.7999999999999998,
+      "sum_singles": -0.9249999999999998,
+      "synergy_ratio": 0.8648648648648648,
+      "fraction_of_full": -0.06156806156806156
+    },
+    {
+      "neurons": [
+        {
+          "layer": 22,
+          "neuron": 5249
+        },
+        {
+          "layer": 23,
+          "neuron": 1955
+        }
+      ],
+      "dMargin": -0.8250000000000002,
+      "sum_singles": -0.8250000000000002,
+      "synergy_ratio": 1.0,
+      "fraction_of_full": -0.06349206349206352
+    },
+    {
+      "neurons": [
+        {
+          "layer": 23,
+          "neuron": 1955
+        },
+        {
+          "layer": 20,
+          "neuron": 776
+        }
+      ],
+      "dMargin": -0.8500000000000005,
+      "sum_singles": -1.0250000000000004,
+      "synergy_ratio": 0.829268292682927,
+      "fraction_of_full": -0.06541606541606547
+    }
+  ],
+  "triple_search": [
+    {
+      "pair": [
+        {
+          "layer": 21,
+          "neuron": 2382
+        },
+        {
+          "layer": 21,
+          "neuron": 13111
+        }
+      ],
+      "third": {
+        "layer": 21,
+        "neuron": 3271
+      },
+      "triple_dMargin": 2.05,
+      "pair_dMargin": 1.625,
+      "sum_singles": 2.2249999999999996,
+      "synergy_ratio": 0.9213483146067416,
+      "fraction_of_full": 0.15776815776815778
+    },
+    {
+      "pair": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 21,
+          "neuron": 3271
+        }
+      ],
+      "third": {
+        "layer": 21,
+        "neuron": 2382
+      },
+      "triple_dMargin": 2.05,
+      "pair_dMargin": 1.4749999999999996,
+      "sum_singles": 2.2249999999999996,
+      "synergy_ratio": 0.9213483146067416,
+      "fraction_of_full": 0.15776815776815778
+    },
+    {
+      "pair": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 22,
+          "neuron": 12065
+        }
+      ],
+      "third": {
+        "layer": 21,
+        "neuron": 2382
+      },
+      "triple_dMargin": 1.8999999999999995,
+      "pair_dMargin": 1.2999999999999998,
+      "sum_singles": 2.0,
+      "synergy_ratio": 0.9499999999999997,
+      "fraction_of_full": 0.1462241462241462
+    },
+    {
+      "pair": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 22,
+          "neuron": 9287
+        }
+      ],
+      "third": {
+        "layer": 21,
+        "neuron": 2382
+      },
+      "triple_dMargin": 1.75,
+      "pair_dMargin": 1.1749999999999998,
+      "sum_singles": 1.9500000000000002,
+      "synergy_ratio": 0.8974358974358974,
+      "fraction_of_full": 0.1346801346801347
+    },
+    {
+      "pair": [
+        {
+          "layer": 21,
+          "neuron": 13111
+        },
+        {
+          "layer": 23,
+          "neuron": 11396
+        }
+      ],
+      "third": {
+        "layer": 21,
+        "neuron": 2382
+      },
+      "triple_dMargin": 2.05,
+      "pair_dMargin": 1.1749999999999998,
+      "sum_singles": 1.9249999999999998,
+      "synergy_ratio": 1.0649350649350648,
+      "fraction_of_full": 0.15776815776815778
+    }
+  ],
+  "progressive_ablation": [
+    {
+      "k": 1,
+      "added_neuron": {
+        "layer": 21,
+        "neuron": 13111
+      },
+      "cumulative_dMargin": 1.0,
+      "fraction_of_full": 0.07696007696007696,
+      "marginal_dMargin": 1.0
+    },
+    {
+      "k": 2,
+      "added_neuron": {
+        "layer": 21,
+        "neuron": 2382
+      },
+      "cumulative_dMargin": 1.625,
+      "fraction_of_full": 0.12506012506012507,
+      "marginal_dMargin": 0.625
+    },
+    {
+      "k": 3,
+      "added_neuron": {
+        "layer": 21,
+        "neuron": 3271
+      },
+      "cumulative_dMargin": 2.05,
+      "fraction_of_full": 0.15776815776815778,
+      "marginal_dMargin": 0.4249999999999998
+    },
+    {
+      "k": 4,
+      "added_neuron": {
+        "layer": 22,
+        "neuron": 12065
+      },
+      "cumulative_dMargin": 2.3249999999999997,
+      "fraction_of_full": 0.17893217893217894,
+      "marginal_dMargin": 0.2749999999999999
+    },
+    {
+      "k": 5,
+      "added_neuron": {
+        "layer": 22,
+        "neuron": 9287
+      },
+      "cumulative_dMargin": 2.55,
+      "fraction_of_full": 0.19624819624819625,
+      "marginal_dMargin": 0.2250000000000001
+    },
+    {
+      "k": 6,
+      "added_neuron": {
+        "layer": 23,
+        "neuron": 11396
+      },
+      "cumulative_dMargin": 2.65,
+      "fraction_of_full": 0.20394420394420396,
+      "marginal_dMargin": 0.10000000000000009
+    },
+    {
+      "k": 7,
+      "added_neuron": {
+        "layer": 23,
+        "neuron": 4916
+      },
+      "cumulative_dMargin": 3.0,
+      "fraction_of_full": 0.2308802308802309,
+      "marginal_dMargin": 0.3500000000000001
+    },
+    {
+      "k": 8,
+      "added_neuron": {
+        "layer": 21,
+        "neuron": 3400
+      },
+      "cumulative_dMargin": 3.375,
+      "fraction_of_full": 0.25974025974025977,
+      "marginal_dMargin": 0.375
+    },
+    {
+      "k": 9,
+      "added_neuron": {
+        "layer": 20,
+        "neuron": 8266
+      },
+      "cumulative_dMargin": 3.525,
+      "fraction_of_full": 0.2712842712842713,
+      "marginal_dMargin": 0.1499999999999999
+    },
+    {
+      "k": 10,
+      "added_neuron": {
+        "layer": 20,
+        "neuron": 4454
+      },
+      "cumulative_dMargin": 4.4,
+      "fraction_of_full": 0.33862433862433866,
+      "marginal_dMargin": 0.8750000000000004
+    },
+    {
+      "k": 11,
+      "added_neuron": {
+        "layer": 20,
+        "neuron": 8651
+      },
+      "cumulative_dMargin": 4.275,
+      "fraction_of_full": 0.3290043290043291,
+      "marginal_dMargin": -0.125
+    },
+    {
+      "k": 12,
+      "added_neuron": {
+        "layer": 20,
+        "neuron": 8388
+      },
+      "cumulative_dMargin": 4.3,
+      "fraction_of_full": 0.33092833092833096,
+      "marginal_dMargin": 0.024999999999999467
+    },
+    {
+      "k": 13,
+      "added_neuron": {
+        "layer": 21,
+        "neuron": 11206
+      },
+      "cumulative_dMargin": 4.3,
+      "fraction_of_full": 0.33092833092833096,
+      "marginal_dMargin": 0.0
+    },
+    {
+      "k": 14,
+      "added_neuron": {
+        "layer": 22,
+        "neuron": 8117
+      },
+      "cumulative_dMargin": 4.425,
+      "fraction_of_full": 0.34054834054834054,
+      "marginal_dMargin": 0.125
+    },
+    {
+      "k": 15,
+      "added_neuron": {
+        "layer": 20,
+        "neuron": 12753
+      },
+      "cumulative_dMargin": 4.225,
+      "fraction_of_full": 0.32515632515632514,
+      "marginal_dMargin": -0.20000000000000018
+    },
+    {
+      "k": 16,
+      "added_neuron": {
+        "layer": 23,
+        "neuron": 5765
+      },
+      "cumulative_dMargin": 4.1,
+      "fraction_of_full": 0.31553631553631556,
+      "marginal_dMargin": -0.125
+    },
+    {
+      "k": 17,
+      "added_neuron": {
+        "layer": 23,
+        "neuron": 2913
+      },
+      "cumulative_dMargin": 3.5,
+      "fraction_of_full": 0.2693602693602694,
+      "marginal_dMargin": -0.5999999999999996
+    },
+    {
+      "k": 18,
+      "added_neuron": {
+        "layer": 22,
+        "neuron": 5249
+      },
+      "cumulative_dMargin": 2.875,
+      "fraction_of_full": 0.2212602212602213,
+      "marginal_dMargin": -0.625
+    },
+    {
+      "k": 19,
+      "added_neuron": {
+        "layer": 23,
+        "neuron": 1653
+      },
+      "cumulative_dMargin": 2.6999999999999997,
+      "fraction_of_full": 0.2077922077922078,
+      "marginal_dMargin": -0.17500000000000027
+    },
+    {
+      "k": 20,
+      "added_neuron": {
+        "layer": 22,
+        "neuron": 2094
+      },
+      "cumulative_dMargin": 2.55,
+      "fraction_of_full": 0.19624819624819625,
+      "marginal_dMargin": -0.1499999999999999
+    },
+    {
+      "k": 21,
+      "added_neuron": {
+        "layer": 20,
+        "neuron": 5237
+      },
+      "cumulative_dMargin": 2.4749999999999996,
+      "fraction_of_full": 0.19047619047619047,
+      "marginal_dMargin": -0.07500000000000018
+    },
+    {
+      "k": 22,
+      "added_neuron": {
+        "layer": 20,
+        "neuron": 5697
+      },
+      "cumulative_dMargin": 2.375,
+      "fraction_of_full": 0.1827801827801828,
+      "marginal_dMargin": -0.09999999999999964
+    },
+    {
+      "k": 23,
+      "added_neuron": {
+        "layer": 20,
+        "neuron": 776
+      },
+      "cumulative_dMargin": 2.15,
+      "fraction_of_full": 0.16546416546416548,
+      "marginal_dMargin": -0.2250000000000001
+    },
+    {
+      "k": 24,
+      "added_neuron": {
+        "layer": 23,
+        "neuron": 1955
+      },
+      "cumulative_dMargin": 2.05,
+      "fraction_of_full": 0.15776815776815778,
+      "marginal_dMargin": -0.10000000000000009
+    }
+  ],
+  "random_pair_controls": {
+    "n": 50,
+    "mean": 0.01699999999999967,
+    "std": 0.020880613017821032,
+    "values": [
+      0.024999999999999467,
+      0.024999999999999467,
+      0.024999999999999467,
+      0.04999999999999982,
+      -0.025000000000000355,
+      0.024999999999999467,
+      0.024999999999999467,
+      0.024999999999999467,
+      0.0,
+      -0.025000000000000355,
+      0.024999999999999467,
+      0.024999999999999467,
+      0.024999999999999467,
+      0.024999999999999467,
+      0.024999999999999467,
+      0.024999999999999467,
+      -0.025000000000000355,
+      0.0,
+      0.024999999999999467,
+      0.04999999999999982,
+      0.024999999999999467,
+      0.024999999999999467,
+      0.024999999999999467,
+      0.04999999999999982,
+      0.0,
+      0.0,
+      0.0,
+      -0.025000000000000355,
+      0.024999999999999467,
+      0.024999999999999467,
+      0.04999999999999982,
+      0.0,
+      0.0,
+      0.04999999999999982,
+      -0.025000000000000355,
+      0.024999999999999467,
+      0.024999999999999467,
+      0.0,
+      0.04999999999999982,
+      0.024999999999999467,
+      0.024999999999999467,
+      0.024999999999999467,
+      0.0,
+      0.04999999999999982,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.024999999999999467,
+      0.024999999999999467
+    ]
+  }
+}
