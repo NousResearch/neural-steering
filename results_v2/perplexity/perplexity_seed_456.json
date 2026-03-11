@@ -1,0 +1,159 @@
+{
+  "seed": 456,
+  "baseline_ppl": 11.383088345728284,
+  "n_passages": 100,
+  "results": {
+    "baseline": {
+      "ppl": 11.383088345728284,
+      "ppl_ratio": 1.0
+    },
+    "neuron_steering_0.0": {
+      "ppl": 12.130216560661044,
+      "ppl_ratio": 1.0656349307183524
+    },
+    "neuron_steering_0.1": {
+      "ppl": 11.969715484442137,
+      "ppl_ratio": 1.051534971959872
+    },
+    "neuron_steering_0.2": {
+      "ppl": 11.833724769282119,
+      "ppl_ratio": 1.039588239137487
+    },
+    "neuron_steering_0.3": {
+      "ppl": 11.718451765538672,
+      "ppl_ratio": 1.029461549416529
+    },
+    "neuron_steering_0.4": {
+      "ppl": 11.623788349097305,
+      "ppl_ratio": 1.0211454041344894
+    },
+    "neuron_steering_0.5": {
+      "ppl": 11.546668855614506,
+      "ppl_ratio": 1.014370485839865
+    },
+    "neuron_steering_0.6": {
+      "ppl": 11.486609997743907,
+      "ppl_ratio": 1.0090943379223154
+    },
+    "neuron_steering_0.7": {
+      "ppl": 11.441175523033206,
+      "ppl_ratio": 1.005102936526599
+    },
+    "neuron_steering_0.8": {
+      "ppl": 11.409757570086162,
+      "ppl_ratio": 1.002342881259275
+    },
+    "neuron_steering_0.9": {
+      "ppl": 11.390767260630932,
+      "ppl_ratio": 1.000674589765925
+    },
+    "neuron_steering_1.0": {
+      "ppl": 11.383088345728284,
+      "ppl_ratio": 1.0
+    },
+    "neuron_steering_1.5": {
+      "ppl": 11.492015000943093,
+      "ppl_ratio": 1.0095691654063008
+    },
+    "neuron_steering_2.0": {
+      "ppl": 11.791540573262175,
+      "ppl_ratio": 1.0358823734937601
+    },
+    "neuron_steering_3.0": {
+      "ppl": 12.80804684426576,
+      "ppl_ratio": 1.1251820644150776
+    },
+    "random_ablation_sample0": {
+      "ppl": 11.56978722551934,
+      "ppl_ratio": 1.0164014258802725
+    },
+    "random_ablation_sample1": {
+      "ppl": 11.430200345606465,
+      "ppl_ratio": 1.004138771346342
+    },
+    "random_ablation_sample2": {
+      "ppl": 11.418574323549533,
+      "ppl_ratio": 1.0031174297118204
+    },
+    "random_ablation_sample3": {
+      "ppl": 11.434531227509865,
+      "ppl_ratio": 1.0045192376813
+    },
+    "random_ablation_sample4": {
+      "ppl": 11.516817288391778,
+      "ppl_ratio": 1.0117480369651772
+    },
+    "caa_repeng_0.5": {
+      "ppl": 14.43692251657456,
+      "ppl_ratio": 1.268278175315426
+    },
+    "caa_repeng_1.0": {
+      "ppl": 307.0131874429362,
+      "ppl_ratio": 26.97099224026919
+    },
+    "caa_repeng_1.5": {
+      "ppl": 4738.766981397972,
+      "ppl_ratio": 416.29888457962136
+    },
+    "caa_repeng_2.0": {
+      "ppl": 54167.69943176766,
+      "ppl_ratio": 4758.6118798854
+    },
+    "caa_repeng_3.0": {
+      "ppl": 270535.2958174463,
+      "ppl_ratio": 23766.423276418627
+    },
+    "caa_repeng_5.0": {
+      "ppl": 1814386.3442292027,
+      "ppl_ratio": 159393.1531691999
+    },
+    "caa_repeng_7.0": {
+      "ppl": 3470155.1345842006,
+      "ppl_ratio": 304851.814304546
+    },
+    "caa_repeng_10.0": {
+      "ppl": 5398643.781426734,
+      "ppl_ratio": 474268.81154380884
+    },
+    "logit_suppression_-5.0": {
+      "ppl": 11.383088345728284,
+      "ppl_ratio": 1.0,
+      "note": "logit suppression does not affect forward-pass perplexity"
+    },
+    "logit_suppression_-10.0": {
+      "ppl": 11.383088345728284,
+      "ppl_ratio": 1.0,
+      "note": "logit suppression does not affect forward-pass perplexity"
+    },
+    "logit_suppression_-20.0": {
+      "ppl": 11.383088345728284,
+      "ppl_ratio": 1.0,
+      "note": "logit suppression does not affect forward-pass perplexity"
+    },
+    "temperature_0.3": {
+      "ppl": 11.383088345728284,
+      "ppl_ratio": 1.0,
+      "note": "temperature does not affect forward-pass perplexity"
+    },
+    "temperature_0.5": {
+      "ppl": 11.383088345728284,
+      "ppl_ratio": 1.0,
+      "note": "temperature does not affect forward-pass perplexity"
+    },
+    "temperature_0.7": {
+      "ppl": 11.383088345728284,
+      "ppl_ratio": 1.0,
+      "note": "temperature does not affect forward-pass perplexity"
+    },
+    "temperature_1.0": {
+      "ppl": 11.383088345728284,
+      "ppl_ratio": 1.0,
+      "note": "temperature does not affect forward-pass perplexity"
+    },
+    "prompt_engineering": {
+      "ppl": 11.383088345728284,
+      "ppl_ratio": 1.0,
+      "note": "system prompt does not affect forward-pass perplexity"
+    }
+  }
+}

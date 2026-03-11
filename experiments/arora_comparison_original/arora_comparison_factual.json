@@ -1,0 +1,51 @@
+{
+  "task": "factual",
+  "circuit_size": 103,
+  "full_model": {
+    "prob": 0.49588173627853394,
+    "logit": 27.0,
+    "logit_margin": 0.0
+  },
+  "null_zero": {
+    "prob": 2.118333961220742e-06,
+    "logit": -0.105859375,
+    "logit_margin": -8.730859375
+  },
+  "null_mean": {
+    "prob": 3.603500181270647e-06,
+    "logit": 1.1375,
+    "logit_margin": -9.55
+  },
+  "direct_zero": {
+    "prob": 4.340387235970411e-05,
+    "logit": 3.4759765625,
+    "logit_margin": -9.7615234375
+  },
+  "direct_mean": {
+    "prob": 2.9369853396588042e-05,
+    "logit": 4.065625,
+    "logit_margin": -11.059375
+  },
+  "complement_zero": {
+    "prob": 1.0268095479659679e-06,
+    "logit": 0.6203125,
+    "logit_margin": -9.5171875
+  },
+  "complement_mean": {
+    "prob": 6.651538676294422e-07,
+    "logit": 4.40625,
+    "logit_margin": -15.09375
+  },
+  "arora_faithfulness_mean": -0.5804973821989527,
+  "arora_faithfulness_zero": -0.09006308442575285,
+  "arora_completeness_mean": -0.15804973821989513,
+  "arora_completeness_zero": -0.1180484094671379,
+  "our_nh_zero": 9.7615234375,
+  "our_nh_mean": 11.059375,
+  "our_nh_sigma": 405.4344363405246,
+  "random_controls": {
+    "n": 20,
+    "mean_delta": -0.008750000000000003,
+    "std_delta": 0.024076700355322778
+  }
+}

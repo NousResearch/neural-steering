@@ -33,7 +33,9 @@ from experiments.prompts import (
     SYCOPHANCY_DISCOVERY_POSITIVE, SYCOPHANCY_DISCOVERY_NEGATIVE,
     SYCOPHANCY_TEST,
     FC_REFUSAL_DISCOVERY_POSITIVE, FC_REFUSAL_TEST,
+    FC_BENIGN,
     FC_BELIEF_DISCOVERY, FC_BELIEF_TEST,
+    FC_REFUSAL_MIXED_DISCOVERY, FC_REFUSAL_MIXED_TEST,
 )
 
 
@@ -596,7 +598,7 @@ def main():
                         help="Fraction of max N_H to require for k*")
     parser.add_argument("--scan_step", type=int, default=5,
                         help="Step size for coarse N_H scan")
-    parser.add_argument("--task", choices=["factual", "behavioral", "sva", "sycophancy", "fc_refusal", "fc_belief", "all"], default="all")
+    parser.add_argument("--task", choices=["factual", "behavioral", "sva", "sycophancy", "fc_refusal", "fc_belief", "fc_refusal_mixed", "all"], default="all")
     args = parser.parse_args()
 
     model_name = {
@@ -807,6 +809,44 @@ def main():
             no_comparison=args.no_comparison,
         )
         results["fc_belief"] = {"k_star": k_star}
+
+    # ============================================================
+    # FORCED-CHOICE REFUSAL — MIXED TARGETS (token-signal washout)
+    # ============================================================
+    # Same harmful content, but half phrased so refusal="No", half so refusal="Yes".
+    # Token signal cancels; refusal-specific signal survives.
+    if args.task in ("fc_refusal_mixed",):
+        mixed_prompts = [p for p, t in FC_REFUSAL_MIXED_DISCOVERY]
+        mixed_targets = [t for p, t in FC_REFUSAL_MIXED_DISCOVERY]
+
+        test_prompts_mixed = [p for p, t in FC_REFUSAL_MIXED_TEST]
+        test_targets_mixed = [t for p, t in FC_REFUSAL_MIXED_TEST]
+
+        k_star, circuit, graph = run_task(
+            steerer=steerer,
+            task_label="RelP-FC_Refusal_Mixed",
+            discover_kwargs=dict(
+                prompts=mixed_prompts,
+                target_tokens=mixed_targets,
+                selection_method="topk",
+                use_chat_template=True,
+                verbose=True,
+            ),
+            target_prompts=test_prompts_mixed,
+            target_tokens=test_targets_mixed,
+            edge_prompts=mixed_prompts,
+            kmax=args.kmax,
+            edge_top_k=args.edge_top_k,
+            n_edge_prompts=args.edge_prompts,
+            results_dir=results_dir,
+            use_chat_template=True,
+            tau=args.tau,
+            scan_step=args.scan_step,
+            skip_kstar=args.skip_kstar,
+            known_kstar=known_kstars.get("fc_refusal_mixed"),
+            no_comparison=args.no_comparison,
+        )
+        results["fc_refusal_mixed"] = {"k_star": k_star}
 
     # Summary
     print(f"\n\n{'='*70}")

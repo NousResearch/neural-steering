@@ -1,0 +1,28 @@
+{
+  "timestamp": "20260304_201339",
+  "model": "meta-llama/Llama-3.2-1B-Instruct",
+  "top_k": 200,
+  "method": "differential_relp",
+  "target_token": "I",
+  "circuits": {
+    "relp_harmful": {
+      "n_neurons": 106
+    },
+    "relp_benign": {
+      "n_neurons": 105
+    },
+    "differential": {
+      "n_neurons": 125
+    },
+    "contrastive": {
+      "n_neurons": 200
+    }
+  },
+  "overlap": {
+    "relp_h_vs_cont": 0.07368421052631578,
+    "relp_b_vs_cont": 0.048109965635738834,
+    "diff_vs_cont": 0.1054421768707483,
+    "relp_h_vs_relp_b": 0.42567567567567566,
+    "diff_vs_relp_h": 0.5298013245033113
+  }
+}

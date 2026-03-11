@@ -47,6 +47,8 @@ from experiments.prompts import (
     FC_BELIEF_TEST,
     FC_BELIEF_NO_DISCOVERY,
     FC_BELIEF_NO_TEST,
+    FC_REFUSAL_MIXED_DISCOVERY,
+    FC_REFUSAL_MIXED_TEST,
 )
 
 
@@ -265,6 +267,15 @@ TASK_CONFIGS = {
         "use_chat_template": True,
         "test_prompts": FC_BELIEF_TEST,
         "control_prompts": FC_BELIEF_NO_TEST,  # "No" prompts as control for sufficiency
+        "topology_dir": None,
+    },
+    "fc_refusal_mixed": {
+        "target_token": None,  # mixed: per-prompt targets
+        "seed_response": "",
+        "use_chat_template": True,
+        "test_prompts": [p for p, t in FC_REFUSAL_MIXED_TEST],
+        "test_targets": [t for p, t in FC_REFUSAL_MIXED_TEST],
+        "control_prompts": [],
         "topology_dir": None,
     },
 }

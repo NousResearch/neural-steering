@@ -21,7 +21,7 @@ Usage:
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from typing import List, Tuple, Optional, Dict, NamedTuple, Set
+from typing import List, Tuple, Optional, Dict, NamedTuple, Set, Callable, Any
 from contextlib import contextmanager, nullcontext
 from dataclasses import dataclass, field
 from collections import defaultdict
@@ -553,6 +553,23 @@ class CircuitGraph:
             return False
 
 
+@dataclass
+class BehaviorProbe:
+    """Linear probe describing a behavioral direction in hidden-state space."""
+    layer: int
+    position: int
+    direction: torch.Tensor
+    bias: float
+    separation: float
+    method: str = "lda"
+
+    def summary(self) -> str:
+        return (
+            f"BehaviorProbe(method={self.method}, layer={self.layer}, "
+            f"position={self.position}, separation={self.separation:.4f})"
+        )
+
+
 # ============================================================
 # LRP Rule 1: LN-rule (RMSNorm)
 # Forward = real RMSNorm, Backward = identity through normalization
@@ -891,6 +908,163 @@ def compute_attribution(
             print(f"  WARNING: NaN in gradients detected. LRP rules may not be compatible with this model.")
 
     return attributions, metric.item()
+
+
+def compute_attribution_from_metric(
+    model,
+    input_ids: torch.Tensor,
+    metric_fn: Callable[[Any, Any], torch.Tensor],
+    top_k_per_layer: int = 200,
+    filter_bos: bool = True,
+    last_n_positions: Optional[int] = None,
+    blacklist_layers: Optional[Set[int]] = None,
+    blacklist_neurons: Optional[Set[Tuple[int, int]]] = None,
+    verbose: bool = False,
+    model_forward_kwargs: Optional[Dict[str, Any]] = None,
+) -> Tuple[Dict[NeuronIdx, float], float]:
+    """Compute per-neuron attribution from an arbitrary scalar metric.
+
+    This is the generic version of compute_attribution(): instead of building
+    the scalar from output logits, callers supply a metric_fn that consumes the
+    model outputs and returns a scalar tensor to backpropagate from.
+    """
+    blacklist_layers = blacklist_layers or set()
+    blacklist_neurons = blacklist_neurons or set()
+    model_forward_kwargs = model_forward_kwargs or {}
+    model.eval()
+    model.zero_grad()
+
+    for layer in model.model.layers:
+        if hasattr(layer.mlp, "neuron_act"):
+            layer.mlp.neuron_act = None
+
+    with torch.enable_grad():
+        outputs = model(input_ids, **model_forward_kwargs)
+        metric = metric_fn(model, outputs)
+        if metric.ndim != 0:
+            raise ValueError(f"metric_fn must return a scalar tensor, got shape {tuple(metric.shape)}")
+        metric.backward()
+
+    attributions = {}
+    layer_stats = {}
+
+    for i, layer in enumerate(model.model.layers):
+        if i in blacklist_layers:
+            continue
+
+        mlp = layer.mlp
+        if not hasattr(mlp, "neuron_act") or mlp.neuron_act is None:
+            continue
+        if mlp.neuron_act.grad is None:
+            continue
+
+        act = mlp.neuron_act.detach()
+        grad = mlp.neuron_act.grad
+        attr = (grad * act)[0]
+        T = attr.shape[0]
+
+        valid_mask = ~torch.isnan(attr)
+        valid_attr = attr[valid_mask]
+        if valid_attr.numel() > 0:
+            layer_total = valid_attr.abs().sum().item()
+            layer_max = valid_attr.abs().max().item()
+            nan_frac = 1.0 - valid_mask.float().mean().item()
+        else:
+            layer_total = 0.0
+            layer_max = 0.0
+            nan_frac = 1.0
+        layer_stats[i] = {"total": layer_total, "max": layer_max, "nan_frac": nan_frac}
+
+        if last_n_positions is not None:
+            start_pos = max(0, T - last_n_positions)
+        elif filter_bos:
+            start_pos = 1
+        else:
+            start_pos = 0
+
+        for p in range(start_pos, T):
+            pos_attr = attr[p]
+            abs_attr = pos_attr.abs()
+
+            nan_mask = torch.isnan(abs_attr)
+            if nan_mask.any():
+                abs_attr = abs_attr.clone()
+                abs_attr[nan_mask] = 0.0
+
+            k = min(top_k_per_layer, abs_attr.shape[0])
+            top_vals, top_idxs = abs_attr.topk(k)
+
+            for val, idx in zip(top_vals, top_idxs):
+                if val.item() > 1e-8:
+                    n = idx.item()
+                    if (i, n) in blacklist_neurons:
+                        continue
+                    nidx = NeuronIdx(layer=i, position=p, neuron=n)
+                    attributions[nidx] = pos_attr[idx].item()
+
+    for layer in model.model.layers:
+        if hasattr(layer.mlp, "neuron_act"):
+            layer.mlp.neuron_act = None
+
+    if verbose:
+        print("  Attribution distribution by layer:")
+        has_nan = False
+        for l in sorted(layer_stats.keys()):
+            s = layer_stats[l]
+            nan_str = f" [NaN: {s['nan_frac']:.1%}]" if s['nan_frac'] > 0.01 else ""
+            print(f"    L{l:2d}: total={s['total']:.4f}, max={s['max']:.4f}{nan_str}")
+            if s["nan_frac"] > 0.01:
+                has_nan = True
+        total_attr = sum(abs(v) for v in attributions.values())
+        print(f"  Total (filtered): {total_attr:.4f}, {len(attributions)} neurons")
+        if has_nan:
+            print("  WARNING: NaN in gradients detected. LRP rules may not be compatible with this model.")
+
+    return attributions, metric.item()
+
+
+def fit_lda_probe(
+    positive: torch.Tensor,
+    negative: torch.Tensor,
+    reg: float = 1e-4,
+) -> Tuple[torch.Tensor, float, float]:
+    """Fit a simple pooled-covariance LDA probe.
+
+    Args:
+        positive: [N_pos, d] positive examples
+        negative: [N_neg, d] negative examples
+        reg: diagonal regularization added to pooled covariance
+
+    Returns:
+        (direction, bias, separation_score)
+    """
+    if positive.ndim != 2 or negative.ndim != 2:
+        raise ValueError("positive and negative must be rank-2 tensors")
+    if positive.shape[1] != negative.shape[1]:
+        raise ValueError("positive and negative must have same hidden dimension")
+    if positive.shape[0] < 2 or negative.shape[0] < 2:
+        raise ValueError("need at least 2 positive and 2 negative examples for LDA")
+
+    positive = positive.float()
+    negative = negative.float()
+    mu_pos = positive.mean(dim=0)
+    mu_neg = negative.mean(dim=0)
+
+    xp = positive - mu_pos
+    xn = negative - mu_neg
+    pooled = (xp.T @ xp + xn.T @ xn) / max(positive.shape[0] + negative.shape[0] - 2, 1)
+    pooled = pooled + reg * torch.eye(pooled.shape[0], device=pooled.device, dtype=pooled.dtype)
+
+    direction = torch.linalg.solve(pooled, mu_pos - mu_neg)
+    direction = direction / (direction.norm() + 1e-8)
+    bias = -0.5 * torch.dot(direction, (mu_pos + mu_neg)).item()
+
+    pos_scores = positive @ direction + bias
+    neg_scores = negative @ direction + bias
+    separation = ((pos_scores.mean() - neg_scores.mean()) ** 2) / (
+        pos_scores.var(unbiased=False) + neg_scores.var(unbiased=False) + 1e-8
+    )
+    return direction.detach().cpu(), float(bias), float(separation.item())
 
 
 def select_circuit(
@@ -1527,6 +1701,146 @@ class NeuronSteerer:
             target_token="[contrastive]",
             total_logit_diff=0.0,
         )
+
+    def _collect_hidden_states(
+        self,
+        prompts: List[str],
+        layer_idx: int,
+        position: int = -1,
+        seed_response: str = "",
+        use_chat_template: bool = True,
+    ) -> torch.Tensor:
+        """Collect residual hidden states at a specific layer/position for prompts."""
+        states = []
+        for prompt in prompts:
+            if use_chat_template:
+                formatted = self._format_prompt(prompt, seed_response)
+            else:
+                formatted = prompt + seed_response
+            input_ids = self.tokenizer(formatted, return_tensors="pt").input_ids.to(self.device)
+            with torch.no_grad():
+                outputs = self.model(input_ids, output_hidden_states=True)
+            # hidden_states[0] = embeddings, hidden_states[layer_idx + 1] = post-layer residual
+            h = outputs.hidden_states[layer_idx + 1][0, position].detach().cpu().float()
+            states.append(h)
+        return torch.stack(states)
+
+    def discover_behavioral_circuit(
+        self,
+        positive_prompts: List[str],
+        negative_prompts: List[str],
+        top_k: int = 200,
+        threshold: float = 0.005,
+        selection_method: Optional[str] = "topk",
+        layer_idx: Optional[int] = None,
+        position: int = -1,
+        filter_bos: bool = True,
+        filter_infrastructure: bool = True,
+        last_n_positions: Optional[int] = None,
+        blacklist_neurons: Optional[Set[Tuple[int, int]]] = None,
+        seed_response: str = "",
+        use_chat_template: bool = True,
+        lda_reg: float = 1e-4,
+        verbose: bool = False,
+        return_probe: bool = False,
+    ) -> "Circuit | Tuple[Circuit, BehaviorProbe]":
+        """Discover a circuit by backpropagating from a hidden-state behavior score.
+
+        The score is defined by an LDA direction in residual space that separates
+        positive from negative prompt sets at a chosen layer/position.
+        """
+        bl_layers = filter_infrastructure if isinstance(filter_infrastructure, set) else ({0, 1} if filter_infrastructure else set())
+        bl_neurons = blacklist_neurons if blacklist_neurons is not None else self.blacklist
+
+        if layer_idx is None:
+            candidate_layers = [l for l in range(len(self.model.model.layers)) if l not in bl_layers]
+        else:
+            candidate_layers = [layer_idx]
+
+        if not candidate_layers:
+            raise ValueError("No candidate layers available for behavioral circuit discovery")
+
+        best_probe: Optional[BehaviorProbe] = None
+        layer_scores = []
+        for l in candidate_layers:
+            pos_states = self._collect_hidden_states(
+                positive_prompts, l, position=position,
+                seed_response=seed_response, use_chat_template=use_chat_template,
+            )
+            neg_states = self._collect_hidden_states(
+                negative_prompts, l, position=position,
+                seed_response=seed_response, use_chat_template=use_chat_template,
+            )
+            direction, bias, separation = fit_lda_probe(pos_states, neg_states, reg=lda_reg)
+            probe = BehaviorProbe(
+                layer=l,
+                position=position,
+                direction=direction,
+                bias=bias,
+                separation=separation,
+            )
+            layer_scores.append((l, separation))
+            if best_probe is None or separation > best_probe.separation:
+                best_probe = probe
+
+        assert best_probe is not None
+        if verbose:
+            print("  Behavioral probe layer sweep:")
+            for l, score in sorted(layer_scores, key=lambda x: x[1], reverse=True)[:10]:
+                marker = " *" if l == best_probe.layer else ""
+                print(f"    L{l:2d}: sep={score:.4f}{marker}")
+            print(f"  Selected {best_probe.summary()}")
+
+        direction = best_probe.direction.to(self.device)
+        bias = torch.tensor(best_probe.bias, device=self.device, dtype=torch.float32)
+
+        def metric_fn(_model, outputs):
+            hidden = outputs.hidden_states[best_probe.layer + 1][0, best_probe.position].float()
+            return torch.dot(hidden, direction.to(hidden.dtype)) + bias.to(hidden.dtype)
+
+        reference_prompt = positive_prompts[0]
+        if use_chat_template:
+            formatted = self._format_prompt(reference_prompt, seed_response)
+        else:
+            formatted = reference_prompt + seed_response
+        input_ids = self.tokenizer(formatted, return_tensors="pt").input_ids.to(self.device)
+
+        with linearized(self.model):
+            attributions, metric_value = compute_attribution_from_metric(
+                self.model,
+                input_ids,
+                metric_fn=metric_fn,
+                filter_bos=filter_bos,
+                last_n_positions=last_n_positions,
+                blacklist_layers=bl_layers,
+                blacklist_neurons=bl_neurons,
+                verbose=verbose,
+                model_forward_kwargs={"output_hidden_states": True},
+            )
+
+        if top_k:
+            method = "topk"
+        elif selection_method == "percentage":
+            method = "percentage"
+        else:
+            method = "threshold"
+
+        circuit_neurons = select_circuit(
+            attributions,
+            method=method,
+            threshold=threshold,
+            top_k=top_k,
+            reference_value=metric_value,
+        )
+        circuit = Circuit(
+            neurons=circuit_neurons,
+            prompt=f"[behavioral: {len(positive_prompts)} pos vs {len(negative_prompts)} neg, layer={best_probe.layer}]",
+            target_token=f"[behavior-lda@L{best_probe.layer}]",
+            total_logit_diff=metric_value,
+        )
+        if return_probe:
+            return circuit, best_probe
+        return circuit
 
     def discover_edges(
         self,
