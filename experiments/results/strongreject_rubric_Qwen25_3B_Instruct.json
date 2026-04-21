@@ -1,0 +1,9 @@
+{
+  "model": "Qwen2.5-3B-Instruct",
+  "evaluator": "strongreject_rubric (Nous API, llama-3.3-70b)",
+  "baseline_mean": 0,
+  "ablated_mean": 0,
+  "delta_mean": 0,
+  "n_valid_baseline": 0,
+  "n_valid_ablated": 0
+}

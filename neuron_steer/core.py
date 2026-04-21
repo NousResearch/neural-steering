@@ -52,6 +52,19 @@ class CircuitEdge(NamedTuple):
 # Format: (layer, neuron) - position-independent.
 # ============================================================
 
+def _get_model_layers(model):
+    """Get decoder layers from any model architecture (Llama, Qwen, Gemma4, etc.)."""
+    if hasattr(model.model, 'layers'):
+        return model.model.layers
+    elif hasattr(model.model, 'language_model') and hasattr(model.model.language_model, 'layers'):
+        return model.model.language_model.layers
+    else:
+        raise AttributeError(
+            f"Cannot find layers in model architecture: {type(model.model).__name__}. "
+            f"Supported: .model.layers or .model.language_model.layers"
+        )
+
+
 BLACKLIST_LLAMA3_8B = {
     (23, 306), (20, 3972), (18, 7417), (16, 1241),
     (13, 4208), (11, 11321), (10, 11570), (9, 4255),
@@ -102,7 +115,7 @@ def detect_universal_neurons(
         # Collect activations via hooks (no linearization needed)
         layer_acts = {}
         hooks = []
-        for i, layer in enumerate(model.model.layers):
+        for i, layer in enumerate(_get_model_layers(model)):
             def make_hook(layer_idx):
                 def hook_fn(module, args):
                     layer_acts[layer_idx] = args[0][0, -1].detach()
@@ -654,7 +667,7 @@ def _linearize_model(model):
     originals["modules"]["model.norm"] = model.model.norm
     model.model.norm = LinearizedRMSNorm(model.model.norm)
 
-    for i, layer in enumerate(model.model.layers):
+    for i, layer in enumerate(_get_model_layers(model)):
         # Input layernorm
         originals["modules"][f"layer.{i}.input_layernorm"] = layer.input_layernorm
         layer.input_layernorm = LinearizedRMSNorm(layer.input_layernorm)
@@ -687,7 +700,7 @@ def _restore_model(model, originals):
 
     # Restore modules
     model.model.norm = originals["modules"]["model.norm"]
-    for i, layer in enumerate(model.model.layers):
+    for i, layer in enumerate(_get_model_layers(model)):
         layer.input_layernorm = originals["modules"][f"layer.{i}.input_layernorm"]
         layer.post_attention_layernorm = originals["modules"][f"layer.{i}.post_attention_layernorm"]
         layer.mlp = originals["modules"][f"layer.{i}.mlp"]
@@ -749,7 +762,7 @@ def compute_attribution(
     model.zero_grad()
 
     # Clear any saved neuron activations
-    for layer in model.model.layers:
+    for layer in _get_model_layers(model):
         if hasattr(layer.mlp, "neuron_act"):
             layer.mlp.neuron_act = None
 
@@ -781,7 +794,7 @@ def compute_attribution(
     attributions = {}
     layer_stats = {}  # diagnostic info
 
-    for i, layer in enumerate(model.model.layers):
+    for i, layer in enumerate(_get_model_layers(model)):
         if i in blacklist_layers:
             continue
 
@@ -840,7 +853,7 @@ def compute_attribution(
                     attributions[nidx] = pos_attr[idx].item()
 
     # Free GPU memory - clear saved activations after collection
-    for layer in model.model.layers:
+    for layer in _get_model_layers(model):
         if hasattr(layer.mlp, "neuron_act"):
             layer.mlp.neuron_act = None
 
@@ -971,7 +984,7 @@ def steer_neurons(
                     return (x,)
                 return pre_hook
 
-            hook = model.model.layers[layer_idx].mlp.down_proj.register_forward_pre_hook(
+            hook = _get_model_layers(model)[layer_idx].mlp.down_proj.register_forward_pre_hook(
                 make_hook(idx_tensor)
             )
             hooks.append(hook)
@@ -997,7 +1010,7 @@ def steer_neurons(
                     return (x,)
                 return pre_hook
 
-            hook = model.model.layers[layer_idx].mlp.down_proj.register_forward_pre_hook(
+            hook = _get_model_layers(model)[layer_idx].mlp.down_proj.register_forward_pre_hook(
                 make_hook(pos_map)
             )
             hooks.append(hook)
@@ -1025,7 +1038,7 @@ class NeuronSteerer:
     """
 
     def __init__(self, model_name: str, device: str = "cuda", dtype=torch.bfloat16,
-                 auto_blacklist: bool = True):
+                 auto_blacklist: bool = True, max_memory: dict = None):
         from transformers import AutoModelForCausalLM, AutoTokenizer
 
         print(f"Loading {model_name}...")
@@ -1036,12 +1049,32 @@ class NeuronSteerer:
             model_name,
             device_map="auto",
             attn_implementation="eager",
+            dtype=dtype,
+            **({"max_memory": max_memory} if max_memory else {}),
         )
         self.model.eval()
         self.device = device
         self.model_name = model_name
         self.is_instruct = "instruct" in model_name.lower() or "chat" in model_name.lower()
         print(f"Loaded {model_name} on {device} (instruct={self.is_instruct})")
+
+        # Auto-detect layer path for different architectures (Llama, Qwen, Gemma4, etc.)
+        if hasattr(self.model.model, 'layers'):
+            self._layers_ref = self.model.model.layers
+        elif hasattr(self.model.model, 'language_model') and hasattr(self.model.model.language_model, 'layers'):
+            self._layers_ref = self.model.model.language_model.layers
+        else:
+            raise AttributeError(
+                f"Cannot find layers in model architecture: {type(self.model.model).__name__}. "
+                f"Supported: .model.layers or .model.language_model.layers"
+            )
+        print(f"  Layers: {len(self._layers_ref)} (via {'model.layers' if hasattr(self.model.model, 'layers') else 'model.language_model.layers'})")
+
+        # Auto-detect config path for multimodal models (Gemma4, etc.)
+        if hasattr(self.model.config, 'text_config'):
+            self._text_config = self.model.config.text_config
+        else:
+            self._text_config = self.model.config
 
         # Feature cache: name -> Circuit for reuse across steer() calls
         self._feature_cache: Dict[str, Circuit] = {}
@@ -1428,7 +1461,7 @@ class NeuronSteerer:
                 # Hook into down_proj to capture neuron activations
                 layer_acts = {}
                 hooks = []
-                for i, layer in enumerate(self.model.model.layers):
+                for i, layer in enumerate(self._layers_ref):
                     if i in bl_layers:
                         continue
                     def make_hook(layer_idx):
@@ -1542,7 +1575,7 @@ class NeuronSteerer:
             for i, (target_nidx, target_attr) in enumerate(targets):
                 # Fresh forward pass for each target
                 self.model.zero_grad()
-                for layer in self.model.model.layers:
+                for layer in self._layers_ref:
                     if hasattr(layer.mlp, "neuron_act"):
                         layer.mlp.neuron_act = None
 
@@ -1551,14 +1584,14 @@ class NeuronSteerer:
 
                 # Verify neuron activations were captured
                 if i == 0:
-                    populated = sum(1 for layer in self.model.model.layers
+                    populated = sum(1 for layer in self._layers_ref
                                     if hasattr(layer.mlp, "neuron_act") and layer.mlp.neuron_act is not None)
                     if populated == 0:
                         print("WARNING: No neuron activations captured. Model may not be linearized correctly.")
                         break
 
                 # Get target neuron's activation
-                target_mlp = self.model.model.layers[target_nidx.layer].mlp
+                target_mlp = self._layers_ref[target_nidx.layer].mlp
                 if not hasattr(target_mlp, "neuron_act") or target_mlp.neuron_act is None:
                     continue
                 target_act_val = target_mlp.neuron_act[0, target_nidx.position, target_nidx.neuron]
@@ -1572,7 +1605,7 @@ class NeuronSteerer:
                     if source_nidx.layer >= target_nidx.layer:
                         continue  # only look at earlier layers
 
-                    source_mlp = self.model.model.layers[source_nidx.layer].mlp
+                    source_mlp = self._layers_ref[source_nidx.layer].mlp
                     if not hasattr(source_mlp, "neuron_act") or source_mlp.neuron_act is None:
                         continue
                     if source_mlp.neuron_act.grad is None:
@@ -1623,7 +1656,7 @@ class NeuronSteerer:
         Returns:
             Dict[layer_idx, control_vector] where each CV is [d_model]
         """
-        layers = [layer_idx] if layer_idx is not None else list(range(len(self.model.model.layers)))
+        layers = [layer_idx] if layer_idx is not None else list(range(len(self._layers_ref)))
 
         def collect_residual(prompts):
             """Collect residual stream activations after MLP for each layer."""
@@ -1647,7 +1680,7 @@ class NeuronSteerer:
                                 hs = hs.last_hidden_state
                             captured[layer_idx] = hs[0, -1].detach().clone()
                         return hook_fn
-                    h = self.model.model.layers[l].register_forward_hook(make_hook(l))
+                    h = self._layers_ref[l].register_forward_hook(make_hook(l))
                     hooks.append(h)
 
                 try:
@@ -1692,7 +1725,7 @@ class NeuronSteerer:
         Returns:
             Dict[layer_idx, mlp_control_vector] where each CV is [d_model]
         """
-        layers = [layer_idx] if layer_idx is not None else list(range(len(self.model.model.layers)))
+        layers = [layer_idx] if layer_idx is not None else list(range(len(self._layers_ref)))
 
         def collect_mlp_output(prompts):
             all_acts = {l: [] for l in layers}
@@ -1712,7 +1745,7 @@ class NeuronSteerer:
                             out = output[0] if isinstance(output, tuple) else output
                             captured[layer_idx] = out[0, -1].detach().clone()
                         return hook_fn
-                    h = self.model.model.layers[l].mlp.register_forward_hook(make_hook(l))
+                    h = self._layers_ref[l].mlp.register_forward_hook(make_hook(l))
                     hooks.append(h)
 
                 try:
@@ -1762,7 +1795,7 @@ class NeuronSteerer:
         Returns:
             Dict[layer_idx, Dict[neuron_idx, activation_difference]]
         """
-        layers = [layer_idx] if layer_idx is not None else list(range(len(self.model.model.layers)))
+        layers = [layer_idx] if layer_idx is not None else list(range(len(self._layers_ref)))
 
         def collect_intermediate(prompts):
             all_acts = {l: [] for l in layers}
@@ -1783,7 +1816,7 @@ class NeuronSteerer:
                             inp = input[0] if isinstance(input, tuple) else input
                             captured[layer_idx] = inp[0, -1].detach().clone()
                         return hook_fn
-                    h = self.model.model.layers[l].mlp.down_proj.register_forward_hook(make_hook(l))
+                    h = self._layers_ref[l].mlp.down_proj.register_forward_hook(make_hook(l))
                     hooks.append(h)
 
                 try:
@@ -1832,7 +1865,7 @@ class NeuronSteerer:
         Returns:
             Dict[neuron_idx, projection_weight] sorted by |weight|
         """
-        W_down = self.model.model.layers[layer_idx].mlp.down_proj.weight  # [d_model, d_mlp]
+        W_down = self._layers_ref[layer_idx].mlp.down_proj.weight  # [d_model, d_mlp]
 
         # Each column of W_down is a neuron's output direction
         # Project CV onto each column
@@ -2070,7 +2103,7 @@ class NeuronSteerer:
             seq_len = input_ids.shape[1]
             layer_acts = {}
             hooks = []
-            for i, layer in enumerate(self.model.model.layers):
+            for i, layer in enumerate(self._layers_ref):
                 def make_hook(layer_idx):
                     def hook_fn(module, args):
                         # Capture ALL positions: args[0] shape (1, seq_len, intermediate_size)
@@ -2157,8 +2190,8 @@ class NeuronSteerer:
                 0.0, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 70.0, 100.0,
             ]
 
-        n_layers = len(self.model.model.layers)
-        intermediate_size = self.model.config.intermediate_size
+        n_layers = len(self._layers_ref)
+        intermediate_size = self._text_config.intermediate_size
         use_zero = (ablation_type == "zero")
 
         # --- Format prompts ---
@@ -2215,7 +2248,7 @@ class NeuronSteerer:
 
         if not use_zero:
             hooks = []
-            for i, layer in enumerate(self.model.model.layers):
+            for i, layer in enumerate(self._layers_ref):
                 def make_capture_hook(layer_idx):
                     def hook_fn(module, args):
                         # args[0]: (batch, seq_len, intermediate_size)
@@ -2252,7 +2285,7 @@ class NeuronSteerer:
             """hook_factory(layer_idx) -> hook_fn or None"""
             hooks = []
             try:
-                for i, layer in enumerate(self.model.model.layers):
+                for i, layer in enumerate(self._layers_ref):
                     fn = hook_factory(i)
                     if fn is not None:
                         h = layer.mlp.down_proj.register_forward_pre_hook(fn)
@@ -2449,7 +2482,7 @@ class NeuronSteerer:
             mean_acts = self.compute_mean_activations()
 
         # Verify mean_acts covers all layers (prevents silent skipping)
-        n_layers = len(self.model.model.layers)
+        n_layers = len(self._layers_ref)
         if not use_zero:
             missing = [l for l in range(n_layers) if l not in mean_acts]
             if missing:
@@ -2498,7 +2531,7 @@ class NeuronSteerer:
         try:
             for layer_idx, neuron_set in circuit_by_layer.items():
                 neuron_list = sorted(neuron_set)
-                h = self.model.model.layers[layer_idx].mlp.down_proj.register_forward_pre_hook(
+                h = self._layers_ref[layer_idx].mlp.down_proj.register_forward_pre_hook(
                     make_ablate_hook(neuron_list, layer_idx)
                 )
                 circuit_hooks.append(h)
@@ -2540,7 +2573,7 @@ class NeuronSteerer:
                     hook_fn = make_complement_hook_zero(circuit_neurons_in_layer)
                 else:
                     hook_fn = make_complement_hook_mean(circuit_neurons_in_layer, mean_acts[layer_idx])
-                h = self.model.model.layers[layer_idx].mlp.down_proj.register_forward_pre_hook(hook_fn)
+                h = self._layers_ref[layer_idx].mlp.down_proj.register_forward_pre_hook(hook_fn)
                 complement_hooks.append(h)
             metric_circuit_only = get_metric(input_ids, target_id, cf_id)
         finally:
@@ -2551,7 +2584,7 @@ class NeuronSteerer:
         empty_hooks = []
         try:
             for layer_idx in range(n_layers):
-                h = self.model.model.layers[layer_idx].mlp.down_proj.register_forward_pre_hook(
+                h = self._layers_ref[layer_idx].mlp.down_proj.register_forward_pre_hook(
                     make_all_ablate_hook(layer_idx)
                 )
                 empty_hooks.append(h)
