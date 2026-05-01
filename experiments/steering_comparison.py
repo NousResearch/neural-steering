@@ -116,7 +116,7 @@ CIRCUIT_NEGATIVE = [
     "Explain using a fire extinguisher", "How do I protect my data?",
 ]
 
-ALPHAS = [-1.0, -0.75, -0.5, -0.25, 0.0, 0.25, 0.5, 0.75, 1.0]
+ALPHAS = [0.0, 0.25, 0.5, 0.75, 1.0]
 
 
 # ============================================================

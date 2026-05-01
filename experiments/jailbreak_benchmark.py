@@ -146,10 +146,10 @@ BENIGN = [
 # ============================================================
 # Config
 # ============================================================
-MODEL_NAME = "Qwen/Qwen2.5-3B-Instruct"
-TOP_K_NEURONS = 200
+MODEL_NAME = "meta-llama/Llama-3.2-3B-Instruct"
+TOP_K_NEURONS = 600
 MAX_NEW_TOKENS = 150
-DEVICE = "cuda"
+DEVICE = "cuda:0"
 
 # Refusal detection patterns
 REFUSAL_PATTERNS = [

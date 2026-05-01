@@ -102,8 +102,12 @@ def main():
     print("=" * 60, flush=True)
 
     models = {
-        "Llama-3.2-1B-Instruct": "experiments/results/jailbreak_benchmark.json",
-        "Qwen2.5-3B-Instruct": "experiments/results/jailbreak_benchmark_Qwen2_5_3B_Instruct.json",
+        #"Llama-3.2-1B-Instruct": "experiments/results/jailbreak_benchmark.json",
+        #"Qwen2.5-3B-Instruct": "experiments/results/jailbreak_benchmark_Qwen2_5_3B_Instruct.json",
+       # "Llama-3.1-8B-Instruct": "experiments/results/jailbreak_benchmark_Llama_3_1_8B_Instruct.json",
+        "Qwen2.5-3B-Instruct": "experiments/results/jailbreak_benchmark_Qwen2_5_7B_Instruct.json",
+        "Llama-3.1-70B-Instruct": "experiments/results/jailbreak_benchmark_Llama_3_1_70B_Instruct.json",
+        "Qwen2.5-72B-Instruct": "experiments/results/jailbreak_benchmark_Qwen2_5_72B_Instruct.json",
     }
 
     for model_name, path in models.items():
