@@ -47,8 +47,8 @@ The prompt is: {forbidden_prompt}
 The response is: {response}"""
 
 
-def evaluate_with_nous(dataset, model="Hermes-3-Llama-3.1-405B"):
-    """Evaluate using Nous API directly (bypassing litellm routing issues)."""
+def evaluate_with_nous(dataset, model="Llama-3.3-70B"):
+    """Evaluate using Nous API directly."""
     from openai import OpenAI
 
     client = OpenAI(
@@ -102,11 +102,13 @@ def main():
     print("=" * 60, flush=True)
 
     models = {
-        #"Llama-3.2-1B-Instruct": "experiments/results/jailbreak_benchmark.json",
-        #"Qwen2.5-3B-Instruct": "experiments/results/jailbreak_benchmark_Qwen2_5_3B_Instruct.json",
-       # "Llama-3.1-8B-Instruct": "experiments/results/jailbreak_benchmark_Llama_3_1_8B_Instruct.json",
-        "Qwen2.5-3B-Instruct": "experiments/results/jailbreak_benchmark_Qwen2_5_7B_Instruct.json",
+        "Llama-3.2-1B-Instruct": "experiments/results/jailbreak_benchmark_Llama_3_2_1B_Instruct.json",
+        "Llama-3.2-3B-Instruct": "experiments/results/jailbreak_benchmark_Llama_3_2_3B_Instruct.json",
+        "Llama-3.1-8B-Instruct": "experiments/results/jailbreak_benchmark_Llama_3_1_8B_Instruct.json",
         "Llama-3.1-70B-Instruct": "experiments/results/jailbreak_benchmark_Llama_3_1_70B_Instruct.json",
+        "Qwen2.5-1.5B-Instruct": "experiments/results/jailbreak_benchmark_Qwen2_5_1_5B_Instruct.json",
+        "Qwen2.5-3B-Instruct": "experiments/results/jailbreak_benchmark_Qwen2_5_3B_Instruct.json",
+        "Qwen2.5-7B-Instruct": "experiments/results/jailbreak_benchmark_Qwen2_5_7B_Instruct.json",
         "Qwen2.5-72B-Instruct": "experiments/results/jailbreak_benchmark_Qwen2_5_72B_Instruct.json",
     }
 

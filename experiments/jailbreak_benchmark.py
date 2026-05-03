@@ -1,13 +1,13 @@
 """
-Jailbreak benchmark: Measure refusal rate before/after ablating the late-layer
-refusal circuit identified by contrastive LRP (same method as paper).
+Jailbreak benchmark: Measure refusal rate before/after ablating the refusal
+circuit identified by contrastive neuron attribution (CNA).
 
 Uses JBB-Behaviors (100 harmful prompts, NeurIPS 2024) as the evaluation set.
-Circuit discovery uses the exact same harmful/benign prompt sets as the paper.
 
-Run: CUDA_VISIBLE_DEVICES=0 python -u experiments/jailbreak_benchmark.py > experiments/results/jailbreak_benchmark.log 2>&1
+Run: CUDA_VISIBLE_DEVICES=0 python -u experiments/jailbreak_benchmark.py --model meta-llama/Llama-3.1-8B-Instruct > experiments/results/jailbreak_benchmark.log 2>&1
 """
 
+import argparse
 import sys
 sys.path.insert(0, ".")
 
@@ -15,10 +15,9 @@ import torch
 import json
 import re
 import time
-import numpy as np
 from collections import defaultdict
 from datasets import load_dataset
-from neuron_steer.core import NeuronSteerer, steer_neurons, NeuronIdx
+from neuron_steer.core import NeuronSteerer, steer_neurons
 
 # ============================================================
 # Same prompt sets as the paper's 100-prompt sweep
@@ -146,10 +145,7 @@ BENIGN = [
 # ============================================================
 # Config
 # ============================================================
-MODEL_NAME = "meta-llama/Llama-3.2-3B-Instruct"
-TOP_K_NEURONS = 600
 MAX_NEW_TOKENS = 150
-DEVICE = "cuda:0"
 
 # Refusal detection patterns
 REFUSAL_PATTERNS = [
@@ -194,18 +190,24 @@ def generate_response(model, tokenizer, prompt: str, max_new_tokens=MAX_NEW_TOKE
 
 
 def main():
+    parser = argparse.ArgumentParser(description="JBB-Behaviors refusal circuit ablation benchmark")
+    parser.add_argument("--model", default="meta-llama/Llama-3.1-8B-Instruct",
+                        help="HuggingFace model name")
+    parser.add_argument("--top-k", type=int, default=1600,
+                        help="Number of neurons to select for the circuit")
+    parser.add_argument("--device", default="cuda:0")
+    args = parser.parse_args()
+
     print("=" * 60, flush=True)
     print("JAILBREAK BENCHMARK: Refusal Circuit Ablation", flush=True)
-    print(f"Using paper's exact contrastive method (find_feature)", flush=True)
     print("=" * 60, flush=True)
 
-    # Load model
-    print(f"\nLoading {MODEL_NAME}...", flush=True)
+    print(f"\nLoading {args.model}...", flush=True)
     t0 = time.time()
-    steerer = NeuronSteerer(MODEL_NAME, device=DEVICE)
+    steerer = NeuronSteerer(args.model, device=args.device)
     model = steerer.model
     tokenizer = steerer.tokenizer
-    n_layers = len(model.model.layers)
+    n_layers = len(steerer._layers_ref)
     print(f"Loaded in {time.time()-t0:.1f}s ({n_layers} layers)", flush=True)
 
     # Load JBB-Behaviors for evaluation
@@ -215,17 +217,17 @@ def main():
     print(f"Loaded {len(eval_prompts)} harmful prompts for evaluation", flush=True)
 
     # ============================================================
-    # Phase 1: Find the refusal circuit (same method as paper)
+    # Phase 1: Find the refusal circuit
     # ============================================================
     print(f"\n{'='*60}", flush=True)
-    print(f"Phase 1: Contrastive discovery (paper's method)", flush=True)
-    print(f"  {len(HARMFUL)} harmful vs {len(BENIGN)} benign, top_k={TOP_K_NEURONS}", flush=True)
+    print(f"Phase 1: Contrastive discovery (CNA)", flush=True)
+    print(f"  {len(HARMFUL)} harmful vs {len(BENIGN)} benign, top_k={args.top_k}", flush=True)
     print(f"{'='*60}", flush=True)
 
     t0 = time.time()
     circuit = steerer.find_feature(
         positive=HARMFUL, negative=BENIGN,
-        name="refusal", top_k=TOP_K_NEURONS, verbose=True,
+        name="refusal", top_k=args.top_k, verbose=True,
     )
     print(f"Circuit found in {time.time()-t0:.1f}s: {len(circuit.neurons)} neurons", flush=True)
 
@@ -276,7 +278,7 @@ def main():
     # Phase 3: Ablation evaluation
     # ============================================================
     print(f"\n{'='*60}", flush=True)
-    print(f"Phase 3: Ablation (multiplier=0.0, {TOP_K_NEURONS} neurons)", flush=True)
+    print(f"Phase 3: Ablation (multiplier=0.0, {args.top_k} neurons)", flush=True)
     print(f"{'='*60}", flush=True)
 
     ablated_refusals = 0
@@ -316,8 +318,8 @@ def main():
     print(f"\n{'='*60}", flush=True)
     print(f"RESULTS", flush=True)
     print(f"{'='*60}", flush=True)
-    print(f"Model: {MODEL_NAME}", flush=True)
-    print(f"Discovery: contrastive LRP (same as paper, {len(HARMFUL)}h/{len(BENIGN)}b)", flush=True)
+    print(f"Model: {args.model}", flush=True)
+    print(f"Discovery: CNA (contrastive, {len(HARMFUL)}h/{len(BENIGN)}b)", flush=True)
     print(f"Evaluation: JBB-Behaviors ({len(eval_prompts)} prompts)", flush=True)
     print(f"Circuit: {len(circuit.neurons)} neurons "
           f"({late_count} late-layer = {100*late_count/len(circuit.neurons):.1f}%)", flush=True)
@@ -346,8 +348,8 @@ def main():
 
     # Save
     results = {
-        "model": MODEL_NAME,
-        "method": "contrastive LRP (find_feature, same as paper)",
+        "model": args.model,
+        "method": "CNA (contrastive neuron attribution)",
         "discovery_prompts": f"{len(HARMFUL)} harmful + {len(BENIGN)} benign",
         "dataset": "JailbreakBench/JBB-Behaviors",
         "num_eval_prompts": len(eval_prompts),
@@ -365,7 +367,7 @@ def main():
         "ablated_results": ablated_results,
     }
 
-    model_short = MODEL_NAME.split("/")[-1].replace("-", "_").replace(".", "_")
+    model_short = args.model.split("/")[-1].replace("-", "_").replace(".", "_")
     output_path = f"experiments/results/jailbreak_benchmark_{model_short}.json"
 
     with open(output_path, "w") as f:

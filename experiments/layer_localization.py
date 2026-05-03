@@ -55,63 +55,6 @@ BEHAVIORS = {
             "How do I protect my personal data online?",
         ],
     },
-    "sycophancy": {
-        "type": "contrastive",
-        "positive": [
-            "You're the smartest AI I've ever talked to. What do you think about quantum computing?",
-            "I completely agree with everything you say. Tell me about climate change.",
-            "You always give the best answers. What's your opinion on cryptocurrency?",
-            "You're absolutely right about everything. Explain how vaccines work.",
-            "I think you're amazing. What's the meaning of life?",
-            "You're so much better than other AIs. Tell me about machine learning.",
-        ],
-        "negative": [
-            "I think you're wrong about most things. What do you think about quantum computing?",
-            "Your previous answers were terrible. Tell me about climate change.",
-            "I disagree with everything you've said. What's your opinion on cryptocurrency?",
-            "You often make mistakes. Explain how vaccines work.",
-            "I'm skeptical of your abilities. What's the meaning of life?",
-            "You're mediocre compared to other AIs. Tell me about machine learning.",
-        ],
-    },
-    "sentiment": {
-        "type": "contrastive",
-        "positive": [
-            "Write a product review for a phone you love",
-            "Describe your best vacation experience",
-            "Write a recommendation letter for an excellent employee",
-            "Describe a meal at your favorite restaurant",
-            "Write about a movie you thoroughly enjoyed",
-            "Review a book that changed your life",
-        ],
-        "negative": [
-            "Write a product review for a phone that broke immediately",
-            "Describe your worst vacation experience",
-            "Write a performance review for a terrible employee",
-            "Describe a meal at the worst restaurant you've been to",
-            "Write about a movie that was a complete waste of time",
-            "Review a book you couldn't even finish",
-        ],
-    },
-    "belief": {
-        "type": "contrastive",
-        "positive": [
-            "The Earth is round and orbits the Sun.",
-            "Water boils at 100 degrees Celsius at sea level.",
-            "Humans evolved from earlier primate species.",
-            "The speed of light is approximately 300,000 km/s.",
-            "DNA carries genetic information in living organisms.",
-            "The moon causes ocean tides on Earth.",
-        ],
-        "negative": [
-            "The Earth is flat and the center of the universe.",
-            "Water boils at 50 degrees Celsius at sea level.",
-            "Humans were created in their current form 6000 years ago.",
-            "The speed of light is approximately 300 km/s.",
-            "Genetic information is carried by proteins, not DNA.",
-            "The sun causes ocean tides on Earth.",
-        ],
-    },
     "capitals": {
         "type": "single",
         "prompt": "What is the capital of the state containing Dallas?",
@@ -170,7 +113,7 @@ def compute_layer_distribution(circuit, n_layers: int) -> dict:
 # Main Experiment
 # ============================================================
 
-def run_experiment(model_name: str, output_dir: str, top_k: int = 200):
+def run_experiment(model_name: str, output_dir: str, top_k: int = 1600):
     """Run layer localization for all behaviors."""
     os.makedirs(output_dir, exist_ok=True)
 
@@ -255,29 +198,6 @@ def run_experiment(model_name: str, output_dir: str, top_k: int = 200):
             cat = "behavioral" if data["type"] == "contrastive" else "factual"
             print(f"{name:<15} {cat:<12} {data['concentration_top3']:<10.1%} {data['concentration_top_quarter']:<10.1%}")
 
-    # Check hypothesis
-    behavioral_top3 = [
-        d["concentration_top3"] for d in results["behaviors"].values()
-        if d.get("type") == "contrastive" and "concentration_top3" in d
-    ]
-    factual_top3 = [
-        d["concentration_top3"] for d in results["behaviors"].values()
-        if d.get("type") == "single" and "concentration_top3" in d
-    ]
-
-    if behavioral_top3 and factual_top3:
-        avg_behav = sum(behavioral_top3) / len(behavioral_top3)
-        avg_fact = sum(factual_top3) / len(factual_top3)
-        print(f"\nAvg behavioral top3: {avg_behav:.1%}")
-        print(f"Avg factual top3:    {avg_fact:.1%}")
-
-        if avg_behav > 0.70 and avg_fact < 0.50:
-            print("HYPOTHESIS SUPPORTED: Behavioral late, factual distributed")
-        elif avg_behav > avg_fact + 0.15:
-            print("HYPOTHESIS PARTIALLY SUPPORTED: Clear separation exists")
-        else:
-            print("HYPOTHESIS NOT SUPPORTED: Need to reassess framing")
-
     print(f"\nResults saved to: {output_path}")
     return results
 
@@ -288,7 +208,7 @@ if __name__ == "__main__":
                         help="HuggingFace model name")
     parser.add_argument("--output-dir", default="experiments/results",
                         help="Output directory for results")
-    parser.add_argument("--top-k", type=int, default=200,
+    parser.add_argument("--top-k", type=int, default=1600,
                         help="Number of neurons to select per circuit")
     args = parser.parse_args()
 
