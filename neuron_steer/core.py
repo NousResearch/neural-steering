@@ -1,16 +1,13 @@
 """
 neuron_steer.py - Neuron Circuit Discovery and Steering for Language Models
 
-Based on: "Language Model Circuits Are Sparse in the Neuron Basis" (arxiv 2601.22594)
-Implementation by cc
-
 LRP rules for linearized backward attribution (matching TransluceAI's code):
   1. LN-rule: RMSNorm coefficient (weight * rsqrt) detached but preserved in backward
   2. AH-rule: Eager attention (no SDPA/Flash) for full autograd through Q/K/V/O
   3. Half-rule: Shapley attribution for gate*up elementwise multiply in MLP
 
-Core insight: ~100-200 MLP neurons form complete circuits. No SAE needed.
-Attribution via single forward+backward pass (not path integration like IG).
+Core insight: 0.1% of MLP neurons form complete circuits. No SAE needed.
+Attribution via single forward+backward pass.
 
 Usage:
     steerer = NeuronSteerer("meta-llama/Llama-3.1-8B-Instruct")
@@ -773,8 +770,6 @@ def compute_attribution(
         target_logit = logits[target_token_id]
 
         if target_only:
-            # TransluceAI's approach: backward from target logit alone
-            # The percentage_threshold is relative to this value
             metric = target_logit
         elif counterfactual_token_id is None:
             sorted_logits, sorted_ids = logits.sort(descending=True)
@@ -926,8 +921,6 @@ def select_circuit(
         return dict(sorted_attrs[:top_k])
 
     if method == "percentage" and reference_value is not None:
-        # TransluceAI's approach: individual neuron threshold
-        # Keep neurons with |attribution| >= threshold * |reference_value|
         abs_threshold = threshold * abs(reference_value)
         selected = {nidx: attr for nidx, attr in attributions.items()
                     if abs(attr) >= abs_threshold}
@@ -1034,7 +1027,6 @@ class NeuronSteerer:
         2. discover_circuit(): linearize → forward → backward → select neurons
         3. steer_and_generate(): hook neurons → generate with modified activations
 
-    No SAE training, no control vectors. Pure neuron-basis attribution.
     """
 
     def __init__(self, model_name: str, device: str = "cuda", dtype=torch.bfloat16,
@@ -1184,8 +1176,6 @@ class NeuronSteerer:
     ) -> Circuit:
         """Discover the neuron circuit for predicting target_token.
 
-        Uses RelP: linearized gradient * activation = attribution per neuron.
-
         Selection methods:
             top_k=N: Select exactly N neurons by |attribution|
             selection_method='percentage': TransluceAI's approach - keep neurons with
@@ -1233,8 +1223,6 @@ class NeuronSteerer:
         bl_neurons = blacklist_neurons if blacklist_neurons is not None else self.blacklist
 
         # Use target_only when doing percentage selection
-        # TransluceAI ALWAYS backprops from target logit alone (never logit_diff)
-        # Their focus_logits = target token id only. Counterfactual used only for eval.
         use_target_only = (selection_method == "percentage")
 
         with linearized(self.model):
@@ -1334,8 +1322,6 @@ class NeuronSteerer:
         bl_neurons = blacklist_neurons if blacklist_neurons is not None else self.blacklist
 
         # Use target_only when doing percentage selection or explicitly requested
-        # TransluceAI ALWAYS backprops from target logit alone (never logit_diff)
-        # Their focus_logits = target token id only. Counterfactual used only for eval.
         use_target_only = target_only if target_only is not None else (selection_method == "percentage")
 
         # For percentage + "any": apply threshold PER PROMPT (TransluceAI's approach)
@@ -1365,8 +1351,6 @@ class NeuronSteerer:
                 )
 
             if per_prompt_filter:
-                # TransluceAI's approach: filter PER PROMPT, then union
-                # threshold = percentage * |this_prompt's_metric_value|
                 abs_thresh = threshold * abs(ld)
                 filtered = {nidx: attr for nidx, attr in attrs.items()
                             if abs(attr) >= abs_thresh}
@@ -2052,10 +2036,6 @@ class NeuronSteerer:
     ) -> Dict[int, torch.Tensor]:
         """Compute mean MLP neuron activations across prompts.
 
-        TransluceAI computes mean over the evaluation batch at ALL positions.
-        We average over all prompts and all token positions to get one mean
-        vector per layer (shape: intermediate_size).
-
         Args:
             prompts: List of prompts to compute mean from. If None, uses
                      20 diverse prompts (less accurate but works as fallback).
@@ -2593,11 +2573,6 @@ class NeuronSteerer:
             for h in empty_hooks:
                 h.remove()
 
-        # Compute metrics (TransluceAI's formulas)
-        # faithfulness = (fc - fempty) / (fm - fempty): how much behavior circuit alone captures
-        # completeness = (fc_comp - fempty) / (fm - fempty): how much behavior survives without circuit
-        #   completeness ≈ 0 means circuit IS the behavior (good circuit)
-        #   completeness ≈ 1 means circuit isn't needed (bad circuit)
         denom = metric_full - metric_empty
         if abs(denom) < 1e-10:
             faithfulness = 0.0
