@@ -6,7 +6,7 @@ LRP rules for linearized backward attribution (matching TransluceAI's code):
   2. AH-rule: Eager attention (no SDPA/Flash) for full autograd through Q/K/V/O
   3. Half-rule: Shapley attribution for gate*up elementwise multiply in MLP
 
-Core insight: 0.1% of MLP neurons form complete circuits. No SAE needed.
+Core insight: ~0.1% of MLP neurons form complete circuits. No SAE needed.
 Attribution via single forward+backward pass.
 
 Usage:
