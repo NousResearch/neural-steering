@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refusal Circuit — Neuron Constellation</title>
+<script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0f;
+    color: #e0e0e0;
+    font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+    overflow-x: hidden;
+  }
+  .header {
+    text-align: center;
+    padding: 40px 20px 10px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff6b6b, #c084fc, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+  }
+  .header .subtitle {
+    color: #888;
+    font-size: 13px;
+    margin-top: 6px;
+  }
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 20px;
+    flex-wrap: wrap;
+  }
+  .controls button {
+    background: #1a1a2e;
+    border: 1px solid #333;
+    color: #ccc;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .controls button:hover { background: #2a2a4e; border-color: #666; }
+  .controls button.active { background: #c084fc22; border-color: #c084fc; color: #c084fc; }
+  .viz-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 0 20px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .viz-panel {
+    background: #0f0f1a;
+    border: 1px solid #1a1a2e;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .viz-panel.full { grid-column: 1 / -1; }
+  .panel-title {
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #888;
+    border-bottom: 1px solid #1a1a2e;
+  }
+  .panel-title span { color: #c084fc; }
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 0 20px 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .stat-card {
+    background: #0f0f1a;
+    border: 1px solid #1a1a2e;
+    border-radius: 8px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .stat-card .value {
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff6b6b, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat-card .label {
+    font-size: 11px;
+    color: #666;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Refusal Circuit — Neuron Constellation</h1>
+  <div class="subtitle">Llama-3.2-1B-Instruct · 251 neurons · Top 0.1% by contrastive delta (harmful vs benign)</div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-card">
+    <div class="value" id="stat-total">251</div>
+    <div class="label">Circuit Neurons</div>
+  </div>
+  <div class="stat-card">
+    <div class="value" id="stat-layers">16</div>
+    <div class="label">Layers Spanned</div>
+  </div>
+  <div class="stat-card">
+    <div class="value" id="stat-concentration">87%</div>
+    <div class="label">In Final 3 Layers</div>
+  </div>
+  <div class="stat-card">
+    <div class="value" id="stat-sparsity">0.1%</div>
+    <div class="label">Of All MLP Neurons</div>
+  </div>
+</div>
+
+<div class="controls">
+  <button class="active" onclick="setView('3d')">3D Scatter</button>
+  <button onclick="setView('layer')">Layer Heatmap</button>
+  <button onclick="setView('pca')">2D Projection</button>
+  <button onclick="setView('ridge')">Ridge Plot</button>
+</div>
+
+<div class="viz-container">
+  <div class="viz-panel full" id="main-panel">
+    <div class="panel-title"><span>●</span> <span id="panel-label">3D Neuron Space — drag to rotate, scroll to zoom</span></div>
+    <div id="main-chart" style="height:560px;"></div>
+  </div>
+  <div class="viz-panel" id="side-panel-1">
+    <div class="panel-title"><span>●</span> Per-Layer Distribution</div>
+    <div id="side-chart-1" style="height:280px;"></div>
+  </div>
+  <div class="viz-panel" id="side-panel-2">
+    <div class="panel-title"><span>●</span> Delta Distribution by Layer Group</div>
+    <div id="side-chart-2" style="height:280px;"></div>
+  </div>
+</div>
+
+<script>
+const NEURONS = [{"layer": 0, "neuron": 1824, "delta": 0.035647, "attribution": 0.02578, "act_positive": 0.045294, "act_negative": -0.003727, "abs_delta": 0.035647}, {"layer": 1, "neuron": 6912, "delta": -0.013902, "attribution": -0.007393, "act_positive": 0.019022, "act_negative": 0.060179, "abs_delta": 0.013902}, {"layer": 2, "neuron": 6873, "delta": -0.045235, "attribution": -0.06194, "act_positive": 0.062584, "act_negative": -0.052129, "abs_delta": 0.045235}, {"layer": 2, "neuron": 3611, "delta": 0.022247, "attribution": 0.015913, "act_positive": 0.063736, "act_negative": 0.019411, "abs_delta": 0.022247}, {"layer": 3, "neuron": 5635, "delta": 0.037505, "attribution": 0.038863, "act_positive": -0.031124, "act_negative": -0.105981, "abs_delta": 0.037505}, {"layer": 3, "neuron": 4333, "delta": -0.039867, "attribution": -0.044592, "act_positive": -0.023404, "act_negative": -0.049163, "abs_delta": 0.039867}, {"layer": 4, "neuron": 3733, "delta": 0.090018, "attribution": 0.079227, "act_positive": 0.009181, "act_negative": -0.0326, "abs_delta": 0.090018}, {"layer": 4, "neuron": 4741, "delta": 0.058352, "attribution": 0.068282, "act_positive": 0.055258, "act_negative": -0.049919, "abs_delta": 0.058352}, {"layer": 4, "neuron": 1307, "delta": -0.053451, "attribution": -0.051434, "act_positive": 0.040557, "act_negative": -0.04916, "abs_delta": 0.053451}, {"layer": 5, "neuron": 5313, "delta": -0.052139, "attribution": -0.068917, "act_positive": 0.043451, "act_negative": -0.023919, "abs_delta": 0.052139}, {"layer": 5, "neuron": 916, "delta": -0.116104, "attribution": -0.082739, "act_positive": 0.083479, "act_negative": -0.093229, "abs_delta": 0.116104}, {"layer": 5, "neuron": 3752, "delta": -0.03473, "attribution": -0.022214, "act_positive": -0.042291, "act_negative": -0.03647, "abs_delta": 0.03473}, {"layer": 6, "neuron": 6543, "delta": -0.037916, "attribution": -0.020745, "act_positive": 0.03069, "act_negative": -0.007206, "abs_delta": 0.037916}, {"layer": 6, "neuron": 5930, "delta": -0.087952, "attribution": -0.049563, "act_positive": 0.145134, "act_negative": -0.062044, "abs_delta": 0.087952}, {"layer": 6, "neuron": 3593, "delta": 0.008477, "attribution": 0.010349, "act_positive": 0.003263, "act_negative": -0.011916, "abs_delta": 0.008477}, {"layer": 6, "neuron": 2266, "delta": 0.123829, "attribution": 0.075728, "act_positive": 0.001804, "act_negative": -0.044983, "abs_delta": 0.123829}, {"layer": 7, "neuron": 4315, "delta": 0.091373, "attribution": 0.094971, "act_positive": 0.171026, "act_negative": -0.002536, "abs_delta": 0.091373}, {"layer": 7, "neuron": 2927, "delta": 0.000299, "attribution": 0.000155, "act_positive": 0.068635, "act_negative": -0.06529, "abs_delta": 0.000299}, {"layer": 7, "neuron": 1743, "delta": 0.180187, "attribution": 0.260722, "act_positive": 0.186833, "act_negative": -0.012407, "abs_delta": 0.180187}, {"layer": 7, "neuron": 4889, "delta": 0.066964, "attribution": 0.084766, "act_positive": -0.005399, "act_negative": -0.017418, "abs_delta": 0.066964}, {"layer": 7, "neuron": 3258, "delta": 0.068588, "attribution": 0.048821, "act_positive": 0.031987, "act_negative": -0.027545, "abs_delta": 0.068588}, {"layer": 8, "neuron": 6118, "delta": 0.08322, "attribution": 0.060309, "act_positive": 0.047095, "act_negative": -0.051347, "abs_delta": 0.08322}, {"layer": 8, "neuron": 7177, "delta": 0.128681, "attribution": 0.093801, "act_positive": 0.180013, "act_negative": -0.04958, "abs_delta": 0.128681}, {"layer": 8, "neuron": 7397, "delta": 0.03207, "attribution": 0.037489, "act_positive": 0.107299, "act_negative": 0.069553, "abs_delta": 0.03207}, {"layer": 8, "neuron": 1982, "delta": -0.174384, "attribution": -0.228006, "act_positive": 0.16776, "act_negative": -0.106712, "abs_delta": 0.174384}, {"layer": 8, "neuron": 4061, "delta": 0.044506, "attribution": 0.043038, "act_positive": -0.018093, "act_negative": -0.142705, "abs_delta": 0.044506}, {"layer": 9, "neuron": 6596, "delta": -0.057822, "attribution": -0.03952, "act_positive": 0.050746, "act_negative": 0.043267, "abs_delta": 0.057822}, {"layer": 9, "neuron": 5559, "delta": 0.089502, "attribution": 0.121362, "act_positive": 0.039134, "act_negative": -0.07832, "abs_delta": 0.089502}, {"layer": 9, "neuron": 1790, "delta": 0.150604, "attribution": 0.110902, "act_positive": 0.191246, "act_negative": -0.003019, "abs_delta": 0.150604}, {"layer": 9, "neuron": 4073, "delta": -0.175118, "attribution": -0.11639, "act_positive": 0.05202, "act_negative": -0.034938, "abs_delta": 0.175118}, {"layer": 9, "neuron": 3139, "delta": -0.036641, "attribution": -0.045088, "act_positive": 0.116131, "act_negative": -0.053029, "abs_delta": 0.036641}, {"layer": 9, "neuron": 3116, "delta": 0.005863, "attribution": 0.004208, "act_positive": 0.00324, "act_negative": -0.020157, "abs_delta": 0.005863}, {"layer": 10, "neuron": 821, "delta": -0.142624, "attribution": -0.104857, "act_positive": 0.078776, "act_negative": -0.09198, "abs_delta": 0.142624}, {"layer": 10, "neuron": 7811, "delta": 0.154475, "attribution": 0.172916, "act_positive": 0.096878, "act_negative": -0.134619, "abs_delta": 0.154475}, {"layer": 10, "neuron": 2579, "delta": 0.051736, "attribution": 0.038217, "act_positive": 0.12568, "act_negative": -0.042891, "abs_delta": 0.051736}, {"layer": 10, "neuron": 931, "delta": 0.095356, "attribution": 0.119372, "act_positive": -0.094699, "act_negative": -0.019988, "abs_delta": 0.095356}, {"layer": 10, "neuron": 1312, "delta": 0.07134, "attribution": 0.05459, "act_positive": 0.099083, "act_negative": -0.011681, "abs_delta": 0.07134}, {"layer": 10, "neuron": 3044, "delta": -0.075982, "attribution": -0.049977, "act_positive": 0.066334, "act_negative": -0.118662, "abs_delta": 0.075982}, {"layer": 10, "neuron": 1122, "delta": -0.008178, "attribution": -0.010771, "act_positive": 0.002361, "act_negative": 0.020276, "abs_delta": 0.008178}, {"layer": 11, "neuron": 1891, "delta": -0.024528, "attribution": -0.029127, "act_positive": -0.010012, "act_negative": -0.017561, "abs_delta": 0.024528}, {"layer": 11, "neuron": 1753, "delta": 0.164302, "attribution": 0.218415, "act_positive": 0.156593, "act_negative": 0.023878, "abs_delta": 0.164302}, {"layer": 11, "neuron": 2546, "delta": 0.249641, "attribution": 0.165158, "act_positive": 0.226194, "act_negative": -0.147741, "abs_delta": 0.249641}, {"layer": 11, "neuron": 4462, "delta": 0.175947, "attribution": 0.114199, "act_positive": 0.117358, "act_negative": -0.128906, "abs_delta": 0.175947}, {"layer": 11, "neuron": 4616, "delta": -0.041906, "attribution": -0.022706, "act_positive": 0.161822, "act_negative": -0.067866, "abs_delta": 0.041906}, {"layer": 11, "neuron": 3450, "delta": -0.115758, "attribution": -0.135082, "act_positive": 0.167964, "act_negative": 0.034614, "abs_delta": 0.115758}, {"layer": 11, "neuron": 5617, "delta": -0.23329, "attribution": -0.291491, "act_positive": 0.275499, "act_negative": -0.114955, "abs_delta": 0.23329}, {"layer": 11, "neuron": 3335, "delta": 0.055656, "attribution": 0.037811, "act_positive": 0.111338, "act_negative": -0.097396, "abs_delta": 0.055656}, {"layer": 12, "neuron": 4065, "delta": 0.101162, "attribution": 0.133589, "act_positive": 0.128623, "act_negative": 0.025915, "abs_delta": 0.101162}, {"layer": 12, "neuron": 4371, "delta": -0.008747, "attribution": -0.011138, "act_positive": 0.026888, "act_negative": -0.045684, "abs_delta": 0.008747}, {"layer": 12, "neuron": 2608, "delta": -0.224547, "attribution": -0.186632, "act_positive": 0.209978, "act_negative": -0.146668, "abs_delta": 0.224547}, {"layer": 12, "neuron": 1771, "delta": 0.035839, "attribution": 0.0393, "act_positive": 0.032186, "act_negative": -0.154723, "abs_delta": 0.035839}, {"layer": 12, "neuron": 6267, "delta": 0.144606, "attribution": 0.089026, "act_positive": 0.173253, "act_negative": -0.054593, "abs_delta": 0.144606}, {"layer": 12, "neuron": 634, "delta": -0.23198, "attribution": -0.275328, "act_positive": 0.26152, "act_negative": -0.120631, "abs_delta": 0.23198}, {"layer": 12, "neuron": 7711, "delta": 0.129536, "attribution": 0.187682, "act_positive": 0.098564, "act_negative": -0.096883, "abs_delta": 0.129536}, {"layer": 12, "neuron": 3644, "delta": 0.12417, "attribution": 0.144893, "act_positive": 0.080592, "act_negative": -0.102625, "abs_delta": 0.12417}, {"layer": 12, "neuron": 3269, "delta": -0.028228, "attribution": -0.032883, "act_positive": 0.026501, "act_negative": -0.045811, "abs_delta": 0.028228}, {"layer": 12, "neuron": 7541, "delta": -0.203028, "attribution": -0.163209, "act_positive": 0.232198, "act_negative": -0.159283, "abs_delta": 0.203028}, {"layer": 12, "neuron": 5728, "delta": -0.070671, "attribution": -0.066557, "act_positive": -0.012987, "act_negative": -0.054567, "abs_delta": 0.070671}, {"layer": 12, "neuron": 5000, "delta": -0.016666, "attribution": -0.013063, "act_positive": -0.055286, "act_negative": 0.09348, "abs_delta": 0.016666}, {"layer": 13, "neuron": 3848, "delta": 0.185566, "attribution": 0.23078, "act_positive": 0.181511, "act_negative": -0.06538, "abs_delta": 0.185566}, {"layer": 13, "neuron": 5085, "delta": 0.016375, "attribution": 0.018451, "act_positive": -0.045493, "act_negative": -0.014283, "abs_delta": 0.016375}, {"layer": 13, "neuron": 3680, "delta": 0.105582, "attribution": 0.086547, "act_positive": 0.130677, "act_negative": -0.033278, "abs_delta": 0.105582}, {"layer": 13, "neuron": 3262, "delta": -0.013401, "attribution": -0.012162, "act_positive": -0.003911, "act_negative": 0.007736, "abs_delta": 0.013401}, {"layer": 13, "neuron": 2414, "delta": 0.136795, "attribution": 0.192174, "act_positive": 0.108312, "act_negative": -0.175778, "abs_delta": 0.136795}, {"layer": 13, "neuron": 400, "delta": -0.010806, "attribution": -0.009204, "act_positive": 0.015614, "act_negative": 0.042962, "abs_delta": 0.010806}, {"layer": 13, "neuron": 757, "delta": -0.040883, "attribution": -0.051002, "act_positive": 0.013512, "act_negative": -0.037178, "abs_delta": 0.040883}, {"layer": 13, "neuron": 4011, "delta": -0.030362, "attribution": -0.025387, "act_positive": 0.037299, "act_negative": 0.014536, "abs_delta": 0.030362}, {"layer": 13, "neuron": 7784, "delta": 0.131419, "attribution": 0.082482, "act_positive": 0.187174, "act_negative": -0.060655, "abs_delta": 0.131419}, {"layer": 13, "neuron": 1193, "delta": 0.19231, "attribution": 0.122251, "act_positive": 0.201521, "act_negative": -0.086565, "abs_delta": 0.19231}, {"layer": 13, "neuron": 7461, "delta": 0.064592, "attribution": 0.053407, "act_positive": 0.010789, "act_negative": 0.01662, "abs_delta": 0.064592}, {"layer": 13, "neuron": 6790, "delta": -0.000802, "attribution": -0.000417, "act_positive": 0.021484, "act_negative": -0.043141, "abs_delta": 0.000802}, {"layer": 13, "neuron": 3185, "delta": 0.15949, "attribution": 0.204344, "act_positive": 0.172422, "act_negative": -0.182751, "abs_delta": 0.15949}, {"layer": 13, "neuron": 6291, "delta": 0.077563, "attribution": 0.048571, "act_positive": 0.086492, "act_negative": -0.025266, "abs_delta": 0.077563}, {"layer": 13, "neuron": 8099, "delta": 0.206625, "attribution": 0.261773, "act_positive": 0.114304, "act_negative": -0.12325, "abs_delta": 0.206625}, {"layer": 13, "neuron": 6547, "delta": 0.148363, "attribution": 0.090219, "act_positive": 0.002966, "act_negative": -0.118554, "abs_delta": 0.148363}, {"layer": 13, "neuron": 3997, "delta": -0.307579, "attribution": -0.275792, "act_positive": 0.402055, "act_negative": -0.134247, "abs_delta": 0.307579}, {"layer": 13, "neuron": 2417, "delta": 0.187673, "attribution": 0.253414, "act_positive": 0.246611, "act_negative": 0.021516, "abs_delta": 0.187673}, {"layer": 13, "neuron": 90, "delta": -0.024078, "attribution": -0.020399, "act_positive": -0.017414, "act_negative": 0.032629, "abs_delta": 0.024078}, {"layer": 13, "neuron": 1746, "delta": 0.148056, "attribution": 0.089653, "act_positive": 0.100003, "act_negative": -0.044857, "abs_delta": 0.148056}, {"layer": 13, "neuron": 6965, "delta": -0.187647, "attribution": -0.175542, "act_positive": 0.243941, "act_negative": -0.125496, "abs_delta": 0.187647}, {"layer": 13, "neuron": 3585, "delta": -0.151857, "attribution": -0.142073, "act_positive": 0.152237, "act_negative": -0.005649, "abs_delta": 0.151857}, {"layer": 13, "neuron": 2881, "delta": -0.205746, "attribution": -0.120703, "act_positive": 0.239308, "act_negative": -0.056095, "abs_delta": 0.205746}, {"layer": 13, "neuron": 7611, "delta": -0.023782, "attribution": -0.032129, "act_positive": 0.029071, "act_negative": 0.004349, "abs_delta": 0.023782}, {"layer": 13, "neuron": 822, "delta": -0.118495, "attribution": -0.163561, "act_positive": 0.126857, "act_negative": -0.073439, "abs_delta": 0.118495}, {"layer": 13, "neuron": 4082, "delta": 0.186375, "attribution": 0.184246, "act_positive": 0.246501, "act_negative": -0.142742, "abs_delta": 0.186375}, {"layer": 13, "neuron": 1988, "delta": -0.125402, "attribution": -0.162136, "act_positive": 0.118607, "act_negative": 0.022514, "abs_delta": 0.125402}, {"layer": 13, "neuron": 7478, "delta": -0.134213, "attribution": -0.138363, "act_positive": 0.102456, "act_negative": -0.118175, "abs_delta": 0.134213}, {"layer": 13, "neuron": 2184, "delta": 0.185158, "attribution": 0.142741, "act_positive": 0.190494, "act_negative": -0.041916, "abs_delta": 0.185158}, {"layer": 13, "neuron": 7612, "delta": -0.224674, "attribution": -0.153935, "act_positive": 0.180251, "act_negative": -0.132706, "abs_delta": 0.224674}, {"layer": 13, "neuron": 5198, "delta": -0.367973, "attribution": -0.377039, "act_positive": 0.362545, "act_negative": -0.124479, "abs_delta": 0.367973}, {"layer": 13, "neuron": 7251, "delta": 0.009848, "attribution": 0.010184, "act_positive": 0.016584, "act_negative": -0.079799, "abs_delta": 0.009848}, {"layer": 13, "neuron": 6991, "delta": -0.069188, "attribution": -0.043331, "act_positive": -0.02197, "act_negative": -0.030829, "abs_delta": 0.069188}, {"layer": 13, "neuron": 7305, "delta": -0.143858, "attribution": -0.098451, "act_positive": 0.12834, "act_negative": -0.189316, "abs_delta": 0.143858}, {"layer": 13, "neuron": 2607, "delta": 0.035249, "attribution": 0.031749, "act_positive": 0.01784, "act_negative": -0.024738, "abs_delta": 0.035249}, {"layer": 14, "neuron": 4978, "delta": -0.074347, "attribution": -0.086996, "act_positive": 0.121747, "act_negative": -0.046401, "abs_delta": 0.074347}, {"layer": 14, "neuron": 1395, "delta": -0.11061, "attribution": -0.159853, "act_positive": 0.072114, "act_negative": -0.064149, "abs_delta": 0.11061}, {"layer": 14, "neuron": 4066, "delta": -0.168403, "attribution": -0.152266, "act_positive": 0.288115, "act_negative": -0.151364, "abs_delta": 0.168403}, {"layer": 14, "neuron": 1940, "delta": -0.149589, "attribution": -0.136611, "act_positive": 0.076608, "act_negative": -0.01815, "abs_delta": 0.149589}, {"layer": 14, "neuron": 6818, "delta": 0.006052, "attribution": 0.00635, "act_positive": -0.02658, "act_negative": -0.011004, "abs_delta": 0.006052}, {"layer": 14, "neuron": 3697, "delta": -0.06895, "attribution": -0.101574, "act_positive": 0.073926, "act_negative": -0.006582, "abs_delta": 0.06895}, {"layer": 14, "neuron": 6232, "delta": -0.05988, "attribution": -0.089356, "act_positive": 0.062638, "act_negative": 0.040865, "abs_delta": 0.05988}, {"layer": 14, "neuron": 7381, "delta": 0.181781, "attribution": 0.181486, "act_positive": 0.157629, "act_negative": -0.117456, "abs_delta": 0.181781}, {"layer": 14, "neuron": 7253, "delta": 0.106066, "attribution": 0.111504, "act_positive": 0.0965, "act_negative": -0.17362, "abs_delta": 0.106066}, {"layer": 14, "neuron": 4871, "delta": -0.015221, "attribution": -0.020761, "act_positive": 0.026735, "act_negative": -0.060398, "abs_delta": 0.015221}, {"layer": 14, "neuron": 7025, "delta": -0.264747, "attribution": -0.207254, "act_positive": 0.23891, "act_negative": -0.083588, "abs_delta": 0.264747}, {"layer": 14, "neuron": 5003, "delta": -0.001144, "attribution": -0.000742, "act_positive": -0.03449, "act_negative": 0.05178, "abs_delta": 0.001144}, {"layer": 14, "neuron": 986, "delta": -0.121088, "attribution": -0.083387, "act_positive": 0.142854, "act_negative": -0.055111, "abs_delta": 0.121088}, {"layer": 14, "neuron": 1625, "delta": 0.245877, "attribution": 0.13367, "act_positive": 0.244589, "act_negative": -0.199473, "abs_delta": 0.245877}, {"layer": 14, "neuron": 3404, "delta": -0.136846, "attribution": -0.202643, "act_positive": 0.057183, "act_negative": -0.109858, "abs_delta": 0.136846}, {"layer": 14, "neuron": 3457, "delta": -0.00275, "attribution": -0.003766, "act_positive": -0.053684, "act_negative": 0.021053, "abs_delta": 0.00275}, {"layer": 14, "neuron": 4335, "delta": -0.025306, "attribution": -0.029223, "act_positive": -0.028786, "act_negative": 0.032268, "abs_delta": 0.025306}, {"layer": 14, "neuron": 1330, "delta": -0.025002, "attribution": -0.02982, "act_positive": 0.084858, "act_negative": -0.094572, "abs_delta": 0.025002}, {"layer": 14, "neuron": 2573, "delta": -0.090973, "attribution": -0.11087, "act_positive": 0.130279, "act_negative": -0.040689, "abs_delta": 0.090973}, {"layer": 14, "neuron": 3929, "delta": 0.012041, "attribution": 0.013621, "act_positive": 0.096926, "act_negative": -0.007043, "abs_delta": 0.012041}, {"layer": 14, "neuron": 2847, "delta": 0.165129, "attribution": 0.226653, "act_positive": 0.202501, "act_negative": -0.082775, "abs_delta": 0.165129}, {"layer": 14, "neuron": 1229, "delta": -0.025023, "attribution": -0.032434, "act_positive": 0.003143, "act_negative": 0.007028, "abs_delta": 0.025023}, {"layer": 14, "neuron": 2564, "delta": -0.232166, "attribution": -0.155547, "act_positive": 0.157374, "act_negative": -0.177625, "abs_delta": 0.232166}, {"layer": 14, "neuron": 43, "delta": -0.072526, "attribution": -0.102467, "act_positive": 0.025032, "act_negative": -0.019914, "abs_delta": 0.072526}, {"layer": 14, "neuron": 6693, "delta": 0.257971, "attribution": 0.361471, "act_positive": 0.28163, "act_negative": -0.136683, "abs_delta": 0.257971}, {"layer": 14, "neuron": 7699, "delta": 0.047142, "attribution": 0.05127, "act_positive": 0.016036, "act_negative": -0.012713, "abs_delta": 0.047142}, {"layer": 14, "neuron": 4771, "delta": 0.044209, "attribution": 0.043467, "act_positive": 0.086351, "act_negative": -0.163192, "abs_delta": 0.044209}, {"layer": 14, "neuron": 534, "delta": -0.203151, "attribution": -0.161552, "act_positive": 0.220152, "act_negative": -0.140511, "abs_delta": 0.203151}, {"layer": 14, "neuron": 3792, "delta": -0.092752, "attribution": -0.050925, "act_positive": 0.020712, "act_negative": -0.01242, "abs_delta": 0.092752}, {"layer": 14, "neuron": 4720, "delta": -0.066517, "attribution": -0.086396, "act_positive": 0.026713, "act_negative": 0.020466, "abs_delta": 0.066517}, {"layer": 14, "neuron": 4632, "delta": -0.100171, "attribution": -0.116116, "act_positive": 0.041931, "act_negative": 0.003991, "abs_delta": 0.100171}, {"layer": 14, "neuron": 7438, "delta": -0.117595, "attribution": -0.095126, "act_positive": 0.043566, "act_negative": -0.078437, "abs_delta": 0.117595}, {"layer": 14, "neuron": 1166, "delta": -0.066348, "attribution": -0.044827, "act_positive": 0.13623, "act_negative": 0.026311, "abs_delta": 0.066348}, {"layer": 14, "neuron": 3824, "delta": -0.031348, "attribution": -0.04431, "act_positive": 0.031407, "act_negative": 0.07777, "abs_delta": 0.031348}, {"layer": 14, "neuron": 4334, "delta": 0.08234, "attribution": 0.06906, "act_positive": -0.008015, "act_negative": 0.026169, "abs_delta": 0.08234}, {"layer": 14, "neuron": 3241, "delta": 0.28829, "attribution": 0.392115, "act_positive": 0.443865, "act_negative": -0.195704, "abs_delta": 0.28829}, {"layer": 14, "neuron": 6965, "delta": -0.16817, "attribution": -0.086426, "act_positive": 0.236676, "act_negative": -0.115858, "abs_delta": 0.16817}, {"layer": 14, "neuron": 1880, "delta": -0.188995, "attribution": -0.204977, "act_positive": 0.235649, "act_negative": -0.083149, "abs_delta": 0.188995}, {"layer": 14, "neuron": 3683, "delta": 0.293295, "attribution": 0.311305, "act_positive": 0.35827, "act_negative": -0.028034, "abs_delta": 0.293295}, {"layer": 14, "neuron": 2441, "delta": 0.10309, "attribution": 0.145293, "act_positive": 0.071925, "act_negative": -0.054998, "abs_delta": 0.10309}, {"layer": 14, "neuron": 4352, "delta": -0.055801, "attribution": -0.033324, "act_positive": 0.119325, "act_negative": -0.091133, "abs_delta": 0.055801}, {"layer": 14, "neuron": 2330, "delta": 0.061188, "attribution": 0.076066, "act_positive": 0.000171, "act_negative": 0.017922, "abs_delta": 0.061188}, {"layer": 14, "neuron": 1169, "delta": -0.056186, "attribution": -0.055587, "act_positive": 0.065758, "act_negative": 0.008855, "abs_delta": 0.056186}, {"layer": 14, "neuron": 977, "delta": 0.028084, "attribution": 0.026494, "act_positive": 0.047216, "act_negative": -0.034162, "abs_delta": 0.028084}, {"layer": 14, "neuron": 2718, "delta": -0.379415, "attribution": -0.325794, "act_positive": 0.325896, "act_negative": -0.072786, "abs_delta": 0.379415}, {"layer": 14, "neuron": 5039, "delta": 0.192751, "attribution": 0.184023, "act_positive": 0.162882, "act_negative": -0.11188, "abs_delta": 0.192751}, {"layer": 14, "neuron": 4728, "delta": 0.024482, "attribution": 0.015324, "act_positive": -0.011251, "act_negative": -0.004777, "abs_delta": 0.024482}, {"layer": 14, "neuron": 7195, "delta": -0.096994, "attribution": -0.069443, "act_positive": 0.097951, "act_negative": -0.039156, "abs_delta": 0.096994}, {"layer": 14, "neuron": 2037, "delta": 0.282704, "attribution": 0.182256, "act_positive": 0.242624, "act_negative": -0.079558, "abs_delta": 0.282704}, {"layer": 14, "neuron": 7679, "delta": 0.187124, "attribution": 0.098386, "act_positive": 0.159974, "act_negative": -0.116073, "abs_delta": 0.187124}, {"layer": 14, "neuron": 4982, "delta": 0.021498, "attribution": 0.026694, "act_positive": 0.036303, "act_negative": -0.098648, "abs_delta": 0.021498}, {"layer": 14, "neuron": 6594, "delta": 0.036893, "attribution": 0.037381, "act_positive": -0.089423, "act_negative": -0.014616, "abs_delta": 0.036893}, {"layer": 14, "neuron": 4460, "delta": 0.059531, "attribution": 0.060808, "act_positive": -0.039718, "act_negative": 0.012161, "abs_delta": 0.059531}, {"layer": 14, "neuron": 8090, "delta": 0.060898, "attribution": 0.054907, "act_positive": -0.044014, "act_negative": -0.01336, "abs_delta": 0.060898}, {"layer": 14, "neuron": 7172, "delta": 0.171097, "attribution": 0.096787, "act_positive": 0.188976, "act_negative": -0.136971, "abs_delta": 0.171097}, {"layer": 14, "neuron": 1317, "delta": -0.037945, "attribution": -0.056714, "act_positive": -0.026917, "act_negative": 0.006663, "abs_delta": 0.037945}, {"layer": 14, "neuron": 653, "delta": -0.083519, "attribution": -0.096124, "act_positive": -0.000913, "act_negative": -0.03719, "abs_delta": 0.083519}, {"layer": 14, "neuron": 7078, "delta": 0.152966, "attribution": 0.111435, "act_positive": 0.093451, "act_negative": -0.036771, "abs_delta": 0.152966}, {"layer": 14, "neuron": 5280, "delta": -0.189517, "attribution": -0.165695, "act_positive": 0.196029, "act_negative": -0.040694, "abs_delta": 0.189517}, {"layer": 14, "neuron": 4102, "delta": 0.11054, "attribution": 0.065576, "act_positive": 0.086274, "act_negative": -0.148917, "abs_delta": 0.11054}, {"layer": 14, "neuron": 423, "delta": -0.157201, "attribution": -0.130421, "act_positive": 0.100253, "act_negative": -0.111639, "abs_delta": 0.157201}, {"layer": 14, "neuron": 1496, "delta": -0.205295, "attribution": -0.280862, "act_positive": 0.289842, "act_negative": -0.103824, "abs_delta": 0.205295}, {"layer": 14, "neuron": 3750, "delta": -0.087289, "attribution": -0.10097, "act_positive": 0.061398, "act_negative": -0.002969, "abs_delta": 0.087289}, {"layer": 14, "neuron": 339, "delta": -0.113036, "attribution": -0.142721, "act_positive": 0.150365, "act_negative": -0.168374, "abs_delta": 0.113036}, {"layer": 14, "neuron": 4415, "delta": 0.082194, "attribution": 0.093923, "act_positive": 0.003944, "act_negative": -0.036318, "abs_delta": 0.082194}, {"layer": 14, "neuron": 659, "delta": -0.099048, "attribution": -0.067394, "act_positive": 0.090576, "act_negative": 0.012516, "abs_delta": 0.099048}, {"layer": 14, "neuron": 2870, "delta": 0.12642, "attribution": 0.113877, "act_positive": 0.061158, "act_negative": 0.011315, "abs_delta": 0.12642}, {"layer": 14, "neuron": 7708, "delta": 0.045328, "attribution": 0.032416, "act_positive": 0.01789, "act_negative": 0.013758, "abs_delta": 0.045328}, {"layer": 14, "neuron": 7245, "delta": 0.031075, "attribution": 0.018177, "act_positive": -0.038313, "act_negative": -0.06654, "abs_delta": 0.031075}, {"layer": 14, "neuron": 4557, "delta": -0.144425, "attribution": -0.111511, "act_positive": 0.099987, "act_negative": -0.054249, "abs_delta": 0.144425}, {"layer": 14, "neuron": 2973, "delta": 0.002183, "attribution": 0.00203, "act_positive": -0.022574, "act_negative": -0.075148, "abs_delta": 0.002183}, {"layer": 14, "neuron": 7141, "delta": 0.017793, "attribution": 0.009705, "act_positive": 0.012007, "act_negative": -0.011113, "abs_delta": 0.017793}, {"layer": 14, "neuron": 8056, "delta": 0.018739, "attribution": 0.014158, "act_positive": 0.043816, "act_negative": -0.006263, "abs_delta": 0.018739}, {"layer": 14, "neuron": 1494, "delta": -0.088878, "attribution": -0.078231, "act_positive": 0.001465, "act_negative": -0.055481, "abs_delta": 0.088878}, {"layer": 14, "neuron": 7700, "delta": 0.255804, "attribution": 0.138723, "act_positive": 0.250082, "act_negative": -0.128594, "abs_delta": 0.255804}, {"layer": 15, "neuron": 6626, "delta": -0.14968, "attribution": -0.130648, "act_positive": 0.098501, "act_negative": -0.056054, "abs_delta": 0.14968}, {"layer": 15, "neuron": 6843, "delta": 0.052836, "attribution": 0.029901, "act_positive": -0.025738, "act_negative": -0.047263, "abs_delta": 0.052836}, {"layer": 15, "neuron": 4743, "delta": 0.235082, "attribution": 0.271887, "act_positive": 0.304785, "act_negative": -0.157503, "abs_delta": 0.235082}, {"layer": 15, "neuron": 1887, "delta": 0.087755, "attribution": 0.128797, "act_positive": 0.130734, "act_negative": -0.137591, "abs_delta": 0.087755}, {"layer": 15, "neuron": 6636, "delta": -0.198905, "attribution": -0.16103, "act_positive": 0.212795, "act_negative": -0.201454, "abs_delta": 0.198905}, {"layer": 15, "neuron": 341, "delta": 0.116993, "attribution": 0.138685, "act_positive": 0.046179, "act_negative": -0.107337, "abs_delta": 0.116993}, {"layer": 15, "neuron": 5321, "delta": 0.065808, "attribution": 0.056766, "act_positive": 0.084486, "act_negative": 0.085849, "abs_delta": 0.065808}, {"layer": 15, "neuron": 2815, "delta": 0.011984, "attribution": 0.006917, "act_positive": 0.040543, "act_negative": 0.008336, "abs_delta": 0.011984}, {"layer": 15, "neuron": 7538, "delta": -0.282359, "attribution": -0.390695, "act_positive": 0.185941, "act_negative": -0.02661, "abs_delta": 0.282359}, {"layer": 15, "neuron": 5928, "delta": -0.063791, "attribution": -0.084928, "act_positive": 0.091518, "act_negative": -0.012628, "abs_delta": 0.063791}, {"layer": 15, "neuron": 1443, "delta": 0.138814, "attribution": 0.12644, "act_positive": 0.152848, "act_negative": -0.00344, "abs_delta": 0.138814}, {"layer": 15, "neuron": 7155, "delta": -0.001506, "attribution": -0.001557, "act_positive": -0.053191, "act_negative": -0.09408, "abs_delta": 0.001506}, {"layer": 15, "neuron": 1734, "delta": 0.055096, "attribution": 0.047815, "act_positive": 0.120331, "act_negative": -0.02817, "abs_delta": 0.055096}, {"layer": 15, "neuron": 3986, "delta": -0.135357, "attribution": -0.19847, "act_positive": 0.193896, "act_negative": -0.059521, "abs_delta": 0.135357}, {"layer": 15, "neuron": 7138, "delta": 0.086935, "attribution": 0.099208, "act_positive": 0.078033, "act_negative": -0.063313, "abs_delta": 0.086935}, {"layer": 15, "neuron": 6560, "delta": 0.072955, "attribution": 0.092151, "act_positive": 0.033364, "act_negative": -0.016062, "abs_delta": 0.072955}, {"layer": 15, "neuron": 1288, "delta": 0.128578, "attribution": 0.185977, "act_positive": 0.070076, "act_negative": -0.025927, "abs_delta": 0.128578}, {"layer": 15, "neuron": 6484, "delta": 0.167299, "attribution": 0.123095, "act_positive": 0.219782, "act_negative": 0.03848, "abs_delta": 0.167299}, {"layer": 15, "neuron": 5083, "delta": 0.061083, "attribution": 0.0818, "act_positive": 0.071741, "act_negative": -0.051626, "abs_delta": 0.061083}, {"layer": 15, "neuron": 5562, "delta": 0.111223, "attribution": 0.071049, "act_positive": 0.052689, "act_negative": -0.033021, "abs_delta": 0.111223}, {"layer": 15, "neuron": 3630, "delta": 0.00201, "attribution": 0.00152, "act_positive": -0.074556, "act_negative": -0.025357, "abs_delta": 0.00201}, {"layer": 15, "neuron": 5456, "delta": 0.094692, "attribution": 0.075862, "act_positive": 0.104073, "act_negative": -0.029258, "abs_delta": 0.094692}, {"layer": 15, "neuron": 2754, "delta": -0.159529, "attribution": -0.09745, "act_positive": 0.17791, "act_negative": -0.085944, "abs_delta": 0.159529}, {"layer": 15, "neuron": 1251, "delta": 0.004229, "attribution": 0.003929, "act_positive": 0.032225, "act_negative": -0.065637, "abs_delta": 0.004229}, {"layer": 15, "neuron": 1868, "delta": 0.110944, "attribution": 0.064971, "act_positive": 0.187668, "act_negative": -0.030591, "abs_delta": 0.110944}, {"layer": 15, "neuron": 3176, "delta": 0.190145, "attribution": 0.169315, "act_positive": 0.183218, "act_negative": -0.067416, "abs_delta": 0.190145}, {"layer": 15, "neuron": 5724, "delta": -0.013637, "attribution": -0.00704, "act_positive": -0.030375, "act_negative": 0.059738, "abs_delta": 0.013637}, {"layer": 15, "neuron": 5752, "delta": 0.032934, "attribution": 0.027418, "act_positive": -0.053834, "act_negative": -0.00502, "abs_delta": 0.032934}, {"layer": 15, "neuron": 2419, "delta": -0.085756, "attribution": -0.109694, "act_positive": 0.060765, "act_negative": -0.120117, "abs_delta": 0.085756}, {"layer": 15, "neuron": 3871, "delta": 0.239411, "attribution": 0.229279, "act_positive": 0.253039, "act_negative": -0.071451, "abs_delta": 0.239411}, {"layer": 15, "neuron": 1684, "delta": 0.041697, "attribution": 0.059768, "act_positive": 0.104383, "act_negative": -0.021008, "abs_delta": 0.041697}, {"layer": 15, "neuron": 2399, "delta": 0.00202, "attribution": 0.001731, "act_positive": -0.03031, "act_negative": -0.013998, "abs_delta": 0.00202}, {"layer": 15, "neuron": 4193, "delta": 0.067321, "attribution": 0.058436, "act_positive": 0.07335, "act_negative": -0.136588, "abs_delta": 0.067321}, {"layer": 15, "neuron": 3232, "delta": 0.173257, "attribution": 0.172828, "act_positive": 0.19304, "act_negative": -0.062512, "abs_delta": 0.173257}, {"layer": 15, "neuron": 2842, "delta": -0.22936, "attribution": -0.132782, "act_positive": 0.266326, "act_negative": -0.154691, "abs_delta": 0.22936}, {"layer": 15, "neuron": 2504, "delta": 0.193275, "attribution": 0.155875, "act_positive": 0.236663, "act_negative": -0.108121, "abs_delta": 0.193275}, {"layer": 15, "neuron": 1234, "delta": -0.129735, "attribution": -0.070362, "act_positive": 0.042381, "act_negative": 0.088642, "abs_delta": 0.129735}, {"layer": 15, "neuron": 2902, "delta": 0.36177, "attribution": 0.208033, "act_positive": 0.366456, "act_negative": -0.137306, "abs_delta": 0.36177}, {"layer": 15, "neuron": 8095, "delta": -0.214696, "attribution": -0.311907, "act_positive": 0.116004, "act_negative": -0.121938, "abs_delta": 0.214696}, {"layer": 15, "neuron": 7601, "delta": 0.237552, "attribution": 0.205798, "act_positive": 0.262014, "act_negative": -0.184702, "abs_delta": 0.237552}, {"layer": 15, "neuron": 7354, "delta": -0.138714, "attribution": -0.200972, "act_positive": 0.136976, "act_negative": -0.136083, "abs_delta": 0.138714}, {"layer": 15, "neuron": 5295, "delta": -0.174146, "attribution": -0.130542, "act_positive": 0.1905, "act_negative": -0.152955, "abs_delta": 0.174146}, {"layer": 15, "neuron": 5179, "delta": 0.000891, "attribution": 0.000946, "act_positive": -0.002706, "act_negative": 0.053627, "abs_delta": 0.000891}, {"layer": 15, "neuron": 2473, "delta": -0.074095, "attribution": -0.073443, "act_positive": 0.171554, "act_negative": -0.149676, "abs_delta": 0.074095}, {"layer": 15, "neuron": 7205, "delta": 0.095261, "attribution": 0.090032, "act_positive": 0.039471, "act_negative": -0.128687, "abs_delta": 0.095261}, {"layer": 15, "neuron": 1118, "delta": -0.031586, "attribution": -0.032918, "act_positive": 0.051525, "act_negative": -0.047443, "abs_delta": 0.031586}, {"layer": 15, "neuron": 7682, "delta": -0.333639, "attribution": -0.379581, "act_positive": 0.347438, "act_negative": -0.128312, "abs_delta": 0.333639}, {"layer": 15, "neuron": 7245, "delta": 0.170456, "attribution": 0.089708, "act_positive": 0.241843, "act_negative": -0.055339, "abs_delta": 0.170456}, {"layer": 15, "neuron": 4961, "delta": -0.179297, "attribution": -0.199369, "act_positive": 0.077687, "act_negative": 0.078731, "abs_delta": 0.179297}, {"layer": 15, "neuron": 4500, "delta": -0.25351, "attribution": -0.33548, "act_positive": 0.196524, "act_negative": -0.208883, "abs_delta": 0.25351}, {"layer": 15, "neuron": 920, "delta": -0.127897, "attribution": -0.150933, "act_positive": 0.182626, "act_negative": -0.131494, "abs_delta": 0.127897}, {"layer": 15, "neuron": 5766, "delta": 0.161909, "attribution": 0.150999, "act_positive": 0.30697, "act_negative": -0.031678, "abs_delta": 0.161909}, {"layer": 15, "neuron": 1215, "delta": 0.060805, "attribution": 0.040414, "act_positive": 0.044845, "act_negative": -0.085711, "abs_delta": 0.060805}, {"layer": 15, "neuron": 5085, "delta": 0.229153, "attribution": 0.172004, "act_positive": 0.182226, "act_negative": -0.089239, "abs_delta": 0.229153}, {"layer": 15, "neuron": 7565, "delta": 0.090186, "attribution": 0.093205, "act_positive": 0.148585, "act_negative": 0.07132, "abs_delta": 0.090186}, {"layer": 15, "neuron": 7404, "delta": -0.129965, "attribution": -0.143629, "act_positive": 0.080694, "act_negative": -0.062827, "abs_delta": 0.129965}, {"layer": 15, "neuron": 616, "delta": -0.032043, "attribution": -0.017478, "act_positive": -0.030427, "act_negative": -0.053103, "abs_delta": 0.032043}, {"layer": 15, "neuron": 932, "delta": -0.185382, "attribution": -0.185018, "act_positive": 0.230529, "act_negative": -0.021783, "abs_delta": 0.185382}, {"layer": 15, "neuron": 6041, "delta": -0.046348, "attribution": -0.06047, "act_positive": 0.044062, "act_negative": 0.003591, "abs_delta": 0.046348}, {"layer": 15, "neuron": 4703, "delta": -0.160336, "attribution": -0.11288, "act_positive": 0.18849, "act_negative": -0.084221, "abs_delta": 0.160336}, {"layer": 15, "neuron": 1257, "delta": -0.239375, "attribution": -0.325736, "act_positive": 0.317655, "act_negative": -0.090362, "abs_delta": 0.239375}, {"layer": 15, "neuron": 1479, "delta": -0.070744, "attribution": -0.054294, "act_positive": 0.114455, "act_negative": -0.03627, "abs_delta": 0.070744}, {"layer": 15, "neuron": 6299, "delta": 0.143006, "attribution": 0.159506, "act_positive": 0.148155, "act_negative": -0.083719, "abs_delta": 0.143006}, {"layer": 15, "neuron": 7581, "delta": -0.114734, "attribution": -0.144923, "act_positive": 0.094347, "act_negative": -0.100992, "abs_delta": 0.114734}, {"layer": 15, "neuron": 672, "delta": 0.001004, "attribution": 0.000525, "act_positive": -0.129159, "act_negative": -0.004848, "abs_delta": 0.001004}, {"layer": 15, "neuron": 7368, "delta": -0.029102, "attribution": -0.028953, "act_positive": 0.046406, "act_negative": -0.077313, "abs_delta": 0.029102}, {"layer": 15, "neuron": 3084, "delta": 0.034191, "attribution": 0.046062, "act_positive": 0.092866, "act_negative": -0.074984, "abs_delta": 0.034191}, {"layer": 15, "neuron": 5267, "delta": -0.101029, "attribution": -0.108129, "act_positive": 0.126437, "act_negative": 0.000357, "abs_delta": 0.101029}, {"layer": 15, "neuron": 7792, "delta": 0.079209, "attribution": 0.100152, "act_positive": 0.147573, "act_negative": -0.0327, "abs_delta": 0.079209}, {"layer": 15, "neuron": 2471, "delta": 0.148272, "attribution": 0.191996, "act_positive": 0.130926, "act_negative": -0.09913, "abs_delta": 0.148272}, {"layer": 15, "neuron": 1013, "delta": -0.099894, "attribution": -0.100805, "act_positive": 0.125951, "act_negative": -0.035652, "abs_delta": 0.099894}, {"layer": 15, "neuron": 7381, "delta": -0.163515, "attribution": -0.18089, "act_positive": 0.173603, "act_negative": -0.093079, "abs_delta": 0.163515}, {"layer": 15, "neuron": 1695, "delta": -0.058258, "attribution": -0.086841, "act_positive": 0.050051, "act_negative": 0.00635, "abs_delta": 0.058258}, {"layer": 15, "neuron": 5626, "delta": -0.230757, "attribution": -0.184557, "act_positive": 0.244053, "act_negative": -0.167612, "abs_delta": 0.230757}, {"layer": 15, "neuron": 1381, "delta": -0.372161, "attribution": -0.403311, "act_positive": 0.404552, "act_negative": -0.191018, "abs_delta": 0.372161}, {"layer": 15, "neuron": 2827, "delta": -0.386937, "attribution": -0.496404, "act_positive": 0.450449, "act_negative": -0.217313, "abs_delta": 0.386937}, {"layer": 15, "neuron": 641, "delta": -0.195339, "attribution": -0.130977, "act_positive": 0.135393, "act_negative": -0.13569, "abs_delta": 0.195339}, {"layer": 15, "neuron": 4059, "delta": -0.01602, "attribution": -0.0232, "act_positive": 0.002036, "act_negative": -0.016091, "abs_delta": 0.01602}, {"layer": 15, "neuron": 7172, "delta": 0.079168, "attribution": 0.09425, "act_positive": 0.093913, "act_negative": -0.162531, "abs_delta": 0.079168}, {"layer": 15, "neuron": 7199, "delta": -0.004781, "attribution": -0.00305, "act_positive": -0.013639, "act_negative": -0.034044, "abs_delta": 0.004781}, {"layer": 15, "neuron": 2600, "delta": -0.155999, "attribution": -0.126945, "act_positive": 0.174578, "act_negative": -0.092916, "abs_delta": 0.155999}, {"layer": 15, "neuron": 5962, "delta": 0.033006, "attribution": 0.037736, "act_positive": -0.043564, "act_negative": -0.004607, "abs_delta": 0.033006}];
+
+const plotBg = '#0f0f1a';
+const gridColor = '#1a1a2e';
+const fontColor = '#888';
+const purple = '#c084fc';
+const red = '#ff6b6b';
+const blue = '#60a5fa';
+const orange = '#fb923c';
+
+const layout3d = {
+  paper_bgcolor: plotBg, plot_bgcolor: plotBg,
+  font: { family: 'SF Mono, monospace', color: fontColor, size: 11 },
+  margin: { l: 0, r: 0, t: 0, b: 0 },
+  scene: {
+    xaxis: { title: 'Layer', gridcolor: gridColor, zerolinecolor: gridColor, dtick: 2 },
+    yaxis: { title: 'Neuron Index (↓)', gridcolor: gridColor, zerolinecolor: gridColor },
+    zaxis: { title: '|Δ| Contrastive Delta', gridcolor: gridColor, zerolinecolor: gridColor },
+    bgcolor: plotBg,
+    camera: { eye: { x: 1.8, y: -1.4, z: 0.9 } },
+  },
+  hoverlabel: { bgcolor: '#1a1a2e', bordercolor: '#333', font: { family: 'SF Mono', size: 12, color: '#e0e0e0' } },
+};
+
+// ---- 3D VIEW ----
+function render3D() {
+  const x = NEURONS.map(n => n.layer);
+  const y = NEURONS.map(n => n.neuron);
+  const z = NEURONS.map(n => n.abs_delta);
+  const colors = NEURONS.map(n => n.delta);
+  const sizes = NEURONS.map(n => 3 + n.abs_delta * 18);
+  const hoverText = NEURONS.map(n =>
+    `<b>L${n.layer} · N${n.neuron}</b><br>` +
+    `Δ = ${n.delta > 0 ? '+' : ''}${n.delta.toFixed(4)}<br>` +
+    `|Δ| = ${n.abs_delta.toFixed(4)}<br>` +
+    `Attribution = ${n.attribution.toFixed(4)}<br>` +
+    `Act(harmful) = ${n.act_positive.toFixed(3)}<br>` +
+    `Act(benign) = ${n.act_negative.toFixed(3)}`
+  );
+
+  const trace = {
+    x, y, z, type: 'scatter3d', mode: 'markers',
+    marker: {
+      size: sizes,
+      color: colors,
+      colorscale: [[0, '#3b82f6'], [0.35, '#8b5cf6'], [0.5, '#e2e8f0'], [0.65, '#f97316'], [1, '#ef4444']],
+      opacity: 0.85,
+      line: { width: 0 },
+    },
+    text: hoverText,
+    hoverinfo: 'text',
+    hovertemplate: '%{text}<extra></extra>',
+  };
+
+  Plotly.newPlot('main-chart', [trace], layout3d, { responsive: true });
+}
+
+// ---- LAYER HEATMAP ----
+function renderLayerHeatmap() {
+  const layerMap = {};
+  for (let l = 0; l < 16; l++) layerMap[l] = { count: 0, totalDelta: 0, maxDelta: 0 };
+  NEURONS.forEach(n => {
+    layerMap[n.layer].count++;
+    layerMap[n.layer].totalDelta += n.abs_delta;
+    layerMap[n.layer].maxDelta = Math.max(layerMap[n.layer].maxDelta, n.abs_delta);
+  });
+
+  const layers = Object.keys(layerMap);
+  const counts = layers.map(l => layerMap[l].count);
+  const avgDeltas = layers.map(l => layerMap[l].count > 0 ? layerMap[l].totalDelta / layerMap[l].count : 0);
+  const maxDeltas = layers.map(l => layerMap[l].maxDelta);
+
+  const trace1 = {
+    x: layers, y: counts, type: 'bar',
+    marker: {
+      color: layers.map(l => layerMap[l].count),
+      colorscale: [[0, '#1e1b4b'], [0.5, '#7c3aed'], [1, '#c084fc']],
+      line: { width: 0 },
+    },
+    hovertemplate: 'Layer %{x}<br>Neurons: %{y}<extra></extra>',
+  };
+
+  const layout = {
+    ...layout3d,
+    scene: undefined,
+    xaxis: { title: 'Layer', gridcolor: gridColor, dtick: 1 },
+    yaxis: { title: 'Neuron Count', gridcolor: gridColor },
+    margin: { l: 50, r: 20, t: 10, b: 50 },
+    showlegend: false,
+  };
+
+  Plotly.newPlot('main-chart', [trace1], layout, { responsive: true });
+}
+
+// ---- 2D PCA PROJECTION ----
+function renderPCA() {
+  // Simple "fake UMAP" — project layer + neuron index into 2D with some noise
+  // In a real version you'd run PCA on actual activation vectors
+  const points = NEURONS.map(n => {
+    const angle = (n.layer / 16) * Math.PI * 2 + (n.neuron / 8192) * Math.PI * 0.5;
+    const radius = 0.5 + n.abs_delta * 3;
+    return {
+      x: Math.cos(angle) * radius + (Math.random() - 0.5) * 0.3,
+      y: Math.sin(angle) * radius + (Math.random() - 0.5) * 0.3,
+      ...n
+    };
+  });
+
+  const trace = {
+    x: points.map(p => p.x),
+    y: points.map(p => p.y),
+    type: 'scatter', mode: 'markers',
+    marker: {
+      size: points.map(p => 4 + p.abs_delta * 14),
+      color: points.map(p => p.layer),
+      colorscale: 'Viridis',
+      opacity: 0.8,
+      line: { width: 0 },
+    },
+    text: points.map(p =>
+      `<b>L${p.layer} · N${p.neuron}</b><br>Δ = ${p.delta > 0 ? '+' : ''}${p.delta.toFixed(4)}`
+    ),
+    hoverinfo: 'text',
+    hovertemplate: '%{text}<extra></extra>',
+  };
+
+  const layout = {
+    ...layout3d, scene: undefined,
+    xaxis: { title: '', gridcolor: gridColor, zerolinecolor: gridColor, showticklabels: false },
+    yaxis: { title: '', gridcolor: gridColor, zerolinecolor: gridColor, showticklabels: false },
+    margin: { l: 20, r: 20, t: 10, b: 20 },
+    annotations: [{
+      x: 0.5, y: -0.08, xref: 'paper', yref: 'paper',
+      text: 'Color = Layer · Size = |Δ| · Position = UMAP-style projection of (layer, neuron, delta)',
+      showarrow: false, font: { size: 11, color: '#666' }
+    }]
+  };
+
+  Plotly.newPlot('main-chart', [trace], layout, { responsive: true });
+}
+
+// ---- RIDGE PLOT ----
+function renderRidge() {
+  // Group neurons by layer quartile, show delta distributions
+  const groups = {
+    'Early (L0-L3)': NEURONS.filter(n => n.layer <= 3),
+    'Mid (L4-L7)': NEURONS.filter(n => n.layer >= 4 && n.layer <= 7),
+    'Upper (L8-L11)': NEURONS.filter(n => n.layer >= 8 && n.layer <= 11),
+    'Late (L12-L15)': NEURONS.filter(n => n.layer >= 12),
+  };
+
+  const colors = ['#3b82f6', '#8b5cf6', '#f97316', '#ef4444'];
+  const traces = [];
+
+  Object.entries(groups).forEach(([name, neurons], i) => {
+    const deltas = neurons.map(n => n.delta).sort((a, b) => a - b);
+    // Simple KDE approximation
+    const xRange = [];
+    const yVals = [];
+    for (let x = -0.6; x <= 0.6; x += 0.01) {
+      xRange.push(x);
+      const bw = 0.03;
+      const density = deltas.reduce((sum, d) => sum + Math.exp(-0.5 * ((x - d) / bw) ** 2), 0) / (deltas.length * bw * Math.sqrt(2 * Math.PI));
+      yVals.push(density);
+    }
+
+    const offset = i * 8;
+    traces.push({
+      x: xRange,
+      y: yVals.map(v => v + offset),
+      type: 'scatter', mode: 'lines',
+      fill: 'toself',
+      fillcolor: colors[i] + '30',
+      line: { color: colors[i], width: 2 },
+      name: name,
+      hovertemplate: `${name}<br>Δ = %{x:.3f}<extra></extra>`,
+    });
+  });
+
+  const layout = {
+    ...layout3d, scene: undefined,
+    xaxis: { title: 'Contrastive Delta (Δ)', gridcolor: gridColor, zerolinecolor: gridColor },
+    yaxis: { showticklabels: false, gridcolor: gridColor, zerolinecolor: false, title: '' },
+    margin: { l: 20, r: 20, t: 10, b: 50 },
+    legend: { x: 0.02, y: 0.98, font: { size: 11, color: '#aaa' }, bgcolor: 'rgba(0,0,0,0)' },
+    showlegend: true,
+  };
+
+  Plotly.newPlot('main-chart', traces, layout, { responsive: true });
+}
+
+// ---- SIDE CHARTS ----
+function renderSideCharts() {
+  // Chart 1: per-layer bar
+  const layerMap = {};
+  for (let l = 0; l < 16; l++) layerMap[l] = 0;
+  NEURONS.forEach(n => layerMap[n.layer]++);
+
+  const barTrace = {
+    x: Object.keys(layerMap),
+    y: Object.values(layerMap),
+    type: 'bar',
+    marker: {
+      color: Object.keys(layerMap).map(l => l >= 13 ? '#c084fc' : l >= 8 ? '#8b5cf6' : '#3b82f6'),
+      line: { width: 0 },
+    },
+    hovertemplate: 'L%{x}: %{y} neurons<extra></extra>',
+  };
+
+  const sideLayout1 = {
+    paper_bgcolor: plotBg, plot_bgcolor: plotBg,
+    font: { family: 'SF Mono', color: fontColor, size: 10 },
+    margin: { l: 35, r: 10, t: 5, b: 30 },
+    xaxis: { title: 'Layer', gridcolor: gridColor, dtick: 2 },
+    yaxis: { title: 'Count', gridcolor: gridColor },
+    showlegend: false,
+  };
+
+  Plotly.newPlot('side-chart-1', [barTrace], sideLayout1, { responsive: true });
+
+  // Chart 2: delta distributions by layer group
+  const groups = [
+    { name: 'Early', filter: n => n.layer < 8, color: blue },
+    { name: 'Late', filter: n => n.layer >= 8, color: purple },
+    { name: 'Final 3', filter: n => n.layer >= 13, color: red },
+  ];
+
+  const boxTraces = groups.map(g => ({
+    y: NEURONS.filter(g.filter).map(n => n.delta),
+    type: 'box',
+    name: g.name,
+    marker: { color: g.color },
+    boxmean: 'sd',
+  }));
+
+  const sideLayout2 = {
+    paper_bgcolor: plotBg, plot_bgcolor: plotBg,
+    font: { family: 'SF Mono', color: fontColor, size: 10 },
+    margin: { l: 35, r: 10, t: 5, b: 30 },
+    yaxis: { title: 'Δ', gridcolor: gridColor, zerolinecolor: gridColor },
+    showlegend: true,
+    legend: { x: 0.02, y: 0.98, font: { size: 10, color: '#aaa' }, bgcolor: 'rgba(0,0,0,0)' },
+  };
+
+  Plotly.newPlot('side-chart-2', boxTraces, sideLayout2, { responsive: true });
+}
+
+// ---- VIEW SWITCHING ----
+function setView(view) {
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  switch (view) {
+    case '3d':
+      document.getElementById('panel-label').textContent = '3D Neuron Space — drag to rotate, scroll to zoom';
+      render3D(); break;
+    case 'layer':
+      document.getElementById('panel-label').textContent = 'Per-Layer Neuron Concentration';
+      renderLayerHeatmap(); break;
+    case 'pca':
+      document.getElementById('panel-label').textContent = '2D Projection — color = layer, size = |Δ|';
+      renderPCA(); break;
+    case 'ridge':
+      document.getElementById('panel-label').textContent = 'Delta Distribution by Layer Group';
+      renderRidge(); break;
+  }
+}
+
+// ---- INIT ----
+render3D();
+renderSideCharts();
+</script>
+</body>
+</html>
