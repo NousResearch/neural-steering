@@ -43,6 +43,7 @@ See [`quickstart.py`](quickstart.py) for a runnable end-to-end example. Also: [r
 - **Contrastive discovery** -- find neurons for any behavioral feature (refusal, belief, sentiment, sycophancy) from positive/negative prompt pairs, no target token needed
 - **Single-pass circuit discovery** -- RelP/LRP attribution finds factual circuits in one forward+backward pass
 - **Multiplier steering** -- ablate (0.0), baseline (1.0), amplify (2.0+), or sweep across multipliers
+- **[NEW] Offline Safetensors Ablation** -- bypass PyTorch runtime hooks by physically zeroing out targeted neurons directly in `.safetensors` matrix files, enabling zero-latency overhead and native vLLM compatibility.
 - **Edge attribution** -- neuron-to-neuron information flow, hourglass architecture detection, super weight identification
 - **Automatic universal neuron blacklisting** -- filters task-agnostic infrastructure neurons
 - **Cross-model support** -- Llama, Qwen, Mistral with zero code changes
@@ -89,6 +90,20 @@ Applying the same discovery pipeline to base models identifies neurons with simi
 | Llama-3.2-1B | Instruct | 43.4 | 20.2 | 0.975 |
 | Qwen2.5-3B | Base | 14.1 | 11.1 | 0.865 |
 | Qwen2.5-3B | Instruct | 92.9 | 34.3 | 0.984 |
+
+### Long-Context Stress Testing & Polysemantic Entanglement (Offline Ablation)
+
+While the runtime hook method (`steerer.steer()`) is highly effective for localized probing, deploying ablated models into production inference engines (e.g., vLLM) requires static weights to maintain Time-To-First-Token (TTFT) performance. 
+
+By mapping the extracted CNA circuit to the disk binaries via `apply_surgery.py`, we can physically zero out the exact 458 refusal neurons within the `gate_proj`, `up_proj`, and `down_proj` matrices. 
+
+Benchmarking this offline-ablated Llama-3.1-8B-Instruct model in vLLM against a heavy 4.8k-token prefix (syslog data) revealed a novel boundary condition: **Polysemantic Entanglement**.
+
+At long context lengths, the 0.1% refusal circuit (heavily localized in Layers 30 and 31) successfully bypassed safety filters without falling into an EOS-avoidance loop. However, the model suffered a deep semantic collapse in reasoning capabilities. While syntactic fluency and Markdown structure remained perfectly intact (satisfying standard n-gram repetition metrics), the generated logic became completely invalid (e.g., hallucinating C code with if-statements outside function bodies, and Python scripts that only assigned hardcoded strings). 
+
+This demonstrates that in late-layer MLPs, the circuits evaluating safety/refusal are mathematically entangled with the circuits validating logical code correctness. 
+
+*See `apply_surgery.py` and `stress_test.py` for the offline ablation pipeline.*
 
 ## API Reference
 
@@ -203,6 +218,35 @@ graph.detect_super_weights()    # Anomalous infrastructure neurons
 graph.ascii_diagram()           # ASCII visualization
 graph.to_dot("circuit.dot")     # Graphviz DOT export
 graph.summary()                 # Human-readable summary
+```
+
+### Production Infrastructure
+
+#### Offline Matrix Surgery
+For deploying steered models into high-throughput inference engines (vLLM, TGI) without the latency overhead of PyTorch runtime hooks, you can physically ablate the circuit from the model's disk weights.
+
+```bash
+# 1. Extract the canonical circuit map
+python extract_circuit.py --model_path ./llama-base --output_indices canonical_indices.json
+
+# 2. Burn the circuit directly into the .safetensors matrices (zero-copy memory mapped)
+python apply_surgery.py \
+    --model_dir ./llama-base \
+    --output_dir ./llama-ablated \
+    --indices_path canonical_indices.json \
+    --experiment_id "exp_refusal_001"
+```
+Note: `apply_surgery.py` automatically injects the exact ablation map into the `.safetensors` metadata header for architectural provenance.
+
+#### Async Load Generation
+Validate the ablated model's TTFT and autoregressive stability under concurrent load:
+
+```bash
+# Spin up your inference engine
+vllm serve ./llama-ablated --tensor-parallel-size 1 --max-model-len 8192
+
+# Execute the concurrent stress test
+python stress_test.py --model ./llama-ablated --api_url http://localhost:8000/v1 --concurrency 5
 ```
 
 ## How It Works
