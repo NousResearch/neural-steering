@@ -103,7 +103,7 @@ At long context lengths, the 0.1% refusal circuit (heavily localized in Layers 3
 
 This demonstrates that in late-layer MLPs, the circuits evaluating safety/refusal are mathematically entangled with the circuits validating logical code correctness. 
 
-*See `apply_surgery.py` and `stress_test.py` for the offline ablation pipeline.*
+*See `apply_surgery.py` and `stress_test.py` for the offline ablation pipeline. The exact benchmark logs and verifiable proof of the semantic reasoning collapse are preserved in `post_mortem_results.txt` and `stress_test_raw_output.txt`.*
 
 ## API Reference
 
