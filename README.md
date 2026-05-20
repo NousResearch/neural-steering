@@ -95,7 +95,7 @@ Applying the same discovery pipeline to base models identifies neurons with simi
 
 While the runtime hook method (`steerer.steer()`) is highly effective for localized probing, deploying ablated models into production inference engines (e.g., vLLM) requires static weights to maintain Time-To-First-Token (TTFT) performance. 
 
-By mapping the extracted CNA circuit to the disk binaries via `apply_surgery.py`, we can physically zero out the exact 458 refusal neurons within the `gate_proj`, `up_proj`, and `down_proj` matrices. 
+By mapping the extracted CNA circuit to the disk binaries via [apply_surgery.py](apply_surgery.py), we can physically zero out the exact 458 refusal neurons within the `gate_proj`, `up_proj`, and `down_proj` matrices. 
 
 Benchmarking this offline-ablated Llama-3.1-8B-Instruct model in vLLM against a heavy 4.8k-token prefix (syslog data) revealed a novel boundary condition: **Polysemantic Entanglement**.
 
@@ -103,7 +103,7 @@ At long context lengths, the 0.1% refusal circuit (heavily localized in Layers 3
 
 This demonstrates that in late-layer MLPs, the circuits evaluating safety/refusal are mathematically entangled with the circuits validating logical code correctness. 
 
-*See `apply_surgery.py` and `stress_test.py` for the offline ablation pipeline. The exact benchmark logs and verifiable proof of the semantic reasoning collapse are preserved in `post_mortem_results.txt` and `stress_test_raw_output.txt`.*
+*See [apply_surgery.py](apply_surgery.py) and [stress_test.py](stress_test.py) for the offline ablation pipeline. The exact benchmark logs and verifiable proof of the semantic reasoning collapse are preserved in [post_mortem_results.txt](post_mortem_results.txt) and [stress_test_raw_output.txt](stress_test_raw_output.txt).*
 
 ## API Reference
 
@@ -236,7 +236,7 @@ python apply_surgery.py \
     --indices_path canonical_indices.json \
     --experiment_id "exp_refusal_001"
 ```
-Note: `apply_surgery.py` automatically injects the exact ablation map into the `.safetensors` metadata header for architectural provenance.
+Note: [apply_surgery.py](apply_surgery.py) automatically injects the exact ablation map into the `.safetensors` metadata header for architectural provenance.
 
 #### Async Load Generation
 Validate the ablated model's TTFT and autoregressive stability under concurrent load:
