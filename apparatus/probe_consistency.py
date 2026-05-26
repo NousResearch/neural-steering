@@ -83,29 +83,30 @@ def main() -> int:
             out["comparisons"][f"L{a}_vs_L{b}"][f"{col}_all"] = {"rho": rho, "n": n}
         print()
 
-    # Per-neuron drift summary: for the upstream-of-L18 (most-restrictive) set,
-    # show each neuron's (sufficiency_dProbe@L18, @L24, @L28) and rank position
-    # in each layer's distribution
-    print("\n=== Per-neuron probe sufficiency across layers (upstream of L18) ===\n")
-    upstream_18 = [r for r in rows_by_layer[18] if r["upstream_of_probe"]]
-    upstream_18_keys = {(r["layer"], r["neuron"]) for r in upstream_18}
+    # Per-neuron drift summary: for the upstream-of-min-layer set, show each
+    # neuron's sufficiency across requested probe layers.
+    min_layer = min(layers)
+    print(f"\n=== Per-neuron probe sufficiency across layers (upstream of L{min_layer}) ===\n")
+    upstream_min = [r for r in rows_by_layer[min_layer] if r["upstream_of_probe"]]
+    upstream_min_keys = {(r["layer"], r["neuron"]) for r in upstream_min}
     rows_by_key = {
         L: {(r["layer"], r["neuron"]): r for r in rows_by_layer[L]}
         for L in layers
     }
     drift_rows = []
-    for k in sorted(upstream_18_keys, key=lambda x: x):
+    for k in sorted(upstream_min_keys, key=lambda x: x):
         vals = {L: rows_by_key[L].get(k, {}).get("sufficiency_dProbe") for L in layers}
         drift_rows.append({"layer_neuron": f"L{k[0]:02d}/N{k[1]:<5d}", **{f"L{L}": vals[L] for L in layers}})
 
-    # sort by L24 sufficiency descending
-    drift_rows.sort(key=lambda r: -(r[f"L24"] if r[f"L24"] is not None else 0.0))
-    print(f"{'neuron':18s} {'L18 suff':>10s} {'L24 suff':>10s} {'L28 suff':>10s}")
+    sort_layer = layers[len(layers) // 2]
+    drift_rows.sort(key=lambda r: -(r[f"L{sort_layer}"] if r[f"L{sort_layer}"] is not None else 0.0))
+    header = f"{'neuron':18s}" + "".join(f" L{L} suff".rjust(12) for L in layers)
+    print(header)
     for r in drift_rows:
         def fmt(x):
             return f"{x:+10.4f}" if x is not None else "       N/A"
-        print(f"{r['layer_neuron']:18s} {fmt(r['L18'])} {fmt(r['L24'])} {fmt(r['L28'])}")
-    out["per_neuron_drift_upstream_of_L18"] = drift_rows
+        print(f"{r['layer_neuron']:18s}" + "".join(f" {fmt(r[f'L{L}'])}" for L in layers))
+    out[f"per_neuron_drift_upstream_of_L{min_layer}"] = drift_rows
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(out, indent=2, default=str))

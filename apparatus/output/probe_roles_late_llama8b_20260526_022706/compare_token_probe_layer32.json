@@ -1,0 +1,571 @@
+{
+  "n_joined": 51,
+  "comparisons": {
+    "all": {
+      "n": 51,
+      "token_necessity_vs_probe_necessity": {
+        "rho": 0.32148433286407513,
+        "n": 51
+      },
+      "token_sufficiency_vs_probe_sufficiency": {
+        "rho": 0.6861219603837406,
+        "n": 51
+      },
+      "probe_necessity_vs_probe_sufficiency": {
+        "rho": 0.5727601809954751,
+        "n": 51
+      },
+      "necessity_sign_agreement": {
+        "n": 51,
+        "agreement": 0.6470588235294118,
+        "nonzero_n": 51,
+        "nonzero_agreement": 0.6470588235294118
+      },
+      "sufficiency_sign_agreement": {
+        "n": 51,
+        "agreement": 0.6666666666666666,
+        "nonzero_n": 50,
+        "nonzero_agreement": 0.68
+      }
+    },
+    "upstream": {
+      "n": 51,
+      "token_necessity_vs_probe_necessity": {
+        "rho": 0.32148433286407513,
+        "n": 51
+      },
+      "token_sufficiency_vs_probe_sufficiency": {
+        "rho": 0.6861219603837406,
+        "n": 51
+      },
+      "probe_necessity_vs_probe_sufficiency": {
+        "rho": 0.5727601809954751,
+        "n": 51
+      },
+      "necessity_sign_agreement": {
+        "n": 51,
+        "agreement": 0.6470588235294118,
+        "nonzero_n": 51,
+        "nonzero_agreement": 0.6470588235294118
+      },
+      "sufficiency_sign_agreement": {
+        "n": 51,
+        "agreement": 0.6666666666666666,
+        "nonzero_n": 50,
+        "nonzero_agreement": 0.68
+      }
+    }
+  },
+  "joined_rows": [
+    {
+      "layer": 0,
+      "neuron": 491,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -9.445699494375901,
+      "token_sufficiency_dS": 0.01875000000000071,
+      "probe_necessity_sigma": 5.854371619426568,
+      "probe_sufficiency_dProbe": -0.004262542724607243,
+      "probe_sufficiency_sigma": 0.5602320933621776
+    },
+    {
+      "layer": 0,
+      "neuron": 8268,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -3.680718582315506,
+      "token_sufficiency_dS": -0.03125,
+      "probe_necessity_sigma": 6.635251857582135,
+      "probe_sufficiency_dProbe": -0.021679687499997158,
+      "probe_sufficiency_sigma": -1.0293104100231412
+    },
+    {
+      "layer": 0,
+      "neuron": 11311,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -9.667429529455136,
+      "token_sufficiency_dS": 0.01875000000000071,
+      "probe_necessity_sigma": 4.878708158516423,
+      "probe_sufficiency_dProbe": -0.013238143920897727,
+      "probe_sufficiency_sigma": -0.25890903332231613
+    },
+    {
+      "layer": 0,
+      "neuron": 13463,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -25.410262020081657,
+      "token_sufficiency_dS": -0.006249999999999645,
+      "probe_necessity_sigma": 0.3826000483790027,
+      "probe_sufficiency_dProbe": -0.01899566650390483,
+      "probe_sufficiency_sigma": -0.7843583522498345
+    },
+    {
+      "layer": 1,
+      "neuron": 198,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 0.31042204911095583,
+      "token_sufficiency_dS": 0.006249999999999645,
+      "probe_necessity_sigma": 1.1449338827308853,
+      "probe_sufficiency_dProbe": 0.01776885986328125,
+      "probe_sufficiency_sigma": 2.5708860366034623
+    },
+    {
+      "layer": 1,
+      "neuron": 2427,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 44.21296899480175,
+      "token_sufficiency_dS": -0.03125,
+      "probe_necessity_sigma": 230.36793949950422,
+      "probe_sufficiency_dProbe": 0.016246604919434304,
+      "probe_sufficiency_sigma": 2.43196034209743
+    },
+    {
+      "layer": 2,
+      "neuron": 5789,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -4.567638722632473,
+      "token_sufficiency_dS": -0.037499999999999645,
+      "probe_necessity_sigma": -1.0029849194059484,
+      "probe_sufficiency_dProbe": -0.02854042053222372,
+      "probe_sufficiency_sigma": -1.6554421267734616
+    },
+    {
+      "layer": 5,
+      "neuron": 11491,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 2.305992364824155,
+      "token_sufficiency_dS": -0.01875000000000071,
+      "probe_necessity_sigma": -0.7609926687876015,
+      "probe_sufficiency_dProbe": -0.022443389892575993,
+      "probe_sufficiency_sigma": -1.0990082524993885
+    },
+    {
+      "layer": 9,
+      "neuron": 12002,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -5.676288898028705,
+      "token_sufficiency_dS": -0.21250000000000036,
+      "probe_necessity_sigma": -22.281902434909963,
+      "probe_sufficiency_dProbe": -0.014011955261228337,
+      "probe_sufficiency_sigma": -0.3295294496373393
+    },
+    {
+      "layer": 10,
+      "neuron": 853,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -21.64085142373446,
+      "token_sufficiency_dS": 0.03125,
+      "probe_necessity_sigma": -4.753711527924123,
+      "probe_sufficiency_dProbe": -0.03817920684814169,
+      "probe_sufficiency_sigma": -2.535107578705
+    },
+    {
+      "layer": 11,
+      "neuron": 4258,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 47.09545945083195,
+      "token_sufficiency_dS": 0.15625,
+      "probe_necessity_sigma": 79.4301320276259,
+      "probe_sufficiency_dProbe": 0.22649383544921875,
+      "probe_sufficiency_sigma": 21.61977289437968
+    },
+    {
+      "layer": 15,
+      "neuron": 9635,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 16.496714609895943,
+      "token_sufficiency_dS": 0.40000000000000036,
+      "probe_necessity_sigma": 69.23010041916277,
+      "probe_sufficiency_dProbe": 0.6810018539428739,
+      "probe_sufficiency_sigma": 63.09958045422307
+    },
+    {
+      "layer": 18,
+      "neuron": 8429,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 11.175193767994015,
+      "token_sufficiency_dS": 0.25624999999999964,
+      "probe_necessity_sigma": 30.344514651653572,
+      "probe_sufficiency_dProbe": 0.2240694046020515,
+      "probe_sufficiency_sigma": 21.398511836508927
+    },
+    {
+      "layer": 20,
+      "neuron": 9928,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -0.35476805612680884,
+      "token_sufficiency_dS": 1.4562500000000007,
+      "probe_necessity_sigma": 8.926330503953185,
+      "probe_sufficiency_dProbe": 0.8657005310058601,
+      "probe_sufficiency_sigma": 79.95575299551626
+    },
+    {
+      "layer": 21,
+      "neuron": 3057,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -6.119748968187205,
+      "token_sufficiency_dS": -0.04374999999999929,
+      "probe_necessity_sigma": 19.13972778523981,
+      "probe_sufficiency_dProbe": 0.09183521270752237,
+      "probe_sufficiency_sigma": 9.330410484204531
+    },
+    {
+      "layer": 21,
+      "neuron": 10092,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -0.5764980912060427,
+      "token_sufficiency_dS": 0.05000000000000071,
+      "probe_necessity_sigma": 9.220222030008093,
+      "probe_sufficiency_dProbe": 0.013364410400392046,
+      "probe_sufficiency_sigma": 2.1689223556695247
+    },
+    {
+      "layer": 22,
+      "neuron": 3319,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 1.419072224507188,
+      "token_sufficiency_dS": 1.6999999999999993,
+      "probe_necessity_sigma": 7.637432077649207,
+      "probe_sufficiency_dProbe": 0.8209918975830099,
+      "probe_sufficiency_sigma": 75.87550482566071
+    },
+    {
+      "layer": 22,
+      "neuron": 5816,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 7.8492432418053175,
+      "token_sufficiency_dS": -0.006249999999999645,
+      "probe_necessity_sigma": 3.1594105431219983,
+      "probe_sufficiency_dProbe": 0.007061195373537998,
+      "probe_sufficiency_sigma": 1.5936714564912324
+    },
+    {
+      "layer": 22,
+      "neuron": 7356,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 1.419072224507188,
+      "token_sufficiency_dS": -0.037499999999999645,
+      "probe_necessity_sigma": -2.5249855845875153,
+      "probe_sufficiency_dProbe": -0.0125871658325174,
+      "probe_sufficiency_sigma": -0.19949875950320275
+    },
+    {
+      "layer": 22,
+      "neuron": 11137,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -1.6851482666022752,
+      "token_sufficiency_dS": -0.43125000000000036,
+      "probe_necessity_sigma": -2.632033588028017,
+      "probe_sufficiency_dProbe": 0.23761863708496378,
+      "probe_sufficiency_sigma": 22.635056700640135
+    },
+    {
+      "layer": 23,
+      "neuron": 2069,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 3.1929125051411535,
+      "token_sufficiency_dS": 0.9749999999999996,
+      "probe_necessity_sigma": 5.6862277766800515,
+      "probe_sufficiency_dProbe": 0.4332061767578139,
+      "probe_sufficiency_sigma": 40.48498052293308
+    },
+    {
+      "layer": 24,
+      "neuron": 1619,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 0.0886920140316904,
+      "token_sufficiency_dS": -2.59375,
+      "probe_necessity_sigma": 7.554233829843718,
+      "probe_sufficiency_dProbe": -0.7396785736083977,
+      "probe_sufficiency_sigma": -66.55610952495256
+    },
+    {
+      "layer": 24,
+      "neuron": 2598,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 9.179623452280815,
+      "token_sufficiency_dS": 1.7874999999999996,
+      "probe_necessity_sigma": 18.937495345750744,
+      "probe_sufficiency_dProbe": 0.7985185623168967,
+      "probe_sufficiency_sigma": 73.82451873930802
+    },
+    {
+      "layer": 26,
+      "neuron": 4904,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -1.9068783016815092,
+      "token_sufficiency_dS": -0.21250000000000036,
+      "probe_necessity_sigma": 5.386726346664833,
+      "probe_sufficiency_dProbe": 0.11976680755615376,
+      "probe_sufficiency_sigma": 11.879534222440444
+    },
+    {
+      "layer": 26,
+      "neuron": 11984,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -3.90244861739474,
+      "token_sufficiency_dS": -1.3625000000000007,
+      "probe_necessity_sigma": -4.559878616768702,
+      "probe_sufficiency_dProbe": -0.4435970306396477,
+      "probe_sufficiency_sigma": -39.534792134186446
+    },
+    {
+      "layer": 28,
+      "neuron": 545,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -1.019958161364542,
+      "token_sufficiency_dS": -0.7375000000000007,
+      "probe_necessity_sigma": -1.9242660326348944,
+      "probe_sufficiency_dProbe": -0.25181007385253906,
+      "probe_sufficiency_sigma": -22.03172126123919
+    },
+    {
+      "layer": 28,
+      "neuron": 1222,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 1.640802259586422,
+      "token_sufficiency_dS": 0.7937499999999993,
+      "probe_necessity_sigma": 1.3074371663040232,
+      "probe_sufficiency_dProbe": 0.3544130325317383,
+      "probe_sufficiency_sigma": 33.29407447387241
+    },
+    {
+      "layer": 28,
+      "neuron": 2807,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 2.7494524349826546,
+      "token_sufficiency_dS": 0.6125000000000007,
+      "probe_necessity_sigma": 16.766738410004766,
+      "probe_sufficiency_dProbe": 0.925464248657228,
+      "probe_sufficiency_sigma": 85.40997471740248
+    },
+    {
+      "layer": 28,
+      "neuron": 2876,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 1.862532294665656,
+      "token_sufficiency_dS": 0.03125,
+      "probe_necessity_sigma": -0.197457890080416,
+      "probe_sufficiency_dProbe": -0.028125953674315696,
+      "probe_sufficiency_sigma": -1.6176165993758678
+    },
+    {
+      "layer": 28,
+      "neuron": 3413,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -3.2372585121570068,
+      "token_sufficiency_dS": 0.01249999999999929,
+      "probe_necessity_sigma": -1.3622027041467644,
+      "probe_sufficiency_dProbe": 0.023387527465821734,
+      "probe_sufficiency_sigma": 3.0836630205355053
+    },
+    {
+      "layer": 28,
+      "neuron": 6305,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 4.96675278577512,
+      "token_sufficiency_dS": 1.0437499999999993,
+      "probe_necessity_sigma": 1.128502688617575,
+      "probe_sufficiency_dProbe": 0.4813339233398466,
+      "probe_sufficiency_sigma": 44.87726753500368
+    },
+    {
+      "layer": 28,
+      "neuron": 6394,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 0.5321520841901897,
+      "token_sufficiency_dS": -0.006249999999999645,
+      "probe_necessity_sigma": 0.5423750180043738,
+      "probe_sufficiency_dProbe": 0.004860496520997515,
+      "probe_sufficiency_sigma": 1.3928288724525928
+    },
+    {
+      "layer": 29,
+      "neuron": 1878,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 4.07983264545812,
+      "token_sufficiency_dS": 1.5562500000000004,
+      "probe_necessity_sigma": 16.378091620881698,
+      "probe_sufficiency_dProbe": 0.8097236633300788,
+      "probe_sufficiency_sigma": 74.84713091511915
+    },
+    {
+      "layer": 29,
+      "neuron": 4918,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -7.89358924882117,
+      "token_sufficiency_dS": -0.025000000000000355,
+      "probe_necessity_sigma": 9.357802625495067,
+      "probe_sufficiency_dProbe": 0.34365901947021626,
+      "probe_sufficiency_sigma": 32.31262997974364
+    },
+    {
+      "layer": 30,
+      "neuron": 864,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -5.232828827870206,
+      "token_sufficiency_dS": 0.01249999999999929,
+      "probe_necessity_sigma": -2.719707496916812,
+      "probe_sufficiency_dProbe": 0.01320343017578196,
+      "probe_sufficiency_sigma": 2.1542308024601944
+    },
+    {
+      "layer": 30,
+      "neuron": 2653,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -0.7982281262852766,
+      "token_sufficiency_dS": -1.3937500000000007,
+      "probe_necessity_sigma": 0.6453765333422585,
+      "probe_sufficiency_dProbe": -0.41841468811034943,
+      "probe_sufficiency_sigma": -37.23657366604311
+    },
+    {
+      "layer": 30,
+      "neuron": 3587,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 4.523292715616621,
+      "token_sufficiency_dS": -0.01875000000000071,
+      "probe_necessity_sigma": 0.49580974961192426,
+      "probe_sufficiency_dProbe": -0.0608812332153299,
+      "probe_sufficiency_sigma": -4.606964722282773
+    },
+    {
+      "layer": 30,
+      "neuron": 4128,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 4.07983264545812,
+      "token_sufficiency_dS": -0.006249999999999645,
+      "probe_necessity_sigma": -0.6606888121846995,
+      "probe_sufficiency_dProbe": 0.004539871215822444,
+      "probe_sufficiency_sigma": 1.3635676154090857
+    },
+    {
+      "layer": 30,
+      "neuron": 7041,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 4.7450227506958855,
+      "token_sufficiency_dS": 0.04374999999999929,
+      "probe_necessity_sigma": 1.9842123014571997,
+      "probe_sufficiency_dProbe": -0.01665496826171875,
+      "probe_sufficiency_sigma": -0.5707389908943921
+    },
+    {
+      "layer": 30,
+      "neuron": 7352,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 0.0886920140316904,
+      "token_sufficiency_dS": 0.0,
+      "probe_necessity_sigma": -0.5579631937630126,
+      "probe_sufficiency_dProbe": -0.02218666076660014,
+      "probe_sufficiency_sigma": -1.0755783584003171
+    },
+    {
+      "layer": 30,
+      "neuron": 8662,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 17.161904715133677,
+      "token_sufficiency_dS": 0.037499999999999645,
+      "probe_necessity_sigma": 0.7008624686879643,
+      "probe_sufficiency_dProbe": 0.2632776260375991,
+      "probe_sufficiency_sigma": 24.97677539564335
+    },
+    {
+      "layer": 30,
+      "neuron": 11430,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 11.175193767994015,
+      "token_sufficiency_dS": -0.03125,
+      "probe_necessity_sigma": -24.379178825338943,
+      "probe_sufficiency_dProbe": -0.023313713073729758,
+      "probe_sufficiency_sigma": -1.178436637918804
+    },
+    {
+      "layer": 30,
+      "neuron": 11533,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 1.862532294665656,
+      "token_sufficiency_dS": 0.03125,
+      "probe_necessity_sigma": -0.11070363757856667,
+      "probe_sufficiency_dProbe": -0.0020448684692375707,
+      "probe_sufficiency_sigma": 0.7626239051678854
+    },
+    {
+      "layer": 31,
+      "neuron": 2111,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 6.740593066409085,
+      "token_sufficiency_dS": 0.1875,
+      "probe_necessity_sigma": 1.0828570766120709,
+      "probe_sufficiency_dProbe": 0.017374610900880327,
+      "probe_sufficiency_sigma": 2.5349056568837445
+    },
+    {
+      "layer": 31,
+      "neuron": 3309,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 14.057684224024213,
+      "token_sufficiency_dS": 0.8125,
+      "probe_necessity_sigma": 2.6167826196111434,
+      "probe_sufficiency_dProbe": 0.296777534484864,
+      "probe_sufficiency_sigma": 28.034080655669953
+    },
+    {
+      "layer": 31,
+      "neuron": 5831,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 5.188482820854354,
+      "token_sufficiency_dS": 0.04374999999999929,
+      "probe_necessity_sigma": 0.15173564004263793,
+      "probe_sufficiency_dProbe": -6.790161132741446e-05,
+      "probe_sufficiency_sigma": 0.9430480153740869
+    },
+    {
+      "layer": 31,
+      "neuron": 7873,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -8.78050938913817,
+      "token_sufficiency_dS": 0.01249999999999929,
+      "probe_necessity_sigma": -3.097624961525517,
+      "probe_sufficiency_dProbe": -0.03396358489990092,
+      "probe_sufficiency_sigma": -2.150376880800888
+    },
+    {
+      "layer": 31,
+      "neuron": 9127,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": -3.0155284770777415,
+      "token_sufficiency_dS": 0.01875000000000071,
+      "probe_necessity_sigma": -0.7175542321108234,
+      "probe_sufficiency_dProbe": 0.0016878128051764918,
+      "probe_sufficiency_sigma": 1.1032799434443314
+    },
+    {
+      "layer": 31,
+      "neuron": 9503,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 11.840383873231747,
+      "token_sufficiency_dS": 0.25,
+      "probe_necessity_sigma": 0.05676579048413346,
+      "probe_sufficiency_dProbe": 0.05015850067138672,
+      "probe_sufficiency_sigma": 5.52686483782547
+    },
+    {
+      "layer": 31,
+      "neuron": 10176,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 5.410212855933619,
+      "token_sufficiency_dS": -0.40000000000000036,
+      "probe_necessity_sigma": 1.5295954941771905,
+      "probe_sufficiency_dProbe": -0.1738613128662081,
+      "probe_sufficiency_sigma": -14.917876238312772
+    },
+    {
+      "layer": 31,
+      "neuron": 10463,
+      "upstream_of_probe": true,
+      "token_necessity_sigma": 5.631942891012853,
+      "token_sufficiency_dS": -0.01249999999999929,
+      "probe_necessity_sigma": -0.6922636814698249,
+      "probe_sufficiency_dProbe": -0.0057220458984375,
+      "probe_sufficiency_sigma": 0.4270333194789291
+    }
+  ]
+}

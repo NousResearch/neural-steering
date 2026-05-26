@@ -1,0 +1,71 @@
+{
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "circuit": "experiments/topology_llama8b_20260305_163508/relp-behavioral_refusal_kstar91/circuit.json",
+  "layers": [
+    30,
+    32
+  ],
+  "n_candidates": 51,
+  "layer_summaries": {
+    "30": {
+      "train_validation": {
+        "pos_mean": 13.642610931396485,
+        "pos_std": 4.192325851421404,
+        "neg_mean": -13.642610168457031,
+        "neg_std": 2.3349916996103954,
+        "margin": 27.285221099853516,
+        "auc": 1.0,
+        "all_mean": 3.814697265625e-07,
+        "label_score_corr": 0.9704336941806194,
+        "layer": 30,
+        "position": -1,
+        "method": "mean_diff",
+        "n_positive": 10,
+        "n_negative": 10
+      },
+      "heldout_validation": {
+        "pos_mean": 16.07447452545166,
+        "pos_std": 1.0820967510166226,
+        "neg_mean": -6.354804801940918,
+        "neg_std": 5.888470393031347,
+        "margin": 22.429279327392578,
+        "auc": 1.0,
+        "all_mean": 4.859834861755371,
+        "label_score_corr": 0.9355587550385454
+      },
+      "target_baseline": 16.07447452545166,
+      "control_baseline": -7.127708005905151,
+      "validate_only": false
+    },
+    "32": {
+      "train_validation": {
+        "pos_mean": 54.487571144104,
+        "pos_std": 20.590348123582544,
+        "neg_mean": -54.48757476806641,
+        "neg_std": 7.579245882986052,
+        "margin": 108.9751459121704,
+        "auc": 1.0,
+        "all_mean": -1.811981201171875e-06,
+        "label_score_corr": 0.9617718345514753,
+        "layer": 32,
+        "position": -1,
+        "method": "mean_diff",
+        "n_positive": 10,
+        "n_negative": 10
+      },
+      "heldout_validation": {
+        "pos_mean": 67.25227355957031,
+        "pos_std": 2.897240786498515,
+        "neg_mean": -24.020514297485352,
+        "neg_std": 16.070003604923603,
+        "margin": 91.27278785705566,
+        "auc": 1.0,
+        "all_mean": 21.615879631042482,
+        "label_score_corr": 0.9694523016494155
+      },
+      "target_baseline": 67.25227355957031,
+      "control_baseline": -26.662828063964845,
+      "validate_only": false
+    }
+  }
+}
