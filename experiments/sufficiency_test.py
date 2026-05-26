@@ -39,6 +39,7 @@ from experiments.surgical_ablation import (
     make_single_neuron_ctx,
     load_bottleneck_candidates,
     unique_bottleneck_neurons,
+    unique_circuit_neurons,
     load_circuit,
     resolve_topology_dir,
     TASK_CONFIGS,
@@ -270,6 +271,7 @@ def run_sufficiency_test(
     max_neurons: int = 24,
     n_random: int = 20,
     output_dir: str = None,
+    candidate_source: str = "bottlenecks",
 ):
     """Run sufficiency test for a task."""
     config = TASK_CONFIGS[task]
@@ -286,13 +288,17 @@ def run_sufficiency_test(
         print(f"  ERROR: {analysis_path} not found, skipping")
         return None
 
-    candidates = load_bottleneck_candidates(str(analysis_path))
-    all_bn = unique_bottleneck_neurons(candidates)
-    bottleneck_neurons = all_bn[:max_neurons]
     circuit = load_circuit(str(circuit_path))
+    candidates = load_bottleneck_candidates(str(analysis_path))
+    if candidate_source == "circuit":
+        all_bn = unique_circuit_neurons(circuit)
+    else:
+        all_bn = unique_bottleneck_neurons(candidates)
+    bottleneck_neurons = all_bn if max_neurons <= 0 else all_bn[:max_neurons]
 
     print(f"  Circuit size: {len(circuit.neurons)} neurons")
-    print(f"  Bottleneck neurons: {len(bottleneck_neurons)}")
+    print(f"  Candidate source: {candidate_source}")
+    print(f"  Candidate neurons: {len(bottleneck_neurons)}")
 
     uct = config["use_chat_template"]
     seed = config["seed_response"]
@@ -329,7 +335,9 @@ def run_sufficiency_test(
 
     results = {
         "task": task,
+        "candidate_source": candidate_source,
         "n_bottleneck_neurons": len(bottleneck_neurons),
+        "n_candidate_neurons": len(bottleneck_neurons),
     }
 
     # Helper for measuring on control prompts
@@ -556,12 +564,15 @@ def run_sufficiency_test(
 
     # Effect sizes
     print("\n--- Effect sizes (σ above random) ---")
-    for sr in sorted_by_suff[:10]:
+    for sr in single_tx_results:
         if rand_std > 1e-10:
             sigma = (sr["dSufficiency"] - rand_mean) / rand_std
         else:
             sigma = 0.0
         sr["sigma_above_random"] = sigma
+
+    for sr in sorted_by_suff[:10]:
+        sigma = sr.get("sigma_above_random", 0.0)
         print(f"  L{sr['layer']:02d}/N{sr['neuron']:5d}: "
               f"dS={sr['dSufficiency']:+.4f} ({sigma:+.1f}σ)")
 
@@ -620,6 +631,9 @@ def main():
     parser.add_argument("--max_neurons", type=int, default=24)
     parser.add_argument("--n_random", type=int, default=20)
     parser.add_argument("--output_dir", type=str, default=None)
+    parser.add_argument("--candidate_source", default="bottlenecks",
+                        choices=["bottlenecks", "circuit"],
+                        help="Which unique (layer, neuron) list to test: topology bottlenecks (default) or the full circuit")
     args = parser.parse_args()
 
     model_name = {"llama8b": "meta-llama/Llama-3.1-8B-Instruct"}[args.model]
@@ -640,6 +654,7 @@ def main():
             max_neurons=args.max_neurons,
             n_random=args.n_random,
             output_dir=args.output_dir,
+            candidate_source=args.candidate_source,
         )
         if result:
             all_results[task] = result

@@ -203,6 +203,27 @@ def unique_bottleneck_neurons(candidates: List[dict]) -> List[Tuple[int, int]]:
     return result
 
 
+def unique_circuit_neurons(circuit: Circuit) -> List[Tuple[int, int]]:
+    """Collapse a position-aware circuit to unique (layer, neuron) pairs.
+
+    Sorts by the largest absolute attribution across positions so full-circuit
+    intervention runs keep the same "most-attributed first" convention as the
+    bottleneck list while covering every unique MLP neuron in the circuit.
+    """
+    best_attr: Dict[Tuple[int, int], float] = {}
+    for nidx, weight in circuit.neurons.items():
+        key = (nidx.layer, nidx.neuron)
+        if key not in best_attr or abs(weight) > abs(best_attr[key]):
+            best_attr[key] = weight
+    return [
+        key for key, _ in sorted(
+            best_attr.items(),
+            key=lambda kv: abs(kv[1]),
+            reverse=True,
+        )
+    ]
+
+
 def load_circuit(circuit_path: str) -> Circuit:
     """Load a circuit from saved JSON.
 
@@ -292,6 +313,7 @@ def run_surgical_ablation(
     n_random: int = 20,
     output_dir: str = None,
     filter_universal: set = None,
+    candidate_source: str = "bottlenecks",
 ):
     """Run surgical ablation experiment for a task.
 
@@ -314,9 +336,12 @@ def run_surgical_ablation(
         print(f"  ERROR: {analysis_path} not found, skipping")
         return None
 
-    candidates = load_bottleneck_candidates(str(analysis_path))
-    bottleneck_neurons = unique_bottleneck_neurons(candidates)
     circuit = load_circuit(str(circuit_path))
+    candidates = load_bottleneck_candidates(str(analysis_path))
+    if candidate_source == "circuit":
+        bottleneck_neurons = unique_circuit_neurons(circuit)
+    else:
+        bottleneck_neurons = unique_bottleneck_neurons(candidates)
 
     if filter_universal:
         n_before = len(bottleneck_neurons)
@@ -327,8 +352,9 @@ def run_surgical_ablation(
             print(f"  Filtered {n_removed} universal neurons from bottleneck list")
 
     print(f"  Circuit size: {len(circuit.neurons)} neurons")
+    print(f"  Candidate source: {candidate_source}")
     print(f"  Bottleneck candidates: {len(candidates)} (position-aware)")
-    print(f"  Unique bottleneck neurons: {len(bottleneck_neurons)}")
+    print(f"  Unique candidate neurons: {len(bottleneck_neurons)}")
     print(f"  Top 10: {['L{}/N{}'.format(l,n) for l,n in bottleneck_neurons[:10]]}")
 
     uct = config["use_chat_template"]
@@ -337,9 +363,11 @@ def run_surgical_ablation(
     results = {
         "task": task,
         "circuit_size": len(circuit.neurons),
+        "candidate_source": candidate_source,
         "n_bottleneck_candidates": len(candidates),
-        "n_unique_bottleneck_neurons": len(bottleneck_neurons),
+        "n_unique_candidate_neurons": len(bottleneck_neurons),
         "bottleneck_neurons": [{"layer": l, "neuron": n} for l, n in bottleneck_neurons],
+        "candidate_neurons": [{"layer": l, "neuron": n} for l, n in bottleneck_neurons],
     }
 
     # -------------------------------------------------------
@@ -660,6 +688,9 @@ def main():
                         help="Output directory (default: auto-named)")
     parser.add_argument("--filter_universal", action="store_true",
                         help="Auto-detect and filter universal neurons across circuits")
+    parser.add_argument("--candidate_source", default="bottlenecks",
+                        choices=["bottlenecks", "circuit"],
+                        help="Which unique (layer, neuron) list to test: topology bottlenecks (default) or the full circuit")
     args = parser.parse_args()
 
     # Model setup
@@ -705,6 +736,7 @@ def main():
             n_random=args.n_random,
             output_dir=args.output_dir,
             filter_universal=universal_set,
+            candidate_source=args.candidate_source,
         )
         if result:
             all_results[task] = result
