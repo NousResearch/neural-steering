@@ -1,0 +1,377 @@
+{
+  "n_rows_position_preserved": 91,
+  "n_rows_collapsed": 51,
+  "correlations_position_preserved": {
+    "attribution ~ attribution": {
+      "rho": 1.0,
+      "n_pairs": 91
+    },
+    "attribution ~ edge_in_count": {
+      "rho": 0.07537849352207433,
+      "n_pairs": 91
+    },
+    "attribution ~ edge_in_weight_abs": {
+      "rho": -0.016675293662431968,
+      "n_pairs": 91
+    },
+    "attribution ~ edge_out_count": {
+      "rho": -0.06694928397525923,
+      "n_pairs": 91
+    },
+    "attribution ~ edge_out_weight_abs": {
+      "rho": -0.0015028630930596263,
+      "n_pairs": 91
+    },
+    "attribution ~ necessity_dMargin": {
+      "rho": 0.618576866961294,
+      "n_pairs": 91
+    },
+    "attribution ~ necessity_sigma": {
+      "rho": 0.618576866961294,
+      "n_pairs": 91
+    },
+    "attribution ~ sufficiency_dS": {
+      "rho": 0.6369078815460849,
+      "n_pairs": 91
+    },
+    "attribution ~ sufficiency_sigma": {
+      "rho": 0.6369078815460849,
+      "n_pairs": 91
+    },
+    "edge_in_count ~ edge_in_count": {
+      "rho": 1.0,
+      "n_pairs": 91
+    },
+    "edge_in_count ~ edge_in_weight_abs": {
+      "rho": 0.16231967915497414,
+      "n_pairs": 91
+    },
+    "edge_in_count ~ edge_out_count": {
+      "rho": -0.9029060501719491,
+      "n_pairs": 91
+    },
+    "edge_in_count ~ edge_out_weight_abs": {
+      "rho": -0.7078535279128869,
+      "n_pairs": 91
+    },
+    "edge_in_count ~ necessity_dMargin": {
+      "rho": 0.20610952331657129,
+      "n_pairs": 91
+    },
+    "edge_in_count ~ necessity_sigma": {
+      "rho": 0.20610952331657129,
+      "n_pairs": 91
+    },
+    "edge_in_count ~ sufficiency_dS": {
+      "rho": 0.06681714348545267,
+      "n_pairs": 91
+    },
+    "edge_in_count ~ sufficiency_sigma": {
+      "rho": 0.06681714348545267,
+      "n_pairs": 91
+    },
+    "edge_in_weight_abs ~ edge_in_weight_abs": {
+      "rho": 1.0,
+      "n_pairs": 91
+    },
+    "edge_in_weight_abs ~ edge_out_count": {
+      "rho": -0.14808280617390882,
+      "n_pairs": 91
+    },
+    "edge_in_weight_abs ~ edge_out_weight_abs": {
+      "rho": -0.002965874512413446,
+      "n_pairs": 91
+    },
+    "edge_in_weight_abs ~ necessity_dMargin": {
+      "rho": 0.12914358081198665,
+      "n_pairs": 91
+    },
+    "edge_in_weight_abs ~ necessity_sigma": {
+      "rho": 0.12914358081198665,
+      "n_pairs": 91
+    },
+    "edge_in_weight_abs ~ sufficiency_dS": {
+      "rho": 0.015970549358638227,
+      "n_pairs": 91
+    },
+    "edge_in_weight_abs ~ sufficiency_sigma": {
+      "rho": 0.015970549358638227,
+      "n_pairs": 91
+    },
+    "edge_out_count ~ edge_out_count": {
+      "rho": 1.0,
+      "n_pairs": 91
+    },
+    "edge_out_count ~ edge_out_weight_abs": {
+      "rho": 0.8267151005382624,
+      "n_pairs": 91
+    },
+    "edge_out_count ~ necessity_dMargin": {
+      "rho": -0.22016274343337422,
+      "n_pairs": 91
+    },
+    "edge_out_count ~ necessity_sigma": {
+      "rho": -0.22016274343337422,
+      "n_pairs": 91
+    },
+    "edge_out_count ~ sufficiency_dS": {
+      "rho": -0.11192317952626266,
+      "n_pairs": 91
+    },
+    "edge_out_count ~ sufficiency_sigma": {
+      "rho": -0.11192317952626266,
+      "n_pairs": 91
+    },
+    "edge_out_weight_abs ~ edge_out_weight_abs": {
+      "rho": 1.0,
+      "n_pairs": 91
+    },
+    "edge_out_weight_abs ~ necessity_dMargin": {
+      "rho": -0.23100272296607813,
+      "n_pairs": 91
+    },
+    "edge_out_weight_abs ~ necessity_sigma": {
+      "rho": -0.23100272296607813,
+      "n_pairs": 91
+    },
+    "edge_out_weight_abs ~ sufficiency_dS": {
+      "rho": -0.01919986329008734,
+      "n_pairs": 91
+    },
+    "edge_out_weight_abs ~ sufficiency_sigma": {
+      "rho": -0.01919986329008734,
+      "n_pairs": 91
+    },
+    "necessity_dMargin ~ necessity_dMargin": {
+      "rho": 0.9999999999999999,
+      "n_pairs": 91
+    },
+    "necessity_dMargin ~ necessity_sigma": {
+      "rho": 0.9999999999999999,
+      "n_pairs": 91
+    },
+    "necessity_dMargin ~ sufficiency_dS": {
+      "rho": 0.5066662981693187,
+      "n_pairs": 91
+    },
+    "necessity_dMargin ~ sufficiency_sigma": {
+      "rho": 0.5066662981693187,
+      "n_pairs": 91
+    },
+    "necessity_sigma ~ necessity_sigma": {
+      "rho": 0.9999999999999999,
+      "n_pairs": 91
+    },
+    "necessity_sigma ~ sufficiency_dS": {
+      "rho": 0.5066662981693187,
+      "n_pairs": 91
+    },
+    "necessity_sigma ~ sufficiency_sigma": {
+      "rho": 0.5066662981693187,
+      "n_pairs": 91
+    },
+    "sufficiency_dS ~ sufficiency_dS": {
+      "rho": 1.0,
+      "n_pairs": 91
+    },
+    "sufficiency_dS ~ sufficiency_sigma": {
+      "rho": 1.0,
+      "n_pairs": 91
+    },
+    "sufficiency_sigma ~ sufficiency_sigma": {
+      "rho": 1.0,
+      "n_pairs": 91
+    }
+  },
+  "correlations_collapsed": {
+    "attribution ~ attribution": {
+      "rho": 0.9999999999999999,
+      "n_pairs": 51
+    },
+    "attribution ~ edge_in_count": {
+      "rho": -0.007064259666936315,
+      "n_pairs": 51
+    },
+    "attribution ~ edge_in_weight_abs": {
+      "rho": -0.06105453878890813,
+      "n_pairs": 51
+    },
+    "attribution ~ edge_out_count": {
+      "rho": 0.026984196359107177,
+      "n_pairs": 51
+    },
+    "attribution ~ edge_out_weight_abs": {
+      "rho": 0.16819325076145214,
+      "n_pairs": 51
+    },
+    "attribution ~ necessity_dMargin": {
+      "rho": 0.5229550887636898,
+      "n_pairs": 51
+    },
+    "attribution ~ necessity_sigma": {
+      "rho": 0.5229550887636898,
+      "n_pairs": 51
+    },
+    "attribution ~ sufficiency_dS": {
+      "rho": 0.5141952736829511,
+      "n_pairs": 51
+    },
+    "attribution ~ sufficiency_sigma": {
+      "rho": 0.5141952736829511,
+      "n_pairs": 51
+    },
+    "edge_in_count ~ edge_in_count": {
+      "rho": 1.0,
+      "n_pairs": 51
+    },
+    "edge_in_count ~ edge_in_weight_abs": {
+      "rho": 0.5007700712516501,
+      "n_pairs": 51
+    },
+    "edge_in_count ~ edge_out_count": {
+      "rho": -0.3841514770350891,
+      "n_pairs": 51
+    },
+    "edge_in_count ~ edge_out_weight_abs": {
+      "rho": -0.40302190073480115,
+      "n_pairs": 51
+    },
+    "edge_in_count ~ necessity_dMargin": {
+      "rho": 0.34335733496616455,
+      "n_pairs": 51
+    },
+    "edge_in_count ~ necessity_sigma": {
+      "rho": 0.34335733496616455,
+      "n_pairs": 51
+    },
+    "edge_in_count ~ sufficiency_dS": {
+      "rho": 0.07035073438353337,
+      "n_pairs": 51
+    },
+    "edge_in_count ~ sufficiency_sigma": {
+      "rho": 0.07035073438353337,
+      "n_pairs": 51
+    },
+    "edge_in_weight_abs ~ edge_in_weight_abs": {
+      "rho": 1.0,
+      "n_pairs": 51
+    },
+    "edge_in_weight_abs ~ edge_out_count": {
+      "rho": 0.003492862799868511,
+      "n_pairs": 51
+    },
+    "edge_in_weight_abs ~ edge_out_weight_abs": {
+      "rho": 0.021720431423295,
+      "n_pairs": 51
+    },
+    "edge_in_weight_abs ~ necessity_dMargin": {
+      "rho": 0.3041303629294764,
+      "n_pairs": 51
+    },
+    "edge_in_weight_abs ~ necessity_sigma": {
+      "rho": 0.3041303629294764,
+      "n_pairs": 51
+    },
+    "edge_in_weight_abs ~ sufficiency_dS": {
+      "rho": -0.007857790660956111,
+      "n_pairs": 51
+    },
+    "edge_in_weight_abs ~ sufficiency_sigma": {
+      "rho": -0.007857790660956111,
+      "n_pairs": 51
+    },
+    "edge_out_count ~ edge_out_count": {
+      "rho": 1.0,
+      "n_pairs": 51
+    },
+    "edge_out_count ~ edge_out_weight_abs": {
+      "rho": 0.8711378256383592,
+      "n_pairs": 51
+    },
+    "edge_out_count ~ necessity_dMargin": {
+      "rho": -0.22433434533339575,
+      "n_pairs": 51
+    },
+    "edge_out_count ~ necessity_sigma": {
+      "rho": -0.22433434533339575,
+      "n_pairs": 51
+    },
+    "edge_out_count ~ sufficiency_dS": {
+      "rho": -0.1161562617999228,
+      "n_pairs": 51
+    },
+    "edge_out_count ~ sufficiency_sigma": {
+      "rho": -0.1161562617999228,
+      "n_pairs": 51
+    },
+    "edge_out_weight_abs ~ edge_out_weight_abs": {
+      "rho": 1.0,
+      "n_pairs": 51
+    },
+    "edge_out_weight_abs ~ necessity_dMargin": {
+      "rho": -0.2111041448604579,
+      "n_pairs": 51
+    },
+    "edge_out_weight_abs ~ necessity_sigma": {
+      "rho": -0.2111041448604579,
+      "n_pairs": 51
+    },
+    "edge_out_weight_abs ~ sufficiency_dS": {
+      "rho": 0.02456564016758977,
+      "n_pairs": 51
+    },
+    "edge_out_weight_abs ~ sufficiency_sigma": {
+      "rho": 0.02456564016758977,
+      "n_pairs": 51
+    },
+    "necessity_dMargin ~ necessity_dMargin": {
+      "rho": 0.9999999999999999,
+      "n_pairs": 51
+    },
+    "necessity_dMargin ~ necessity_sigma": {
+      "rho": 0.9999999999999999,
+      "n_pairs": 51
+    },
+    "necessity_dMargin ~ sufficiency_dS": {
+      "rho": 0.39012799185880115,
+      "n_pairs": 51
+    },
+    "necessity_dMargin ~ sufficiency_sigma": {
+      "rho": 0.39012799185880115,
+      "n_pairs": 51
+    },
+    "necessity_sigma ~ necessity_sigma": {
+      "rho": 0.9999999999999999,
+      "n_pairs": 51
+    },
+    "necessity_sigma ~ sufficiency_dS": {
+      "rho": 0.39012799185880115,
+      "n_pairs": 51
+    },
+    "necessity_sigma ~ sufficiency_sigma": {
+      "rho": 0.39012799185880115,
+      "n_pairs": 51
+    },
+    "sufficiency_dS ~ sufficiency_dS": {
+      "rho": 1.0,
+      "n_pairs": 51
+    },
+    "sufficiency_dS ~ sufficiency_sigma": {
+      "rho": 1.0,
+      "n_pairs": 51
+    },
+    "sufficiency_sigma ~ sufficiency_sigma": {
+      "rho": 1.0,
+      "n_pairs": 51
+    }
+  },
+  "role_counts": {
+    "infrastructure": 4,
+    "suppressor-ablation": 8,
+    "writer-only": 4,
+    "reader-only": 12,
+    "suppressor-transplant": 4,
+    "reader-writer": 1,
+    "mixed": 18
+  }
+}
