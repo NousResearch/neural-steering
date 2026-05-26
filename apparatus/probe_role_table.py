@@ -63,6 +63,26 @@ def parse_layers(raw: str) -> list[int]:
     return [int(x.strip()) for x in raw.split(",") if x.strip()]
 
 
+def hidden_state_index(steerer: NeuronSteerer, layer: int) -> int:
+    """Map a user-facing probe layer to HuggingFace hidden_states index.
+
+    For a 32-layer Llama:
+      - layer 0..31 means the hidden state after that decoder block, using
+        hidden_states[layer + 1].
+      - layer 32 is an explicit alias for the final residual stream after all
+        decoder layers/final norm, using hidden_states[-1].
+
+    This lets us ask for "L32" as the post-stack readout without colliding with
+    transformer block numbering.
+    """
+    n_layers = steerer.model.config.num_hidden_layers
+    if 0 <= layer < n_layers:
+        return layer + 1
+    if layer == n_layers:
+        return -1
+    raise ValueError(f"Probe layer {layer} out of range for {n_layers}-layer model")
+
+
 def format_prompt(steerer: NeuronSteerer, prompt: str, seed_response: str = "") -> torch.Tensor:
     formatted = steerer._format_prompt(prompt, seed_response)
     return steerer.tokenizer(formatted, return_tensors="pt").input_ids.to(steerer.device)
@@ -75,13 +95,14 @@ def collect_hidden_states(
     position: int = -1,
     seed_response: str = "",
 ) -> torch.Tensor:
-    """Collect post-layer residual hidden states: hidden_states[layer + 1]."""
+    """Collect post-layer residual hidden states."""
+    hs_idx = hidden_state_index(steerer, layer)
     states = []
     for prompt in prompts:
         input_ids = format_prompt(steerer, prompt, seed_response)
         with torch.no_grad():
             outputs = steerer.model(input_ids, output_hidden_states=True)
-        states.append(outputs.hidden_states[layer + 1][0, position].detach().float().cpu())
+        states.append(outputs.hidden_states[hs_idx][0, position].detach().float().cpu())
     return torch.stack(states)
 
 
@@ -155,11 +176,12 @@ def measure_probe_score(
     seed_response: str = "",
 ) -> float:
     input_ids = format_prompt(steerer, prompt, seed_response)
+    hs_idx = hidden_state_index(steerer, probe.layer)
     ctx = make_ctx() if make_ctx is not None else nullcontext()
     with ctx:
         with torch.no_grad():
             outputs = steerer.model(input_ids, output_hidden_states=True)
-        hidden = outputs.hidden_states[probe.layer + 1][0, probe.position]
+        hidden = outputs.hidden_states[hs_idx][0, probe.position]
         return float(probe.score_hidden(hidden).item())
 
 
