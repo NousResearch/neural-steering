@@ -102,14 +102,14 @@ def generate(steerer: NeuronSteerer, prompt: str, max_new_tokens: int = 60,
             with torch.no_grad():
                 out = steerer.model.generate(
                     input_ids, max_new_tokens=max_new_tokens,
-                    do_sample=False, temperature=1.0,
+                    do_sample=False,
                     pad_token_id=steerer.tokenizer.eos_token_id,
                 )
     else:
         with torch.no_grad():
             out = steerer.model.generate(
                 input_ids, max_new_tokens=max_new_tokens,
-                do_sample=False, temperature=1.0,
+                do_sample=False,
                 pad_token_id=steerer.tokenizer.eos_token_id,
             )
     return steerer.tokenizer.decode(out[0, input_ids.shape[1]:], skip_special_tokens=True)
