@@ -165,6 +165,42 @@ never been *displayed* as a flow field.
   starts being dynamical-systems characterization of an autoregressive
   transformer. H2 and H3 become measurable here, not before.
 
+**Differential flow fields (cross-cutting use of phases A/B, from Codex):**
+The most interesting object will probably not be any single baseline flow
+field, but the *difference* between two flow fields under different
+conditions:
+
+```
+flow(token-I readout)        −  flow(L24 substrate probe)
+flow(L32 gate probe)         −  flow(L24 substrate probe)
+flow(baseline)               −  flow(L24/N1619 ablated)
+flow(harmful prompts)        −  flow(benign prompts)
+```
+
+The first kind reveals where the substrate→gate transformation lives — where
+flow that was present at substrate-readout falls off (or reverses) under
+gate-readout. The second kind reveals counterflow under perturbation:
+which edges stop carrying weight when a specific neuron is removed, where
+the flow redistributes, where intensification appears elsewhere. The
+third kind reveals what the model is *responding to* — what flow is
+specific to the harmful condition vs ambient.
+
+The energetic analogy gets purchase precisely here, *not* because there is
+a literal conserved energy quantity, but because **symptoms become legible
+as transformations under constraint** (Freud's useful move). A baseline
+flow field is a static picture. A difference field is a perturbation
+response — and perturbation response is what energetic-grammar
+interpretation is actually for.
+
+**Pre-commitment from Codex on the flow-field deliverable:** the first
+static flow field should be treated like an oscilloscope trace ("here is
+one projection of the signal"), not like a mechanism diagram. The real
+test is whether the display *predicts* where interventions matter, or at
+least *compresses* the existing role-table / probe results in a way that
+makes new hypotheses obvious. If it doesn't buy prediction or compression,
+it's an illustration, not apparatus. The differential variant is where the
+apparatus claim gets seriously testable.
+
 ## Pre-run checklist (Codex)
 
 Before scaling to cluster / model matrix:
@@ -186,14 +222,22 @@ Before scaling to cluster / model matrix:
 3. ✅ Apparatus 2 late-layer probes (L30, L32) — required addition.
 4. ✅ L24/N1619 dossier + transplant rollout (Apparatus 4 first pass).
 5. **Next: Apparatus 6 Phase A (static flow field).** Builds first
-   energetic display from existing edge data.
-6. Apparatus 6 Phase B (intervention-perturbed flow field).
-7. Probe orthogonalization against I-onset direction (resolves the
+   energetic display from existing edge data. Treat as oscilloscope trace,
+   not mechanism diagram.
+6. **Differential flow field as the apparatus test.** First difference:
+   `flow(L32 gate probe) − flow(L24 substrate probe)`. If the difference
+   makes the substrate→gate transformation visible at edge level, the
+   apparatus passes. If it doesn't, Phase A was illustration, not
+   apparatus.
+7. Apparatus 6 Phase B (intervention-perturbed flow field). Difference
+   field under L24/N1619 ablation is the natural first intervention
+   given today's findings.
+8. Probe orthogonalization against I-onset direction (resolves the
    substrate-vs-routing confound at probe@L24).
-8. Apparatus 5 on a second behavior (AI-deflection candidate).
-9. Cluster scale-out across models (Llama 1B/3B/8B/70B, Qwen
-   1.5B/3B/7B/72B).
-10. Apparatus 6 Phase C (rollout trajectory dynamics).
+9. Apparatus 5 on a second behavior (AI-deflection candidate).
+10. Cluster scale-out across models (Llama 1B/3B/8B/70B, Qwen
+    1.5B/3B/7B/72B).
+11. Apparatus 6 Phase C (rollout trajectory dynamics).
 
 Each step has its own falsifier; if one fires hard, stop and rethink.
 
