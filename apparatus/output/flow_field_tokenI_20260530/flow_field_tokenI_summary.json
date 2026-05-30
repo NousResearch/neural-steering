@@ -1,0 +1,480 @@
+{
+  "source_edges_file": "experiments/topology_llama8b_20260305_163508/relp-behavioral_refusal_kstar91/edges.json",
+  "source_roles_file": "apparatus/output/role_table_refusal_8b_fullcircuit_20260526.jsonl",
+  "caveat": "token-I RelP topology only; not probe-conditioned; no L32 node (post-final-norm residual, not an MLP layer); position collapsed to (layer,neuron) \u2014 single-token circuit",
+  "n_edges_raw": 2704,
+  "n_edges_collapsed": 1048,
+  "n_nodes_total": 51,
+  "sign_counts_collapsed": {
+    "positive": 499,
+    "negative": 549
+  },
+  "abs_weight_quantiles_collapsed": {
+    "n": 1048,
+    "min": 5.140900611877441e-07,
+    "max": 3200.0,
+    "median": 0.051695045083761215,
+    "p90": 0.6331748962402358,
+    "p99": 3.240256679058072
+  },
+  "cancellation_ratio_diagnostic": {
+    "note": "|sum(w)|/sum(|w|) per collapsed edge; ~1.0 = position-edges agree in sign (collapse safe), ~0.0 = position conflict hidden",
+    "no_infra_quantiles": {
+      "n": 864,
+      "min": 0.001221001221001221,
+      "max": 1.0,
+      "median": 1.0,
+      "p90": 1.0,
+      "p99": 1.0
+    },
+    "top_no_infra_quantiles": {
+      "n": 87,
+      "min": 0.0352008600788928,
+      "max": 1.0,
+      "median": 1.0,
+      "p90": 1.0,
+      "p99": 1.0
+    },
+    "n_top_no_infra_edges_with_ratio_below_0.5": 1,
+    "n_top_no_infra_edges_total": 87
+  },
+  "top_layer_pairs_by_count": [
+    {
+      "src_layer": 30,
+      "dst_layer": 31,
+      "count": 62
+    },
+    {
+      "src_layer": 28,
+      "dst_layer": 31,
+      "count": 45
+    },
+    {
+      "src_layer": 28,
+      "dst_layer": 30,
+      "count": 43
+    },
+    {
+      "src_layer": 0,
+      "dst_layer": 30,
+      "count": 34
+    },
+    {
+      "src_layer": 0,
+      "dst_layer": 31,
+      "count": 31
+    },
+    {
+      "src_layer": 22,
+      "dst_layer": 31,
+      "count": 30
+    },
+    {
+      "src_layer": 22,
+      "dst_layer": 30,
+      "count": 30
+    },
+    {
+      "src_layer": 0,
+      "dst_layer": 28,
+      "count": 28
+    },
+    {
+      "src_layer": 22,
+      "dst_layer": 28,
+      "count": 28
+    },
+    {
+      "src_layer": 29,
+      "dst_layer": 30,
+      "count": 18
+    },
+    {
+      "src_layer": 1,
+      "dst_layer": 30,
+      "count": 18
+    },
+    {
+      "src_layer": 24,
+      "dst_layer": 30,
+      "count": 18
+    }
+  ],
+  "top_layer_pairs_by_abs_weight": [
+    {
+      "src_layer": 0,
+      "dst_layer": 1,
+      "abs_weight": 5030.0
+    },
+    {
+      "src_layer": 0,
+      "dst_layer": 31,
+      "abs_weight": 19.44515611231327
+    },
+    {
+      "src_layer": 1,
+      "dst_layer": 31,
+      "abs_weight": 16.68070548772812
+    },
+    {
+      "src_layer": 0,
+      "dst_layer": 30,
+      "abs_weight": 10.058110237121582
+    },
+    {
+      "src_layer": 24,
+      "dst_layer": 28,
+      "abs_weight": 10.019752494990826
+    },
+    {
+      "src_layer": 1,
+      "dst_layer": 30,
+      "abs_weight": 7.1311633586883545
+    },
+    {
+      "src_layer": 0,
+      "dst_layer": 29,
+      "abs_weight": 6.854187183082104
+    },
+    {
+      "src_layer": 24,
+      "dst_layer": 29,
+      "abs_weight": 6.626080960035324
+    },
+    {
+      "src_layer": 1,
+      "dst_layer": 28,
+      "abs_weight": 6.398096084594727
+    },
+    {
+      "src_layer": 0,
+      "dst_layer": 28,
+      "abs_weight": 5.903993643820286
+    },
+    {
+      "src_layer": 29,
+      "dst_layer": 30,
+      "abs_weight": 5.515599824488163
+    },
+    {
+      "src_layer": 24,
+      "dst_layer": 31,
+      "abs_weight": 5.289300948381424
+    }
+  ],
+  "top_layer_pairs_no_infra_by_count": [
+    {
+      "src_layer": 30,
+      "dst_layer": 31,
+      "count": 62
+    },
+    {
+      "src_layer": 28,
+      "dst_layer": 31,
+      "count": 45
+    },
+    {
+      "src_layer": 28,
+      "dst_layer": 30,
+      "count": 43
+    },
+    {
+      "src_layer": 22,
+      "dst_layer": 31,
+      "count": 30
+    },
+    {
+      "src_layer": 22,
+      "dst_layer": 30,
+      "count": 30
+    },
+    {
+      "src_layer": 22,
+      "dst_layer": 28,
+      "count": 28
+    },
+    {
+      "src_layer": 29,
+      "dst_layer": 30,
+      "count": 18
+    },
+    {
+      "src_layer": 24,
+      "dst_layer": 30,
+      "count": 18
+    },
+    {
+      "src_layer": 29,
+      "dst_layer": 31,
+      "count": 16
+    },
+    {
+      "src_layer": 24,
+      "dst_layer": 31,
+      "count": 16
+    },
+    {
+      "src_layer": 0,
+      "dst_layer": 30,
+      "count": 16
+    },
+    {
+      "src_layer": 0,
+      "dst_layer": 31,
+      "count": 15
+    }
+  ],
+  "top_layer_pairs_no_infra_by_abs_weight": [
+    {
+      "src_layer": 24,
+      "dst_layer": 28,
+      "abs_weight": 10.019752494990826
+    },
+    {
+      "src_layer": 24,
+      "dst_layer": 29,
+      "abs_weight": 6.626080960035324
+    },
+    {
+      "src_layer": 29,
+      "dst_layer": 30,
+      "abs_weight": 5.515599824488163
+    },
+    {
+      "src_layer": 24,
+      "dst_layer": 31,
+      "abs_weight": 5.289300948381424
+    },
+    {
+      "src_layer": 20,
+      "dst_layer": 24,
+      "abs_weight": 5.167407035827637
+    },
+    {
+      "src_layer": 30,
+      "dst_layer": 31,
+      "abs_weight": 4.737457521259785
+    },
+    {
+      "src_layer": 22,
+      "dst_layer": 24,
+      "abs_weight": 4.21678813546896
+    },
+    {
+      "src_layer": 28,
+      "dst_layer": 30,
+      "abs_weight": 3.8591831400990486
+    },
+    {
+      "src_layer": 29,
+      "dst_layer": 31,
+      "abs_weight": 3.7746576070785522
+    },
+    {
+      "src_layer": 0,
+      "dst_layer": 31,
+      "abs_weight": 3.4356575161218643
+    },
+    {
+      "src_layer": 28,
+      "dst_layer": 29,
+      "abs_weight": 3.1216866970062256
+    },
+    {
+      "src_layer": 26,
+      "dst_layer": 28,
+      "abs_weight": 2.898605555295944
+    }
+  ],
+  "readout_hub_diagnostic": {
+    "note": "top layer-pairs after dropping all edges that TARGET L31 (the token-I readout hub). If substrate->gate structure persists into L29/L30 here, less likely a readout artifact.",
+    "no_infra_no_L31_targets_by_count": [
+      {
+        "src_layer": 28,
+        "dst_layer": 30,
+        "count": 43
+      },
+      {
+        "src_layer": 22,
+        "dst_layer": 30,
+        "count": 30
+      },
+      {
+        "src_layer": 22,
+        "dst_layer": 28,
+        "count": 28
+      },
+      {
+        "src_layer": 29,
+        "dst_layer": 30,
+        "count": 18
+      },
+      {
+        "src_layer": 24,
+        "dst_layer": 30,
+        "count": 18
+      },
+      {
+        "src_layer": 0,
+        "dst_layer": 30,
+        "count": 16
+      },
+      {
+        "src_layer": 21,
+        "dst_layer": 30,
+        "count": 15
+      },
+      {
+        "src_layer": 26,
+        "dst_layer": 30,
+        "count": 14
+      },
+      {
+        "src_layer": 0,
+        "dst_layer": 28,
+        "count": 14
+      },
+      {
+        "src_layer": 21,
+        "dst_layer": 28,
+        "count": 14
+      },
+      {
+        "src_layer": 24,
+        "dst_layer": 28,
+        "count": 14
+      },
+      {
+        "src_layer": 26,
+        "dst_layer": 28,
+        "count": 11
+      }
+    ],
+    "no_infra_no_L31_targets_by_abs_weight": [
+      {
+        "src_layer": 24,
+        "dst_layer": 28,
+        "abs_weight": 10.019752494990826
+      },
+      {
+        "src_layer": 24,
+        "dst_layer": 29,
+        "abs_weight": 6.626080960035324
+      },
+      {
+        "src_layer": 29,
+        "dst_layer": 30,
+        "abs_weight": 5.515599824488163
+      },
+      {
+        "src_layer": 20,
+        "dst_layer": 24,
+        "abs_weight": 5.167407035827637
+      },
+      {
+        "src_layer": 22,
+        "dst_layer": 24,
+        "abs_weight": 4.21678813546896
+      },
+      {
+        "src_layer": 28,
+        "dst_layer": 30,
+        "abs_weight": 3.8591831400990486
+      },
+      {
+        "src_layer": 28,
+        "dst_layer": 29,
+        "abs_weight": 3.1216866970062256
+      },
+      {
+        "src_layer": 26,
+        "dst_layer": 28,
+        "abs_weight": 2.898605555295944
+      },
+      {
+        "src_layer": 26,
+        "dst_layer": 30,
+        "abs_weight": 2.6417130455374718
+      },
+      {
+        "src_layer": 20,
+        "dst_layer": 28,
+        "abs_weight": 2.395689010620117
+      },
+      {
+        "src_layer": 22,
+        "dst_layer": 28,
+        "abs_weight": 2.340077981352806
+      },
+      {
+        "src_layer": 20,
+        "dst_layer": 22,
+        "abs_weight": 2.1411361694335938
+      }
+    ]
+  },
+  "role_counts": {
+    "infrastructure": 4,
+    "suppressor-ablation": 8,
+    "writer-only": 4,
+    "reader-only": 12,
+    "suppressor-transplant": 4,
+    "reader-writer": 1,
+    "mixed": 18
+  },
+  "infrastructure_nodes": [
+    "L0/N491",
+    "L0/N8268",
+    "L1/N198",
+    "L1/N2427"
+  ],
+  "views": {
+    "full": {
+      "n_edges": 1048,
+      "n_pos_edges_drawn": 499,
+      "n_neg_edges_drawn": 549,
+      "n_edges_upward": 1048,
+      "n_edges_downward": 0,
+      "n_edges_same_layer": 0,
+      "n_nodes": 51,
+      "n_edges_in_view": 1048
+    },
+    "no_infra": {
+      "n_edges": 864,
+      "n_edges_filtered_out": 184,
+      "n_pos_edges_drawn": 436,
+      "n_neg_edges_drawn": 428,
+      "n_edges_upward": 864,
+      "n_edges_downward": 0,
+      "n_edges_same_layer": 0,
+      "n_nodes": 47,
+      "n_edges_in_view": 864
+    },
+    "top_edges": {
+      "percentile": 90.0,
+      "abs_weight_threshold": 0.6331748962402358,
+      "n_edges": 105,
+      "n_edges_filtered_out": 943,
+      "n_pos_edges_drawn": 40,
+      "n_neg_edges_drawn": 65,
+      "n_edges_upward": 105,
+      "n_edges_downward": 0,
+      "n_edges_same_layer": 0,
+      "n_nodes": 34,
+      "n_edges_in_view": 105
+    },
+    "top_no_infra": {
+      "percentile": 90.0,
+      "abs_weight_threshold": 0.3697062022984032,
+      "n_edges": 87,
+      "primary": true,
+      "n_pos_edges_drawn": 42,
+      "n_neg_edges_drawn": 45,
+      "n_edges_upward": 87,
+      "n_edges_downward": 0,
+      "n_edges_same_layer": 0,
+      "n_nodes": 33,
+      "n_edges_in_view": 87
+    }
+  }
+}
