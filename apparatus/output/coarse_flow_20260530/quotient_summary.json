@@ -1,0 +1,107 @@
+{
+  "n_communities": 4,
+  "n_quotient_edges": 12,
+  "specificity_counts": {
+    "switch": 5,
+    "shared": 6,
+    "substrate": 1
+  },
+  "quotient_edges": [
+    {
+      "src_comm": 3,
+      "dst_comm": 0,
+      "w_substrate": -0.7927,
+      "w_gate": -5.1412,
+      "delta": -4.3485,
+      "specificity": "shared"
+    },
+    {
+      "src_comm": 1,
+      "dst_comm": 0,
+      "w_substrate": 0.0744,
+      "w_gate": -3.777,
+      "delta": -3.8514,
+      "specificity": "switch"
+    },
+    {
+      "src_comm": 2,
+      "dst_comm": 0,
+      "w_substrate": -0.7452,
+      "w_gate": -3.8072,
+      "delta": -3.062,
+      "specificity": "shared"
+    },
+    {
+      "src_comm": 3,
+      "dst_comm": 2,
+      "w_substrate": 2.9437,
+      "w_gate": -0.0973,
+      "delta": -3.041,
+      "specificity": "switch"
+    },
+    {
+      "src_comm": 0,
+      "dst_comm": 2,
+      "w_substrate": 2.5938,
+      "w_gate": 0.4342,
+      "delta": -2.1596,
+      "specificity": "shared"
+    },
+    {
+      "src_comm": 3,
+      "dst_comm": 1,
+      "w_substrate": -0.0887,
+      "w_gate": -2.102,
+      "delta": -2.0133,
+      "specificity": "shared"
+    },
+    {
+      "src_comm": 0,
+      "dst_comm": 1,
+      "w_substrate": 0.0192,
+      "w_gate": -1.8259,
+      "delta": -1.8452,
+      "specificity": "switch"
+    },
+    {
+      "src_comm": 2,
+      "dst_comm": 1,
+      "w_substrate": 0.868,
+      "w_gate": -0.7126,
+      "delta": -1.5807,
+      "specificity": "switch"
+    },
+    {
+      "src_comm": 1,
+      "dst_comm": 2,
+      "w_substrate": 1.0059,
+      "w_gate": -0.1242,
+      "delta": -1.1301,
+      "specificity": "switch"
+    },
+    {
+      "src_comm": 0,
+      "dst_comm": 3,
+      "w_substrate": 0.8391,
+      "w_gate": 1.3597,
+      "delta": 0.5206,
+      "specificity": "shared"
+    },
+    {
+      "src_comm": 2,
+      "dst_comm": 3,
+      "w_substrate": 0.5327,
+      "w_gate": 0.4402,
+      "delta": -0.0926,
+      "specificity": "shared"
+    },
+    {
+      "src_comm": 1,
+      "dst_comm": 3,
+      "w_substrate": 0.0653,
+      "w_gate": 0.0,
+      "delta": -0.0653,
+      "specificity": "substrate"
+    }
+  ]
+}

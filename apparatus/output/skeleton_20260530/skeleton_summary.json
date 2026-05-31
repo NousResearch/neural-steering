@@ -1,0 +1,57 @@
+{
+  "skeleton_flow_retained": {
+    "L24": 0.3098110403799624,
+    "L32": 0.4409924832167005
+  },
+  "skeleton_edges": {
+    "L24": 30,
+    "L32": 28
+  },
+  "raw_edges": {
+    "L24": 276,
+    "L32": 175
+  },
+  "band_quotient": {
+    "bands": [
+      [
+        "early",
+        0,
+        13
+      ],
+      [
+        "mid",
+        14,
+        22
+      ],
+      [
+        "gate",
+        23,
+        31
+      ]
+    ],
+    "L24_inter_band_edges": {
+      "early->mid": {
+        "signed": 13.438,
+        "abs": 18.6401,
+        "n": 114
+      }
+    },
+    "L32_inter_band_edges": {
+      "early->gate": {
+        "signed": -15.7839,
+        "abs": 16.8172,
+        "n": 19
+      },
+      "early->mid": {
+        "signed": 0.2518,
+        "abs": 0.7962,
+        "n": 19
+      },
+      "mid->gate": {
+        "signed": -2.2265,
+        "abs": 2.3413,
+        "n": 8
+      }
+    }
+  }
+}

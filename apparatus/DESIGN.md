@@ -437,6 +437,28 @@ gate."
   high at L18-L28, low at L30, partly recovers at L32.) Something
   specific to the substrate→gate transition is doing this.
 
+## Apparatus 6 results: flow field, differential, and the basin/spine arc (2026-05-30)
+
+Phase A (static token-I flow field) shipped: `apparatus/visualize_flow_field.py`. Layered directed node-link view (NOT a Sankey — no flow conservation), y = rank-spaced layer, x = within-layer barycenter ordering (non-metric, reserved for token position in multitoken), directed arrows colored by sign of net signed contribution to the token-I readout. Position collapsed (single-token circuit, so token position is degenerate). All 87 top-no-infra edges flow upward; hubs at L20 (writer), L24 (suppressor-transplant), L29 (gate writer). Two diagnostics rule out the artifacts: cancellation-ratio (|sum w|/sum|w| per collapsed edge) median 1.0, only 1/87 plotted edges < 0.5, so signed-sum position-collapse is safe; readout-hub diagnostic shows substrate→gate routing (L28→L30, L22→L30, L24→L30) survives dropping all L31-targeting edges, so not a trivial readout artifact.
+
+Phase B data step (readout-selected probe edge fields) shipped: `apparatus/probe_edge_fields.py`, run on cluster (job 152112). Mean-diff probes at L24 (substrate) and L32 (gate, post-final-norm alias) fit with the same logic as `probe_role_table.py`; neurons attributed to the probe scalar via `compute_attribution_from_metric` (generic scalar-metric path; token-logit attribution untouched); fixed same-size top-k=91 selection; `discover_edges` per prompt + merge. Result: L24 field 37 unique neurons / 1573 edges, L32 field 30 neurons / 1116 edges, both probes AUC 1.0 train+heldout.
+
+The readout differential (`apparatus/visualize_differential_flow.py`), `flow(L32 gate) − flow(L24 substrate)` over the union of collapsed edges (missing = 0, super-weights dropped, robust-clipped diverging colormap): the substrate→gate transformation is **mostly route REDISTRIBUTION, not sign inversion**. Of the union edges: ~197 substrate-only (fall away), ~96 gate-only (emerge), ~75 shared same-sign, only **4 sign-flip**. The single-neuron L24/N1619 inversion does NOT generalize into a large edge-level sign-flip population in the readout-selected graph. The 4 sign-flips converge on L18/N7417.
+
+The coarse-graining tests (`apparatus/coarse_flow.py`) killed the cluster/supernode hypothesis cleanly: Louvain modularity 0.111 vs degree-preserving null 0.144 ± 0.010 (z = −3.34) AND layer-preserving null 0.241 ± 0.018 (z = −7.41). The graph is *less* modular than chance — there are no communities to contract. Modularity was the wrong tool because each readout's circuit is a single convergent funnel, which is maximally un-modular.
+
+The better primitive is the **terminal basin** (`apparatus/pivot_and_basins.py`, `apparatus/visualize_basins.py`): for each node, where does its outgoing flow terminate? The L24-substrate field routes 32/32 nodes to the L20 hub; the L32-gate field routes ~all nodes to L29/N12010. Each readout circuit is a near-pure basin. L18/N7417 is a real position-grounded handoff node (same input positions, output target switches L20→L29 between readouts, in-weight collapses ~13×), but only a *mild* bottleneck (directed betweenness z=1.8 vs layer-preserving null) — there are parallel paths.
+
+The minimal-route views (`apparatus/visualize_flow_skeleton.py`): dominant-flow skeleton (top-1 outgoing edge per node) → relay-spine prune (drop length-1 direct contributors) → shared-successor quotient (merge nodes pointing to the same target). End state: the L32 gate circuit reduces to a short clean spine to L29; the L24 substrate circuit to a longer gathering chain (hub bundle at L5-9) forking to the two L20 sinks. Substrate = longer evidence-gathering route; gate = shorter direct route to a late sink.
+
+**What's honestly established vs not.**
+Established: probe-selected edge fields reduce to *different* dominant route skeletons; no modular supernodes (both nulls); readout circuits are terminal funnels; the funnels compress to distinct relay spines.
+NOT established: that these route skeletons are stable across prompts, semantic, or SAE-aligned "mnemic traces." Three stacked lossy reductions (top-1 skeleton retains only 31%/44% of |weight|, then prune, then merge) — the final picture is the dominant-flow backbone, not the circuit.
+
+**Open caveats for a falsification pass:** (1) sink-choice circularity — the basins look clean partly because the L20/L29 sinks were named from observed structure; needs sink-agnostic terminal detection. (2) the n=4 sign-flip count is confounded by top-k=91 giving the two probes largely disjoint node sets (only 18 shared), which mechanically suppresses flips. (3) prompt/bootstrap stability of the route skeletons untested.
+
+**The reframe this arc points at (2026-05-30, Jake).** None of the static pictures produced a "this is the flow" recognition. The likely reason is not (only) that the structure is absent, but that a single forward pass on a single token is a *still frame* — RelP edge attribution on it images attribution structure, not process. "Flow" in the Bahnung sense (energy moving and being redirected) is inherently temporal. The sharpened question for next time: how do we image flow *across* the forward pass, or across generation steps — i.e. is the forward pass even the right object, or do we need a temporal property? The community-structure null is a real negative; the "no recognizable flow" feeling is NOT yet a null, only a statement about the still frame. Don't collapse the two.
+
 ## Glossary
 
 - **substrate** (this document): the residual-stream content at mid-layers

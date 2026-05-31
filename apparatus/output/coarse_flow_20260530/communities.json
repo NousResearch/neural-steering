@@ -1,0 +1,94 @@
+{
+  "n_communities": 4,
+  "modularity_union": 0.1111658883786668,
+  "communities": [
+    {
+      "community": 0,
+      "n_members": 17,
+      "layer_span": [
+        0,
+        29
+      ],
+      "members": [
+        "L0/N7433",
+        "L0/N7822",
+        "L1/N4970",
+        "L1/N7179",
+        "L2/N4786",
+        "L3/N13731",
+        "L4/N4152",
+        "L5/N7012",
+        "L6/N5866",
+        "L9/N12002",
+        "L13/N8406",
+        "L14/N7467",
+        "L19/N1846",
+        "L19/N8664",
+        "L22/N5031",
+        "L26/N7711",
+        "L29/N12010"
+      ],
+      "internal_abs_weight": 11.9362
+    },
+    {
+      "community": 1,
+      "n_members": 6,
+      "layer_span": [
+        2,
+        20
+      ],
+      "members": [
+        "L2/N5789",
+        "L12/N13860",
+        "L13/N4208",
+        "L15/N9635",
+        "L17/N13532",
+        "L20/N9424"
+      ],
+      "internal_abs_weight": 5.5648
+    },
+    {
+      "community": 2,
+      "n_members": 10,
+      "layer_span": [
+        0,
+        20
+      ],
+      "members": [
+        "L0/N13463",
+        "L3/N6390",
+        "L7/N6673",
+        "L12/N5760",
+        "L13/N13879",
+        "L14/N3917",
+        "L16/N1241",
+        "L18/N7417",
+        "L18/N12797",
+        "L20/N3972"
+      ],
+      "internal_abs_weight": 4.8236
+    },
+    {
+      "community": 3,
+      "n_members": 11,
+      "layer_span": [
+        0,
+        11
+      ],
+      "members": [
+        "L0/N669",
+        "L0/N10902",
+        "L0/N11311",
+        "L4/N12934",
+        "L5/N11491",
+        "L6/N12689",
+        "L9/N4255",
+        "L9/N9439",
+        "L10/N11570",
+        "L11/N4258",
+        "L11/N11321"
+      ],
+      "internal_abs_weight": 6.8747
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "probe": {
+    "layer": 32,
+    "position": -1,
+    "method": "mean_diff",
+    "bias": -15.903692245483398,
+    "hidden_state_alias": "hidden_states[-1] (post-final-norm)"
+  },
+  "probe_train_validation": {
+    "pos_mean": 54.487571144104,
+    "pos_std": 20.590348123582544,
+    "neg_mean": -54.48757476806641,
+    "neg_std": 7.579245882986052,
+    "margin": 108.9751459121704,
+    "auc": 1.0,
+    "all_mean": -1.811981201171875e-06,
+    "label_score_corr": 0.9617718345514753,
+    "layer": 32,
+    "position": -1,
+    "method": "mean_diff",
+    "n_positive": 10,
+    "n_negative": 10
+  },
+  "probe_heldout_validation": {
+    "pos_mean": 67.25227355957031,
+    "pos_std": 2.897240786498515,
+    "neg_mean": -24.020514297485352,
+    "neg_std": 16.070003604923603,
+    "margin": 91.27278785705566,
+    "auc": 1.0,
+    "all_mean": 21.615879631042482,
+    "label_score_corr": 0.9694523016494155
+  },
+  "top_k": 91,
+  "edge_top_k": 30,
+  "n_circuit_neurons": 91,
+  "n_edges": 1116,
+  "edge_prompts_used": 10,
+  "sign_counts": {
+    "positive": 529,
+    "negative": 587
+  }
+}

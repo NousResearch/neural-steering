@@ -1,0 +1,9 @@
+{
+  "pivot": "L18/N7417",
+  "observed_betweenness": 0.00466,
+  "rank_among_all_nodes": "1/44",
+  "null_mean": 0.00212,
+  "null_std": 0.00141,
+  "z_score": 1.8,
+  "verdict": "MILD"
+}

@@ -1,0 +1,72 @@
+{
+  "substrate_sinks": [
+    "L20/N3972",
+    "L20/N9424"
+  ],
+  "gate_sinks": [
+    "L29/N12010"
+  ],
+  "L24_field_basin_counts": {
+    "substrate": 32
+  },
+  "L32_field_basin_counts": {
+    "gate": 28,
+    "both": 1
+  },
+  "union_basin_counts": {
+    "both": 38,
+    "substrate": 1,
+    "gate": 5
+  },
+  "pivot_basin": {
+    "L24": "substrate",
+    "L32": "gate",
+    "union": "both"
+  },
+  "union_node_basins": {
+    "L0/N669": "both",
+    "L0/N7433": "both",
+    "L0/N7822": "both",
+    "L0/N10902": "both",
+    "L0/N11311": "both",
+    "L0/N13463": "both",
+    "L1/N4970": "both",
+    "L1/N7179": "both",
+    "L2/N4786": "both",
+    "L2/N5789": "both",
+    "L3/N6390": "both",
+    "L3/N13731": "both",
+    "L4/N4152": "both",
+    "L4/N12934": "both",
+    "L5/N7012": "both",
+    "L5/N11491": "both",
+    "L6/N5866": "both",
+    "L6/N12689": "both",
+    "L7/N6673": "both",
+    "L9/N4255": "both",
+    "L9/N9439": "both",
+    "L9/N12002": "both",
+    "L10/N11570": "both",
+    "L11/N4258": "both",
+    "L11/N11321": "both",
+    "L12/N5760": "both",
+    "L12/N13860": "both",
+    "L13/N4208": "both",
+    "L13/N8406": "both",
+    "L13/N13879": "both",
+    "L14/N3917": "both",
+    "L14/N7467": "both",
+    "L15/N9635": "both",
+    "L16/N1241": "both",
+    "L17/N13532": "both",
+    "L18/N7417": "both",
+    "L18/N12797": "both",
+    "L19/N1846": "gate",
+    "L19/N8664": "gate",
+    "L20/N3972": "both",
+    "L20/N9424": "substrate",
+    "L22/N5031": "gate",
+    "L26/N7711": "gate",
+    "L29/N12010": "gate"
+  }
+}

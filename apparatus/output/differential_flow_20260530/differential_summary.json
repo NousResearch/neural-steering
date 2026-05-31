@@ -1,0 +1,205 @@
+{
+  "field_dir": "apparatus/output/probe_edge_fields_llama8b_20260531_001434",
+  "substrate_layer": 24,
+  "gate_layer": 32,
+  "dropped_super_weight_nodes": [
+    "L0/N491",
+    "L0/N8268",
+    "L1/N198",
+    "L1/N2427"
+  ],
+  "clip_percentile": 98.0,
+  "n_edges_substrate_collapsed": 344,
+  "n_edges_gate_collapsed": 188,
+  "n_edges_union_after_infra_drop": 372,
+  "kind_counts": {
+    "gate_only": 96,
+    "substrate_only": 197,
+    "shared": 75,
+    "sign_flip": 4
+  },
+  "sign_flip_edges": [
+    {
+      "src": "L9/N4255",
+      "dst": "L18/N7417",
+      "w_substrate": 0.21109,
+      "w_gate": -0.00596,
+      "delta": -0.21705
+    },
+    {
+      "src": "L10/N11570",
+      "dst": "L18/N7417",
+      "w_substrate": 0.13355,
+      "w_gate": -0.02992,
+      "delta": -0.16347
+    },
+    {
+      "src": "L11/N11321",
+      "dst": "L18/N7417",
+      "w_substrate": 0.05382,
+      "w_gate": -0.03141,
+      "delta": -0.08522
+    },
+    {
+      "src": "L7/N6673",
+      "dst": "L9/N4255",
+      "w_substrate": -0.04946,
+      "w_gate": 0.01508,
+      "delta": 0.06454
+    }
+  ],
+  "top_gate_specific": [
+    {
+      "src": "L0/N7433",
+      "dst": "L4/N4152",
+      "delta": 0.39895
+    },
+    {
+      "src": "L0/N7433",
+      "dst": "L1/N4970",
+      "delta": 0.38259
+    },
+    {
+      "src": "L1/N4970",
+      "dst": "L4/N4152",
+      "delta": 0.33108
+    },
+    {
+      "src": "L3/N13731",
+      "dst": "L4/N4152",
+      "delta": 0.29971
+    },
+    {
+      "src": "L9/N12002",
+      "dst": "L29/N12010",
+      "delta": 0.16517
+    },
+    {
+      "src": "L0/N7822",
+      "dst": "L6/N5866",
+      "delta": 0.15854
+    },
+    {
+      "src": "L0/N7822",
+      "dst": "L29/N12010",
+      "delta": 0.14099
+    },
+    {
+      "src": "L1/N7179",
+      "dst": "L29/N12010",
+      "delta": 0.1405
+    },
+    {
+      "src": "L1/N7179",
+      "dst": "L6/N5866",
+      "delta": 0.12783
+    },
+    {
+      "src": "L0/N7433",
+      "dst": "L3/N13731",
+      "delta": 0.11045
+    },
+    {
+      "src": "L4/N4152",
+      "dst": "L11/N11321",
+      "delta": 0.09399
+    },
+    {
+      "src": "L1/N4970",
+      "dst": "L3/N13731",
+      "delta": 0.08906
+    },
+    {
+      "src": "L0/N11311",
+      "dst": "L4/N4152",
+      "delta": 0.08807
+    },
+    {
+      "src": "L13/N8406",
+      "dst": "L29/N12010",
+      "delta": 0.06998
+    },
+    {
+      "src": "L3/N13731",
+      "dst": "L11/N11321",
+      "delta": 0.05971
+    }
+  ],
+  "top_substrate_specific": [
+    {
+      "src": "L13/N4208",
+      "dst": "L20/N9424",
+      "delta": -1.38893
+    },
+    {
+      "src": "L11/N11321",
+      "dst": "L20/N9424",
+      "delta": -0.97906
+    },
+    {
+      "src": "L12/N13860",
+      "dst": "L20/N9424",
+      "delta": -0.80523
+    },
+    {
+      "src": "L10/N11570",
+      "dst": "L20/N9424",
+      "delta": -0.7943
+    },
+    {
+      "src": "L13/N4208",
+      "dst": "L16/N1241",
+      "delta": -0.7201
+    },
+    {
+      "src": "L9/N4255",
+      "dst": "L20/N9424",
+      "delta": -0.60867
+    },
+    {
+      "src": "L6/N5866",
+      "dst": "L16/N1241",
+      "delta": -0.58403
+    },
+    {
+      "src": "L15/N9635",
+      "dst": "L20/N9424",
+      "delta": -0.53733
+    },
+    {
+      "src": "L5/N7012",
+      "dst": "L16/N1241",
+      "delta": -0.52534
+    },
+    {
+      "src": "L6/N5866",
+      "dst": "L20/N9424",
+      "delta": -0.50634
+    },
+    {
+      "src": "L17/N13532",
+      "dst": "L20/N9424",
+      "delta": -0.50044
+    },
+    {
+      "src": "L5/N7012",
+      "dst": "L20/N9424",
+      "delta": -0.48075
+    },
+    {
+      "src": "L7/N6673",
+      "dst": "L20/N9424",
+      "delta": -0.47278
+    },
+    {
+      "src": "L7/N6673",
+      "dst": "L16/N1241",
+      "delta": -0.43956
+    },
+    {
+      "src": "L9/N4255",
+      "dst": "L16/N1241",
+      "delta": -0.42866
+    }
+  ]
+}

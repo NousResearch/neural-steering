@@ -1,0 +1,20 @@
+{
+  "degree_preserving": {
+    "observed_modularity": 0.1111658883786668,
+    "n_communities": 4,
+    "null_n": 200,
+    "null_mean": 0.14444263255824477,
+    "null_std": 0.009957931086166674,
+    "z_score": -3.3417327245621586,
+    "verdict": "LAYOUT THEATER (within null)"
+  },
+  "layer_preserving": {
+    "null_type": "layer-preserving (inter-layer edge-count preserved)",
+    "observed_modularity": 0.1111658883786668,
+    "null_n": 200,
+    "null_mean": 0.24093420085452344,
+    "null_std": 0.017517395943830973,
+    "z_score": -7.4079682215299005,
+    "verdict": "NO STRUCTURE (within layer-preserving null)"
+  }
+}

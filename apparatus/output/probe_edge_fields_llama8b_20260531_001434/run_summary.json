@@ -1,0 +1,100 @@
+{
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "probe_layers": [
+    24,
+    32
+  ],
+  "top_k": 91,
+  "top_k_per_layer": 200,
+  "edge_top_k": 30,
+  "discovery_prompts": "REFUSAL_DISCOVERY_POSITIVE",
+  "note": "Readout-selected edge-field differential inputs. Differential = flow(L32) - flow(L24) is computed downstream by the differential viewer (union edge keys, missing = 0).",
+  "fields": {
+    "L24": {
+      "probe": {
+        "layer": 24,
+        "position": -1,
+        "method": "mean_diff",
+        "bias": 1.4832714796066284,
+        "hidden_state_alias": "hidden_states[24+1]"
+      },
+      "probe_train_validation": {
+        "pos_mean": 7.744017434120178,
+        "pos_std": 2.8620806692671747,
+        "neg_mean": -7.7440167427062985,
+        "neg_std": 1.6734054992294716,
+        "margin": 15.488034176826478,
+        "auc": 1.0,
+        "all_mean": 3.457069396972656e-07,
+        "label_score_corr": 0.9571046058296017,
+        "layer": 24,
+        "position": -1,
+        "method": "mean_diff",
+        "n_positive": 10,
+        "n_negative": 10
+      },
+      "probe_heldout_validation": {
+        "pos_mean": 9.615760231018067,
+        "pos_std": 0.9249699468606691,
+        "neg_mean": -3.1876471519470213,
+        "neg_std": 4.215436980492885,
+        "margin": 12.803407382965087,
+        "auc": 1.0,
+        "all_mean": 3.2140565395355223,
+        "label_score_corr": 0.902682676878772
+      },
+      "top_k": 91,
+      "edge_top_k": 30,
+      "n_circuit_neurons": 91,
+      "n_edges": 1573,
+      "edge_prompts_used": 10,
+      "sign_counts": {
+        "positive": 1001,
+        "negative": 572
+      }
+    },
+    "L32": {
+      "probe": {
+        "layer": 32,
+        "position": -1,
+        "method": "mean_diff",
+        "bias": -15.903692245483398,
+        "hidden_state_alias": "hidden_states[-1] (post-final-norm)"
+      },
+      "probe_train_validation": {
+        "pos_mean": 54.487571144104,
+        "pos_std": 20.590348123582544,
+        "neg_mean": -54.48757476806641,
+        "neg_std": 7.579245882986052,
+        "margin": 108.9751459121704,
+        "auc": 1.0,
+        "all_mean": -1.811981201171875e-06,
+        "label_score_corr": 0.9617718345514753,
+        "layer": 32,
+        "position": -1,
+        "method": "mean_diff",
+        "n_positive": 10,
+        "n_negative": 10
+      },
+      "probe_heldout_validation": {
+        "pos_mean": 67.25227355957031,
+        "pos_std": 2.897240786498515,
+        "neg_mean": -24.020514297485352,
+        "neg_std": 16.070003604923603,
+        "margin": 91.27278785705566,
+        "auc": 1.0,
+        "all_mean": 21.615879631042482,
+        "label_score_corr": 0.9694523016494155
+      },
+      "top_k": 91,
+      "edge_top_k": 30,
+      "n_circuit_neurons": 91,
+      "n_edges": 1116,
+      "edge_prompts_used": 10,
+      "sign_counts": {
+        "positive": 529,
+        "negative": 587
+      }
+    }
+  }
+}
