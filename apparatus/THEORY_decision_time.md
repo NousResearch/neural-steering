@@ -35,7 +35,11 @@ Two distinct clocks, kept separate from here on:
 1. **Position-time** inside one forward pass over the prompt. Cheap, real arrow (causal mask). Question: does the decision form *while reading the prompt*, before any token is generated? This is Phase 1 — the oscilloscope.
 2. **Generation-time** across an autoregressive rollout. Richer, has an intervention in it (force a token, watch recovery vs escape). The dynamical object. This is later (the rollout / commitment-window / forced-runner-up work), aimed by Phase 1.
 
-A free lunch from causal masking: because nothing after position j can change h_j, "re-run at every prefix length and read the final token" is *exactly equivalent* to "one forward pass, read every position." The oscilloscope is one cheap forward pass, not N runs.
+A *claimed* free lunch from causal masking — **WRONG for chat models; corrected 2026-06-01 after the first run (Codex caught it).** The original claim was: because nothing after position j can change h_j, "re-run at every prefix length and read the final token" is exactly equivalent to "one forward pass, read every position," so the oscilloscope is one cheap forward pass, not N runs.
+
+The equivalence is real but for the WRONG question. Reading every position of one *formatted chat* prompt answers "what is the next token *mid-user-message* at position j?" — which is mostly chat-template mechanics, with the big jump landing at the assistant header. It does NOT answer "if the user prompt ended at j, what would the *assistant* respond?" — because the assistant generation header (`<|eot|><|start_header|>assistant...`) is a *future suffix*, and under the causal mask a state inside the user message cannot see it. The reification: "position is the temporal axis" silently became "any per-position read of one pass IS the temporal object," and the second does not follow for chat models.
+
+The CORRECT object (what actually produced the results) is the **true user-prefix sweep**: for each user-token prefix, re-format that prefix as a complete chat prompt with `add_generation_prompt=True`, then read the final assistant-position state. It is N forward passes, not one — but the held-out refusal prompts are short (3–8 user tokens), so the cost is trivial and the object is right. Implemented in `apparatus/decision_time_prefix_sweep.py`; `apparatus/decision_time.py` remains the per-position reader it calls under the hood (`collect_all_traces`), but the single-pass-reads-all-positions shortcut is NOT a valid substitute for the sweep on chat models.
 
 ## Phase 1 — the oscilloscope (what we build first)
 
@@ -144,3 +148,22 @@ snav's framing on this: he is *less* interested in refusal-specific behavior per
 ### Open spec decisions deferred to data (not Phase 1 blockers)
 - Surprisal-matched neutral control distribution for the Phase 2 forced-runner-up null — define after seeing a real margin trace.
 - Rollout contrast-classification labels — define after staring at ~20 steps of real top-5 output.
+
+## First-run results (2026-06-01, true user-prefix sweep, job 152358)
+
+Output: `apparatus/output/decision_time_prefix_llama8b_20260601_163434/`. Four held-out REFUSAL_TEST prompts. Probes refit clean (L24 AUC 1.0 margin +15.5; L32 AUC 1.0 margin +109).
+
+**Finding (replicates 4/4): mode commitment is a token-localized PREFILL step, not gradual accumulation and not a generation-time event.** The gate probe (L32) steps from strongly negative to strongly positive on the single harmful-content token, and stays saturated:
+- `hack`: L32 −10.6 -> +40.6 (-> +63 by end); substrate L24 2.5 -> 4.5 -> 8.
+- `explosives`: L32 −7.9 -> +64.3.
+- `malware`: L32 −7.3 -> +64.5.
+- `counterfeit`: L32 −6.5 -> +62.7.
+By the time generation begins, the gate is fully open; generation-time "commitment" is the aftermath for these prompts.
+
+**Null result for the position-time lag hypothesis (the thing I most expected to find — it is NOT there).** Substrate (L24) and gate (L32) step on the SAME token; there is no position-time lag between detection and commitment. The substrate->gate handoff that is real across DEPTH (L24->L29-32, routed via L18/N7417, found Saturday) has no shadow across POSITION — it is a within-token, depth-wise computation that completes inside one forward pass and does not smear across reading-time. So the "moment" of decision is a token, not a window. Crisp answer to "when does it decide": at the content word, all at once.
+
+**The contrast caveat inverted my own framing.** Best-compliance ranks at the final prefix are 72k–110k — compliance is not a live alternative, it is annihilated. So Panel 1 (the probe-free margin spine I designed as the PAYLOAD) is only measuring "refusal opener beats a dead token," and it barely moves (≈3 -> ≈13). The line carrying the real signal is the FITTED gate probe (Panel 3), i.e. the thing I had cast as mere "decomposition." Data says the opposite of my design: on this prompt class the fitted probe is the sensitive instrument and the token-margin is nearly flat. FIX for next run: redefine the spine contrast to refusal-opener vs best *non-refusal* top token (dynamic rank-2, whatever is actually live), so the margin tracks a live alternative. One-line metric swap.
+
+**No tug-of-war, but we could not have seen one here.** The hardened target wanted a flat margin with both sub-signals loud (balanced competition). We see a clean unipolar snap instead — expected for refusal (high-contrast case) and guaranteed once compliance sits at rank ~100k. Confirms refusal is the WRONG prompt class to hunt balanced competition; the contested-decision prize is in ambiguous prompts.
+
+**RMS (crowding) suggestive, not established.** Pre-final-norm RMS bumps with the gate at the content tokens (≈0.53 -> ≈0.64, ~20%) but the swing is modest and it dips at filler tokens. Consistent with crowding; not shown. Needs the Phase 2 decomposition (does a loud component renormalize others down) to be more than correlation.
