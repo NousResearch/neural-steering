@@ -79,7 +79,7 @@ def collect_prefix_sweep(
     for i, prefix in enumerate(prefixes):
         input_ids = format_prompt(steerer, prefix)
         rec = collect_all_traces(
-            steerer, input_ids, probes, refusal_ids, compliance_ids, top_n=top_n
+            steerer, input_ids, probes, refusal_ids, compliance_ids, PIVOTS, top_n=top_n
         )
         j = rec["seq_len"] - 1
         traces["margin"][i] = rec["margin"][j]
