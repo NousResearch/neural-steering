@@ -37,6 +37,7 @@ HF_DATASET = "OkayestProgrammer/selfAware"
 HF_CONFIG = "default"
 HF_SPLIT = "train"
 HF_ROWS_URL = "https://datasets-server.huggingface.co/rows"
+TRAPS_DATASET = "benchmark-data/hallucination-traps"
 
 ABSTAIN_MARKERS = [
     "i don't know",
@@ -124,11 +125,11 @@ FAKE_FACTUAL_PROMPTS = [
 ]
 
 
-def hf_rows(offset: int, length: int) -> list[dict]:
+def hf_rows(dataset: str, config: str, split: str, offset: int, length: int) -> list[dict]:
     query = urllib.parse.urlencode({
-        "dataset": HF_DATASET,
-        "config": HF_CONFIG,
-        "split": HF_SPLIT,
+        "dataset": dataset,
+        "config": config,
+        "split": split,
         "offset": offset,
         "length": length,
     })
@@ -138,7 +139,7 @@ def hf_rows(offset: int, length: int) -> list[dict]:
 
 
 def build_prompts(n_answerable: int, n_selfaware_unanswerable: int,
-                  n_fake: int, seed: int) -> list[dict]:
+                  n_fake: int, n_traps: int, seed: int) -> list[dict]:
     rng = random.Random(seed)
 
     # SelfAware has answerable factual rows first and obvious-unanswerable rows
@@ -146,12 +147,12 @@ def build_prompts(n_answerable: int, n_selfaware_unanswerable: int,
     # download or extra HF dependencies.
     answerable_pool = []
     for off in (0, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250):
-        answerable_pool.extend(hf_rows(off, 40))
+        answerable_pool.extend(hf_rows(HF_DATASET, HF_CONFIG, HF_SPLIT, off, 40))
     answerable_pool = [r for r in answerable_pool if r.get("answerable")]
 
     unanswerable_pool = []
     for off in (2500, 2700, 2900, 3100, 3300):
-        unanswerable_pool.extend(hf_rows(off, 40))
+        unanswerable_pool.extend(hf_rows(HF_DATASET, HF_CONFIG, HF_SPLIT, off, 40))
     unanswerable_pool = [r for r in unanswerable_pool if not r.get("answerable")]
 
     prompts: list[dict] = []
@@ -185,6 +186,20 @@ def build_prompts(n_answerable: int, n_selfaware_unanswerable: int,
             "gold_answer": [],
             "source": "handmade_fake",
             "prompt": prompt,
+        })
+
+    traps = hf_rows(TRAPS_DATASET, "default", "train", 0, 100)
+    for i, row in enumerate(traps[:n_traps]):
+        prompts.append({
+            "id": f"hallucination_trap_{i:03d}",
+            "bucket": "hallucination_trap",
+            "question": row["prompt"],
+            "gold_answer": [],
+            "source": TRAPS_DATASET,
+            "trap_category": row.get("category", "unknown"),
+            "expected_behavior": row.get("expected_behavior", ""),
+            "notes": row.get("notes", ""),
+            "prompt": row["prompt"],
         })
 
     return prompts
@@ -239,12 +254,12 @@ def summarize(records: list[dict]) -> dict:
         },
         "candidate_confab": [
             r["id"] for r in records
-            if r["bucket"] in {"fake_factual", "selfaware_unanswerable"}
+            if r["bucket"] in {"fake_factual", "hallucination_trap", "selfaware_unanswerable"}
             and r["label"] in {"ANSWER", "HEDGE+ANSWER"}
         ],
         "candidate_abstain": [
             r["id"] for r in records
-            if r["bucket"] in {"fake_factual", "selfaware_unanswerable"}
+            if r["bucket"] in {"fake_factual", "hallucination_trap", "selfaware_unanswerable"}
             and r["label"] in {"ABSTAIN", "ABSTAIN+ANSWER"}
         ],
     }
@@ -256,6 +271,7 @@ def main() -> int:
     ap.add_argument("--n-answerable", type=int, default=40)
     ap.add_argument("--n-selfaware-unanswerable", type=int, default=20)
     ap.add_argument("--n-fake", type=int, default=20)
+    ap.add_argument("--n-traps", type=int, default=40)
     ap.add_argument("--seed", type=int, default=7)
     ap.add_argument("--max-new", type=int, default=120)
     ap.add_argument("--out-dir", type=Path, default=None)
@@ -270,6 +286,7 @@ def main() -> int:
         args.n_answerable,
         args.n_selfaware_unanswerable,
         args.n_fake,
+        args.n_traps,
         args.seed,
     )
     (args.out_dir / "prompts.json").write_text(json.dumps(prompts, indent=2))
