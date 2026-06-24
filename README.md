@@ -43,11 +43,9 @@ See [`quickstart.py`](quickstart.py) for a runnable end-to-end example. Also: [r
 - **Contrastive discovery** -- find neurons for any behavioral feature (refusal, belief, sentiment, sycophancy) from positive/negative prompt pairs, no target token needed
 - **Single-pass circuit discovery** -- RelP/LRP attribution finds factual circuits in one forward+backward pass
 - **Multiplier steering** -- ablate (0.0), baseline (1.0), amplify (2.0+), or sweep across multipliers
-- **Edge attribution** -- neuron-to-neuron information flow, hourglass architecture detection, super weight identification
 - **Automatic universal neuron blacklisting** -- filters task-agnostic infrastructure neurons
 - **Cross-model support** -- Llama, Qwen, Mistral with zero code changes
 - **Interactive REPL** -- explore circuits live with `steerer.interactive()`
-- **Batch faithfulness evaluation** -- circuit quality measurement with percentage threshold sweep
 
 ## Results
 
@@ -135,7 +133,6 @@ neuron> prompt What is the capital of Ohio?
 neuron> discover Austin
 neuron> ablate top10
 neuron> sweep 0.0 0.5 1.0 2.0 5.0
-neuron> edges
 neuron> save my_circuit
 ```
 
@@ -155,10 +152,6 @@ Multi-prompt discovery. Attributes across prompts, unions per-prompt circuits.
 
 Find neurons by contrasting activations between two prompt sets.
 
-#### `discover_edges(prompt, circuit, top_k_targets=30, ...) -> CircuitGraph`
-
-Neuron-to-neuron edges within a circuit. Returns a `CircuitGraph` with hub analysis, bottleneck detection, ASCII diagrams, and Graphviz export.
-
 #### `steer_and_generate(prompt, circuit, multiplier=0.0, max_new_tokens=50, ...) -> str`
 
 Generate with circuit neurons scaled by `multiplier`.
@@ -170,10 +163,6 @@ Normal generation without steering.
 #### `next_token_probs(prompt, tokens, circuit=None, multiplier=1.0, ...) -> Dict[str, float]`
 
 Next-token probabilities for specific tokens, optionally with steering.
-
-#### `measure_faithfulness_batch(prompts, target_tokens, counterfactual_tokens, ...) -> List[Dict]`
-
-Batch faithfulness evaluation. Returns faithfulness and completeness at each threshold.
 
 ---
 
@@ -188,21 +177,6 @@ circuit.unique_neurons()     # Unique neuron indices per layer
 circuit.summary()            # Human-readable summary
 circuit.save("path.json")    # Serialize to JSON
 Circuit.load("path.json")    # Load from JSON
-```
-
-#### `CircuitGraph`
-
-```python
-graph.top_edges(k=20)           # Top-k edges by weight
-graph.edges_from(neuron_idx)    # Outgoing edges
-graph.edges_to(neuron_idx)      # Incoming edges
-graph.layer_flow()              # Layer-to-layer flow aggregates
-graph.hub_analysis()            # Source/target hub ranking
-graph.bottleneck()              # Hourglass bottleneck neurons
-graph.detect_super_weights()    # Anomalous infrastructure neurons
-graph.ascii_diagram()           # ASCII visualization
-graph.to_dot("circuit.dot")     # Graphviz DOT export
-graph.summary()                 # Human-readable summary
 ```
 
 ## How It Works
