@@ -1,6 +1,6 @@
 """Interactive neuron steering REPL.
 
-Commands: prompt, discover, ablate, amplify, sweep, edges, top, save, load, info, quit
+Commands: prompt, discover, ablate, amplify, sweep, top, save, load, multiplier, info, quit
 """
 import torch
 from neuron_steer import NeuronSteerer
