@@ -270,7 +270,7 @@ def run_comparison(model_name: str, output_dir: str, top_k: int = 1600):
                 if method_name == "cna":
                     gen = steerer.steer(
                         prompt, circuit=circuit,
-                        multiplier=alpha, max_new_tokens=150,
+                        multiplier=1.0 + alpha, max_new_tokens=150,
                     )
                 else:  # caa
                     formatted = steerer._format_prompt(prompt)
