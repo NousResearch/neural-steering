@@ -254,7 +254,7 @@ def run_comparison(model_name: str, output_dir: str, top_k: int = 1600):
     results["baseline"] = {"n_refusals": baseline_refusals, "pct": round(baseline_pct, 1)}
 
     # ---- Alpha sweep for each method ----
-    for method_name, method_label in [("cna", "CNA"), ("caa", "CAA"]:
+    for method_name, method_label in [("cna", "CNA"), ("caa", "CAA")]:
         print(f"\n{'='*60}")
         print(f"Alpha sweep: {method_label}")
         print(f"{'='*60}")
