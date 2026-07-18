@@ -5,7 +5,26 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "neural-steering"
 version = "0.1.0"
+description = "Contrastive Neuron Attribution for behavioral detection and steering in language models."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+dependencies = [
+    "torch>=2.0",
+    "transformers>=4.40",
+    "accelerate",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7.0"]
+
+[project.urls]
+Homepage = "https://github.com/NousResearch/neural-steering"
+Repository = "https://github.com/NousResearch/neural-steering"
 
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["neuron_steer*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
